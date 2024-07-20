@@ -1,0 +1,74 @@
+.super-search-blue {
+  width: 90%;
+  height: auto;
+  margin: auto;
+
+  h2 {
+    color: $font-light;
+    margin: 5px 0px;
+  }
+
+  h5 {
+    color: $font-light;
+  }
+
+  .input-cont {
+    width: 100%;
+    margin: 10px 0px;
+    border-radius: 5px;
+    background-color: $font-light;
+    overflow:hidden ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 5px;
+
+    input {
+      width: 80%;
+      height: 40px;
+      border: none;
+      outline: none;
+      padding-left: 10px ;
+    }
+
+    button {
+      padding: 5px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background:linear-gradient(to top , $first-blue , $second-blue);
+      color: $font-light;
+    }
+  }
+}
+
+.super-search-pink {
+  @extend .super-search-blue;
+
+  .input-cont {
+    button {
+      background:linear-gradient(to top , $first-pink , $second-pink);
+    }
+  }
+}
+
+.super-search-orange {
+  @extend .super-search-blue;
+
+  .input-cont {
+    button {
+      background:linear-gradient(to top , $first-orange , $second-orange);
+    }
+  }
+}
+
+.super-search-green {
+  @extend .super-search-blue;
+
+  .input-cont {
+    button {
+      background:linear-gradient(to top , $first-green , $second-green);
+    }
+  }
+}

@@ -1,0 +1,153 @@
+.home-darck {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-darck;
+
+  .cont {
+    width: 50%;
+    height: 100%;
+    margin: auto;
+    overflow-x: hidden;
+    padding: 10px;
+    @media (max-width: $phone) {
+      width: 100%;
+    }
+
+    @media (min-width: $phone) and (max-width: $tablet) {
+      width: 80%;
+    }
+
+    @media (min-width: $laptop) {
+      width: 50%;
+    }
+
+    .section-title {
+      width: 90%;
+      height: auto;
+      margin: auto;
+      color: $font-light;
+      border: 0.5px solid;
+      border-color: transparent transparent $body-light transparent;
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0px;
+      // background-color: greenyellow;
+
+      a {
+        width: 30%;
+        height: auto;
+        color: $blue;
+        font-size: $x-small;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        svg {
+          transition-duration: 0.5s;
+          margin-left: 5px;
+        }
+      }
+      a:hover {
+        svg {
+          margin-right: -10px;
+        }
+      }
+    }
+
+    // classes section style
+    .classes-open {
+      width: 100%;
+      height: 300px;
+      margin: 20px 0px;
+      position: relative;
+      transition-duration: 0.5s;
+      opacity: 1;
+
+      .boxs-cont {
+        width: 80%;
+        height: auto;
+        background: orange;
+
+        .swiper-wrapper {
+          width: auto;
+          height: 300px;
+          // background-color: blue;
+          // overflow: hidden;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          // white-space: nowrap;
+          position: absolute;
+          @media (max-width: $phone) {
+            height: 250px;
+          }
+
+          .swiper-slide {
+            width: 30%;
+            height: 100%;
+            // background-color: rebeccapurple;
+            display: flex;
+            margin-left: 10px;
+            justify-content: center;
+            // ali
+            // background-color: red
+          }
+        }
+      }
+    }
+
+    .classes-close {
+      @extend .classes-open;
+      opacity: 0;
+    }
+
+    // teachers section style
+    .teachers-open {
+      width: 100%;
+      height: 120px;
+      margin: 20px 0px;
+      position: relative;
+      transition-duration: 0.5s;
+      opacity: 1;
+
+      .boxs-cont {
+        width: 80%;
+        height: auto;
+
+        .swiper-wrapper {
+          width: auto;
+          height: auto;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          position: absolute;
+
+          .swiper-slide {
+            width: 30%;
+            height: 100%;
+            display: flex;
+            margin-left: 10px;
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+
+  .cont::-webkit-scrollbar {
+    width: 0px;
+  }
+}
+
+.home-light {
+  @extend .home-darck;
+  background-color: $body-light;
+  .cont {
+    .section-title {
+      color: $font-darck;
+      border-color: transparent transparent $body-darck transparent;
+    }
+  }
+}

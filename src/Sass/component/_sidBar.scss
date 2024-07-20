@@ -1,0 +1,629 @@
+// darck mood
+.sidbar-darck-open-English {
+  width: 60%;
+  height: 98%;
+  backdrop-filter: blur(20px);
+  position: fixed;
+  left: 0%;
+  top: 1%;
+  z-index: 100;
+  border-radius: 10px;
+  box-shadow: 0 0 10px black;
+  transition-duration: 0.5s;
+  overflow-y: scroll;
+  padding: 10px 5px 10px 10px;
+  direction: ltr;
+
+  @media (min-width:$phone) {
+    width: 30%;
+  }
+
+  .close-icon {
+    width: 30px;
+    height: 30px;
+    color: $font-light;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $body-darck ;
+    position: absolute;
+    right: 3%;
+    top: 3%;
+    cursor: pointer;
+  }
+
+  // profile cont style
+  .profile {
+    width: 100%;
+    height:auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    // avatar
+    .avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 10px;
+      margin: 10px;
+      border: 3px solid $blue;
+      user-select: none;
+    }
+
+    // name
+    h4 {
+      width: 50%;
+      height: auto;
+      margin-left: 10px;
+      color: $font-light;
+    }
+  }
+
+  .title {
+    color: $font-light
+  }
+
+  ul {
+    width: 100%;
+    height: auto;
+    padding: 10px 0px;
+    .show {
+      width: 98%;
+      height: 40px;
+      background-color: $message-darck;
+      border-radius: 5px;
+      margin: 1%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0px 10px;
+      cursor: pointer;
+      transition-duration: 0.5s;
+      border: 1px solid $border-light;
+      position: relative;
+      a {
+        text-decoration: none;
+        color: $font-light;
+        width: 90%;
+      }
+      svg {
+        color: $font-light;
+        position: absolute;
+        top: 35%;
+        right: 5%;
+        transition-duration: 0.5s;
+      }
+    }
+    .show:hover {
+      background-color: $body-darck;
+      svg {
+        right: 3%;
+        margin-left: 30px;
+        color: $blue;
+      }
+    }
+    .hidden {
+      display: none;
+    }
+  }
+
+  // language list 
+  .Language-close {
+    width: 98%;
+    height: 50px;
+    outline: none;
+    margin-left: 1%;
+    border-radius: 5px;
+    margin: 10px 0px;
+    border: 1px solid $border-light;
+    overflow: hidden;
+    transition-duration: 0.5s;
+
+    // language option
+    li {
+      width: 98%;
+      height: 40px;
+      background-color: $message-darck;
+      border-radius: 5px;
+      margin: 1%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0px 10px;
+      cursor: pointer;
+      transition-duration: 0.5s;
+      border: 1px solid $border-light;
+      position: relative;
+      color: $font-light;
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+    }
+
+    li:hover {
+      background-color: $body-darck;
+    }
+
+    // language list title
+    p {
+      width: 98%;
+      height: 30px;
+      margin: 0% 1% 4% 1%;
+      padding: 0px 5px;
+      color: $font-light;
+      cursor: pointer;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      svg {
+        transition-duration: 0.5s;
+      }
+    }
+
+  }
+
+  .Language-open {
+    @extend .Language-close;
+    overflow: hidden;
+    @media (min-width:$phone) {
+      padding: 10px 0px 20px 0px;
+      height: 145px;
+    }
+    height: 140px;
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  // themes
+  .themes {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    li {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      list-style-type: none;
+      cursor: pointer;
+    }
+
+    .blue {
+      background:linear-gradient(to top , $first-blue , $second-blue);
+    }
+
+    .pink {
+      background:linear-gradient(to top , $first-pink , $second-pink);
+    }
+
+    .orange {
+      background:linear-gradient(to top , $first-orange , $second-orange);
+    }
+
+    .green {
+      background:linear-gradient(to top , $first-green , $second-green);
+    }
+  }
+
+  // log  out button custom
+  .log-out {
+    width: 98%;
+    height: 40px;
+    margin: 10px 1% 1% 1%;
+    cursor: pointer;
+    background-color: $red;
+    border: none;
+    border-radius: 5px;
+    color: $font-light;
+  }
+
+  .mood-cont-darck {
+    width: 50px;
+    height: 30px;
+    border-radius: 5px;
+    color: $font-light;
+    background-color: $body-darck;
+    border: 1px solid $border-light;
+    cursor: pointer;
+    margin: 20px 10px;
+    box-shadow: 0 0 5px $black inset;
+    transition-duration: 0.5s;
+    .mood-hand {
+      width: 45%;
+      height: 80%;
+      margin: 5%;
+      border-radius: 5px;
+      background-color: $blue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition-duration: 0.5s;
+    }
+  }
+}
+
+.sidbar-darck-close-English {
+  @extend .sidbar-darck-open-English ;
+  transition-duration: 0.5s;
+  position: absolute;
+  left: -60%;
+  overflow: hidden;
+}
+
+
+.sidbar-darck-open-English::-webkit-scrollbar {
+  width: 10px;
+}
+
+
+
+// light mood
+.sidbar-light-open-English {
+  @extend .sidbar-darck-open-English;
+
+  @media (min-width:$phone) {
+    width: 30%;
+  }
+
+  .close-icon {
+    color: $font-darck;
+    background-color: $body-light;
+  }
+  
+  // profile cont style
+  .profile {
+    // student name
+    h4 {
+      color: $font-darck;
+    }
+  }
+
+  // sections title
+  .title {
+    color: $font-darck;
+  }
+
+  // links list
+  ul {
+    .show {
+      background-color: $message-light;
+      border: 1px solid $border-darck;
+      a {
+        color: $font-darck;
+      }
+      svg {
+        color: $font-darck;
+      }
+    }
+    .show:hover {
+      background-color: $body-light;
+    }
+  }
+
+
+  // language close style
+  .Language-close {
+    border: 1px solid $border-darck;
+    p {
+      color: $font-darck;
+    }
+
+    li {
+      color: $font-darck;
+      background-color: $border-light;
+      border: 1px solid $border-darck;
+    }
+
+    li:hover {
+      background-color: $body-light;
+    }
+  }
+
+  // language open style
+  .Language-open {
+    @extend .Language-close;
+    height: 140px;
+    background-color: $border-light;
+    @media (min-width:$phone) {
+      height: 145px;
+    }
+  }
+
+  // log  out button custom
+  .log-out {
+    color: $font-light;
+  }
+
+  .mood-cont-light {
+    width: 50px;
+    height: 30px;
+    border-radius: 5px;
+    color: $font-light;
+    background-color: $body-light;
+    border: 1px solid $border-light;
+    cursor: pointer;
+    margin: 20px 10px;
+    box-shadow: 0 0 5px $black inset;
+    transition-duration: 0.5s;
+    .mood-hand {
+      width: 45%;
+      height: 80%;
+      margin: 5% 5% 5% 50%;
+      border-radius: 5px;
+      background-color: $blue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition-duration: 0.5s;
+    }
+  }
+}
+
+.sidbar-light-close-English {
+  @extend .sidbar-light-open-English ;
+  position: absolute;
+  left: -60%;
+  overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// darck mood
+.sidbar-darck-open-Arabic {
+  @extend .sidbar-darck-open-English;
+  direction: rtl;
+  padding: 0px 10px 0px 0px;
+
+
+  // profile cont style
+  .profile {
+    direction: ltr;
+
+    h4 {
+      color: $font-light;
+    }
+  }
+
+  ul {
+    width: 100%;
+    height: auto;
+    padding: 10px 0px;
+    .show {
+      width: 98%;
+      height: 40px;
+      background-color: $message-darck;
+      border-radius: 5px;
+      margin: 1%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0px 10px;
+      cursor: pointer;
+      transition-duration: 0.5s;
+      border: 1px solid $border-light;
+      position: relative;
+      a {
+        text-decoration: none;
+        color: $font-light;
+        width: 90%;
+      }
+      svg {
+        color: $font-light;
+        position: absolute;
+        top: 34%;
+        right: 86%;
+        transform: rotate(180deg);
+        transition-duration: 0.5s;
+      }
+    }
+    .show:hover {
+      background-color: $body-darck;
+      svg {
+        right: 90%;
+        margin-left: 30px;
+        color: $blue;
+      }
+    }
+    .hidden {
+      display: none;
+    }
+  }
+
+  // log  out button custom
+  .log-out {
+    width: 98%;
+    height: 40px;
+    margin: 10px 1% 1% 1%;
+    cursor: pointer;
+    background-color: $red;
+    border: none;
+    border-radius: 5px;
+    color: $font-light;
+  }
+
+  .mood-cont-darck {
+    width: 50px;
+    height: 30px;
+    border-radius: 5px;
+    color: $font-light;
+    background-color: $body-darck;
+    border: 1px solid $border-light;
+    cursor: pointer;
+    margin: 20px 10px;
+    box-shadow: 0 0 5px $black inset;
+    transition-duration: 0.5s;
+    display: flex;
+    .mood-hand {
+      width: 45%;
+      height: 80%;
+      margin: 5% 50% 5% 5%;
+      border-radius: 5px;
+      background-color: $blue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition-duration: 0.5s;
+    }
+  }
+}
+
+.sidbar-darck-close-Arabic {
+  @extend .sidbar-darck-open-Arabic ;
+  transition-duration: 0.5s;
+  position: absolute;
+  left: -60%;
+  overflow: hidden;
+}
+
+
+.sidbar-darck-open-Arabic::-webkit-scrollbar {
+  width: 10px;
+}
+
+
+
+// light mood
+.sidbar-light-open-Arabic {
+  @extend .sidbar-darck-open-Arabic;
+
+
+  @media (min-width:$phone) {
+    width: 30%;
+  }
+
+  .close-icon {
+    color: $font-darck;
+    background-color: $body-light;
+  }
+  
+  // profile cont style
+  .profile {
+
+    // student name
+    h4 {
+      color: $font-darck;
+    }
+  }
+
+  // sections title
+  .title {
+    color: $font-darck;
+  }
+
+  // links list
+  ul {
+    .show {
+      background-color: $message-light;
+      border: 1px solid $border-darck;
+      a {
+        color: $font-darck;
+      }
+      svg {
+        color: $font-darck;
+      }
+    }
+    .show:hover {
+      background-color: $body-light;
+    }
+  }
+
+
+  // language close style
+  .Language-close {
+    border: 1px solid $border-darck;
+    p {
+      color: $font-darck;
+    }
+
+    li {
+      color: $font-darck;
+      background-color: $border-light;
+      border: 1px solid $border-darck;
+    }
+
+    li:hover {
+      background-color: $body-light;
+    }
+  }
+
+  // language open style
+  .Language-open {
+    @extend .Language-close;
+    height: 140px;
+    background-color: $border-light;
+    @media (min-width:$phone) {
+      height: 145px;
+    }
+  }
+
+  // log  out button custom
+  .log-out {
+    color: $font-light;
+  }
+
+  .mood-cont-light {
+    width: 50px;
+    height: 30px;
+    border-radius: 5px;
+    color: $font-light;
+    background-color: $body-light;
+    border: 1px solid $border-light;
+    cursor: pointer;
+    margin: 20px 10px;
+    box-shadow: 0 0 5px $black inset;
+    transition-duration: 0.5s;
+    .mood-hand {
+      width: 45%;
+      height: 80%;
+      margin: 5% 5% 5% 50%;
+      border-radius: 5px;
+      background-color: $blue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition-duration: 0.5s;
+    }
+  }
+}
+
+.sidbar-light-close-Arabic {
+  @extend .sidbar-light-open-Arabic ;
+  position: absolute;
+  left: -60%;
+  overflow: hidden;
+}
+

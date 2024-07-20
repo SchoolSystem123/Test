@@ -1,0 +1,67 @@
+.admins-darck {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  position: relative;
+  margin: 1%;
+  padding: 10px;
+  border-radius: 10px;
+  @media (max-width:$phone) {
+    width: 100%;
+    height: auto;
+  }
+
+  img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    @media (max-width:$phone) {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+.info {
+  width: 90%;
+  height: auto;
+  // background-color: blue;
+  margin-left: 20px;
+
+  h2 {
+    width: 100%;
+    color: $font-light;
+    margin: 10px 0px;
+  }
+
+  p {
+    width: 100%;
+    color: $font-light;
+    font-size: $x-small;
+    // background-color: red;
+  }
+}
+}
+
+#super {
+  @extend .admins-darck;
+  background-color: $message-darck;
+}
+
+.admins-light {
+  @extend .admins-darck;
+
+  .info {
+  
+    h2 {
+      color: $font-darck;
+    }
+  
+    p {
+      color: $font-darck;
+    }
+  }
+}
+

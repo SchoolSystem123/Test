@@ -1,0 +1,126 @@
+// English
+// blue theme style
+.del-hw-blue-English {
+  width: 70px;
+  height: 30px;
+  padding: 0px 10px;
+  transition-duration: 0.5s;
+  border: none;
+  border-radius:5px;
+  outline: none;
+  cursor: pointer;
+  color: $font-light;
+  background: linear-gradient(to top , $first-blue , $second-blue);
+  position: fixed;
+  top: 20%;
+  right: -5%;
+  z-index: 50;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  font-size: $xx-small;
+
+  @media (min-width:$tablet) {
+    width: 100px;
+    top: 30%;
+    right: -2%;
+  }
+}
+// blue theme style
+
+.del-hw-blue-English:hover {
+  width: 100px;
+  @media (min-width:$tablet) {
+    width: 120px;
+  }
+} 
+
+// orange theme style
+.del-hw-orange-English {
+  @extend .del-hw-blue-English;
+  background: linear-gradient(to top , $first-orange , $second-orange);
+
+  @media (min-width:$tablet) {
+    width: 100px;
+    right: -2%;
+  }
+}
+// orange theme style
+
+// pink theme style
+.del-hw-pink-English {
+  @extend .del-hw-blue-English;
+  background: linear-gradient(to top , $first-pink , $second-pink);
+
+  @media (min-width:$tablet) {
+    width: 100px;
+    right: -2%;
+  }
+}
+// pink theme style
+
+// green theme style
+.del-hw-green-English {
+  @extend .del-hw-blue-English;
+  background: linear-gradient(to top , $first-green , $second-green);
+
+  @media (min-width:$tablet) {
+    width: 100px;
+    right: -2%;
+  }
+}
+// green theme style
+
+
+.close {
+  @extend .del-hw-blue-English;
+  right: -50%;
+}
+// English
+
+
+
+
+// Arabic
+// blue theme style
+.del-hw-blue-Arabic {
+  @extend .del-hw-blue-English;
+  display: flex;
+  left: -5%;
+}
+// blue theme style
+
+.del-hw-blue-Arabic:hover {
+  width: 100px;
+  @media (min-width:$tablet) {
+    width: 120px;
+  }
+} 
+
+// orange theme style
+.del-hw-orange-Arabic {
+  @extend .del-hw-blue-Arabic;
+  background: linear-gradient(to top , $first-orange , $second-orange);
+}
+// orange theme style
+
+// pink theme style
+.del-hw-pink-Arabic {
+  @extend .del-hw-blue-Arabic;
+  background: linear-gradient(to top , $first-pink , $second-pink);
+}
+// pink theme style
+
+// green theme style
+.del-hw-green-Arabic {
+  @extend .del-hw-blue-Arabic;
+  background: linear-gradient(to top , $first-green , $second-green);
+}
+// green theme style
+
+
+.close {
+  @extend .del-hw-blue-Arabic;
+  right: -50%;
+}
+// Arabic

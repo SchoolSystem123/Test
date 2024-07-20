@@ -1,0 +1,80 @@
+.verify-delete-hw-close-English {
+  width: 50%;
+  height: 20%;
+  border-radius: 5px;
+  backdrop-filter: blur(50px);
+  box-shadow: 0 0 5px $black;
+  transition-duration: 0.5s;
+  position: fixed;
+  top: -50%;
+  left: 25%;
+  z-index: 50;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  direction: ltr;
+  @media (max-width:$phone) {
+    width: 90%;
+    left: 5%;
+    height: 15%;
+  }
+
+  // form header
+  .header {
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    top: 0%;
+    border: 1px solid;
+    border-color: transparent transparent $border-light transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $font-light;
+  }
+
+  button{
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    margin-top: 10%;
+    color: $font-light;
+    cursor: pointer;
+    transition-duration: 0.5s;
+  }
+
+  .delete {
+    background-color: $red;
+  }
+
+  .delete:hover {
+    box-shadow: 0 0 10px $red;
+  }
+
+  .cancel {
+    background-color: $green;
+  }
+
+  .cancel:hover {
+    box-shadow: 0 0 10px $green
+  }
+}
+
+.verify-delete-hw-open-English {
+  @extend .verify-delete-hw-close-English;
+  top: 40%;
+}
+
+
+.verify-delete-hw-close-Arabic {
+  @extend .verify-delete-hw-close-English;
+  direction: rtl;
+}
+
+
+.verify-delete-hw-open-Arabic {
+  @extend .verify-delete-hw-close-English;
+  top: 40%;
+}

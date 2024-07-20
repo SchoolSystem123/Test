@@ -1,0 +1,240 @@
+// darck style
+.admins-admin-darck-English-list {
+  width: 90%;
+  height: 90px;
+  margin: 5px 5%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  background-color: $card-darck;
+  transition-duration: 0.5s;
+  cursor: pointer;
+
+  // admin avatar
+  img {
+    width: 80px;
+    height: 80px;
+    margin: 5px;
+    border-radius: 5px;
+  }
+
+  .info {
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0px 5px;
+
+    // admin name
+    h3 {
+      width: 100%;
+      color: $font-light;
+    }
+
+    p {
+      color: $font-light;
+      max-width: 90%;
+      height: auto;
+      margin: 2px 1%;
+      font-size: $x-small;
+      padding: 2px;
+      border-radius: 3px;
+      background-color: $note-darck;
+    }
+
+    // admin color
+    .admin {
+      background-color: green;
+      color: $font-light;
+    }
+    
+    // supper admin color
+    .super-admin {
+      background-color: red;
+      color: $font-light;
+    }
+  }
+}
+
+.admins-admin-darck-English-list:hover {
+  box-shadow: 0 0 5px $black;
+}
+
+.admins-admin-darck-English-window-restore {
+  @extend .admins-admin-darck-English-list;
+  width: 45%;
+  margin: 10px 2%;
+  height: auto;
+  flex-wrap: wrap;
+
+  // admin avatar
+  img {
+    width: 96%;
+    height: 160px;
+    margin: 2%;
+    border-radius: 10px;
+  }
+
+  .info {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0px 5px 5px 5px;
+
+    // admin name
+    h3 {
+      width: 100%;
+      color: $font-light;
+    }
+
+    p {
+      color: $font-light;
+      max-width: 90%;
+      height: auto;
+      margin: 1px 2%;
+      font-size: $x-small;
+      padding: 2px;
+      border-radius: 3px;
+      background-color: $note-darck;
+    }
+  }
+}
+
+.admins-admin-darck-English-window-restore:hover {
+  box-shadow: 0 0 5px $black;
+}
+// darck style
+
+// light style
+.admins-admin-light-English-list {
+  @extend .admins-admin-darck-English-list;
+  background-color: $card-light;
+
+  .info {
+    // admin name
+    h3 {
+      color: $font-darck;
+    }
+
+    p {
+      color: $font-darck;
+      background-color: $note-light;
+    }
+  }
+}
+
+.admins-admin-light-English-list:hover {
+  box-shadow: 0 0 5px $black;
+}
+
+.admins-admin-light-English-window-restore {
+  @extend .admins-admin-darck-English-window-restore;
+  width: 45%;
+  margin: 10px 2%;
+  height: auto;
+  flex-wrap: wrap;
+  background-color: $card-light;
+
+  .info {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0px 5px 5px 5px;
+
+    // admin name
+    h3 {
+      width: 100%;
+      color: $font-darck;
+    }
+
+    p {
+      color: $font-darck;
+      background-color: $note-light;
+    }
+  }
+}
+
+.admins-admin-light-English-window-restore:hover {
+  box-shadow: 0 0 5px $black;
+}
+// darck style
+
+// darck style
+.admins-admin-darck-Arabic-list {
+  @extend .admins-admin-darck-English-list;
+}
+
+.admins-admin-darck-Arabic-list:hover {
+  box-shadow: 0 0 5px $black;
+}
+
+.admins-admin-darck-Arabic-window-restore {
+  @extend .admins-admin-darck-English-window-restore;
+}
+
+.admins-admin-darck-Arabic-window-restore:hover {
+  box-shadow: 0 0 5px $black;
+}
+// darck style
+
+// light style
+.admins-admin-light-Arabic-list {
+  @extend .admins-admin-light-English-list;
+  background-color: $card-light;
+
+  .info {
+    // admin name
+    h3 {
+      color: $font-darck;
+    }
+
+    p {
+      color: $font-darck;
+      background-color: $note-light;
+    }
+  }
+}
+
+.admins-admin-light-Arabic-list:hover {
+  box-shadow: 0 0 5px $black;
+}
+
+.admins-admin-light-Arabic-window-restore {
+  @extend .admins-admin-darck-English-window-restore;
+  background-color: $card-light;
+  width: 45%;
+  margin: 10px 2%;
+  height: auto;
+  flex-wrap: wrap;
+
+  .info {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0px 5px 5px 5px;
+
+    // admin name
+    h3 {
+      width: 100%;
+      color: $font-darck;
+    }
+
+    p {
+      color: $font-darck;
+      background-color: $note-light;
+    }
+  }
+}
+
+.admins-admin-light-Arabic-window-restore:hover {
+  box-shadow: 0 0 5px $black;
+}
+// darck style

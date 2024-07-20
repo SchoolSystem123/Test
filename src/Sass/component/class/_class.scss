@@ -1,0 +1,85 @@
+// English darck and light
+.class-profile-darck-English {
+  width: 98%;
+  height: auto;
+  margin: 5px 1%;
+  cursor: pointer;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  position: relative;
+  border-radius: 10px;
+  background-color: $body-darck;
+  transition-duration: 0.5s;
+  direction: ltr;
+
+  // cover
+  img {
+    width: 90px;
+    height: 90px;
+    border-radius: 10px;
+    margin: 5px;
+  }
+
+  .info {
+    max-width: 70%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+
+    h2 {
+      width: 100%;
+      color: $font-light;
+    }
+
+    p {
+      width: auto;
+      color: $font-light;
+      font-size: $x-small;
+      margin: 2px;
+      padding: 3px;
+      border-radius: 3px;
+      background-color: $note-darck;
+    }
+  }
+}
+
+.class-profile-darck-English:hover {
+  box-shadow: 0 0 5px $black;
+}
+
+.class-profile-light-English {
+  @extend .class-profile-darck-English;
+  background-color: $body-light;
+
+  .info {
+    h2 {
+      color: $font-darck;
+    }
+
+    p {
+      color: $font-darck;
+      background-color: $note-light;
+    }
+  }
+}
+// English darck and light
+
+// Arabic darck and light
+.class-profile-darck-Arabic {
+  @extend .class-profile-darck-English;
+  direction: rtl;
+}
+
+.class-profile-darck-Arabic:hover {
+  box-shadow: 0 0 5px $black;
+}
+
+.class-profile-light-Arabic {
+  @extend .class-profile-light-English;
+  direction: rtl;
+  background-color: $body-light;
+}
+// Arabic darck and light

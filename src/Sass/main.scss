@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0%;
+  margin: 0%;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+}
+
+body {
+  width: 100%;
+  height: auto;
+}
+
+@import "./varibels/variables";
+@import "./pages/login";
+@import "./pages/home";
+@import "./component/sidBar";
+@import "./component/global/nav";
+@import "./component/global/supersearch";
+@import "./component/global/errorForm";
+@import "./component/info";
+@import "./component/global/loading";
+@import "./component/class/class";
+@import "./component/global/scrollTop";
+@import "./component/global/nav/smallNav";
+@import "./component/global/note";
+@import "./component/footer/footer";
+
+// @import "./component/teacher/teacher";
+// @import "./component/admin/admin";
+// @import "./pages/class";
+// @import "./component/homeWork/homeWork";
+// @import "./component/global/copyMessage";
+// @import "./component/global/copyIdComponent";
+// @import "./component/student/student";
+// @import "./component/student/studentInStudents";
+// @import "./pages/homeWork";
+// @import "./component/global/ShurtCutsButtins/updateHWBtn";
+// @import "./component/global/ShurtCutsButtins/deleteHWBtn";
+// @import "./component/global/forms/deleteHw";
+// @import "./pages/classes";
+@import "./component/global/search";
+@import "./component/class/classInClasses";
+@import "./pages/students";
+@import "./pages/admins";
+@import "./component/admin/admin";
+@import "./component/admin/adminInAdminsPage";
+@import "./component/teacher/teacherInTeachersPage";
+@import "./pages/teachers";
+@import "./component/global/ShurtCutsButtins/createClass";
+@import "./component/parent/parentInParentsPage";
+@import "./pages/parents";
+@import "./pages/install";
+@import "./pages/homeWorks";
+@import "./component/homeWork/HwInHwPage";
+@import "./pages/profile";
+@import "./pages/plans";
+@import "./component/plan/plan";
+@import "./pages/plan";

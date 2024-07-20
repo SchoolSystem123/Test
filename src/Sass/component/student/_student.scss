@@ -1,0 +1,105 @@
+// darck list
+.student-darck-list {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  transition-duration: 0.5s;
+  background-color: $card-darck;
+  cursor: pointer;
+  margin: 1% 0%;
+
+  // student avatar
+  img{
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+  }
+
+
+  // student name
+  h2 {
+    width: auto;
+    color: $font-light;
+    margin: -3% 5% 5% 3%;
+  }
+}
+
+.student-darck-list:hover {
+  background-color: $message-darck;
+  box-shadow: 0 0 5px $black;
+}
+// darck list
+
+// light list
+.student-light-list {
+  @extend .student-darck-list ;
+  background-color: $card_light;
+
+  // student name
+  h2 {
+    color: $font-darck;
+  }
+}
+
+.student-light-list:hover {
+  background-color: $message-light;
+  box-shadow: 0 0 5px $black;
+}
+// light list
+
+
+
+// darck window-restore
+.student-darck-window-restore {
+  width: 45%;
+  max-height: 250px;
+  margin: 2% 2%;
+  position: relative;
+  padding: 10px 0px;
+  border-radius: 10px;
+  background-color: $card-darck;
+  cursor: pointer;
+  transition-duration: 0.5s;
+
+  // student avatar
+  img{
+    width: 90%;
+    max-height: 70%;
+    border-radius: 5px;
+    margin-left: 5%;
+  }
+
+  // student name
+  h2 {
+    color: $font-light;
+    margin: -3% 5% 5% 5%;
+  }
+}
+
+.student-darck-window-restore:hover {
+  background-color: $message-darck;
+  box-shadow: 0 0 5px $black;
+}
+// darck window-restore
+
+// light window-restore
+.student-light-window-restore {
+  @extend .student-darck-window-restore ;
+  background-color: $card_light;
+
+  // student name
+  h2 {
+    color: $font-darck;
+  }
+}
+
+.student-light-window-restore:hover {
+  background-color: $message-light;
+  box-shadow: 0 0 5px $black;
+}
+// light window-restore
+

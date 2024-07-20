@@ -1,0 +1,168 @@
+<template>
+  <div
+    :class="`students-${this.$store.state.mood}-${this.$store.state.language}`"
+  >
+    <!-- small nav bar component  -->
+    <SmallNavComponentVue />
+    <!-- small nav bar component  -->
+
+    <!-- sidbar component  -->
+    <SidBarComponentVue />
+    <!-- sidbar component  -->
+
+    <!-- loading animation component  -->
+    <LoadingComponentVue />
+    <!-- loading animation component  -->
+
+    <!-- error form component  -->
+    <ErrorComponentVue />
+    <!-- error form component  -->
+
+    <div
+      :class="
+        this.$store.state.students && this.$store.state.students.length > 0
+          ? 'cont-open'
+          : 'cont-close'
+      "
+    >
+      <!-- page title  -->
+      <h3 class="page-title">
+        {{
+          this.$store.state.language == "English"
+            ? this.$store.state.English.students_page.page_title
+            : this.$store.state.Arabic.students_page.page_title
+        }}
+      </h3>
+      <!-- page title  -->
+
+      <SearchByNameComponentVue />
+
+      <!-- results conatiner  -->
+      <div :class="`result-cont-${this.view_style}`">
+        <!-- results headers  -->
+        <div class="results-heade">
+          <p>
+            {{
+              this.$store.state.language == "English"
+                ? this.$store.state.English.students_page.results_message
+                : this.$store.state.Arabic.students_page.results_message
+            }}
+          </p>
+          <icon :icon="this.view_style" @click="ChangeIconStyle" />
+        </div>
+        <!-- results headers  -->
+
+        <!-- admin component   -->
+        <StudentInStudentspagecomponentVue
+          v-for="(student_data, index) in this.$store.state.students"
+          :key="index"
+          :student_data="student_data"
+          :view_style="this.view_style"
+        />
+        <!-- admin component   -->
+      </div>
+    </div>
+
+    <ScrollTopComponentVue :scroll_page="this.scroll_page" />
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+import SmallNavComponentVue from "@/components/global/nav/SmallNavComponent.vue";
+import SidBarComponentVue from "@/components/global/SidBarComponent.vue";
+import LoadingComponentVue from "@/components/global/LoadingComponent.vue";
+import SearchByNameComponentVue from "@/components/student/SearchByNameComponent.vue";
+import StudentInStudentspagecomponentVue from "@/components/student/StudentInStudentsComponent.vue";
+import ScrollTopComponentVue from "@/components/global/ScrollTopComponent.vue";
+import ErrorComponentVue from "@/components/global/ErrorComponent.vue";
+
+export default {
+  name: "admin-page",
+  data() {
+    return {
+      view_style: "list",
+      limit: 20,
+      page: 1,
+      scroll_page: 0,
+    };
+  },
+  components: {
+    SmallNavComponentVue,
+    SidBarComponentVue,
+    LoadingComponentVue,
+    SearchByNameComponentVue,
+    StudentInStudentspagecomponentVue,
+    ScrollTopComponentVue,
+    ErrorComponentVue,
+  },
+  mounted() {
+    // to start the loading animation on loaded the page
+    window.addEventListener("load", () => {
+      // to start the loading animation
+      this.$store.state.loading = "open";
+    });
+
+    // call the get students method on load the page
+    this.GetStudents();
+
+    // handel scroll
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  methods: {
+    // get students method
+    async GetStudents() {
+      await axios
+        .get(this.$store.state.APIs.students.get_all, {
+          params: {
+            limit: this.limit,
+            page: this.page,
+          },
+        })
+        .then((response) => {
+          console.log(response)
+          // to stop the loading animation
+          this.$store.state.loading = "close";
+
+          // set the students data from response to students array in store
+          this.$store.state.students = [
+            ...this.$store.state.students,
+            ...response.data.students_data,
+          ];
+        })
+        .catch((error) => {
+          // to stop the loading animation
+          this.$store.state.loading = "close";
+
+          // to set the reqeust's error message to error message var in store
+          this.$store.state.error_message = error.response.data.message;
+
+          // to open the error form
+          this.$store.state.error_form_status = "open";
+        });
+    },
+
+    // change view style method
+    ChangeIconStyle() {
+      this.view_style = this.view_style == "list" ? "window-restore" : "list";
+    },
+
+    // handleScroll
+    handleScroll() {
+      // check if the window height is donw
+      if (
+        window.scrollY + window.innerHeight >=
+        document.body.scrollHeight - 600
+      ) {
+        this.scroll_page = window.scrollY;
+
+        // to change page
+        this.page += 1;
+
+        // call the get students method to get more students
+        this.GetStudents();
+      }
+    },
+  },
+};
+</script>

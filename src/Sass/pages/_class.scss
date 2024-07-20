@@ -1,0 +1,522 @@
+// english
+.class-page-darck-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-darck;
+  position: relative;
+  direction: ltr;
+
+  .open-cont {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    transition-duration: 1s;
+    padding: 5% 0px 5% 0px;
+    opacity: 1;
+    position: relative;
+    @media (max-width:$phone) {
+      padding: 15% 0px 5% 0px;
+    }
+
+    @media (max-width:$phone) {
+      width: 100%;
+    }
+
+    #note-English-cont {
+      position: absolute;
+      z-index: 50;
+      margin: 2% 0% 0% 7%;
+    }
+
+    // cover
+    .cover {
+      width: 90%;
+      max-height: 250px;
+      border-radius: 10px;
+      margin-left: 5%;
+    }
+
+    // note component
+    .note-darck-English {
+      position: absolute;
+      left: 7%;
+      margin-top: 2%;
+    }
+
+    .teacher {
+      width: 90%;
+      height: auto;
+      margin-left: 5%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: start;
+      align-items: center;
+      margin-top: -10%;
+      padding: 10px;
+      text-decoration: none;
+      
+      // teacher avatar 
+      .avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 10px;
+        @media (max-width:$phone) {
+          width: 70px;
+          height: 70px;
+        }
+      }
+
+      // teacher name
+      h3 {
+        width: auto;
+        color: $font-light;
+        margin: 7% 0% 0% 5%;
+      }
+    }
+
+    // author aontainer
+    .author {
+      width: 90%;
+      margin: 5%;
+      height: 100px;
+      overflow: hidden;
+      color: $font-light;
+
+      // created by section title
+      h3 {
+        width: 50%;
+        height: auto;
+      }
+
+      // author link
+      a {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        text-decoration: none;
+        margin: 5%;
+
+        // author avatar
+        .avatar {
+          width: 50px;
+          height: 50px;
+          border-radius: 10px;
+        }
+
+        // author name
+        h5 {
+          margin-left: 2%;
+          color: $font-light;
+        }
+      }
+    }
+
+    // class id
+    .class-id {
+      width: 90%;
+      height: auto;
+      color: $font-light;
+      cursor: pointer;
+      margin-left: 5%;
+      font-size: $x-small;
+    }
+
+    // title
+    h1 {
+      width: 90%;
+      height: auto;
+      margin-left: 5%;
+      color: $font-light;
+    }
+
+    // join blue
+    .btn-blue {
+      padding: 7px 20px;
+      border: none;
+      border-radius: 5px;
+      color: $font-light;
+      background: linear-gradient(to top , $first-blue , $second-blue);
+      cursor: pointer;
+      position: absolute;
+      right: 5%;
+      transition-duration: 0.5s;
+    }
+
+    // btn orange
+    .btn-orange {
+      @extend .btn-blue;
+      background: linear-gradient(to top , $first-orange , $second-orange);
+    }
+
+    // btn pink
+    .btn-pink {
+      @extend .btn-blue;
+      background: linear-gradient(to top , $first-pink , $second-pink);
+    }
+
+    // btn green
+    .btn-green {
+      @extend .btn-blue;
+      background: linear-gradient(to top , $first-green , $second-green);
+    }
+
+    // home works && students 
+    #info {
+      max-width: 80%;
+      height: auto;
+      margin: 10px 0px 0px 5%;
+      color: $font-light;
+    }
+
+    #info-link {
+      max-width: 80%;
+      height: auto;
+      cursor: pointer;
+      margin: 10px 0px 0px 5%;
+      color: $blue;
+      user-select: none
+    }
+
+    // section title
+    h4 {
+      color: $font-light;
+      width: 90%;
+      padding: 5px 0px;
+      margin: auto;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+      display: flex;
+      justify-content: space-between;
+
+      // home works style icon 
+      svg {
+        padding: 5px;
+        border: 1px solid $border-light;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    }
+
+    // home works container
+    .home-works {
+      width: 90%;
+      height: auto;
+      margin: 5%;
+      display: flex;
+      flex-wrap: wrap;
+
+      .result-message {
+        width: 90%;
+        height: auto;
+        text-align: center;
+        color: $font-light;
+        margin: 15% 5% 0% 5%;
+      }
+    }
+
+    .students {
+      width: 90%;
+      height: auto;
+      margin: 5%;
+      display: flex;
+      flex-wrap: wrap;
+      .result-message {
+        width: 90%;
+        height: auto;
+        text-align: center;
+        color: $font-light;
+        margin: 15% 5% 0% 5%;
+      }
+    }
+
+
+    // students container
+  }
+
+  .close-cont {
+    @extend .open-cont;
+    @media (max-width:$phone) {
+      width: 100%;
+    }
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    transition-duration: 1s;
+    padding-top: 20%;
+    opacity: 0;
+  }
+}
+
+.class-page-light-English {
+  @extend .class-page-darck-English ;
+  background-color: $body-light;
+
+  .open-cont {
+
+    .teacher {
+      // teacher name
+      h3 {
+        color: $font-darck;
+      }
+    }
+    .author {
+      color: $font-darck;
+
+      h3 {
+        color: $font-darck;
+      }
+
+      a {
+
+        h5 {
+          color: $font-darck;
+        }
+      }
+    }
+
+    // class id
+    .class-id {
+      color: $font-darck;
+    }
+
+    // title
+    h1 {
+      color: $font-darck;
+    }
+
+    // join blue
+    .btn-blue {
+      color: $font-light;
+    }
+
+    #info {
+      color: $font-darck;
+    }
+
+    // section title
+    h4 {
+      color: $font-darck;
+      border-color: transparent transparent $border-darck transparent;
+
+      svg {
+        border: 1px solid $border-darck;
+      }
+    }
+
+    // home works
+    .home-works {
+      .result-message {
+        color: $font-darck;
+      }
+    }
+
+    // students
+    .students {
+      .result-message {
+        color: $font-darck;
+      }
+    }
+  }
+
+  .close-cont {
+    @extend .open-cont;
+
+  }
+}
+// english
+
+
+// arabic 
+.class-page-darck-Arabic {
+  @extend .class-page-darck-English ;
+  direction: rtl;
+
+  // opend cont
+  .open-cont {
+
+    #note-English-cont {
+      position: absolute;
+      z-index: 50;
+      margin: 2% 7% 0% 0%;
+    }
+
+    // cover
+    .cover {
+      margin-right: 5%;
+    }
+
+    // note component
+    .note-darck-Arabic {
+      position: absolute;
+      right: 7%;
+      margin-top: 2%;
+    }
+
+    .teacher {
+      margin-right: 5%;
+
+      // teacher avatar 
+      .avatar {
+        border-radius: 10px;
+      }
+
+      // teacher name
+      h3 {
+        margin: 7% 5% 0% 0%;
+      }
+    }
+    .author {
+
+      a {
+        margin: 5%;
+
+        // athor name
+        h5 {
+          margin-right: 2%;
+        }
+      }
+    }
+
+    // class id
+    .class-id {
+      margin-right: 5%;
+    }
+
+    // title
+    h1 {
+      margin-right: 5%;
+    }
+
+    // join blue
+    .btn-blue {
+      padding: 7px 20px;
+      border: none;
+      border-radius: 5px;
+      color: $font-light;
+      background: linear-gradient(to top , $first-blue , $second-blue);
+      cursor: pointer;
+      position: absolute;
+      right: 75%;
+      transition-duration: 0.5s;
+    }
+
+    // btn orange
+    .btn-orange {
+      @extend .btn-blue;
+      background: linear-gradient(to top , $first-orange , $second-orange);
+    }
+
+    // btn pink
+    .btn-pink {
+      @extend .btn-blue;
+      background: linear-gradient(to top , $first-pink , $second-pink);
+    }
+
+    // btn green
+    .btn-green {
+      @extend .btn-blue;
+      background: linear-gradient(to top , $first-green , $second-green);
+    }
+
+    // home works && students 
+    #info {
+      margin: 10px 5% 0px 0%;
+    }
+
+    #info-link {
+      margin: 10px 5% 0px 0%;
+    }
+
+  }
+
+  // opend cont
+  .close-cont {
+    @extend .open-cont;
+    @media (max-width:$phone) {
+      width: 100%;
+    }
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    transition-duration: 1s;
+    padding-top: 20%;
+    opacity: 0;
+  }
+}
+
+.class-page-light-Arabic {
+  @extend .class-page-darck-Arabic ;
+  background-color: $body-light;
+
+  .open-cont {
+
+    .teacher {
+      // teacher name
+      h3 {
+        color: $font-darck;
+      }
+    }
+    .author {
+      color: $font-darck;
+
+      h3 {
+        color: $font-darck;
+      }
+
+      a {
+
+        h5 {
+          color: $font-darck;
+        }
+      }
+    }
+
+    // class id
+    .class-id {
+      color: $font-darck;
+    }
+
+    // title
+    h1 {
+      color: $font-darck;
+    }
+
+    // join blue
+    .btn-blue {
+      color: $font-light;
+    }
+
+    #info {
+      color: $font-darck;
+    }
+
+    // section title
+    h4 {
+      color: $font-darck;
+      border-color: transparent transparent $border-darck transparent;
+
+      svg {
+        border: 1px solid $border-darck;
+      }
+    }
+
+    // home works
+    .home-works {
+      .result-message {
+        color: $font-darck;
+      }
+    }
+
+    // students
+    .students {
+      .result-message {
+        color: $font-darck;
+      }
+    }
+  }
+
+  .close-cont {
+    @extend .open-cont;
+  }
+}
+// arabic 

@@ -1,0 +1,135 @@
+.plan-page-darck-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-darck;
+  direction: ltr;
+
+  .cont-open {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    padding: 10% 0px 10px 0px;
+    transition-duration: 0.5s;
+    opacity: 1;
+
+    @media (max-width: $phone) {
+      padding: 20% 0% 0% 0%;
+      width: 100%;
+    }
+
+    // plans title style
+    h1 {
+      width: 90%;
+      height: auto;
+      margin: 5px 5%;
+      color: $font-light;
+    }
+
+    // description
+    .description {
+      width: 90%;
+      height: auto;
+      margin: 10px 5%;
+      color: $font-light;
+    }
+
+    // notes conatiner style
+    .notes-cont {
+      width: 90%;
+      height: auto;
+      margin: 10px 5%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: start;
+
+      p {
+        width: auto;
+        height: auto;
+        padding: 3px;
+        border-radius: 3px;
+        color: $font-light;
+        font-size: $x-small;
+        margin: 3px;
+        background-color: $note-darck;
+      }
+    }
+
+    .plan-info {
+      width: 90%;
+      height: auto;
+      margin: 10px 5%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $body-darck;
+      box-shadow: 0 0 5px $black;
+      padding: 5px;
+      border-radius: 10px;
+
+      .line {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-around;
+        padding: 5px;
+        margin: 5px 0px;
+        position: relative;
+        border: 1px solid;
+        border-color: transparent transparent $border-light transparent;
+
+        .day {
+          padding: 5px;
+          position: absolute;
+          left: 5px;
+          top: 5px;
+          border-radius: 5px;
+          color: $font-light;
+          font-size: $small;
+          background-color: $note-darck;
+        }
+
+        .info-cont {
+          width: 80%;
+          height: auto;
+          border-radius: 5px;
+          padding: 5px;
+          background-color: $card-darck;
+          margin-left: 11%;
+          @media (max-width: $phone) {
+            margin-left: 20%;
+          }
+
+          div {
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 3px;
+            border-radius: 3px;
+            margin: 5px 0px;
+            background-color: $note-darck;
+
+            p {
+              color: $font-light;
+              font-size: $small;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0px 10px 0px;
+    transition-duration: 0.5s;
+    opacity: 0;
+
+    @media (max-width: $phone) {
+      padding: 40% 0% 0% 0%;
+      width: 100%;
+    }
+  }
+}

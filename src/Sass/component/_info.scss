@@ -1,0 +1,44 @@
+.info-darck {
+  color: $font-light;
+  position: absolute;
+  right: 1%;
+  cursor: pointer;
+
+  svg {
+    transition-duration: 0.5s;
+  }
+
+  svg:hover {
+    color: $blue
+  }
+
+  .close {
+    width: 0px;
+    height: 0px;
+    border-radius: 5px;
+    backdrop-filter: blur(90px);
+    padding: 5px 10px;
+    overflow-y: scroll;
+    position: absolute;
+    top: 120%;
+    right: 30%;
+    transition-duration: 0.5s;
+  }
+  .close::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  .open {
+    @extend .close;
+    width: 200px;
+    height: 150px
+  }
+}
+
+
+.info-light {
+  @extend .info-darck;
+  color: $font-darck;
+}
+
+

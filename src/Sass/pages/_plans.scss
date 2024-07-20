@@ -1,0 +1,147 @@
+// darck and light English style
+.plans-page-darck-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-darck;
+  direction: ltr;
+
+  // open container style to open it smooth
+  .cont-open {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    padding: 10% 0px 10px 0px;
+    transition-duration: 0.5s;
+    opacity: 1;
+
+    @media (max-width: $phone) {
+      width: 100%;
+      height: auto;
+      padding: 20% 0px 10px 0px;
+    }
+
+    // page title
+    .page-title {
+      width: 90%;
+      height: auto;
+      margin: 10px 5%;
+      padding: 5px 0px;
+      color: $font-light;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+    }
+
+    // results container style
+    .results-cont {
+      width: 90%;
+      height: auto;
+      margin: 10px auto;
+
+      // results section header
+      .results-heade {
+        width: 100%;
+        height: auto;
+        padding: 5px 0px;
+        margin: 10px 0px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid;
+        border-color: transparent transparent $border-light transparent;
+
+        p {
+          color: $font-light;
+        }
+
+        // elemnts view icon
+        svg {
+          padding: 5px;
+          border: 1px solid $border-light;
+          border-radius: 5px;
+          color: $font-light;
+          cursor: pointer;
+        }
+      }
+
+      // plans container style
+      .plans-cont {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+  }
+
+  // closed cont style
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0px 10px 0px;
+    transition-duration: 0.5s;
+    opacity: 0;
+    @media (max-width: $phone) {
+      padding: 40% 0% 0% 0%;
+    }
+  }
+}
+
+.plans-page-light-English {
+  @extend .plans-page-darck-English;
+  background-color: $body-light;
+
+  // open container style to open it smooth
+  .cont-open {
+    // page title
+    .page-title {
+      color: $font-darck;
+      border-color: transparent transparent $border-darck transparent;
+    }
+
+    // results container style
+    .results-cont {
+      width: 90%;
+      height: auto;
+      margin: 10px auto;
+
+      // results section header
+      .results-heade {
+        border: 1px solid;
+        border-color: transparent transparent $border-darck transparent;
+        p {
+          color: $font-darck;
+        }
+
+        // elemnts view icon
+        svg {
+          border: 1px solid $border-darck;
+          color: $font-darck;
+        }
+      }
+    }
+  }
+
+  // closed cont style
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0px 10px 0px;
+    transition-duration: 0.5s;
+    opacity: 0;
+    @media (max-width: $phone) {
+      padding: 40% 0% 0% 0%;
+    }
+  }
+}
+// darck and light English style
+
+// darck and light Arabic style
+.plans-page-darck-Arabic {
+  @extend .plans-page-darck-English;
+  direction: rtl;
+}
+
+.plans-page-light-Arabic {
+  @extend .plans-page-light-English;
+  background-color: $body-light;
+  direction: rtl;
+}
+// darck and light Arabic style
