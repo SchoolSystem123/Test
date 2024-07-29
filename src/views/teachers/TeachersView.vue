@@ -18,17 +18,15 @@
     <ErrorComponentVue />
     <!-- error form component  -->
 
-    <div
-      :class="
-        this.$store.state.teachers && this.$store.state.teachers.length > 0
-          ? 'cont-open'
-          : 'cont-close'
-      "
-    >
+    <div :class="this.status ? 'cont-open' : 'cont-close'">
       <!-- page title  -->
-      <h3 class="page-title">{{ this.$store.state.language == "English" 
-        ? this.$store.state.English.teachers_page.page_title
-        : this.$store.state.Arabic.teachers_page.page_title}}</h3>
+      <h3 class="page-title">
+        {{
+          this.$store.state.language == "English"
+            ? this.$store.state.English.teachers_page.page_title
+            : this.$store.state.Arabic.teachers_page.page_title
+        }}
+      </h3>
       <!-- page title  -->
 
       <SearchByNameComponentVue />
@@ -37,9 +35,13 @@
       <div :class="`result-cont-${this.view_style}`">
         <!-- results headers  -->
         <div class="results-heade">
-          <p>{{ this.$store.state.language == "English" 
-        ? this.$store.state.English.teachers_page.results_message
-        : this.$store.state.Arabic.teachers_page.results_message}}</p>
+          <p>
+            {{
+              this.$store.state.language == "English"
+                ? this.$store.state.English.teachers_page.results_message
+                : this.$store.state.Arabic.teachers_page.results_message
+            }}
+          </p>
           <icon :icon="this.view_style" @click="ChangeIconStyle" />
         </div>
         <!-- results headers  -->
@@ -55,7 +57,7 @@
       </div>
     </div>
 
-    <ScrollTopComponentVue :scroll_page="this.scroll_page"/>
+    <ScrollTopComponentVue :scroll_page="this.scroll_page" />
   </div>
 </template>
 
@@ -65,9 +67,9 @@ import SmallNavComponentVue from "@/components/global/nav/SmallNavComponent.vue"
 import SidBarComponentVue from "@/components/global/SidBarComponent.vue";
 import LoadingComponentVue from "@/components/global/LoadingComponent.vue";
 import SearchByNameComponentVue from "@/components/teacher/SearchByNameComponent.vue";
-import ScrollTopComponentVue from '@/components/global/ScrollTopComponent.vue';
-import ErrorComponentVue from '@/components/global/ErrorComponent.vue';
-import TeacherInTeachersVpageComponentVue from '../../components/teacher/TeacherInTeachersVpageComponent.vue';
+import ScrollTopComponentVue from "@/components/global/ScrollTopComponent.vue";
+import ErrorComponentVue from "@/components/global/ErrorComponent.vue";
+import TeacherInTeachersVpageComponentVue from "../../components/teacher/TeacherInTeachersVpageComponent.vue";
 
 export default {
   name: "admin-page",
@@ -78,7 +80,9 @@ export default {
       limit: 20,
       // page index
       page: 1,
-      scroll_page : 0
+      scroll_page: 0,
+      // open or close the compoenet
+      status: false,
     };
   },
   components: {
@@ -88,11 +92,11 @@ export default {
     SearchByNameComponentVue,
     ScrollTopComponentVue,
     ErrorComponentVue,
-    TeacherInTeachersVpageComponentVue
+    TeacherInTeachersVpageComponentVue,
   },
   mounted() {
     // to start the loading animation on loaded the page
-    window.addEventListener('load' , () => {
+    window.addEventListener("load", () => {
       // to start the loading animation
       this.$store.state.loading = "open";
     });
@@ -101,7 +105,7 @@ export default {
     this.GetTeachers();
 
     // handel scroll
-    window.addEventListener('scroll' , this.handleScroll);
+    window.addEventListener("scroll", this.handleScroll);
   },
   methods: {
     // get teachers method
@@ -114,12 +118,17 @@ export default {
           },
         })
         .then((response) => {
+          // open the page conatiner
+          this.status = true;
+
           // to stop the loading animation
           this.$store.state.loading = "close";
 
           // set the teachers data from response to teachers array in store
-          this.$store.state.teachers = [...this.$store.state.teachers ,  ...response.data.teachers_data];
-
+          this.$store.state.teachers = [
+            ...this.$store.state.teachers,
+            ...response.data.teachers_data,
+          ];
         })
         .catch((error) => {
           // to stop the loading animation
@@ -145,7 +154,7 @@ export default {
         window.scrollY + window.innerHeight >=
         document.body.scrollHeight - 600
       ) {
-      this.scroll_page = window.scrollY;
+        this.scroll_page = window.scrollY;
 
         // to change page
         this.page += 1;
@@ -153,7 +162,7 @@ export default {
         // call the get teachers method to get more teachers
         this.GetTeachers();
       }
-    }
+    },
   },
 };
 </script>

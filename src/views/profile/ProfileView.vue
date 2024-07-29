@@ -7,7 +7,7 @@
     <SmallNavComponentVue />
     <ErrorComponentVue />
     <CopyMessageComponentVue />
-    <div :class="this.$store.state.profile ? 'cont-open' : 'cont-close'">
+    <div :class="this.status ? 'cont-open' : 'cont-close'">
       <!-- section one container  -->
       <div class="section-one">
         <!-- avatar  -->
@@ -19,6 +19,11 @@
           />
         </div>
         <!-- avatar  -->
+        <router-link
+          class="update-icon"
+          :to="`/updateProfile/${this.$store.state.user.user._id}`"
+          >⚙️</router-link
+        >
 
         <div class="info">
           <!-- name  -->
@@ -155,7 +160,7 @@
 
           <!-- add the medals by gpa -->
           <p
-            v-for="(medal, index) in this.$store.state.English.profile.medals"
+            v-for="(medal, index) in this.$store.state.Arabic.profile.medals"
             :key="index"
           >
             {{
@@ -173,7 +178,13 @@
 
       <!-- section tow container  -->
       <div class="section-tow">
-        <div class="title">My Classes</div>
+        <div class="title">
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.profile.classes_cont.title
+              : this.$store.state.Arabic.profile.classes_cont.title
+          }}
+        </div>
 
         <!-- class component  -->
         <ClassComponentVue
@@ -184,12 +195,49 @@
         <!-- class component  -->
 
         <router-link to="/my/classes">
-          My Classes
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.profile.classes_cont.title
+              : this.$store.state.Arabic.profile.classes_cont.title
+          }}
           <icon icon="arrow-right" />
         </router-link>
       </div>
       <!-- section tow container  -->
+
+      <!-- section three container  -->
+      <div class="section-tow">
+        <div class="title">
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.profile.plans_cont.title
+              : this.$store.state.Arabic.profile.plans_cont.title
+          }}
+        </div>
+
+        <!-- plan component  -->
+        <PlanInProfilePageCompoeneVue
+          v-for="(plan_data, index) in this.$store.state.profile.my_plans"
+          :key="index"
+          :plan_data="plan_data"
+        />
+        <!-- class component  -->
+
+        <router-link to="/my/plans">
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.profile.plans_cont.title
+              : this.$store.state.Arabic.profile.plans_cont.title
+          }}
+          <icon icon="arrow-right" />
+        </router-link>
+      </div>
+      <!-- section three container  -->
     </div>
+
+    <!-- scroll to top compoenent  -->
+    <ScrollTopComponentVue :scroll_page="this.scroll_page" />
+    <!-- scroll to top compoe nent  -->
   </div>
 </template>
 
@@ -201,6 +249,8 @@ import ErrorComponentVue from "@/components/global/ErrorComponent.vue";
 import CopyIdComponentVue from "@/components/global/CopyIdComponent.vue";
 import CopyMessageComponentVue from "@/components/global/CopyMessageComponent.vue";
 import ClassComponentVue from "@/components/class/ClassComponent.vue";
+import PlanInProfilePageCompoeneVue from "@/components/plan/PlanInProfilePageCompoene.vue";
+import ScrollTopComponentVue from "@/components/global/ScrollTopComponent.vue";
 import axios from "axios";
 
 export default {
@@ -208,6 +258,10 @@ export default {
   data() {
     return {
       api: "",
+      // open or close the compoenet
+      status: false,
+
+      scroll_page: 0,
     };
   },
   components: {
@@ -218,6 +272,8 @@ export default {
     CopyMessageComponentVue,
     CopyIdComponentVue,
     ClassComponentVue,
+    PlanInProfilePageCompoeneVue,
+    ScrollTopComponentVue,
   },
   mounted() {
     // check if the user is loged in
@@ -234,6 +290,9 @@ export default {
 
     // cla to get student profile data method
     this.GeProfileData();
+
+    // handel scroll
+    window.addEventListener("scroll", this.handleScroll);
   },
   methods: {
     //? select the api
@@ -269,6 +328,9 @@ export default {
           },
         })
         .then((response) => {
+          // open the page conatiner
+          this.status = true;
+
           // set the respons student data to profile in store
           this.$store.state.profile = response.data.user_data;
 
@@ -287,6 +349,12 @@ export default {
           // to open the error form
           this.$store.state.error_form_status = "open";
         });
+    },
+
+    // handleScroll
+    async handleScroll() {
+      // to start scroll to top component
+      this.scroll_page = window.scrollY;
     },
   },
 };

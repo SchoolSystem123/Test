@@ -18,13 +18,7 @@
     <ErrorComponentVue />
     <!-- error form component  -->
 
-    <div
-      :class="
-        this.$store.state.students && this.$store.state.students.length > 0
-          ? 'cont-open'
-          : 'cont-close'
-      "
-    >
+    <div :class="this.status ? 'cont-open' : 'cont-close'">
       <!-- page title  -->
       <h3 class="page-title">
         {{
@@ -85,6 +79,8 @@ export default {
       limit: 20,
       page: 1,
       scroll_page: 0,
+      // open or close the compoenet
+      status: false,
     };
   },
   components: {
@@ -120,7 +116,9 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response)
+          // open the page conatiner
+          this.status = true;
+
           // to stop the loading animation
           this.$store.state.loading = "close";
 

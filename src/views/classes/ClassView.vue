@@ -1,10 +1,12 @@
 <template>
-  <div :class="`class-page-${this.$store.state.mood}-${this.$store.state.language}`">
+  <div
+    :class="`class-page-${this.$store.state.mood}-${this.$store.state.language}`"
+  >
     <LoadingComponentVue />
     <ErrorComponentVue />
     <SidBarComponentVue />
     <CopyMessageComponentVue />
-    <div :class="this.$store.state.class ? 'open-cont' : 'close-cont'">
+    <div :class="this.status ? 'open-cont' : 'close-cont'">
       <SmallNavComponentVue />
       <NoteComponentVue
         v-if="this.$store.state.class.note"
@@ -242,6 +244,8 @@ export default {
       view_style: "list",
       scroll_page: 0,
       section_type: "home_works",
+      // open or close the compoenet
+      status: false,
     };
   },
   mounted() {
@@ -284,6 +288,10 @@ export default {
           `${this.$store.state.APIs.classes.get_one}?class_id=${this.$route.params.id}`
         )
         .then((response) => {
+          // open the page conatiner
+          this.status = true;
+
+          // set the class data from response to class var in store
           this.$store.state.class = response.data.class_data;
           console.log(response.data);
         })

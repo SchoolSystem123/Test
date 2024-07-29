@@ -11,9 +11,13 @@ export default createStore({
     error_message: {},
     delete_hw_form_status: "close",
     copy_message_status: "close",
+    avatar_form_status: "close",
     user: JSON.parse(window.localStorage.getItem("Ss-user")) || "",
     profile: "",
     user_type: "",
+    selectd_images: [],
+    delete_avatar: false,
+    messages: [],
     // user_type: JSON.parse(window.localStorage.getItem("Ss-user")).user_type || "admint",
     sidBar: "close",
     information: "test",
@@ -33,6 +37,8 @@ export default createStore({
     admin: "",
     plans: [],
     plan: "",
+    foods: [],
+    food: "",
     English: {
       login: {
         title: "log in to your account ...",
@@ -72,9 +78,10 @@ export default createStore({
         { path: "/plans", title: "Plans", access: "public" },
         { path: "/my/plans", title: "My Plans", access: "public" },
         { path: "/my/children", title: "My Children", access: "parent" },
+        { path: "/foods", title: "Food", access: "public" },
         { path: "/about", title: "About us", access: "public" },
         {
-          path: "/rami-web.onrender.com",
+          url: "https://rami-web.onrender.com",
           title: "Developer",
           access: "public",
         },
@@ -173,11 +180,15 @@ export default createStore({
         created_at: "📆 :",
         students: "students 👨‍🎓 :",
         teachers: "teachers 👨‍🏫 :",
-        plan_info: "plan info :",
-        day: "day :",
+        collection: "plan collection :",
+        day: "day 🌅 :",
         subject: "Subject 📚📖📑 :",
-        start: "start :",
-        end: "end :",
+        start: "start 🏁 :",
+        end: "end 🚩 :",
+        buttons: {
+          copy: "Copy",
+          remove: "Remove",
+        },
       },
       plan_component: {
         class: "class level 🏫🪜🎚️ :",
@@ -234,6 +245,38 @@ export default createStore({
           { gpa: 4, message: "scorer 🎯" },
           { gpa: 5, message: "legendary 🔥" },
         ],
+        classes_cont: {
+          title: "My Classes",
+        },
+        plans_cont: {
+          title: "My Plans",
+        },
+      },
+      messages_page: {
+        page_title: "Messages Page 💬",
+        result_message: "📍⛔😕 There is no message 😕⛔📍",
+      },
+      messgae_component: {
+        description: "Description 📝 :",
+        created_at: "Created at 📆 :",
+        level: "level 🔥 : ",
+        recipient: "recipient 📌 : ",
+        created_by: "Created By 👉 : ",
+      },
+      foods_page: {
+        page_title: "Food page 😋🍴",
+        placeholder: "Type the food title here ✍️",
+        search_food_name: "Search By name 💬👇",
+        results_message: "Results 😋🍴👇",
+      },
+      food_compoenet: {
+        created_at: "📆 :",
+        images: "Images 📷 :",
+      },
+      food_page: {
+        page_title: "Food page 😋🍴",
+        created_at: "📆 :",
+        images: "Images 📷 :",
       },
       theme: "Theme",
       mood: "Mood",
@@ -277,7 +320,11 @@ export default createStore({
         { path: "/my/plans", title: "خططي", access: "public" },
         { path: "/my/children", title: "أبنائي", access: "parent" },
         { path: "/about", title: "معلومات عنا", access: "public" },
-        { path: "rami-web.onrender.com", title: "المطور", access: "public" },
+        {
+          url: "https://rami-web.onrender.com",
+          title: "المطور",
+          access: "public",
+        },
       ],
       language: {
         pages: "الصفحات",
@@ -368,6 +415,21 @@ export default createStore({
         search_admin_name: "ابحث عن طريق العنوان💬👇",
         results_message: "النتائج 📌🪃📚👇",
       },
+      plan_page: {
+        class_level: "الصف 🏫🪜🎚️ :",
+        created_at: "📆 :",
+        students: "الطلاب 👨‍🎓 :",
+        teachers: "المدرسون 👨‍🏫 :",
+        collection: "جدول الخطة :",
+        day: "اليوم 🌅 :",
+        subject: "المادة 📚📖📑 :",
+        start: "تبدأ 🏁 :",
+        end: "تنتهي 🚩 :",
+        buttons: {
+          copy: "حفظ",
+          remove: "حذف",
+        },
+      },
       plan_component: {
         class: "الصف 🏫🪜🎚️ :",
         students: "الطلاب 👨‍🎓 :",
@@ -423,6 +485,37 @@ export default createStore({
           { gpa: 4, message: "هداف 🎯" },
           { gpa: 5, message: "اسطوري 🔥" },
         ],
+        classes_cont: {
+          title: "صفوفي",
+        },
+        plans_cont: {
+          title: "خططي",
+        },
+      },
+      messages_page: {
+        page_title: "صفحة الرسائل 💬",
+        result_message: "📍⛔😕 لا يوجد اي رسالة 😕⛔📍",
+      },
+      messgae_component: {
+        description: "الوصف 📝 :",
+        created_at: "كتبت في 📆 :",
+        recipient: "المعنيين 📌 : ",
+        created_by: "الكاتب 👈 : ",
+      },
+      foods_page: {
+        page_title: "صفحة الأطعمة 😋🍴",
+        placeholder: "اكتب عنوان الطعام هنا ✍️",
+        search_food_name: "البحث عن طريق العنوان 💬👇",
+        results_message: "النتائج 😋🍴👇",
+      },
+      food_compoenet: {
+        created_at: "📆 :",
+        images: "Images 📷 :",
+      },
+      food_page: {
+        page_title: "صفحة الطعام 😋🍴",
+        created_at: "📆 :",
+        images: "الصور 📷 :",
       },
       theme: "السمات",
       mood: "الوضع",
@@ -463,6 +556,7 @@ export default createStore({
       teachers: {
         get_all: "https://rrr-zb8x.onrender.com/api/v1/teacher/get/all",
         get_one: "https://rrr-zb8x.onrender.com/api/v1/teacher/get/one",
+        update: "https://rrr-zb8x.onrender.com/api/v1/teacher/update",
         super_admin: {
           teacher_create:
             "https://rrr-zb8x.onrender.com/api/v1/super/teacher/create",
@@ -480,9 +574,13 @@ export default createStore({
             "https://rrr-zb8x.onrender.com/api/v1/admin/teacher/update",
         },
       },
+      super: {
+        update: "https://rrr-zb8x.onrender.com/api/v1/super/update",
+      },
       admins: {
         get_all: "https://rrr-zb8x.onrender.com/api/v1/admin/get/all",
         get_one: "https://rrr-zb8x.onrender.com/api/v1/admin/get/one",
+        update: "https://rrr-zb8x.onrender.com/api/v1/admin/update",
         super: {
           create: "https://rrr-zb8x.onrender.com/api/v1/admin/get/all",
           delete: "https://rrr-zb8x.onrender.com/api/v1/super/admin/delete",
@@ -492,10 +590,12 @@ export default createStore({
       students: {
         get_all: "https://rrr-zb8x.onrender.com/api/v1/student/get/all",
         get_one: "https://rrr-zb8x.onrender.com/api/v1/student/get/one",
+        update: "https://rrr-zb8x.onrender.com/api/v1/student/update",
       },
       parents: {
         get_all: "https://rrr-zb8x.onrender.com/api/v1/parent/get/all",
         get_one: "https://rrr-zb8x.onrender.com/api/v1/parent/get/one",
+        update: "https://rrr-zb8x.onrender.com/api/v1/parent/update",
       },
       home_works: {
         get_home_work_all: "https://rrr-zb8x.onrender.com/api/v1/hw/get/all",
@@ -517,8 +617,54 @@ export default createStore({
         },
       },
       plans: {
+        super: {
+          create: "https://rrr-zb8x.onrender.com/api/v1/super/plan/create",
+          delete: "https://rrr-zb8x.onrender.com/api/v1/super/plan/delete",
+          update: "https://rrr-zb8x.onrender.com/api/v1/super/plan/update",
+        },
+        admin: {
+          create: "https://rrr-zb8x.onrender.com/api/v1/admins/plan/create",
+          delete: "https://rrr-zb8x.onrender.com/api/v1/admins/plan/delete",
+          update: "https://rrr-zb8x.onrender.com/api/v1/admins/plan/update",
+        },
+        teacher: {
+          copyORremove:
+            "https://rrr-zb8x.onrender.com/api/v1/teacher/plan/copy",
+        },
+        student: {
+          copyORremove:
+            "https://rrr-zb8x.onrender.com/api/v1/student/plan/copy",
+        },
         get_all: "https://rrr-zb8x.onrender.com/api/v1/plan/get/all",
         get_one: "https://rrr-zb8x.onrender.com/api/v1/plan/get/one",
+      },
+      messages: {
+        super: {
+          create: "https://rrr-zb8x.onrender.com/api/v1/super/message/create",
+          delete: "https://rrr-zb8x.onrender.com/api/v1/super/message/delete",
+          update: "https://rrr-zb8x.onrender.com/api/v1/super/message/update",
+        },
+        admin: {
+          create: "https://rrr-zb8x.onrender.com/api/v1/admin/message/create",
+          delete: "https://rrr-zb8x.onrender.com/api/v1/admin/message/delete",
+          update: "https://rrr-zb8x.onrender.com/api/v1/admin/message/update",
+        },
+        get_all: "https://rrr-zb8x.onrender.com/api/v1/message/get/all",
+        get_one: "https://rrr-zb8x.onrender.com/api/v1/message/get/one",
+      },
+      food: {
+        super: {
+          create: "https://rrr-zb8x.onrender.com/api/v1/super/food/create",
+          delete: "https://rrr-zb8x.onrender.com/api/v1/super/food/delete",
+          update: "https://rrr-zb8x.onrender.com/api/v1/super/food/update",
+        },
+        admin: {
+          create: "https://rrr-zb8x.onrender.com/api/v1/admin/food/create",
+          delete: "https://rrr-zb8x.onrender.com/api/v1/admin/food/delete",
+          update: "https://rrr-zb8x.onrender.com/api/v1/admin/food/update",
+        },
+        get_all: "https://rrr-zb8x.onrender.com/api/v1/food/get/all",
+        get_one: "https://rrr-zb8x.onrender.com/api/v1/food/get/one",
       },
     },
   },
@@ -547,6 +693,12 @@ export default createStore({
     ChangeErrorFormStatus(state) {
       state.error_form_status =
         state.error_form_status == "close" ? "open" : "close";
+    },
+
+    // open || close the avatar form
+    Changeavatar_form_status(state) {
+      state.avatar_form_status =
+        state.avatar_form_status == "close" ? "open" : "close";
     },
 
     // open or close the verify delete home work form

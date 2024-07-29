@@ -14,13 +14,7 @@
     <ErrorComponentVue />
     <!-- error form component  -->
 
-    <div
-      :class="
-        this.$store.state.classes && this.$store.state.classes.length > 0
-          ? `cont-open`
-          : `cont-close`
-      "
-    >
+    <div :class="this.status ? `cont-open` : `cont-close`">
       <!-- small nav scomponent  -->
       <SmallNavComponentVue />
       <!-- small nav scomponent  -->
@@ -90,6 +84,8 @@ export default {
       page: 1,
       // limit od classes documents
       limit: 20,
+      // open or close the compoenet
+      status: false,
     };
   },
   components: {
@@ -126,6 +122,9 @@ export default {
           },
         })
         .then((Response) => {
+          // open the page conatiner
+          this.status = true;
+
           // copy the classes from response and add that to classes array in store
           this.$store.state.classes = [
             ...this.$store.state.classes,

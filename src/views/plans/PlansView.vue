@@ -7,13 +7,7 @@
     <LoadingComponentVue />
     <ErrorComponentVue />
 
-    <div
-      :class="
-        this.$store.state.plans && this.$store.state.plans.length > 0
-          ? 'cont-open'
-          : 'cont-close'
-      "
-    >
+    <div :class="this.status ? 'cont-open' : 'cont-close'">
       <!-- page title -->
       <h3 class="page-title">
         {{
@@ -87,6 +81,8 @@ export default {
       page: 1,
       // to open or close the scrollTp button
       scroll_page: 0,
+      // open or close the compoenet
+      status: false,
     };
   },
   components: {
@@ -122,6 +118,9 @@ export default {
           },
         })
         .then((response) => {
+          // open the page conatiner
+          this.status = true;
+
           // set the plans data from response to plans array in store to open the page's cont like smooth
           this.$store.state.plans = [
             ...this.$store.state.plans,

@@ -45,6 +45,7 @@ import parentView from "../views/parent/ParentView.vue";
 
 // profile page
 import ProfileView from "../views/profile/ProfileView.vue";
+import UpdateProfilrView from "../views/profile/UpdateProfileView.vue";
 // profile page
 
 // children page
@@ -63,6 +64,11 @@ import MessagesView from "../views/MessagesView.vue";
 import InstallView from "../views/InstallView.vue";
 // install page
 
+// install food pages
+import FoodsView from "../views/Foods/FoodsView.vue";
+import FoodView from "../views/Foods/FoodView.vue";
+// install food pages
+
 const routes = [
   {
     path: "/",
@@ -79,6 +85,11 @@ const routes = [
     path: "/profile",
     name: "profile",
     component: ProfileView,
+  },
+  {
+    path: "/updateProfile/:id",
+    name: "update-profile",
+    component: UpdateProfilrView,
   },
   {
     path: "/login",
@@ -226,6 +237,18 @@ const routes = [
     component: InstallView,
   },
   // install app
+  // food page
+  {
+    path: "/foods",
+    name: "foods",
+    component: FoodsView,
+  },
+  {
+    path: "/food/:id",
+    name: "food",
+    component: FoodView,
+  },
+  // food page
 ];
 
 const router = createRouter({

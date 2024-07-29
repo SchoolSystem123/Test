@@ -20,6 +20,7 @@
     justify-content: space-around;
     align-items: center;
     margin: 5% 10% 5% 0%;
+
     input {
       width: 80%;
       height: 100%;
@@ -49,6 +50,7 @@
   }
 
   .cont {
+    margin: 5% 10% 10% 0%;
     background-color: $message-light;
     input {
       background-color: $message-light;

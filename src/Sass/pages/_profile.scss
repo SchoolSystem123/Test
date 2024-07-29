@@ -29,6 +29,18 @@
       justify-content: start;
       align-items: center;
       background-color: $card-darck;
+      position: relative;
+
+      // update profile icon
+      .update-icon {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        text-decoration: none;
+        padding: 3px;
+        border-radius: 3px;
+        background-color: $note-darck;
+      }
 
       // avatar container blue style
       .avatar-blue {
@@ -173,7 +185,7 @@
     // section-tow container style
     .section-tow {
       @extend .section-one;
-      margin: 0px 5%;
+      margin: 10px 5%;
 
       // section tow title
       .title {
@@ -231,6 +243,10 @@
     .section-one {
       background-color: $card-light;
 
+      .update-icon {
+        background-color: $note-light;
+      }
+
       // info container style
       .info {
         // name
@@ -278,11 +294,26 @@
     // section-tow container style
     .section-tow {
       @extend .section-one;
-      margin: 0px 5%;
+      margin: 5px 5%;
 
       .title {
         color: $font-darck;
         border-color: transparent transparent $border-darck transparent;
+      }
+    }
+
+    // section-three container style
+    .section-three {
+      width: 100%;
+      height: auto;
+      background-color: red;
+
+      .title {
+        width: 100%;
+        height: auto;
+        padding: 5px 0px;
+        border: 1px solid;
+        border-color: transparent transparent $border-light transparent;
       }
     }
   }
@@ -300,10 +331,29 @@
 .profile-page-darck-Arabic {
   @extend .profile-page-darck-English;
   direction: rtl;
+
+  .cont-open {
+    .section-one {
+      .update-icon {
+        position: absolute;
+        top: 5px;
+        right: 91%;
+      }
+    }
+  }
 }
 
 .profile-page-light-Arabic {
   @extend .profile-page-light-English;
   direction: rtl;
+  .cont-open {
+    .section-one {
+      .update-icon {
+        position: absolute;
+        top: 5px;
+        right: 91%;
+      }
+    }
+  }
 }
 // Darck and light Arabic style

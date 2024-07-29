@@ -1,59 +1,48 @@
 <template>
   <div
-    :class="`parents-${this.$store.state.mood}-${this.$store.state.language}`"
+    :class="`foods-page-${this.$store.state.mood}-${this.$store.state.language}`"
   >
-    <!-- small nav bar component  -->
     <SmallNavComponentVue />
-    <!-- small nav bar component  -->
-
-    <!-- sidbar component  -->
     <SidBarComponentVue />
-    <!-- sidbar component  -->
-
-    <!-- loading animation component  -->
     <LoadingComponentVue />
-    <!-- loading animation component  -->
-
-    <!-- error form component  -->
+    <ScrollTopComponentVue />
     <ErrorComponentVue />
-    <!-- error form component  -->
 
     <div :class="this.status ? 'cont-open' : 'cont-close'">
       <!-- page title  -->
-      <h3 class="page-title">
+      <h3>
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.parents_page.page_title
-            : this.$store.state.Arabic.parents_page.page_title
+            ? this.$store.state.English.foods_page.page_title
+            : this.$store.state.Arabic.foods_page.page_title
         }}
       </h3>
       <!-- page title  -->
 
-      <SearchByNameComponentVue />
+      <!-- search compoenets  -->
+      <SearchINputComponentVue />
+      <!-- search compoenets  -->
 
-      <!-- results conatiner  -->
-      <div :class="`result-cont-${this.view_style}`">
+      <div :class="`results-cont-${this.view_style}`">
         <!-- results headers  -->
         <div class="results-heade">
           <p>
             {{
               this.$store.state.language == "English"
-                ? this.$store.state.English.parents_page.results_message
-                : this.$store.state.Arabic.parents_page.results_message
+                ? this.$store.state.English.foods_page.results_message
+                : this.$store.state.Arabic.foods_page.results_message
             }}
           </p>
           <icon :icon="this.view_style" @click="ChangeIconStyle" />
         </div>
         <!-- results headers  -->
 
-        <!-- admin component   -->
-        <parentInParentsPageComponentVue
-          v-for="(parent_data, index) in this.$store.state.parents"
+        <FoodCompoenentVue
+          v-for="(food_data, index) in this.$store.state.foods"
           :key="index"
-          :parent_data="parent_data"
+          :food_data="food_data"
           :view_style="this.view_style"
         />
-        <!-- admin component   -->
       </div>
     </div>
 
@@ -62,54 +51,58 @@
 </template>
 
 <script>
-import axios from "axios";
+//? importing compoenents
 import SmallNavComponentVue from "@/components/global/nav/SmallNavComponent.vue";
 import SidBarComponentVue from "@/components/global/SidBarComponent.vue";
 import LoadingComponentVue from "@/components/global/LoadingComponent.vue";
-import SearchByNameComponentVue from "@/components/parent/SearchINputComponent.vue";
 import ScrollTopComponentVue from "@/components/global/ScrollTopComponent.vue";
+import FoodCompoenentVue from "@/components/food/FoodCompoenent.vue";
+import SearchINputComponentVue from "@/components/food/SearchINputComponent.vue";
 import ErrorComponentVue from "@/components/global/ErrorComponent.vue";
-import parentInParentsPageComponentVue from "@/components/parent/parentInParentsPageComponent.vue";
+import axios from "axios";
 
 export default {
-  name: "admin-page",
-  data() {
-    return {
-      view_style: "list",
-      limit: 20,
-      page: 1,
-      scroll_page: 0,
-      // open or close the compoenet
-      status: false,
-    };
-  },
+  name: "foods-page",
   components: {
     SmallNavComponentVue,
     SidBarComponentVue,
     LoadingComponentVue,
-    SearchByNameComponentVue,
     ScrollTopComponentVue,
+    FoodCompoenentVue,
+    SearchINputComponentVue,
     ErrorComponentVue,
-    parentInParentsPageComponentVue,
+  },
+  data() {
+    return {
+      scroll_page: 0,
+      // page index
+      page: 1,
+      // limit od classes documents
+      limit: 20,
+      // elements view style
+      view_style: "list",
+      // open or close the compoenet
+      status: false,
+    };
   },
   mounted() {
-    // to start the loading animation on loaded the page
+    // to start the loading animation on load the page
     window.addEventListener("load", () => {
-      // to start the loading animation
+      // start the loading animation
       this.$store.state.loading = "open";
     });
 
-    // call the get parents method on load the page
-    this.GetParents();
+    // call the get foods method
+    this.GetFoods();
 
-    // handel scroll
+    // call the handleScroll method on scrol window
     window.addEventListener("scroll", this.handleScroll);
   },
   methods: {
-    // get parents method
-    async GetParents() {
-      await axios
-        .get(this.$store.state.APIs.parents.get_all, {
+    // get foods method
+    async GetFoods() {
+      axios
+        .get(this.$store.state.APIs.food.get_all, {
           params: {
             limit: this.limit,
             page: this.page,
@@ -119,14 +112,16 @@ export default {
           // open the page conatiner
           this.status = true;
 
-          // to stop the loading animation
+          // set the foods data from response to food's array in store
+          this.$store.state.foods = [
+            ...this.$store.state.foods,
+            ...response.data.foods_data,
+          ];
+
+          // stop the loading animation
           this.$store.state.loading = "close";
 
-          // set the parents data from response to parents array in store
-          this.$store.state.parents = [
-            ...this.$store.state.parents,
-            ...response.data.parents_data,
-          ];
+          console.log(response);
         })
         .catch((error) => {
           // to stop the loading animation
@@ -145,21 +140,21 @@ export default {
       this.view_style = this.view_style == "list" ? "window-restore" : "list";
     },
 
-    // handleScroll
-    handleScroll() {
+    // scroll method
+    async handleScroll() {
       // check if the window height is donw
       if (
         window.scrollY + window.innerHeight >=
         document.body.scrollHeight - 600
       ) {
-        this.scroll_page = window.scrollY;
-
         // to change page
         this.page += 1;
 
-        // call the get parents method to get more parents
-        this.GetParents();
+        // call the get foods method to get more foods
+        await this.GetFoods();
       }
+
+      this.scroll_page = window.scrollY;
     },
   },
 };

@@ -7,7 +7,7 @@
     <CopyMessageComponentVue />
     <ErrorComponentVue />
     <VerifyDeleteHWComponentVue />
-    <div :class="this.$store.state.home_work ? 'open-cont' : 'close-cont'">
+    <div :class="this.status ? 'open-cont' : 'close-cont'">
       <SmallNavComponentVue />
 
       <div class="page-title">
@@ -215,6 +215,8 @@ export default {
     return {
       home_work_id: this.$route.params.id,
       scroll_page: 0,
+      // open or close the compoenet
+      status: false,
     };
   },
   components: {
@@ -254,8 +256,12 @@ export default {
             `${this.$store.state.APIs.home_works.get_home_work_one}?home_work_id=${this.home_work_id}`
           )
           .then((response) => {
+            // open the page conatiner
+            this.status = true;
+
             // set the home work data to home work data var in stor
             this.$store.state.home_work = response.data.home_work_data;
+
             // to stop the loading animation
             this.$store.state.loading = "close";
           })
