@@ -124,6 +124,18 @@
           font-size: $x-small;
           margin: 3px;
         }
+
+        .editor,
+        .admin {
+          width: auto;
+          height: auto;
+          background-color: $green;
+          border-radius: 3px;
+          padding: 3px;
+          color: $font-light;
+          font-size: $x-small;
+          margin: 3px;
+        }
       }
 
       // copy id component style in profile page

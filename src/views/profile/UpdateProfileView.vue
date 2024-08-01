@@ -15,6 +15,7 @@
       <div class="avatar-section">
         <div :class="`avatar-cont-${this.$store.state.theme}`">
           <img
+            v-if="this.$store.state.user"
             :src="this.$store.state.user.user.avatar"
             alt="avatar"
             @click="this.$store.commit('Changeavatar_form_status')"
@@ -25,7 +26,13 @@
 
       <div class="form">
         <!-- name label  -->
-        <label for="name">Name</label>
+        <label for="name">
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.update_profile.name
+              : this.$store.state.Arabic.update_profile.name
+          }}
+        </label>
         <!-- name label  -->
 
         <!-- name input  -->
@@ -33,12 +40,30 @@
         <!-- name input  -->
 
         <!-- about_me label  -->
-        <label for="about_me">About Me</label>
+        <label
+          for="about_me"
+          v-if="
+            this.$store.state.user.user_type != 'admin' &&
+            this.$store.state.user.user_type != 'parent' &&
+            this.$store.state.user.user_type != 'super'
+          "
+        >
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.update_profile.about_me
+              : this.$store.state.Arabic.update_profile.about_me
+          }}</label
+        >
         <!-- about_me label  -->
 
         <!-- about me input  -->
         <textarea
           name=""
+          v-if="
+            this.$store.state.user.user_type != 'admin' &&
+            this.$store.state.user.user_type != 'parent' &&
+            this.$store.state.user.user_type != 'super'
+          "
           id="about_me"
           :aria-valuemax="this.about_me"
           v-model="this.about_me"
@@ -47,7 +72,13 @@
         <!-- about me input  -->
 
         <!-- password label  -->
-        <label for="password">Password</label>
+        <label for="password">
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.update_profile.password
+              : this.$store.state.Arabic.update_profile.password
+          }}</label
+        >
         <!-- password label  -->
 
         <!-- password input  -->
@@ -55,7 +86,13 @@
         <!-- password input  -->
 
         <!-- phone label  -->
-        <label for="phone">Phone</label>
+        <label for="phone">
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.update_profile.phone
+              : this.$store.state.Arabic.update_profile.phone
+          }}</label
+        >
         <!-- phone label  -->
 
         <!-- phone input  -->
@@ -67,7 +104,11 @@
           :class="`${this.$store.state.theme}`"
           @click="UpdateProfileData"
         >
-          Update
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.update_profile.button
+              : this.$store.state.Arabic.update_profile.button
+          }}
         </button>
         <!-- update button  -->
       </div>
@@ -90,11 +131,15 @@ export default {
     return {
       status: false,
       // name
-      name: this.$store.state.user.user.name,
+      name: this.$store.state.user ? this.$store.state.user.user.name : "",
       // about_me
-      about_me: this.$store.state.user.user.about_me,
+      about_me: this.$store.state.user
+        ? this.$store.state.user.user.about_me
+        : "",
       // phone
-      phone: this.$store.state.user.user.phone_number,
+      phone: this.$store.state.user
+        ? this.$store.state.user.user.phone_number
+        : "",
       // password
       password: "",
       // api
@@ -115,6 +160,12 @@ export default {
     setTimeout(() => {
       this.status = true;
     }, 500);
+
+    // check if the user is loged in
+    if (!this.$store.state.user.user) {
+      //send the user to log in page
+      window.location = "/login";
+    }
   },
   methods: {
     // select the api
@@ -183,8 +234,13 @@ export default {
         this.formData.append("phone_number", this.phone);
       }
 
-      // add the delete avatar state from store to formData
-      this.formData.append("delete_avatar", this.$store.state.delete_avatar);
+      if (
+        this.$store.state.delete_avatar == "true" ||
+        this.$store.state.selectd_images.length > 0
+      ) {
+        // add the delete avatar state from store to formData
+        this.formData.append("delete_avatar", this.$store.state.delete_avatar);
+      }
 
       // check if the selected images array in stor has any image
       if (this.$store.state.selectd_images.length > 0) {
@@ -192,24 +248,12 @@ export default {
         for (let file of this.$store.state.selectd_images) {
           this.formData.append("avatar", file, file.name);
         }
-        // this.formData.append(
-        //   "avatar",
-        //   this.$store.state.selectd_images[0],
-        //   this.$store.state.selectd_images[0].name
-        // );
-        // for (let file of this.$store.state.selectd_images) {
-        // }
       }
 
-      console.log(this.formData.avatar);
-
-      console.log(this.$store.state.delete_avatar);
-
+      // send the request
       await axios
         .put(this.api, this.formData, { headers })
         .then((response) => {
-          console.log(response.data);
-
           // to stop the loading animation
           this.$store.state.loading = "close";
 
@@ -221,9 +265,11 @@ export default {
 
           // save the user data in localStorage
           window.localStorage.setItem("Ss-user", JSON.stringify(oldData));
+
+          // reload the page
+          window.location.reload();
         })
         .catch((error) => {
-          console.log(error);
           // to stop the loading animation
           this.$store.state.loading = "close";
 

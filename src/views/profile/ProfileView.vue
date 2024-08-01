@@ -21,7 +21,11 @@
         <!-- avatar  -->
         <router-link
           class="update-icon"
-          :to="`/updateProfile/${this.$store.state.user.user._id}`"
+          :to="
+            this.$store.state.user
+              ? `/updateProfile/${this.$store.state.user.user._id}`
+              : ''
+          "
           >⚙️</router-link
         >
 
@@ -177,7 +181,13 @@
       <!-- add plans here    -->
 
       <!-- section tow container  -->
-      <div class="section-tow">
+      <div
+        class="section-tow"
+        v-if="
+          this.$store.state.user.user_type == 'student' &&
+          this.$store.state.user.user_type == 'teacher'
+        "
+      >
         <div class="title">
           {{
             this.$store.state.language == "English"
@@ -206,7 +216,13 @@
       <!-- section tow container  -->
 
       <!-- section three container  -->
-      <div class="section-tow">
+      <div
+        class="section-tow"
+        v-if="
+          this.$store.state.user.user_type == 'student' &&
+          this.$store.state.user.user_type == 'teacher'
+        "
+      >
         <div class="title">
           {{
             this.$store.state.language == "English"
@@ -262,6 +278,8 @@ export default {
       status: false,
 
       scroll_page: 0,
+      // params data
+      params: "",
     };
   },
   components: {
@@ -277,7 +295,7 @@ export default {
   },
   mounted() {
     // check if the user is loged in
-    if (!this.$store.state.user.user) {
+    if (!this.$store.state.user != "") {
       //send the user to log in page
       window.location = "/login";
     }
@@ -288,8 +306,11 @@ export default {
       this.$store.state.loading = "open";
     });
 
-    // cla to get student profile data method
-    this.GeProfileData();
+    // check if the user is loged in
+    if (this.$store.state.user != "") {
+      // cla to get student profile data method
+      this.GeProfileData();
+    }
 
     // handel scroll
     window.addEventListener("scroll", this.handleScroll);
@@ -301,18 +322,34 @@ export default {
         this.api = this.$store.state.APIs.admins.get_one;
         // update user type in store
         this.$store.state.user_type = "admin";
+        // add the admin id to params
+        this.params = {
+          admin_id: this.$store.state.user.user._id,
+        };
       } else if (this.$store.state.user.user_type == "teacher") {
         this.api = this.$store.state.APIs.teachers.get_one;
         // update user type in store
         this.$store.state.user_type = "teacher";
+        // add the teacher id to params
+        this.params = {
+          teacher_id: this.$store.state.user.user._id,
+        };
       } else if (this.$store.state.user.user_type == "student") {
         this.api = this.$store.state.APIs.students.get_one;
         // update user type in store
         this.$store.state.user_type = "student";
+        // add the student id to params
+        this.params = {
+          student_id: this.$store.state.user.user._id,
+        };
       } else if (this.$store.state.user.user_type == "parent") {
         this.api = this.$store.state.APIs.parents.get_one;
         // update user type in store
         this.$store.state.user_type = "parent";
+        // add the parent id to params
+        this.params = {
+          parent_id: this.$store.state.user.user._id,
+        };
       }
     },
 
@@ -323,9 +360,7 @@ export default {
 
       await axios
         .get(this.api, {
-          params: {
-            student_id: this.$store.state.user.user._id,
-          },
+          params: this.params,
         })
         .then((response) => {
           // open the page conatiner
@@ -336,8 +371,6 @@ export default {
 
           // to stop the loading animation
           this.$store.state.loading = "close";
-
-          console.log(response);
         })
         .catch((error) => {
           // to stop the loading animation
@@ -352,7 +385,7 @@ export default {
     },
 
     // handleScroll
-    async handleScroll() {
+    handleScroll() {
       // to start scroll to top component
       this.scroll_page = window.scrollY;
     },

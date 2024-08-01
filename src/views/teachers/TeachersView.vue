@@ -118,6 +118,7 @@ export default {
           },
         })
         .then((response) => {
+          console.log(response.data);
           // open the page conatiner
           this.status = true;
 
