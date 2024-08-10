@@ -72,6 +72,7 @@ import ScrollTopComponentVue from "@/components/global/ScrollTopComponent.vue";
 import ErrorComponentVue from "@/components/global/ErrorComponent.vue";
 
 export default {
+  // * sadsa
   name: "admin-page",
   data() {
     return {

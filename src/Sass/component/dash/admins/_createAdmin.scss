@@ -1,0 +1,636 @@
+// darck and light English style
+.craete-admin-darck-English-open {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: ltr;
+
+  .header {
+    width: 100%;
+    height: 30px;
+    border: 1px solid;
+    border-color: transparent transparent $border-light transparent;
+    color: $font-light;
+    margin: 5px 0px;
+  }
+
+  .form {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    .avatar-blue {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-blue, $second-blue);
+
+      #avatar-label {
+        cursor: pointer;
+        input {
+          display: none;
+        }
+        border: none;
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .avatar-orange {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-orange, $second-orange);
+    }
+
+    .avatar-pink {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-pink, $second-pink);
+    }
+
+    .avatar-green {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-green, $second-green);
+    }
+
+    label {
+      width: 100%;
+      height: 30px;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+      color: $font-light;
+      padding: 5px 0px;
+      margin: 10px 0px;
+    }
+
+    input {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      padding-left: 10px;
+      background-color: $body-light;
+    }
+
+    // password container style
+    .password {
+      width: 100%;
+      height: 40px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: $body-light;
+      padding: 0px 5px;
+
+      input {
+        outline: none;
+        border: none;
+      }
+
+      svg {
+        transition-duration: 0.5s;
+        cursor: pointer;
+      }
+
+      svg:hover {
+        color: $blue;
+      }
+    }
+
+    select {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      background-color: $body-light;
+
+      option {
+        border-radius: 5px;
+        height: 20px;
+        margin: 10px 0px;
+      }
+    }
+
+    button {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      color: $font-light;
+      background-color: $green;
+      cursor: pointer;
+    }
+  }
+}
+
+.craete-admin-darck-English-close {
+  @extend .section-cont-open-darck;
+  padding: 30% 5px 5px 5px;
+  opacity: 0;
+}
+
+.craete-admin-darck-English-open::-webkit-scrollbar {
+  width: 0px;
+}
+
+.craete-admin-light-English-open {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: ltr;
+
+  .header {
+    width: 100%;
+    height: 30px;
+    border: 1px solid;
+    border-color: transparent transparent $border-darck transparent;
+    color: $font-darck;
+    margin: 5px 0px;
+  }
+
+  .form {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    .avatar-blue {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-blue, $second-blue);
+
+      #avatar-label {
+        cursor: pointer;
+        input {
+          display: none;
+        }
+        border: none;
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .avatar-orange {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-orange, $second-orange);
+    }
+
+    .avatar-pink {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-pink, $second-pink);
+    }
+
+    .avatar-green {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-green, $second-green);
+    }
+
+    label {
+      width: 100%;
+      height: 30px;
+      border: 1px solid;
+      border-color: transparent transparent $border-darck transparent;
+      color: $font-darck;
+      padding: 5px 0px;
+      margin: 10px 0px;
+    }
+
+    input {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      padding-left: 10px;
+      background-color: $message-light;
+    }
+
+    // password container style
+    .password {
+      width: 100%;
+      height: 40px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: $message-light;
+      padding: 0px 5px;
+
+      input {
+        outline: none;
+        border: none;
+      }
+
+      svg {
+        transition-duration: 0.5s;
+        cursor: pointer;
+      }
+
+      svg:hover {
+        color: $blue;
+      }
+    }
+
+    select {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      background-color: $message-light;
+
+      option {
+        border-radius: 5px;
+        height: 20px;
+        margin: 10px 0px;
+      }
+    }
+
+    button {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      color: $font-light;
+      background-color: $green;
+      cursor: pointer;
+    }
+  }
+}
+
+.craete-admin-light-English-close {
+  @extend .section-cont-open-light;
+  padding: 30% 5px 5px 5px;
+  opacity: 0;
+}
+
+.craete-admin-light-English-open::-webkit-scrollbar {
+  width: 0px;
+}
+// darck and light English style
+
+// darck and light Arabic style
+.craete-admin-darck-Arabic-open {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: rtl;
+
+  .header {
+    width: 100%;
+    height: 30px;
+    border: 1px solid;
+    border-color: transparent transparent $border-light transparent;
+    color: $font-light;
+    margin: 5px 0px;
+  }
+
+  .form {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    .avatar-blue {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-blue, $second-blue);
+
+      #avatar-label {
+        cursor: pointer;
+        input {
+          display: none;
+        }
+        border: none;
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .avatar-orange {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-orange, $second-orange);
+    }
+
+    .avatar-pink {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-pink, $second-pink);
+    }
+
+    .avatar-green {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-green, $second-green);
+    }
+
+    label {
+      width: 100%;
+      height: 30px;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+      color: $font-light;
+      padding: 5px 0px;
+      margin: 10px 0px;
+    }
+
+    input {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      padding-right: 10px;
+      background-color: $body-light;
+    }
+
+    // password container style
+    .password {
+      width: 100%;
+      height: 40px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: $body-light;
+      padding: 0px 5px;
+
+      input {
+        outline: none;
+        border: none;
+      }
+
+      svg {
+        transition-duration: 0.5s;
+        cursor: pointer;
+      }
+
+      svg:hover {
+        color: $blue;
+      }
+    }
+
+    select {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      background-color: $body-light;
+
+      option {
+        border-radius: 5px;
+        height: 20px;
+        margin: 10px 0px;
+      }
+    }
+
+    button {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      color: $font-light;
+      background-color: $green;
+      cursor: pointer;
+    }
+  }
+}
+
+.craete-admin-darck-Arabic-close {
+  @extend .section-cont-open-darck;
+  padding: 30% 5px 5px 5px;
+  opacity: 0;
+}
+
+.craete-admin-darck-Arabic-open::-webkit-scrollbar {
+  width: 0px;
+}
+
+.craete-admin-light-Arabic-open {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: rtl;
+
+  .header {
+    width: 100%;
+    height: 30px;
+    border: 1px solid;
+    border-color: transparent transparent $border-darck transparent;
+    color: $font-darck;
+    margin: 5px 0px;
+  }
+
+  .form {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    .avatar-blue {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-blue, $second-blue);
+
+      #avatar-label {
+        cursor: pointer;
+        input {
+          display: none;
+        }
+        border: none;
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .avatar-orange {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-orange, $second-orange);
+    }
+
+    .avatar-pink {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-pink, $second-pink);
+    }
+
+    .avatar-green {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-green, $second-green);
+    }
+
+    label {
+      width: 100%;
+      height: 30px;
+      border: 1px solid;
+      border-color: transparent transparent $border-darck transparent;
+      color: $font-darck;
+      padding: 5px 0px;
+      margin: 10px 0px;
+    }
+
+    input {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      padding-right: 10px;
+      background-color: $message-light;
+    }
+
+    // password container style
+    .password {
+      width: 100%;
+      height: 40px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: $message-light;
+      padding: 0px 5px;
+
+      input {
+        outline: none;
+        border: none;
+      }
+
+      svg {
+        transition-duration: 0.5s;
+        cursor: pointer;
+      }
+
+      svg:hover {
+        color: $blue;
+      }
+    }
+
+    select {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      background-color: $message-light;
+
+      option {
+        border-radius: 5px;
+        height: 20px;
+        margin: 10px 0px;
+      }
+    }
+
+    button {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      color: $font-light;
+      background-color: $green;
+      cursor: pointer;
+    }
+  }
+}
+
+.craete-admin-light-Arabic-close {
+  @extend .section-cont-open-light;
+  padding: 30% 5px 5px 5px;
+  opacity: 0;
+}
+
+.craete-admin-light-Arabic-open::-webkit-scrollbar {
+  width: 0px;
+}
+
+// darck and light Arabic style

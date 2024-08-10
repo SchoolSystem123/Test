@@ -21,6 +21,21 @@
           />
         </div>
 
+        <router-link
+          v-if="
+            this.$store.state.user.user_type == 'super' ||
+            this.$store.state.user.user._id ==
+              this.$store.state.show_user.data._id
+          "
+          class="update-icon"
+          :to="
+            this.$store.state.user
+              ? `/updateProfile/${this.$store.state.user.user._id}`
+              : ''
+          "
+          >⚙️</router-link
+        >
+
         <div class="info">
           <!-- name  -->
           <h2>
@@ -42,33 +57,25 @@
           <!-- gender  -->
 
           <!-- admin  || super admin-->
+          <p class="admin" v-if="this.$store.state.show_user.data.is_admin">
+            {{
+              this.$store.state.language == "English"
+                ? this.$store.state.English.admin_component.admin
+                : this.$store.state.Arabic.admin_component.admin
+            }}
+          </p>
+
           <p
-            class="admin"
-            v-if="
-              this.$store.state.show_user.data.is_admin ||
-              this.$store.state.show_user.data.is_super_admin
-            "
+            class="supper_admin"
+            v-if="this.$store.state.show_user.data.is_supper_admin"
           >
             {{
-              this.$store.state.show_user.data.is_admin
-                ? "Admin"
-                  ? this.$store.state.show_user.data.is_super_admin
-                  : "Suer Admin"
-                : null
+              this.$store.state.language == "English"
+                ? this.$store.state.English.admin_component.supper_admin
+                : this.$store.state.Arabic.admin_component.supper_admin
             }}
           </p>
           <!-- admin  || super admin-->
-
-          <!-- class level  -->
-          <p>
-            {{
-              this.$store.state.language == "English"
-                ? this.$store.state.English.show_user_page.class_level
-                : this.$store.state.Arabic.show_user_page.class_level
-            }}
-            {{ this.$store.state.show_user.data.class_level }}
-          </p>
-          <!-- class level  -->
 
           <!-- joind at  -->
           <p v-if="this.$store.state.show_user.data.joind_at">
@@ -107,120 +114,10 @@
           {{ this.$store.state.show_user.data.about_me }}
         </span>
         <!--  about me  -->
-
-        <!-- medals in English language  -->
-        <div
-          class="medals"
-          v-if="
-            this.$store.state.language == 'English' &&
-            this.$store.state.user_type == 'teacher'
-          "
-        >
-          <span>Medals</span>
-
-          <!-- add the medals by gpa -->
-          <p
-            v-for="(medal, index) in this.$store.state.English.show_user.data
-              .medals"
-            :key="index"
-          >
-            {{
-              this.$store.state.show_user.total_gpa >= medal.gpa
-                ? medal.message
-                : "🔒"
-            }}
-          </p>
-        </div>
-        <!-- medals in English language  -->
-
-        <!-- medals in Arabic language  -->
-        <div
-          class="medals"
-          v-if="
-            this.$store.state.language == 'Arabic' &&
-            this.$store.state.user_type == 'teacher'
-          "
-        >
-          <span>الميدليات</span>
-
-          <!-- add the medals by gpa -->
-          <p
-            v-for="(medal, index) in this.$store.state.Arabic.show_user.data
-              .medals"
-            :key="index"
-          >
-            {{
-              this.$store.state.show_user.total_gpa >= medal.gpa
-                ? medal.message
-                : "🔒"
-            }}
-          </p>
-          <!-- medals in Arabic language  -->
-        </div>
       </div>
       <!-- section one container  -->
 
       <!-- add plans here    -->
-
-      <!-- section tow container  -->
-      <div class="section-tow" v-if="this.$store.state.show_user.data">
-        <div class="title">
-          {{
-            this.$store.state.language == "English"
-              ? this.$store.state.English.show_user_page.classes_cont.title
-              : this.$store.state.Arabic.show_user_page.classes_cont.title
-          }}
-        </div>
-
-        <!-- class component  -->
-        <ClassComponentVue
-          v-for="(class_data, index) in this.$store.state.show_user.data
-            .classes"
-          :key="index"
-          :class_data="class_data"
-        />
-        <!-- class component  -->
-
-        <router-link to="/user/classes">
-          {{
-            this.$store.state.language == "English"
-              ? this.$store.state.English.show_user_page.classes_cont.title
-              : this.$store.state.Arabic.show_user_page.classes_cont.title
-          }}
-          <icon icon="arrow-right" />
-        </router-link>
-      </div>
-      <!-- section tow container  -->
-
-      <!-- section three container  -->
-      <div class="section-tow" v-if="this.$store.state.show_user.data">
-        <div class="title">
-          {{
-            this.$store.state.language == "English"
-              ? this.$store.state.English.show_user_page.plans_cont.title
-              : this.$store.state.Arabic.show_user_page.plans_cont.title
-          }}
-        </div>
-
-        <!-- plan component  -->
-        <PlanInProfilePageCompoeneVue
-          v-for="(plan_data, index) in this.$store.state.show_user.data
-            .my_plans"
-          :key="index"
-          :plan_data="plan_data"
-        />
-        <!-- class component  -->
-
-        <router-link to="/user/plans">
-          {{
-            this.$store.state.language == "English"
-              ? this.$store.state.English.show_user_page.plans_cont.title
-              : this.$store.state.Arabic.show_user_page.plans_cont.title
-          }}
-          <icon icon="arrow-right" />
-        </router-link>
-      </div>
-      <!-- section three container  -->
     </div>
 
     <!-- scroll to top compoenent  -->
@@ -237,8 +134,6 @@ import LoadingComponentVue from "@/components/global/LoadingComponent.vue";
 import ErrorComponentVue from "@/components/global/ErrorComponent.vue";
 import CopyIdComponentVue from "@/components/global/CopyIdComponent.vue";
 import CopyMessageComponentVue from "@/components/global/CopyMessageComponent.vue";
-import ClassComponentVue from "@/components/class/ClassComponent.vue";
-import PlanInProfilePageCompoeneVue from "@/components/plan/PlanInProfilePageCompoene.vue";
 import ScrollTopComponentVue from "@/components/global/ScrollTopComponent.vue";
 import axios from "axios";
 
@@ -259,8 +154,6 @@ export default {
     LoadingComponentVue,
     CopyIdComponentVue,
     CopyMessageComponentVue,
-    ClassComponentVue,
-    PlanInProfilePageCompoeneVue,
   },
   mounted() {
     //* to start the loading animation on loaded the page
@@ -284,10 +177,11 @@ export default {
       await axios
         .get(this.$store.state.APIs.admins.get_one, {
           params: {
-            teacher_id: this.$route.params.id,
+            admin_id: this.$route.params.id,
           },
         })
         .then((response) => {
+          console.log(response);
           // update the status to open the cont
           this.status = true;
 

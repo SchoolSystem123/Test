@@ -70,12 +70,70 @@
 
 // darck and light Arabic plan in profile page style
 .plan-profile-darck-Arabic {
-  @extend .plan-profile-darck-English;
+  width: 98%;
+  height: auto;
+  margin: 5px 1%;
+  border-radius: 10px;
+  background-color: $body-darck;
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: center;
+  padding: 5px;
+  transition-duration: 0.5s;
   direction: rtl;
+
+  // plan title
+  h2 {
+    width: 100%;
+    margin: 5px 0%;
+    height: auto;
+    color: $font-light;
+  }
+
+  div {
+    width: 100%;
+    height: auto;
+    margin: 3px 0px;
+    font-size: $small;
+    color: $font-light;
+  }
+
+  // plan description
+  p {
+    width: auto;
+    height: auto;
+    padding: 3px;
+    border-radius: 3px;
+    margin: 3px;
+    background-color: $note-darck;
+    color: $font-light;
+    font-size: $x-small;
+  }
+}
+
+.plan-profile-darck-Arabic:hover {
+  box-shadow: 0 0 5px $black;
 }
 
 .plan-profile-light-Arabic {
-  @extend .plan-profile-light-English;
-  direction: rtl;
+  @extend .plan-profile-darck-Arabic;
+  background-color: $body-light;
+
+  // plan title
+  h2 {
+    color: $font-darck;
+  }
+
+  div {
+    color: $font-darck;
+  }
+
+  // plan description
+  p {
+    background-color: $note-light;
+    color: $font-darck;
+  }
 }
 // darck and light Arabic plan in profile page style

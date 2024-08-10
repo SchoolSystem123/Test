@@ -169,6 +169,16 @@
         />
         <!-- class component  -->
 
+        <!-- default results messgaes  -->
+        <p class="default_message">
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.show_user_page.default_message_classes
+              : this.$store.state.Arabic.show_user_page.default_message_classes
+          }}
+        </p>
+        <!-- default results messgaes  -->
+
         <router-link to="/user/classes">
           {{
             this.$store.state.language == "English"
@@ -198,6 +208,16 @@
           :plan_data="plan_data"
         />
         <!-- class component  -->
+
+        <!-- default results messgaes  -->
+        <p class="default_message">
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.show_user_page.default_message_plans
+              : this.$store.state.Arabic.show_user_page.default_message_plans
+          }}
+        </p>
+        <!-- default results messgaes  -->
 
         <router-link to="/user/plans">
           {{
@@ -276,6 +296,7 @@ export default {
           },
         })
         .then((response) => {
+          console.log(response);
           // update the status to open the cont
           this.status = true;
 

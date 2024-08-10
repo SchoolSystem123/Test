@@ -113,19 +113,19 @@ export default {
 
     // select the api
     SelectApi() {
-      if (this.email.startsWith("A")) {
+      if (this.email.startsWith("A:")) {
         this.api = this.$store.state.APIs.login.Admin;
         this.user_type = "admin";
-      } else if (this.email.startsWith("T")) {
+      } else if (this.email.startsWith("T:")) {
         this.api = this.$store.state.APIs.login.Teacher;
         this.user_type = "teacher";
-      } else if (this.email.startsWith("S")) {
+      } else if (this.email.startsWith("S:")) {
         this.api = this.$store.state.APIs.login.Student;
         this.user_type = "student";
-      } else if (this.email.startsWith("SA")) {
-        this.api = this.$store.state.APIs.login.admin;
+      } else if (this.email.startsWith("SA:")) {
+        this.api = this.$store.state.APIs.login.Super;
         this.user_type = "super";
-      } else if (this.email.startsWith("P")) {
+      } else if (this.email.startsWith("P:")) {
         this.api = this.$store.state.APIs.login.Parent;
         this.user_type = "parent";
       }
@@ -140,10 +140,12 @@ export default {
       this.$store.state.loading = "open";
 
       console.log(this.api);
+      console.log(this.email.split(":")[1]);
+      console.log(this.password);
       axios
         .post(this.api, {
-          // delete the fisrt Char from email ( this fisrt char is for select the whitch api use to login )
-          email: this.email.slice(2),
+          // delete the fisrt Chars from email ( this fisrt chars is for select the whitch api use to login )
+          email: this.email.split(":")[1],
           password: this.password,
         })
         .then((response) => {

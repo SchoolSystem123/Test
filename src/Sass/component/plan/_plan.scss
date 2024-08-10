@@ -51,13 +51,52 @@
 
 // darck and light Arabic list style
 .plans-page-list-darck-Arabic {
-  @extend .plans-page-list-darck-English;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background-color: $card-darck;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+  margin: 5px 0px;
+  transition-duration: 0.5s;
+  cursor: pointer;
   direction: rtl;
+
+  // plan title style
+  h2 {
+    width: 100%;
+    height: auto;
+    color: $font-light;
+  }
+
+  // notes style
+  p {
+    width: auto;
+    height: auto;
+    padding: 3px;
+    color: $font-light;
+    font-size: $x-small;
+    border-radius: 3px;
+    margin: 3px;
+    background-color: $note-darck;
+  }
 }
 
 .plans-page-list-light-Arabic {
-  @extend .plans-page-list-light-English;
-  direction: rtl;
+  @extend .plans-page-list-darck-Arabic;
+  background-color: $card-light;
+
+  // plan title
+  h2 {
+    color: $font-darck;
+  }
+
+  // notes style
+  p {
+    color: $font-darck;
+    background-color: $note-light;
+  }
 }
 // darck and light Arabic list style
 

@@ -141,7 +141,7 @@
 
 .plans-page-light-Arabic {
   @extend .plans-page-light-English;
-  background-color: $body-light;
+  @extend .plans-page-darck-Arabic;
   direction: rtl;
 }
 // darck and light Arabic style

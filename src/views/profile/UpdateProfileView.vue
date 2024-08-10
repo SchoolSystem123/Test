@@ -85,6 +85,60 @@
         <input type="password" v-model="this.password" />
         <!-- password input  -->
 
+        <!-- gender  -->
+        <label for="gender">
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.create_admin.gender
+              : this.$store.state.Arabic.create_admin.gender
+          }}</label
+        >
+
+        <select name="" id="gender" v-model="gender">
+          <option value="male">
+            {{
+              this.$store.state.language == "English"
+                ? this.$store.state.English.create_admin.male
+                : this.$store.state.Arabic.create_admin.male
+            }}
+          </option>
+          <option value="female">
+            {{
+              this.$store.state.language == "English"
+                ? this.$store.state.English.create_admin.female
+                : this.$store.state.Arabic.create_admin.female
+            }}
+          </option>
+        </select>
+        <!-- gender  -->
+
+        <!-- admin's Permissions  -->
+        <label for="Permissions">
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.create_admin.admin_access
+              : this.$store.state.Arabic.create_admin.admin_access
+          }}</label
+        >
+
+        <select name="" id="Permissions" v-model="Permissions">
+          <option value="true">
+            {{
+              this.$store.state.language == "English"
+                ? this.$store.state.English.create_admin.admin
+                : this.$store.state.Arabic.create_admin.admin
+            }}
+          </option>
+          <option value="false">
+            {{
+              this.$store.state.language == "English"
+                ? this.$store.state.English.create_admin.not_admin
+                : this.$store.state.Arabic.create_admin.not_admin
+            }}
+          </option>
+        </select>
+        <!-- admin's Permissions  -->
+
         <!-- phone label  -->
         <label for="phone">
           {{
@@ -131,17 +185,15 @@ export default {
     return {
       status: false,
       // name
-      name: this.$store.state.user ? this.$store.state.user.user.name : "",
+      name: this.$store.state.user.user.name,
       // about_me
-      about_me: this.$store.state.user
-        ? this.$store.state.user.user.about_me
-        : "",
+      about_me: this.$store.state.user.user.about_me,
       // phone
-      phone: this.$store.state.user
-        ? this.$store.state.user.user.phone_number
-        : "",
+      phone: this.$store.state.user.user.phone_number,
       // password
       password: "",
+      // gender
+      gender: this.$store.state.user.user.gender,
       // api
       api: "",
       // form data

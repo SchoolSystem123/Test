@@ -13,8 +13,6 @@ body {
 }
 
 @import "./varibels/variables";
-@import "./pages/login";
-@import "./pages/home";
 @import "./component/sidBar";
 @import "./component/global/nav";
 @import "./component/global/supersearch";
@@ -31,39 +29,55 @@ body {
 
 @import "./component/teacher/teacher";
 @import "./component/admin/admin";
-@import "./pages/class";
 @import "./component/homeWork/homeWork";
 @import "./component/student/student";
 @import "./component/student/studentInStudents";
-@import "./pages/homeWork";
 @import "./component/global/ShurtCutsButtins/updateHWBtn";
 @import "./component/global/ShurtCutsButtins/deleteHWBtn";
 @import "./component/global/forms/deleteHw";
 @import "./component/global/forms/avatarForm";
-@import "./pages/classes";
 @import "./component/global/search";
 @import "./component/class/classInClasses";
-@import "./pages/students";
-@import "./pages/admins";
 @import "./component/admin/admin";
 @import "./component/admin/adminInAdminsPage";
 @import "./component/teacher/teacherInTeachersPage";
-@import "./pages/teachers";
 @import "./component/global/ShurtCutsButtins/createClass";
 @import "./component/parent/parentInParentsPage";
-@import "./pages/parents";
-@import "./pages/install";
-@import "./pages/homeWorks";
 @import "./component/homeWork/HwInHwPage";
-@import "./pages/profile";
-@import "./pages/profile/updateProfile";
-@import "./pages/plans";
 @import "./component/plan/plan";
-@import "./pages/plan";
 @import "./component/plan/planInProfile";
-@import "./pages/messages";
 @import "./component/message/message";
-@import "./pages/foods";
-@import "./pages/food";
 @import "./component/food/food";
 @import "./component/global/buttons/CoyOrRemovePlan";
+@import "./component/dash/admins/admins";
+@import "./component/dash/admins/adminInDash";
+@import "./component/dash/admins/createAdmin";
+@import "./component/global/forms/dash/verifyDeleteAdmin";
+@import "./component/dash/admins/updateAdmin";
+
+@import "./component/dash/teachers/teacherInDash";
+@import "./component/dash/teachers/updateTeacher";
+@import "./component/global/forms/dash/teacher/verifyTeacherAdmin";
+
+@import "./pages/login";
+// @import "./pages/home";
+// @import "./pages/class";
+// @import "./pages/homeWork";
+// @import "./pages/classes";
+// @import "./pages/students";
+// @import "./pages/admins";
+
+// @import "./pages/teachers";
+// @import "./pages/parents";
+// @import "./pages/install";
+// @import "./pages/homeWorks";
+
+// @import "./pages/plans";
+// @import "./pages/plan";
+// @import "./pages/messages";
+// @import "./pages/foods";
+// @import "./pages/food";
+@import "./pages/dash/dash";
+
+@import "./pages/profile/profile";
+@import "./pages/profile/updateProfile";

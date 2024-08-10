@@ -1,0 +1,342 @@
+<template>
+  <div
+    :class="`craete-admin-${this.$store.state.mood}-${this.$store.state.language}-${this.status}`"
+  >
+    <!-- component title  -->
+    <div class="header">
+      {{
+        this.$store.state.language == "English"
+          ? this.$store.state.English.create_admin.title
+          : this.$store.state.Arabic.create_admin.title
+      }}
+    </div>
+    <!-- component title  -->
+
+    <!-- form data container  -->
+    <div class="form">
+      <!-- admin avatar -->
+      <div :class="`avatar-${this.$store.state.theme}`">
+        <label for="avatar" id="avatar-label">
+          <input
+            type="file"
+            id="avatar"
+            ref="avatar"
+            @change="onImageSelected"
+          />
+
+          <img
+            :src="
+              this.$store.state.selectd_images.length > 0
+                ? this.readerFile()
+                : this.avatar
+            "
+            alt=""
+          />
+        </label>
+      </div>
+      <!-- admin avatar -->
+
+      <!-- name  -->
+      <label for="name">
+        {{
+          this.$store.state.language == "English"
+            ? this.$store.state.English.create_admin.name
+            : this.$store.state.Arabic.create_admin.name
+        }}</label
+      >
+      <input
+        type="text"
+        :placeholder="
+          this.$store.state.language == 'English'
+            ? this.$store.state.English.create_admin.name_placeholder
+            : this.$store.state.Arabic.create_admin.name_placeholder
+        "
+        id="name"
+        v-model="this.name"
+      />
+      <!-- name  -->
+
+      <!-- email  -->
+      <label for="email">
+        {{
+          this.$store.state.language == "English"
+            ? this.$store.state.English.create_admin.email
+            : this.$store.state.Arabic.create_admin.email
+        }}</label
+      >
+      <input
+        type="email"
+        :placeholder="
+          this.$store.state.language == 'English'
+            ? this.$store.state.English.create_admin.email_placeholder
+            : this.$store.state.Arabic.create_admin.email_placeholder
+        "
+        id="email"
+        v-model="this.email"
+      />
+      <!-- email  -->
+
+      <!-- password  -->
+      <label for="password">
+        {{
+          this.$store.state.language == "English"
+            ? this.$store.state.English.create_admin.password
+            : this.$store.state.Arabic.create_admin.password
+        }}</label
+      >
+      <div class="password">
+        <input
+          :type="this.password_type"
+          :placeholder="
+            this.$store.state.language == 'English'
+              ? this.$store.state.English.create_admin.password_placeholder
+              : this.$store.state.Arabic.create_admin.password_placeholder
+          "
+          id="password"
+          v-model="this.password"
+        />
+        <icon icon="eye" @click="ChangeInputType" />
+      </div>
+      <!-- password  -->
+
+      <!-- phone number  -->
+      <label for="phone-number">
+        {{
+          this.$store.state.language == "English"
+            ? this.$store.state.English.create_admin.phone_number
+            : this.$store.state.Arabic.create_admin.phone_number
+        }}</label
+      >
+      <input
+        type="text"
+        :placeholder="
+          this.$store.state.language == 'English'
+            ? this.$store.state.English.create_admin.phone_placeholder
+            : this.$store.state.Arabic.create_admin.phone_placeholder
+        "
+        id="phone-number"
+        v-model="this.phone"
+      />
+      <!-- phone number  -->
+
+      <!-- gender  -->
+      <label for="gender">
+        {{
+          this.$store.state.language == "English"
+            ? this.$store.state.English.create_admin.gender
+            : this.$store.state.Arabic.create_admin.gender
+        }}</label
+      >
+
+      <select name="" id="gender" v-model="gender">
+        <option value="male">
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.create_admin.male
+              : this.$store.state.Arabic.create_admin.male
+          }}
+        </option>
+        <option value="female">
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.create_admin.female
+              : this.$store.state.Arabic.create_admin.female
+          }}
+        </option>
+      </select>
+      <!-- gender  -->
+
+      <!-- admin's Permissions  -->
+      <label for="Permissions">
+        {{
+          this.$store.state.language == "English"
+            ? this.$store.state.English.create_admin.admin_access
+            : this.$store.state.Arabic.create_admin.admin_access
+        }}</label
+      >
+
+      <select name="" id="Permissions" v-model="Permissions">
+        <option value="true">
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.create_admin.admin
+              : this.$store.state.Arabic.create_admin.admin
+          }}
+        </option>
+        <option value="false">
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.create_admin.not_admin
+              : this.$store.state.Arabic.create_admin.not_admin
+          }}
+        </option>
+      </select>
+      <!-- admin's Permissions  -->
+
+      <!-- createing button  -->
+      <button @click="CreateAdmin">
+        {{
+          this.$store.state.language == "English"
+            ? this.$store.state.English.create_admin.button
+            : this.$store.state.Arabic.create_admin.button
+        }}
+      </button>
+      <!-- createing button  -->
+    </div>
+    <!-- form data container  -->
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+import Female_icon from "../../../assets/femal-default-icon.png";
+import Male_icon from "../../../assets/male-default-icon.png";
+
+export default {
+  name: "create-admin-component",
+  data() {
+    return {
+      status: "close",
+      // admin name
+      name: "",
+      // admin email
+      email: "",
+      // admin password
+      password: "",
+      // admin gender
+      gender: "male",
+      // phone number
+      phone: "",
+      // admin Permissions
+      Permissions: true,
+      // password input type
+      password_type: "password",
+      // avatar
+      avatar: this.gender === "male" ? Female_icon : Male_icon,
+      // / form data to add all new admin data in it ande send it in request
+      formData: new FormData(),
+    };
+  },
+  components: {},
+  mounted() {
+    // to call OnImageSelected method on select any image
+    this.$refs.avatar.addEventListener("change", this.onImageSelected);
+
+    // to open the component like smoothe
+    setTimeout(() => {
+      this.status = "open";
+    }, 500);
+  },
+  methods: {
+    // change the passworpassword input type
+    ChangeInputType() {
+      this.password_type =
+        this.password_type == "password" ? "text" : "password";
+    },
+
+    // create admin
+    async CreateAdmin() {
+      // to start the loading animation
+      this.$store.state.loading = "open";
+
+      // create the super admin headers
+      const headers = {
+        Authorization: `Bearer ${this.$store.state.user.token}`,
+      };
+
+      // add the admin name to form data
+      this.formData.append("name", this.name);
+
+      // add the new admin email to form data
+      this.formData.append("email", this.email);
+
+      // add the new admin password to form data
+      this.formData.append("password", this.password);
+
+      // add the new admin gender to form data
+      this.formData.append("gender", this.gender);
+
+      // add the new admin phone to form data
+      this.formData.append("phone_number", this.phone);
+
+      // add the new admin Permissions to form data
+      this.formData.append("is_admin", this.Permissions);
+
+      // add the super admin id to formDta
+      this.formData.append("super_admin_id", this.$store.state.user.user._id);
+
+      // check if the selected images array in stor has any image
+      if (this.$store.state.selectd_images.length > 0) {
+        // add all images as array in formData
+        for (let file of this.$store.state.selectd_images) {
+          this.formData.append("avatar", file, file.name);
+        }
+      }
+
+      await axios
+        .post(this.$store.state.APIs.admins.super.create, this.formData, {
+          headers,
+        })
+        .then(() => {
+          // to stop the loading animation
+          this.$store.state.loading = "close";
+
+          // empting the selected images array in store
+          this.$store.state.selectd_images = [];
+
+          // reload the page after created the teacher's account
+          window.location.reload();
+        })
+        .catch((error) => {
+          // emptying the data
+          this.name = "";
+          this.email = "";
+          this.password = "";
+          this.phone = "";
+          this.gender = "male";
+          this.Permissions = true;
+          this.formData = new FormData();
+          this.avatar = Male_icon;
+
+          // empting the selected images array in store
+          this.$store.state.selectd_images = [];
+
+          // to stop the loading animation
+          this.$store.state.loading = "close";
+
+          // to set the reqeust's error message to error message var in store
+          this.$store.state.error_message = error.response.data.message;
+
+          // to open the error form
+          this.$store.state.error_form_status = "open";
+        });
+    },
+
+    // select the images
+    onImageSelected(event) {
+      // catch the selected image
+      const file = event.target.files[0];
+
+      // emptying the selected images array in store
+      this.$store.state.selectd_images = [];
+
+      // add the selected file to selectd_images array in store
+      this.$store.state.selectd_images.push(file);
+    },
+
+    // reader selecetd image
+    readerFile() {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        this.avatar = e.target.result;
+      };
+
+      reader.readAsDataURL(this.$store.state.selectd_images[0]);
+
+      // return the avatar to use the ass a path in avatar image
+      return this.avatar;
+    },
+  },
+};
+</script>

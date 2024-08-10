@@ -3,7 +3,8 @@ import axios from "axios";
 
 export default createStore({
   state: {
-    mood: window.localStorage.getItem("mood") || "darck",
+    // mood: window.localStorage.getItem("mood") || "darck",
+    mood: "darck",
     language: window.localStorage.getItem("language") || "English",
     language_list_state: "close",
     theme: window.localStorage.getItem("theme") || "orange",
@@ -12,6 +13,9 @@ export default createStore({
     delete_hw_form_status: "close",
     copy_message_status: "close",
     avatar_form_status: "close",
+    delete_admin_form_status: "close",
+    delete_teacher_form_status: "close",
+    update_admin_form: "close",
     user: JSON.parse(window.localStorage.getItem("Ss-user")) || "",
     profile: "",
     user_type: "",
@@ -19,6 +23,11 @@ export default createStore({
     selectd_images: [],
     delete_avatar: "false",
     messages: [],
+    admin_id_for_delete: "",
+    teacher_id_for_delete: "",
+    admin_for_update: "",
+    teacher_for_update: "",
+    active_component_in_dash: "admins",
     // user_type: JSON.parse(window.localStorage.getItem("Ss-user")).user_type || "admint",
     sidBar: "close",
     information: "test",
@@ -40,6 +49,40 @@ export default createStore({
     plan: "",
     foods: [],
     food: "",
+    subjects_list: [
+      { English: "Math", Arabic: "رياضيات" },
+      { English: "Arabic", Arabic: "عربي" },
+      { English: "English", Arabic: "إنكليزي" },
+      { English: "French", Arabic: "فرنسي" },
+      { English: "History", Arabic: "تاريخ" },
+      { English: "Philosophy", Arabic: "فلسفة" },
+      { English: "Physics", Arabic: "فيزياء" },
+      { English: "Sciences", Arabic: "علم احياء" },
+      { English: "Islam", Arabic: "ديانة" },
+      { English: "Geography", Arabic: "جغرافيا" },
+      { English: "Chemistry", Arabic: "كيمياء" },
+      { English: "Alwatania", Arabic: "وطنية" },
+    ],
+    Classes_level_list: [
+      { English: "First_grade", Arabic: "الصف الأول" },
+      { English: "Second_grade", Arabic: "الصف الثاني" },
+      { English: "Third_grade", Arabic: "الصف الثالث" },
+      { English: "Fourth_grade", Arabic: "الصف الرابع" },
+      { English: "Fifth_grade", Arabic: "الصف الخامس" },
+      { English: "Sixth_grade", Arabic: "الصف السادس" },
+      { English: "Seventh_grade", Arabic: "الصف السابع" },
+      { English: "Eighth_grade", Arabic: "الصف الثامن" },
+      { English: "Ninth_grade", Arabic: "الصف التاسع" },
+      { English: "Literary_Tenth_grade", Arabic: "الصف العاشر الأدبي" },
+      { English: "Scientific_Tenth_grade", Arabic: "الصف العاشر العلمي" },
+      { English: "Literary_Eleventh_grade", Arabic: "الصف الحادي عشر الأدبي" },
+      {
+        English: "Scientific_Eleventh_grade",
+        Arabic: "الصف الحادي عشر العلمي",
+      },
+      { English: "Literary_baccalaureate", Arabic: "بكالوريا أدبي " },
+      { English: "Scientific_baccalaureate", Arabic: "بكالوريا علمي" },
+    ],
     English: {
       login: {
         title: "log in to your account ...",
@@ -203,6 +246,10 @@ export default createStore({
         search_admin_name: "Search By name 💬👇",
         results_message: "Results 🦸‍♂️👇",
       },
+      admin_component: {
+        admin: "Admin 🦸‍♂️",
+        supper_admin: "Super admin ⚡🦸‍♂️",
+      },
       teachers_page: {
         placeholder: "Type the teacher name here ✍️",
         page_title: "Teachers page 👨‍🏫",
@@ -284,7 +331,10 @@ export default createStore({
         about_me: "About Me",
         password: "Password",
         phone: "Phone",
-        button: "upate",
+        button: "Update",
+        avatar_form_header: "Avatar Actions",
+        new: "New Avatar",
+        delete: "Delete Avatar",
       },
       show_user_page: {
         gender: "Gender ⚧️ :",
@@ -294,6 +344,8 @@ export default createStore({
         gpa: "GPA 📌 :",
         class_level: "CLass Level 🏫🪜🎚️ :",
         joind_at: "Joind In 📆 :",
+        default_message_classes: "📍⛔😕 No Any Class 📍⛔😕",
+        default_message_plans: "📍⛔😕 No Any Plan 📍⛔😕",
         medals: [
           { gpa: 0, message: "dead 🏴‍☠️" },
           { gpa: 1, message: "good 🫡" },
@@ -309,6 +361,98 @@ export default createStore({
         plans_cont: {
           title: "Plans",
         },
+      },
+      dash_admins_component: {
+        title: "Admins 🦸‍♂️",
+        update: "Updae",
+        delete: "Delete",
+      },
+      create_admin: {
+        title: "Create Admin 🦸‍♂️",
+        name: "Name",
+        email: "Email 📧",
+        password: "Password 🔑",
+        phone_number: "Phone Number 📞",
+        gender: "Gender ⚧️",
+        male: "Male 🚹",
+        female: "Female 🚺",
+        admin_access: "Admin Permissions 🦸‍♂️",
+        admin: "Is Admin 🦸‍♂️",
+        not_admin: "Is Not Admin 🚫",
+        button: "Create",
+        name_placeholder: "Type admin name here ✍️ ...",
+        email_placeholder: "Type admin email here ✍️ ...",
+        password_placeholder: "Type admin password here ✍️ ...",
+        phone_placeholder: " Type admin phone number here ✍️ ...",
+      },
+      update_admin: {
+        title: "Update Admin 🦸‍♂️",
+        name: "Name",
+        password: "Password 🔑",
+        phone_number: "Phone Number 📞",
+        gender: "Gender ⚧️",
+        male: "Male 🚹",
+        female: "Female 🚺",
+        admin_access: "Admin Permissions 🦸‍♂️",
+        admin: "Is Admin 🦸‍♂️",
+        not_admin: "Is Not Admin 🚫",
+        button: "Update",
+        name_placeholder: "Type admin name here ✍️ ...",
+        password_placeholder: "Type new admin's password here ✍️ ...",
+        phone_placeholder: " Type admin phone number here ✍️ ...",
+      },
+      delete_admin_form: {
+        title: "Delete Admin ...",
+        delete: "Delete",
+        cancel: "Cancel",
+      },
+      dash_teachers_component: {
+        title: "Teachers 👨‍🏫",
+        update: "Updae",
+        delete: "Delete",
+      },
+      create_teacher: {
+        title: "Create Teacher 👨‍🏫",
+        name: "Name",
+        email: "Email 📧",
+        password: "Password 🔑",
+        phone_number: "Phone Number 📞",
+        subject: "Subject 📚📖📑",
+        class_level: "Class Level 🏫🪜🎚️",
+        gender: "Gender ⚧️",
+        male: "Male 🚹",
+        female: "Female 🚺",
+        teacher_access: "Teacher Permissions 👨‍🏫",
+        editor: "Is Editor 👨‍🏫",
+        not_editor: "Is Not Editor 🚫",
+        button: "Create",
+        name_placeholder: "Type teacher name here ✍️ ...",
+        email_placeholder: "Type teacher email here ✍️ ...",
+        password_placeholder: "Type teacher password here ✍️ ...",
+        phone_placeholder: " Type teacher phone number here ✍️ ...",
+      },
+      update_teacher: {
+        title: "Update Teacher 👨‍🏫",
+        name: "Name",
+        password: "Password 🔑",
+        phone_number: "Phone Number 📞",
+        subject: "Subject 📚📖📑",
+        class_level: "Class Level 🏫🪜🎚️",
+        gender: "Gender ⚧️",
+        male: "Male 🚹",
+        female: "Female 🚺",
+        teacher_access: "Teacher Permissions 👨‍🏫",
+        editor: "Is Editor 👨‍🏫",
+        not_editor: "Is Not Editor 🚫",
+        button: "Update",
+        name_placeholder: "Type teacher name here ✍️ ...",
+        password_placeholder: "Type new teacher's password here ✍️ ...",
+        phone_placeholder: " Type teacher phone number here ✍️ ...",
+      },
+      delete_teacher_form: {
+        title: "Delete Teacher 👨‍🏫 ...",
+        delete: "Delete",
+        cancel: "Cancel",
       },
       theme: "Theme",
       mood: "Mood",
@@ -444,6 +588,10 @@ export default createStore({
         search_admin_name: "البحث عن طريق الاسم 💬👇",
         results_message: "النتائج 👨‍🎓👇",
       },
+      admin_component: {
+        admin: "مدير 🦸‍♂️",
+        supper_admin: "مدير عام ⚡🦸‍♂️",
+      },
       plans_page: {
         placeholder: "اكتب عنوان الخطة هنا ✍️",
         page_title: "صفحة الخطط 📌🪃📚",
@@ -570,6 +718,8 @@ export default createStore({
         gpa: "المعدل 📌 :",
         class_level: "الصف 🏫🪜🎚️ :",
         joind_at: "انضم في 📆 :",
+        default_message_classes: "📍⛔😕 لا يوجد اي صف 📍⛔😕",
+        default_message_plans: "📍⛔😕 لا يوجد اي خطة 📍⛔😕",
         medals: [
           { gpa: 0, message: "ميت 🏴‍☠️" },
           { gpa: 1, message: "جيد 🫡" },
@@ -586,6 +736,99 @@ export default createStore({
           title: "الخطط",
         },
       },
+      dash_admins_component: {
+        title: "الأدمن 🦸‍♂️",
+        update: "تعديل",
+        delete: "حذف",
+      },
+      delete_admin_form: {
+        title: "حذف حساب الأدمن ...",
+        delete: "حذف",
+        cancel: "إلغاء",
+      },
+      create_admin: {
+        title: "إنشاء حساب أدمن 🦸‍♂️",
+        name: "الأسم",
+        email: "ألايميل 📧",
+        password: "كلمة المرور 🔑",
+        phone_number: "رقم الهاتف 📞",
+        gender: "النوع ⚧️",
+        male: "ذكر 🚹",
+        female: "انثى 🚺",
+        admin_access: "صلاحيات الأدمن 🦸‍♂️",
+        admin: "أدمن 🦸‍♂️",
+        not_admin: "ليس أدمن 🚫",
+        button: "إنشاء",
+        name_placeholder: "اكتب اسم الأدمن هنا ✍️ ...",
+        email_placeholder: "اكتب ايميل الأدمن هنا ✍️ ...",
+        password_placeholder: "اكتب كلمةمرور الأدمن هنا ✍️ ...",
+        phone_placeholder: "اكتب رقم هاتف الأدمن هنا ✍️ ...",
+      },
+      update_admin: {
+        title: "تعديل حساب أدمن 🦸‍♂️",
+        name: "الأسم",
+        password: "كلمة المرور 🔑",
+        phone_number: "رقم الهاتف 📞",
+        gender: "النوع ⚧️",
+        male: "ذكر 🚹",
+        female: "انثى 🚺",
+        admin_access: "صلاحيات الأدمن 🦸‍♂️",
+        admin: "أدمن 🦸‍♂️",
+        not_admin: "ليس أدمن 🚫",
+        button: "تعديل",
+        name_placeholder: "اكتب اسم الأدمن هنا ✍️ ...",
+        password_placeholder: "اكتب كلمة مرور الأدمن الجديدة هنا ✍️ ...",
+        phone_placeholder: "اكتب رقم هاتف الأدمن هنا ✍️ ...",
+      },
+      dash_teachers_component: {
+        title: "المدرسون 👨‍🏫",
+        update: "تعديل",
+        delete: "حذف",
+      },
+      create_teacher: {
+        title: "إنشاء مدرس 👨‍🏫",
+        name: "الاسم",
+        email: "الايميل 📧",
+        password: "كلمة المرور 🔑",
+        phone_number: "رقم الهاتف 📞",
+        subject: "المادة 📚📖📑",
+        class_level: "مستوى الصف 🏫🪜🎚️",
+        gender: "النوع ⚧️",
+        male: "ذكر 🚹",
+        female: "انثى 🚺",
+        teacher_access: "صلاحيات المدرس 👨‍🏫",
+        editor: "محرر 👨‍🏫",
+        not_editor: "ليس محرر 🚫",
+        button: "إنشاء",
+        name_placeholder: "اكتب اسم المردس هنا ✍️ ...",
+        email_placeholder: "اكتب ايميل المرس هنا ✍️ ...",
+        password_placeholder: "اكتب كلمة مرور المدرس هنا✍️ ...",
+        phone_placeholder: "اكتب رقم هاتف المدرس هنا ✍️ ...",
+      },
+      update_teacher: {
+        title: "تعديل المدرس👨‍🏫",
+        name: "الاسم",
+        password: "كلمة المرور 🔑",
+        phone_number: "رقم الهاتف 📞",
+        subject: "المادة 📚📖📑",
+        class_level: "مستوى الصف 🏫🪜🎚️",
+        gender: "النوع ⚧️",
+        male: "ذكر 🚹",
+        female: "انثى 🚺",
+        teacher_access: "صلاحيات المدرس 👨‍🏫",
+        editor: "محرر 👨‍🏫",
+        not_editor: "ليس محرر 🚫",
+        button: "تعديل",
+        name_placeholder: "اكتب اسم المردس هنا ✍️ ...",
+        email_placeholder: "اكتب ايميل المرس هنا ✍️ ...",
+        password_placeholder: "اكتب كلمة مرور المدرس هنا✍️ ...",
+        phone_placeholder: "اكتب رقم هاتف المدرس هنا ✍️ ...",
+      },
+      delete_teacher_form: {
+        title: "حذف المدرس👨‍🏫 ...",
+        delete: "حذف",
+        cancel: "إلغاء",
+      },
       theme: "السمات",
       mood: "الوضع",
       log_out: "تسجيل الخروج",
@@ -595,6 +838,7 @@ export default createStore({
     APIs: {
       login: {
         Admin: "https://rrr-zb8x.onrender.com/api/v1/admin/login",
+        Super: "https://rrr-zb8x.onrender.com/api/v1/super/login",
         Teacher: "https://rrr-zb8x.onrender.com/api/v1/teacher/login",
         Student: "https://rrr-zb8x.onrender.com/api/v1/student/login",
         Parent: "https://rrr-zb8x.onrender.com/api/v1/parent/login",
@@ -626,21 +870,15 @@ export default createStore({
         get_all: "https://rrr-zb8x.onrender.com/api/v1/teacher/get/all",
         get_one: "https://rrr-zb8x.onrender.com/api/v1/teacher/get/one",
         update: "https://rrr-zb8x.onrender.com/api/v1/teacher/update",
-        super_admin: {
-          teacher_create:
-            "https://rrr-zb8x.onrender.com/api/v1/super/teacher/create",
-          teacher_delete:
-            "https://rrr-zb8x.onrender.com/api/v1/super/teacher/delete",
-          teacher_update:
-            "https://rrr-zb8x.onrender.com/api/v1/super/teacher/update",
+        super: {
+          create: "https://rrr-zb8x.onrender.com/api/v1/super/teacher/create",
+          delete: "https://rrr-zb8x.onrender.com/api/v1/super/teacher/delete",
+          update: "https://rrr-zb8x.onrender.com/api/v1/super/teacher/update",
         },
         admin: {
-          teacher_create:
-            "https://rrr-zb8x.onrender.com/api/v1/admin/teacher/create",
-          teacher_delete:
-            "https://rrr-zb8x.onrender.com/api/v1/admin/teacher/delete",
-          teacher_update:
-            "https://rrr-zb8x.onrender.com/api/v1/admin/teacher/update",
+          create: "https://rrr-zb8x.onrender.com/api/v1/admin/teacher/create",
+          delete: "https://rrr-zb8x.onrender.com/api/v1/admin/teacher/delete",
+          update: "https://rrr-zb8x.onrender.com/api/v1/admin/teacher/update",
         },
       },
       super: {
@@ -651,9 +889,9 @@ export default createStore({
         get_one: "https://rrr-zb8x.onrender.com/api/v1/admin/get/one",
         update: "https://rrr-zb8x.onrender.com/api/v1/admin/update",
         super: {
-          create: "https://rrr-zb8x.onrender.com/api/v1/admin/get/all",
+          create: "https://rrr-zb8x.onrender.com/api/v1/super/admin/create",
           delete: "https://rrr-zb8x.onrender.com/api/v1/super/admin/delete",
-          update: "https://rrr-zb8x.onrender.com/api/v1/super/admin/create",
+          update: "https://rrr-zb8x.onrender.com/api/v1/super/admin/update",
         },
       },
       students: {
@@ -774,6 +1012,24 @@ export default createStore({
     OpenOrCloseDeleteHW(state) {
       state.delete_hw_form_status =
         state.delete_hw_form_status == "close" ? "open" : "close";
+    },
+
+    // open or close the delete admin form verify
+    OpenOrCloseDeleteAdminForm(state) {
+      state.delete_admin_form_status =
+        state.delete_admin_form_status == "close" ? "open" : "close";
+    },
+
+    // open or close the delete teacher form verify
+    OpenOrCloseDeleteTeacherForm(state) {
+      state.delete_teacher_form_status =
+        state.delete_teacher_form_status == "close" ? "open" : "close";
+    },
+
+    // open or close the update admin form verify
+    OpenOrCloseUpdateAdminForm(state) {
+      state.update_admin_form =
+        state.update_admin_form == "close" ? "open" : "close";
     },
   },
   actions: {

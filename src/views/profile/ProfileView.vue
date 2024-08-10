@@ -318,7 +318,10 @@ export default {
   methods: {
     //? select the api
     SelectApi() {
-      if (this.$store.state.user.user_type == "admin") {
+      if (
+        this.$store.state.user.user_type == "admin" ||
+        this.$store.state.user.user_type == "super"
+      ) {
         this.api = this.$store.state.APIs.admins.get_one;
         // update user type in store
         this.$store.state.user_type = "admin";
