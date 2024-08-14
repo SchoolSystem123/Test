@@ -69,7 +69,7 @@ import LoadingComponentVue from "@/components/global/LoadingComponent.vue";
 import SearchByNameComponentVue from "@/components/teacher/SearchByNameComponent.vue";
 import ScrollTopComponentVue from "@/components/global/ScrollTopComponent.vue";
 import ErrorComponentVue from "@/components/global/ErrorComponent.vue";
-import TeacherInTeachersVpageComponentVue from "../../components/teacher/TeacherInTeachersVpageComponent.vue";
+import TeacherInTeachersVpageComponentVue from "../../components/teacher/TeacherInTeacherspageComponent.vue";
 
 export default {
   name: "admin-page",

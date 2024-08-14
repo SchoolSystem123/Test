@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import TeacherInTeachersVpageComponentVue from "@/components/teacher/TeacherInTeachersVpageComponent.vue";
+import TeacherInTeachersVpageComponentVue from "@/components/teacher/TeacherInTeacherspageComponent.vue";
 import StartRateTeachersComponentVue from "@/components/global/buttons/StartRateTeachersComponent.vue";
 import axios from "axios";
 export default {

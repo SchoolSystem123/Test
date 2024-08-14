@@ -55,9 +55,18 @@ body {
 @import "./component/global/forms/dash/verifyDeleteUser";
 @import "./component/dash/admins/updateAdmin";
 
+@import "./component/dash/teachers/createTeacher";
 @import "./component/dash/teachers/teacherInDash";
 @import "./component/dash/teachers/updateTeacher";
 
+@import "./component/dash/students/createStudent";
+@import "./component/dash/students/studentInDash";
+@import "./component/dash/students/updateStudent";
+@import "./component/student/chooseStudentsAsChildren";
+
+@import "./component/dash/parents/createParents";
+@import "./component/dash/parents/parentInDash";
+@import "./component/dash/parents/updateParent";
 @import "./pages/login";
 // @import "./pages/home";
 // @import "./pages/class";

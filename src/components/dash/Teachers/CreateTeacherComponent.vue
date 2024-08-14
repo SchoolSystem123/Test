@@ -329,7 +329,6 @@ export default {
 
       // check if the selected images array in stor has any image
       if (this.$store.state.selectd_images.length > 0) {
-        console.log(this.$store.state.selectd_images);
         // add all images as array in formData
         for (let file of this.$store.state.selectd_images) {
           this.formData.append("avatar", file, file.name);

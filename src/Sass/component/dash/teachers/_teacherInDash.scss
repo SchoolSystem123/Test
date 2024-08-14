@@ -1,5 +1,5 @@
 // darck and light English style
-.admins-admin-darck-English-list {
+.teachers-teacher-darck-English-list {
   width: 98%;
   height: 90px;
   margin: 5px 1%;
@@ -85,11 +85,11 @@
   }
 }
 
-.admins-admin-darck-English-list:hover {
+.teachers-teacher-darck-English-list:hover {
   box-shadow: 0 0 5px $black;
 }
-.admins-admin-light-English-list {
-  @extend .admins-admin-darck-English-list;
+.teachers-teacher-light-English-list {
+  @extend .teachers-teacher-darck-English-list;
   background-color: $card-light;
 
   .info {
@@ -105,13 +105,13 @@
   }
 }
 
-.admins-admin-light-English-list:hover {
+.teachers-teacher-light-English-list:hover {
   box-shadow: 0 0 5px $black;
 }
 // darck and light English style
 
 // darck and light Arabic style
-.admins-admin-darck-Arabic-list {
+.teachers-teacher-darck-Arabic-list {
   width: 98%;
   height: 90px;
   margin: 5px 1%;
@@ -197,11 +197,11 @@
   }
 }
 
-.admins-admin-darck-Arabic-list:hover {
+.teachers-teacher-darck-Arabic-list:hover {
   box-shadow: 0 0 5px $black;
 }
-.admins-admin-light-Arabic-list {
-  @extend .admins-admin-darck-Arabic-list;
+.teachers-teacher-light-Arabic-list {
+  @extend .teachers-teacher-darck-Arabic-list;
   background-color: $card-light;
 
   .info {
@@ -217,7 +217,7 @@
   }
 }
 
-.admins-admin-light-Arabic-list:hover {
+.teachers-teacher-light-Arabic-list:hover {
   box-shadow: 0 0 5px $black;
 }
 // darck and light Arabic style

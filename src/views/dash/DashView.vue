@@ -39,6 +39,16 @@
         >
           Create Teacher
         </li>
+
+        <li
+          @click="ChangeComponent('create-student')"
+          v-if="
+            this.$store.state.user.user_type == 'super' ||
+            this.$store.state.user.user_type == 'admin'
+          "
+        >
+          Create Student
+        </li>
       </ul>
     </div>
 
@@ -113,6 +123,12 @@
       />
       <!-- Update Teacher component -->
 
+      <!-- create student component -->
+      <CreateStudentComponent
+        v-if="this.$store.state.active_component_in_dash == 'create-student'"
+      />
+      <!-- create student component -->
+
       <!-- verify delete admin component -->
       <VerifyDeleteTeacherComponentVue />
       <!-- verify delete admin component -->
@@ -120,6 +136,32 @@
       <!-- verify delete student component -->
       <VerifyDeleteStudentComponent />
       <!-- verify delete student component -->
+
+      <!-- update student component -->
+      <UpdateStudentComponent
+        v-if="this.$store.state.active_component_in_dash == 'update-student'"
+      />
+      <!-- update student component -->
+
+      <!-- create parent component -->
+      <CreateParentComponent
+        v-if="this.$store.state.active_component_in_dash == 'create-parent'"
+      />
+      <!-- create parent component -->
+
+      <!-- verify delete student component -->
+      <VerifyDeleteParentComponent />
+      <!-- verify delete student component -->
+
+      <!-- update parent component -->
+      <UpdateParentsComponent
+        v-if="this.$store.state.active_component_in_dash == 'update-parent'"
+      />
+      <!-- update parent component -->
+
+      <!-- Choose students as children component -->
+      <ChooseStudentsAsChildren />
+      <!-- Choose students as children component -->
     </div>
   </div>
 </template>
@@ -142,7 +184,13 @@ import UpdateAdminComponentVue from "@/components/dash/admins/UpdateAdminCompone
 import CreateTeacherComponentVue from "@/components/dash/Teachers/CreateTeacherComponent.vue";
 import UpdateTeacherComponentVue from "@/components/dash/Teachers/UpdateTeacherComponent.vue";
 import VerifyDeleteTeacherComponentVue from "@/components/global/forms/dash/teacher/VerifyDeleteTeacherComponent.vue";
+import CreateStudentComponent from "@/components/dash/Students/CreateStudentComponent.vue";
+import UpdateStudentComponent from "@/components/dash/Students/UpdateStudentComponent.vue";
 import VerifyDeleteStudentComponent from "@/components/global/forms/dash/student/VerifyDeleteStudentComponent.vue";
+import VerifyDeleteParentComponent from "@/components/global/forms/dash/parent/VerifyDeleteParentComponent.vue";
+import CreateParentComponent from "@/components/dash/Parents/CreateParentComponent.vue";
+import UpdateParentsComponent from "@/components/dash/Parents/UpdateParentsComponent.vue";
+import ChooseStudentsAsChildren from "@/components/dash/Students/ChooseStudentsAsChildren.vue";
 
 export default {
   data() {
@@ -177,7 +225,13 @@ export default {
     UpdateTeacherComponentVue,
     VerifyDeleteTeacherComponentVue,
     CreateTeacherComponentVue,
+    CreateStudentComponent,
+    UpdateStudentComponent,
     VerifyDeleteStudentComponent,
+    VerifyDeleteParentComponent,
+    CreateParentComponent,
+    UpdateParentsComponent,
+    ChooseStudentsAsChildren,
   },
   methods: {
     // change the component

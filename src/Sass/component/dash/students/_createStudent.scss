@@ -1,5 +1,5 @@
 // darck and light English style
-.craete-admin-darck-English-open {
+.create-student-darck-English-open {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -119,7 +119,6 @@
       }
     }
 
-
     label {
       width: 100%;
       height: 30px;
@@ -138,6 +137,14 @@
       outline: none;
       padding-left: 10px;
       background-color: $body-light;
+    }
+
+    // about me textarea
+    textarea {
+      @extend input;
+      height: 100px;
+      resize: none;
+      padding: 10px;
     }
 
     // password container style
@@ -193,17 +200,17 @@
   }
 }
 
-.craete-admin-darck-English-close {
+.create-student-darck-English-close {
   @extend .section-cont-open-darck;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
 
-.craete-admin-darck-English-open::-webkit-scrollbar {
+.create-student-darck-English-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.craete-admin-light-English-open {
+.create-student-light-English-open {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -322,7 +329,6 @@
         }
       }
     }
-
     label {
       width: 100%;
       height: 30px;
@@ -341,6 +347,14 @@
       outline: none;
       padding-left: 10px;
       background-color: $message-light;
+    }
+
+    // about me textarea
+    textarea {
+      @extend input;
+      height: 100px;
+      resize: none;
+      padding: 10px;
     }
 
     // password container style
@@ -396,19 +410,19 @@
   }
 }
 
-.craete-admin-light-English-close {
+.create-student-light-English-close {
   @extend .section-cont-open-light;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
 
-.craete-admin-light-English-open::-webkit-scrollbar {
+.create-student-light-English-open::-webkit-scrollbar {
   width: 0px;
 }
 // darck and light English style
 
 // darck and light Arabic style
-.craete-admin-darck-Arabic-open {
+.create-student-darck-Arabic-open {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -528,7 +542,6 @@
       }
     }
 
-
     label {
       width: 100%;
       height: 30px;
@@ -547,6 +560,14 @@
       outline: none;
       padding-right: 10px;
       background-color: $body-light;
+    }
+
+    // about me textarea
+    textarea {
+      @extend input;
+      height: 100px;
+      resize: none;
+      padding: 10px;
     }
 
     // password container style
@@ -602,17 +623,17 @@
   }
 }
 
-.craete-admin-darck-Arabic-close {
+.create-student-darck-Arabic-close {
   @extend .section-cont-open-darck;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
 
-.craete-admin-darck-Arabic-open::-webkit-scrollbar {
+.create-student-darck-Arabic-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.craete-admin-light-Arabic-open {
+.create-student-light-Arabic-open {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -752,6 +773,14 @@
       background-color: $message-light;
     }
 
+    // about me textarea
+    textarea {
+      @extend input;
+      height: 100px;
+      resize: none;
+      padding: 10px;
+    }
+
     // password container style
     .password {
       width: 100%;
@@ -805,13 +834,13 @@
   }
 }
 
-.craete-admin-light-Arabic-close {
+.create-student-light-Arabic-close {
   @extend .section-cont-open-light;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
 
-.craete-admin-light-Arabic-open::-webkit-scrollbar {
+.create-student-light-Arabic-open::-webkit-scrollbar {
   width: 0px;
 }
 

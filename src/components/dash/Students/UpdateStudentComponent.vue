@@ -1,14 +1,14 @@
 <template>
   <div
-    :class="`up-teacher-${this.status}-${this.$store.state.mood}-${this.$store.state.language}`"
+    :class="`up-student-${this.status}-${this.$store.state.mood}-${this.$store.state.language}`"
   >
     <AvatarFormComponentVue />
     <div class="header">
       <h3>
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.update_teacher.title
-            : this.$store.state.Arabic.update_teacher.title
+            ? this.$store.state.English.update_student.title
+            : this.$store.state.Arabic.update_student.title
         }}
       </h3>
     </div>
@@ -33,8 +33,8 @@
       <!-- name  -->
       <label for="name">{{
         this.$store.state.language == "English"
-          ? this.$store.state.English.update_teacher.name
-          : this.$store.state.Arabic.update_teacher.name
+          ? this.$store.state.English.update_student.name
+          : this.$store.state.Arabic.update_student.name
       }}</label>
 
       <input type="text" placeholder="name" v-model="this.name" id="name" />
@@ -43,8 +43,8 @@
       <!-- password  -->
       <label for="password">{{
         this.$store.state.language == "English"
-          ? this.$store.state.English.update_teacher.password
-          : this.$store.state.Arabic.update_teacher.password
+          ? this.$store.state.English.update_student.password
+          : this.$store.state.Arabic.update_student.password
       }}</label>
 
       <div class="password">
@@ -52,8 +52,8 @@
           :type="this.password_type"
           :placeholder="
             this.$store.state.language == 'English'
-              ? this.$store.state.English.update_teacher.password_placeholder
-              : this.$store.state.Arabic.update_teacher.password_placeholder
+              ? this.$store.state.English.update_student.password_placeholder
+              : this.$store.state.Arabic.update_student.password_placeholder
           "
           v-model="this.password"
           id="password"
@@ -62,12 +62,20 @@
       </div>
       <!-- password  -->
 
-      <!-- Phone Number  -->
-      <label for="phone">
+      <label for="about_me">{{
+        this.$store.state.language == "English"
+          ? this.$store.state.English.update_student.about_me
+          : this.$store.state.Arabic.update_student.about_me
+      }}</label>
+
+      <textarea v-model="this.about_me" id="about_me"></textarea>
+
+      <!-- birth date  -->
+      <label for="birth_date">
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.update_teacher.phone_number
-            : this.$store.state.Arabic.update_teacher.phone_number
+            ? this.$store.state.English.update_student.birth_date
+            : this.$store.state.Arabic.update_student.birth_date
         }}
       </label>
 
@@ -75,44 +83,41 @@
         type="text"
         :placeholder="
           this.$store.state.language == 'English'
-            ? this.$store.state.English.update_teacher.phone_placeholder
-            : this.$store.state.Arabic.update_teacher.phone_placeholder
+            ? this.$store.state.English.update_student.birth_date_placeholder
+            : this.$store.state.Arabic.update_student.birth_date_placeholder
+        "
+        v-model="this.birth_date"
+        id="phone"
+      />
+      <!-- birth date  -->
+
+      <!-- Phone Number  -->
+      <label for="phone">
+        {{
+          this.$store.state.language == "English"
+            ? this.$store.state.English.update_student.phone_number
+            : this.$store.state.Arabic.update_student.phone_number
+        }}
+      </label>
+
+      <input
+        type="text"
+        :placeholder="
+          this.$store.state.language == 'English'
+            ? this.$store.state.English.update_student.phone_placeholder
+            : this.$store.state.Arabic.update_student.phone_placeholder
         "
         v-model="this.phone_number"
         id="phone"
       />
       <!-- Phone Number  -->
 
-      <!-- subject  -->
-      <label for="subject">
-        {{
-          this.$store.state.language == "English"
-            ? this.$store.state.English.update_teacher.subject
-            : this.$store.state.Arabic.update_teacher.subject
-        }}</label
-      >
-
-      <select name="" id="subject" v-model="subject">
-        <option
-          v-for="(subject, index) in this.$store.state.subjects_list"
-          :key="index"
-          :value="subject.English"
-        >
-          {{
-            this.$store.state.language == "English"
-              ? subject.English
-              : subject.Arabic
-          }}
-        </option>
-      </select>
-      <!-- subject  -->
-
-      <!-- subject  -->
+      <!-- class level  -->
       <label for="class_level">
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.update_teacher.class_level
-            : this.$store.state.Arabic.update_teacher.class_level
+            ? this.$store.state.English.update_student.class_level
+            : this.$store.state.Arabic.update_student.class_level
         }}</label
       >
 
@@ -129,14 +134,14 @@
           }}
         </option>
       </select>
-      <!-- subject  -->
+      <!-- class level  -->
 
       <!-- gender  -->
       <label for="gender">
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.update_teacher.gender
-            : this.$store.state.Arabic.update_teacher.gender
+            ? this.$store.state.English.update_student.gender
+            : this.$store.state.Arabic.update_student.gender
         }}</label
       >
 
@@ -144,7 +149,7 @@
         <option value="male">
           {{
             this.$store.state.language == "English"
-              ? this.$store.state.English.update_teacher.male
+              ? this.$store.state.English.update_student.male
               : this.$store.state.Arabic.create_admin.male
           }}
         </option>
@@ -158,39 +163,12 @@
       </select>
       <!-- gender  -->
 
-      <!-- admin's Permissions  -->
-      <label for="Permissions">
-        {{
-          this.$store.state.language == "English"
-            ? this.$store.state.English.update_teacher.teacher_access
-            : this.$store.state.Arabic.update_teacher.teacher_access
-        }}</label
-      >
-
-      <select name="" id="Permissions" v-model="Permissions">
-        <option value="true">
-          {{
-            this.$store.state.language == "English"
-              ? this.$store.state.English.update_teacher.editor
-              : this.$store.state.Arabic.update_teacher.editor
-          }}
-        </option>
-        <option value="false">
-          {{
-            this.$store.state.language == "English"
-              ? this.$store.state.English.update_teacher.not_editor
-              : this.$store.state.Arabic.update_teacher.not_editor
-          }}
-        </option>
-      </select>
-      <!-- admin's Permissions  -->
-
       <!-- update button  -->
-      <button @click="UpdateAdmin">
+      <button @click="UpdateStudent">
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.update_teacher.button
-            : this.$store.state.Arabic.update_teacher.button
+            ? this.$store.state.English.update_student.button
+            : this.$store.state.Arabic.update_student.button
         }}
       </button>
       <!-- update button  -->
@@ -202,37 +180,40 @@
 import AvatarFormComponentVue from "@/components/global/forms/AvatarFormComponent.vue";
 import axios from "axios";
 export default {
-  name: "update-teacher-component",
+  name: "update-student-component",
   data() {
     return {
       status: "close",
       // name
-      name: this.$store.state.teacher_for_update
-        ? this.$store.state.teacher_for_update.name
+      name: this.$store.state.student_for_update
+        ? this.$store.state.student_for_update.name
         : "",
       // password
       password: "",
       // phone number
-      phone_number: this.$store.state.teacher_for_update
-        ? this.$store.state.teacher_for_update.phone_number
+      phone_number: this.$store.state.student_for_update
+        ? this.$store.state.student_for_update.phone_number
         : "",
       // gender
-      gender: this.$store.state.teacher_for_update
-        ? this.$store.state.teacher_for_update.gender
+      gender: this.$store.state.student_for_update
+        ? this.$store.state.student_for_update.gender
+        : "",
+      // about me
+      about_me: this.$store.state.student_for_update
+        ? this.$store.state.student_for_update.about_me
+        : "",
+      // birth date
+      birth_date: this.$store.state.student_for_update
+        ? this.$store.state.student_for_update.birth_date
         : "",
       // delete avatar
       delete_avatar: "",
-      // Permissions
-      Permissions:
-        this.$store.state.teacher_for_update.editor == true ? true : false,
       // password input type
       password_type: "password",
       // default avatar
-      avatar: this.$store.state.teacher_for_update.avatar,
-      // teacher's subject
-      subject: this.$store.state.teacher_for_update.subject,
+      avatar: this.$store.state.student_for_update.avatar,
       // class level
-      class_level: this.$store.state.teacher_for_update.class_level,
+      class_level: this.$store.state.student_for_update.class_level,
       // form data
       formData: new FormData(),
     };
@@ -246,8 +227,8 @@ export default {
     }, 500);
   },
   methods: {
-    // update admin method
-    async UpdateAdmin() {
+    // update student method
+    async UpdateStudent() {
       // to start the loading animation
       this.$store.state.loading = "open";
 
@@ -267,24 +248,24 @@ export default {
 
       // add the teacher id to formData
       this.formData.append(
-        "teacher_id",
-        this.$store.state.teacher_for_update._id
+        "student_id",
+        this.$store.state.student_for_update._id
       );
 
       // add the name to form data
-      if (this.name != this.$store.state.teacher_for_update.name) {
+      if (this.name != this.$store.state.student_for_update.name) {
         this.formData.append("name", this.name);
       }
 
       // add the phone number to form data
       if (
-        this.phone_number != this.$store.state.teacher_for_update.phone_number
+        this.phone_number != this.$store.state.student_for_update.phone_number
       ) {
         this.formData.append("phone_number", this.phone_number);
       }
 
       // add the gender to form data
-      if (this.gender != this.$store.state.teacher_for_update.gender) {
+      if (this.gender != this.$store.state.student_for_update.gender) {
         this.formData.append("gender", this.gender);
       }
 
@@ -300,21 +281,16 @@ export default {
         }
       }
 
-      // add the admin's Permissions
-      if (this.Permissions != this.$store.state.teacher_for_update.is_admin) {
-        this.formData.append("editor", this.Permissions);
-      }
-
       // add the class level
       if (
-        this.class_level != this.$store.state.teacher_for_update.class_level
+        this.class_level != this.$store.state.student_for_update.class_level
       ) {
         this.formData.append("class_level", this.class_level);
       }
 
-      // add the subject
-      if (this.subject != this.$store.state.teacher_for_update.subject) {
-        this.formData.append("subject", this.subject);
+      // add about me
+      if (this.about_me != this.$store.state.student_for_update.about_me) {
+        this.formData.append("about_me", this.about_me);
       }
 
       // add the delete avatar filed
@@ -326,11 +302,16 @@ export default {
         this.formData.append("delete_avatar", this.$store.state.delete_avatar);
       }
 
+      // add birth date
+      if (this.birth_date != this.$store.state.student_for_update.birth_date) {
+        this.formData.append("birth_date", this.birth_date);
+      }
+
       await axios
         .put(
           this.$store.state.user.user_type == "super"
-            ? this.$store.state.APIs.teachers.super.update
-            : this.$store.state.APIs.teachers.admin.update,
+            ? this.$store.state.APIs.students.super.update
+            : this.$store.state.APIs.students.admin.update,
           this.formData,
           {
             headers,
@@ -344,10 +325,10 @@ export default {
           this.$store.state.selectd_images = [];
 
           // emptying the teacher for update in store
-          this.$store.state.teacher_for_update = "";
+          this.$store.state.student_for_update = "";
 
           // open the teachers component
-          this.$store.state.active_component_in_dash = "teachers";
+          this.$store.state.active_component_in_dash = "students";
         })
         .catch((error) => {
           // to stop the loading animation

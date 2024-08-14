@@ -1,0 +1,71 @@
+// darck style
+.children-container-darck-open {
+  width: 90%;
+  height: 90%;
+  border-radius: 10px;
+  position: fixed;
+  top: 5%;
+  left: 5%;
+  background-color: $body-darck;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  transition-duration: 0.5s;
+  opacity: 1;
+  box-shadow: 0 0 10px $black;
+  overflow-y: scroll;
+
+  div {
+    width: 150px;
+    height: 170px;
+    background-color: $card-darck;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+
+    img {
+      width: 140px;
+      height: 100px;
+      border-radius: 5px;
+      margin: 5px;
+    }
+
+    h4 {
+      width: 90%;
+      color: $font-light;
+      margin: 0px 5%;
+    }
+
+    p {
+      color: $font-light;
+      padding: 3px;
+      font-size: $x-small;
+      margin: 0px 5%;
+    }
+  }
+}
+
+.children-container-darck-open::-webkit-scrollbar {
+  width: 0px
+}
+
+.children-container-darck-close {
+  @extend .children-container-darck-open;
+  top: -100%;
+  opacity: 0;
+}
+// darck style
+
+// darck style
+.children-container-light-open {
+@extend .children-container-darck-open;
+background-color: $body-light;
+}
+
+.children-container-light-close {
+  @extend .children-container-light-open;
+  top: -50%;
+  opacity: 0;
+}
+// darck style
