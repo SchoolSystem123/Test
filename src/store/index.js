@@ -15,7 +15,8 @@ export default createStore({
     avatar_form_status: "close",
     delete_admin_form_status: "close",
     delete_teacher_form_status: "close",
-    update_admin_form: "close",
+    delete_student_form_status: "close",
+    delete_student_form : "close",
     user: JSON.parse(window.localStorage.getItem("Ss-user")) || "",
     profile: "",
     user_type: "",
@@ -27,11 +28,13 @@ export default createStore({
     teacher_id_for_delete: "",
     admin_for_update: "",
     teacher_for_update: "",
+    student_for_update : "",
     active_component_in_dash: "admins",
     // user_type: JSON.parse(window.localStorage.getItem("Ss-user")).user_type || "admint",
     sidBar: "close",
     information: "test",
     loading: "close",
+    rate_status : true,
     copy_message: { english: "Id Copyed", arabic: "تم نسخ المعرف" },
     classes: [],
     class: "",
@@ -410,6 +413,8 @@ export default createStore({
         title: "Teachers 👨‍🏫",
         update: "Updae",
         delete: "Delete",
+        start_rate : "Start Rate ⭐",
+        stop_rate : "Stop Rate ⭐"
       },
       create_teacher: {
         title: "Create Teacher 👨‍🏫",
@@ -451,6 +456,50 @@ export default createStore({
       },
       delete_teacher_form: {
         title: "Delete Teacher 👨‍🏫 ...",
+        delete: "Delete",
+        cancel: "Cancel",
+      },
+      dash_students_component: {
+        title: "Students 👨‍🏫",
+        update: "Updae",
+        delete: "Delete",
+      },
+      create_student: {
+        title: "Create Student 👨‍🏫",
+        name: "Name",
+        email: "Email 📧",
+        password: "Password 🔑",
+        phone_number: "Phone Number 📞",
+        class_level: "Class Level 🏫🪜🎚️",
+        gender: "Gender ⚧️",
+        male: "Male 🚹",
+        female: "Female 🚺",
+        teacher_access: "Student Permissions 👨‍🏫",
+        button: "Create",
+        name_placeholder: "Type student name here ✍️ ...",
+        email_placeholder: "Type student email here ✍️ ...",
+        password_placeholder: "Type student password here ✍️ ...",
+        phone_placeholder: " Type student phone number here ✍️ ...",
+      },
+      update_student: {
+        title: "Update Student 👨‍🏫",
+        name: "Name",
+        password: "Password 🔑",
+        phone_number: "Phone Number 📞",
+        class_level: "Class Level 🏫🪜🎚️",
+        gender: "Gender ⚧️",
+        male: "Male 🚹",
+        female: "Female 🚺",
+        student_access: "Student Permissions 👨‍🏫",
+        editor: "Is Editor 👨‍🏫",
+        not_editor: "Is Not Editor 🚫",
+        button: "Update",
+        name_placeholder: "Type student name here ✍️ ...",
+        password_placeholder: "Type new student's password here ✍️ ...",
+        phone_placeholder: " Type student phone number here ✍️ ...",
+      },
+      delete_student_form: {
+        title: "Delete Student 👨‍🎓 ...",
         delete: "Delete",
         cancel: "Cancel",
       },
@@ -784,6 +833,8 @@ export default createStore({
         title: "المدرسون 👨‍🏫",
         update: "تعديل",
         delete: "حذف",
+        start_rate : "إبدأ التقييم ⭐",
+        stop_rate : "إيقاف التقييم ⭐"
       },
       create_teacher: {
         title: "إنشاء مدرس 👨‍🏫",
@@ -800,8 +851,8 @@ export default createStore({
         editor: "محرر 👨‍🏫",
         not_editor: "ليس محرر 🚫",
         button: "إنشاء",
-        name_placeholder: "اكتب اسم المردس هنا ✍️ ...",
-        email_placeholder: "اكتب ايميل المرس هنا ✍️ ...",
+        name_placeholder: "اكتب اسم المدرس هنا ✍️ ...",
+        email_placeholder: "اكتب ايميل المدرس هنا ✍️ ...",
         password_placeholder: "اكتب كلمة مرور المدرس هنا✍️ ...",
         phone_placeholder: "اكتب رقم هاتف المدرس هنا ✍️ ...",
       },
@@ -826,6 +877,49 @@ export default createStore({
       },
       delete_teacher_form: {
         title: "حذف المدرس👨‍🏫 ...",
+        delete: "حذف",
+        cancel: "إلغاء",
+      },
+      dash_students_component: {
+        title: "الطلاب 👨‍🏫",
+        update: "تعديل",
+        delete: "حذف"
+      },
+      create_student: {
+        title: "إنشاء طالب 👨‍🏫",
+        name: "الاسم",
+        email: "الايميل 📧",
+        password: "كلمة المرور 🔑",
+        phone_number: "رقم الهاتف 📞",
+        class_level: "مستوى الصف 🏫🪜🎚️",
+        gender: "النوع ⚧️",
+        male: "ذكر 🚹",
+        female: "انثى 🚺",
+        not_editor: "ليس محرر 🚫",
+        button: "إنشاء",
+        name_placeholder: "اكتب اسم الطالب هنا ✍️ ...",
+        email_placeholder: "اكتب ايميل الطالب هنا ✍️ ...",
+        password_placeholder: "اكتب كلمة مرور الطالب هنا✍️ ...",
+        phone_placeholder: "اكتب رقم هاتف الطالب هنا ✍️ ...",
+      },
+      update_student: {
+        title: "تعديل الطالب",
+        name: "الاسم",
+        password: "كلمة المرور 🔑",
+        phone_number: "رقم الهاتف 📞",
+        class_level: "مستوى الصف 🏫🪜🎚️",
+        gender: "النوع ⚧️",
+        male: "ذكر 🚹",
+        female: "انثى 🚺",
+        not_editor: "ليس محرر 🚫",
+        button: "تعديل",
+        name_placeholder: "اكتب اسم الطالب هنا ✍️ ...",
+        email_placeholder: "اكتب ايميل الطالب هنا ✍️ ...",
+        password_placeholder: "اكتب كلمة مرور الطالب هنا✍️ ...",
+        phone_placeholder: "اكتب رقم هاتف الطالب هنا ✍️ ...",
+      },
+      delete_student_form: {
+        title: "حذف الطالب 👨‍🎓 ...",
         delete: "حذف",
         cancel: "إلغاء",
       },
@@ -870,6 +964,7 @@ export default createStore({
         get_all: "https://rrr-zb8x.onrender.com/api/v1/teacher/get/all",
         get_one: "https://rrr-zb8x.onrender.com/api/v1/teacher/get/one",
         update: "https://rrr-zb8x.onrender.com/api/v1/teacher/update",
+        add_rate : "https://rrr-zb8x.onrender.com/api/v1/student/rate/add",
         super: {
           create: "https://rrr-zb8x.onrender.com/api/v1/super/teacher/create",
           delete: "https://rrr-zb8x.onrender.com/api/v1/super/teacher/delete",
@@ -882,12 +977,14 @@ export default createStore({
         },
       },
       super: {
+        start_rate : "https://rrr-zb8x.onrender.com/api/v1/super/rate",
         update: "https://rrr-zb8x.onrender.com/api/v1/super/update",
       },
       admins: {
         get_all: "https://rrr-zb8x.onrender.com/api/v1/admin/get/all",
         get_one: "https://rrr-zb8x.onrender.com/api/v1/admin/get/one",
         update: "https://rrr-zb8x.onrender.com/api/v1/admin/update",
+        start_rate : "https://rrr-zb8x.onrender.com/api/v1/admin/rate",
         super: {
           create: "https://rrr-zb8x.onrender.com/api/v1/super/admin/create",
           delete: "https://rrr-zb8x.onrender.com/api/v1/super/admin/delete",
@@ -898,6 +995,16 @@ export default createStore({
         get_all: "https://rrr-zb8x.onrender.com/api/v1/student/get/all",
         get_one: "https://rrr-zb8x.onrender.com/api/v1/student/get/one",
         update: "https://rrr-zb8x.onrender.com/api/v1/student/update",
+        super: {
+          create: "https://rrr-zb8x.onrender.com/api/v1/super/student/create",
+          delete: "https://rrr-zb8x.onrender.com/api/v1/super/student/delete",
+          update: "https://rrr-zb8x.onrender.com/api/v1/super/student/update",
+        },
+        admin: {
+          create: "https://rrr-zb8x.onrender.com/api/v1/admin/student/create",
+          delete: "https://rrr-zb8x.onrender.com/api/v1/admin/student/delete",
+          update: "https://rrr-zb8x.onrender.com/api/v1/admin/student/update",
+        },
       },
       parents: {
         get_all: "https://rrr-zb8x.onrender.com/api/v1/parent/get/all",
@@ -1031,6 +1138,12 @@ export default createStore({
       state.update_admin_form =
         state.update_admin_form == "close" ? "open" : "close";
     },
+
+    // open or close the delete student form verify
+    OpenOrCloseDeleteStudentForm(state) {
+      state.delete_student_form_status = 
+      state.delete_student_form_status == "close" ? "open" : "close"
+    }
   },
   actions: {
     // log out admin

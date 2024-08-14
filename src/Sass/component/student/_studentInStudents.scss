@@ -43,17 +43,25 @@
       border-radius: 3px;
       background-color: $note-darck;
     }
+  }
 
-    // admin color
-    .admin {
-      background-color: green;
-      color: $font-light;
-    }
-    
-    // supper admin color
-    .super-admin {
-      background-color: red;
-      color: $font-light;
+  .buttons {
+    width: 15%;
+    height: 100%;
+    margin: 0px 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      width: 100%;
+      height: 40%;
+      border: none;
+      border-radius: 5px;
+      color: #ffffff;
+      cursor: pointer;
+      background-color: #008fe2;
     }
   }
 }

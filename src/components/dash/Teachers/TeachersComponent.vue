@@ -14,6 +14,7 @@
           }}
         </h3>
       </div>
+      <StartRateTeachersComponentVue />
     </div>
     <!-- admins header  -->
 
@@ -31,6 +32,7 @@
 
 <script>
 import TeacherInTeachersVpageComponentVue from "@/components/teacher/TeacherInTeachersVpageComponent.vue";
+import StartRateTeachersComponentVue from "@/components/global/buttons/StartRateTeachersComponent.vue";
 import axios from "axios";
 export default {
   name: "teachers-component",
@@ -47,6 +49,7 @@ export default {
   },
   components: {
     TeacherInTeachersVpageComponentVue,
+    StartRateTeachersComponentVue,
   },
   mounted() {
     // call to Get teachers methdo
@@ -66,6 +69,7 @@ export default {
           },
         })
         .then((response) => {
+          console.log(response);
           // to stop the loading animation
           this.$store.state.loading = "close";
 
@@ -75,7 +79,11 @@ export default {
           // set the teachers data from response to teachers array in store
           this.$store.state.teachers = response.data.teachers_data;
 
-          console.log(Response);
+          this.$store.state.rate_status =
+            response.data.teachers_data.length > 0 &&
+            response.data.teachers_data[0].rate_status == true
+              ? false
+              : true;
         })
         .catch((error) => {
           // to stop the loading animation

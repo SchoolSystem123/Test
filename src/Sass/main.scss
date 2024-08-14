@@ -52,12 +52,11 @@ body {
 @import "./component/dash/admins/admins";
 @import "./component/dash/admins/adminInDash";
 @import "./component/dash/admins/createAdmin";
-@import "./component/global/forms/dash/verifyDeleteAdmin";
+@import "./component/global/forms/dash/verifyDeleteUser";
 @import "./component/dash/admins/updateAdmin";
 
 @import "./component/dash/teachers/teacherInDash";
 @import "./component/dash/teachers/updateTeacher";
-@import "./component/global/forms/dash/teacher/verifyTeacherAdmin";
 
 @import "./pages/login";
 // @import "./pages/home";
@@ -79,5 +78,5 @@ body {
 // @import "./pages/food";
 @import "./pages/dash/dash";
 
-@import "./pages/profile/profile";
-@import "./pages/profile/updateProfile";
+// @import "./pages/profile/profile";
+// @import "./pages/profile/updateProfile";

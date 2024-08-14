@@ -1,5 +1,5 @@
 // darck and light English style
-.delete-teacher-form-darck-English-open {
+.delete-form-darck-English-open {
   width: 60%;
   height: 30%;
   backdrop-filter: blur(70px);
@@ -53,12 +53,12 @@
   }
 }
 
-.delete-teacher-form-darck-English-close {
-  @extend .delete-teacher-form-darck-English-open;
+.delete-form-darck-English-close {
+  @extend .delete-form-darck-English-open;
   top: -50%;
 }
 
-.delete-teacher-form-light-English-open {
+.delete-form-light-English-open {
   width: 60%;
   height: 30%;
   backdrop-filter: blur(70px);
@@ -112,14 +112,14 @@
   }
 }
 
-.delete-teacher-form-light-English-close {
-  @extend .delete-teacher-form-light-English-open;
+.delete-form-light-English-close {
+  @extend .delete-form-light-English-open;
   top: -50%;
 }
 // darck and light English style
 
 // darck and light Arabic style
-.delete-teacher-form-darck-Arabic-open {
+.delete-form-darck-Arabic-open {
   width: 60%;
   height: 30%;
   backdrop-filter: blur(70px);
@@ -173,12 +173,12 @@
   }
 }
 
-.delete-teacher-form-darck-Arabic-close {
-  @extend .delete-teacher-form-darck-Arabic-open;
+.delete-form-darck-Arabic-close {
+  @extend .delete-form-darck-Arabic-open;
   top: -50%;
 }
 
-.delete-teacher-form-light-Arabic-open {
+.delete-form-light-Arabic-open {
   width: 60%;
   height: 30%;
   backdrop-filter: blur(70px);
@@ -232,8 +232,8 @@
   }
 }
 
-.delete-teacher-form-light-Arabic-close {
-  @extend .delete-teacher-form-light-Arabic-open;
+.delete-form-light-Arabic-close {
+  @extend .delete-form-light-Arabic-open;
   top: -50%;
 }
 // darck and light Arabic style

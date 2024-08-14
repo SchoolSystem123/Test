@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`delete-admin-form-${this.$store.state.mood}-${this.$store.state.language}-${this.$store.state.delete_admin_form_status}`"
+    :class="`delete-form-${this.$store.state.mood}-${this.$store.state.language}-${this.$store.state.delete_admin_form_status}`"
   >
     <div class="header">
       {{

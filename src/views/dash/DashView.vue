@@ -113,9 +113,13 @@
       />
       <!-- Update Teacher component -->
 
-      <!-- delete admin component -->
+      <!-- verify delete admin component -->
       <VerifyDeleteTeacherComponentVue />
-      <!-- delete admin component -->
+      <!-- verify delete admin component -->
+
+      <!-- verify delete student component -->
+      <VerifyDeleteStudentComponent />
+      <!-- verify delete student component -->
     </div>
   </div>
 </template>
@@ -138,6 +142,7 @@ import UpdateAdminComponentVue from "@/components/dash/admins/UpdateAdminCompone
 import CreateTeacherComponentVue from "@/components/dash/Teachers/CreateTeacherComponent.vue";
 import UpdateTeacherComponentVue from "@/components/dash/Teachers/UpdateTeacherComponent.vue";
 import VerifyDeleteTeacherComponentVue from "@/components/global/forms/dash/teacher/VerifyDeleteTeacherComponent.vue";
+import VerifyDeleteStudentComponent from "@/components/global/forms/dash/student/VerifyDeleteStudentComponent.vue";
 
 export default {
   data() {
@@ -172,6 +177,7 @@ export default {
     UpdateTeacherComponentVue,
     VerifyDeleteTeacherComponentVue,
     CreateTeacherComponentVue,
+    VerifyDeleteStudentComponent,
   },
   methods: {
     // change the component
