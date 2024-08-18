@@ -7,8 +7,8 @@
       <h3>
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.update_student.title
-            : this.$store.state.Arabic.update_student.title
+            ? this.$store.state.English.update_parent.title
+            : this.$store.state.Arabic.update_parent.title
         }}
       </h3>
     </div>
@@ -33,8 +33,8 @@
       <!-- name  -->
       <label for="name">{{
         this.$store.state.language == "English"
-          ? this.$store.state.English.update_student.name
-          : this.$store.state.Arabic.update_student.name
+          ? this.$store.state.English.update_parent.name
+          : this.$store.state.Arabic.update_parent.name
       }}</label>
 
       <input type="text" placeholder="name" v-model="this.name" id="name" />
@@ -43,8 +43,8 @@
       <!-- password  -->
       <label for="password">{{
         this.$store.state.language == "English"
-          ? this.$store.state.English.update_student.password
-          : this.$store.state.Arabic.update_student.password
+          ? this.$store.state.English.update_parent.password
+          : this.$store.state.Arabic.update_parent.password
       }}</label>
 
       <div class="password">
@@ -52,8 +52,8 @@
           :type="this.password_type"
           :placeholder="
             this.$store.state.language == 'English'
-              ? this.$store.state.English.update_student.password_placeholder
-              : this.$store.state.Arabic.update_student.password_placeholder
+              ? this.$store.state.English.update_parent.password_placeholder
+              : this.$store.state.Arabic.update_parent.password_placeholder
           "
           v-model="this.password"
           id="password"
@@ -66,8 +66,8 @@
       <label for="phone">
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.update_student.phone_number
-            : this.$store.state.Arabic.update_student.phone_number
+            ? this.$store.state.English.update_parent.phone_number
+            : this.$store.state.Arabic.update_parent.phone_number
         }}
       </label>
 
@@ -75,8 +75,8 @@
         type="text"
         :placeholder="
           this.$store.state.language == 'English'
-            ? this.$store.state.English.update_student.phone_placeholder
-            : this.$store.state.Arabic.update_student.phone_placeholder
+            ? this.$store.state.English.update_parent.phone_placeholder
+            : this.$store.state.Arabic.update_parent.phone_placeholder
         "
         v-model="this.phone_number"
         id="phone"
@@ -87,8 +87,8 @@
       <label for="gender">
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.update_student.gender
-            : this.$store.state.Arabic.update_student.gender
+            ? this.$store.state.English.update_parent.gender
+            : this.$store.state.Arabic.update_parent.gender
         }}</label
       >
 
@@ -96,7 +96,7 @@
         <option value="male">
           {{
             this.$store.state.language == "English"
-              ? this.$store.state.English.update_student.male
+              ? this.$store.state.English.update_parent.male
               : this.$store.state.Arabic.create_admin.male
           }}
         </option>
@@ -110,18 +110,51 @@
       </select>
       <!-- gender  -->
 
-      <label for="select-children">Children</label>
+      <label for="select-children">
+        {{
+          this.$store.state.language == "English"
+            ? this.$store.state.English.update_parent.children_title
+            : this.$store.state.Arabic.update_parent.children_title
+        }}
+      </label>
 
       <div class="children">
         <icon icon="plus" @click="this.$store.commit('ChooseChildren')" />
+        <div
+          class="students-cont"
+          v-if="this.$store.state.choosed_children.length > 0"
+        >
+          <div
+            class="student"
+            v-for="(student_data, index) in this.$store.state.choosed_children"
+            :key="index"
+          >
+            <img
+              :src="student_data.avatar"
+              alt="avatar"
+              @click="GetStudent(student_data._id)"
+            />
+            <div class="info" @click="GetStudent(student_data._id)">
+              <h3>{{ student_data.name }}</h3>
+            </div>
+
+            <button @click="RemoveChild(student_data._id)">
+              {{
+                this.$store.state.language == "English"
+                  ? this.$store.state.English.update_parent.remove_button
+                  : this.$store.state.Arabic.update_parent.remove_button
+              }}
+            </button>
+          </div>
+        </div>
       </div>
 
       <!-- update button  -->
       <button @click="UpdateStudent">
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.update_student.button
-            : this.$store.state.Arabic.update_student.button
+            ? this.$store.state.English.update_parent.button
+            : this.$store.state.Arabic.update_parent.button
         }}
       </button>
       <!-- update button  -->
@@ -158,7 +191,7 @@ export default {
       // default avatar
       avatar: this.$store.state.parent_for_update.avatar,
       // form data
-      formData: new FormData(),
+      formData: "",
     };
   },
   components: {
@@ -172,6 +205,8 @@ export default {
   methods: {
     // update student method
     async UpdateStudent() {
+      this.formData = new FormData();
+
       // to start the loading animation
       this.$store.state.loading = "open";
 
@@ -224,6 +259,12 @@ export default {
         }
       }
 
+      // add the children array
+      this.formData.append(
+        "children",
+        JSON.stringify(this.$store.state.choosed_children)
+      );
+
       // add the delete avatar filed
       if (
         this.$store.state.delete_avatar == "true" ||
@@ -247,6 +288,9 @@ export default {
           // to stop the loading animation
           this.$store.state.loading = "close";
 
+          // to emptying the geted_student array in store
+          this.$store.state.geted_student = "";
+
           // emptying the selecetd images array from store
           this.$store.state.selectd_images = [];
 
@@ -257,6 +301,9 @@ export default {
           this.$store.state.active_component_in_dash = "parents";
         })
         .catch((error) => {
+          // to emptying the geted_student array in store
+          this.$store.state.geted_student = "";
+
           // to stop the loading animation
           this.$store.state.loading = "close";
 
@@ -274,6 +321,24 @@ export default {
         this.password_type == "password" ? "text" : "password";
     },
 
+    // remove the child
+    RemoveChild(id) {
+      // find and check to exists studnet in array
+      const existingStudent = this.$store.state.choosed_children.find(
+        (student) => student._id === id
+      );
+
+      if (existingStudent) {
+        // Use filter to create a new array without the matching student
+        const filteredChildren = this.$store.state.choosed_children.filter(
+          (student) => student._id !== existingStudent._id
+        );
+
+        // Update the state with the filtered array
+        this.$store.state.choosed_children = filteredChildren;
+      }
+    },
+
     // reader selecetd image
     readerFile() {
       const reader = new FileReader();
@@ -286,6 +351,11 @@ export default {
 
       // return the avatar to use the ass a path in avatar image
       return this.avatar;
+    },
+
+    // get to student
+    GetStudent(id) {
+      window.location = `/student/${id}`;
     },
   },
 };

@@ -91,6 +91,9 @@ export default {
       // update the parent_id_for_update var in store
       this.$store.state.parent_for_update = this.parents_data;
 
+      // set the parent children to choosed_children array in store
+      this.$store.state.choosed_children = this.parents_data.children;
+
       // update the active component name
       this.$store.state.active_component_in_dash = "update-parent";
     },

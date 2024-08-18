@@ -98,25 +98,11 @@
 .section-cont-open-light {
   @extend .section-cont-open-darck;
   .header {
-    p {
-      color: $font-light;
-      background-color: $note-darck;
-    }
-
-    button {
-      color: $font-light;
-    }
-
     // header title
     .title {
-      border-color: transparent transparent $border-light transparent;
+      border-color: transparent transparent $border-darck transparent;
       h3 {
-        color: $font-light;
-      }
-
-      svg {
-        color: $font-light;
-        border: 1px solid $border-light;
+        color: $font-darck;
       }
     }
   }

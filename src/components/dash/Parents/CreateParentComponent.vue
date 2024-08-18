@@ -1,13 +1,13 @@
 <template>
   <div
-    :class="`create-student-${this.$store.state.mood}-${this.$store.state.language}-${this.status}`"
+    :class="`create-parent-${this.$store.state.mood}-${this.$store.state.language}-${this.status}`"
   >
     <div class="header">
       <h3>
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.create_student.title
-            : this.$store.state.Arabic.create_student.title
+            ? this.$store.state.English.create_parent.title
+            : this.$store.state.Arabic.create_parent.title
         }}
       </h3>
     </div>
@@ -37,46 +37,37 @@
       <!-- name  -->
       <label for="name">{{
         this.$store.state.language == "English"
-          ? this.$store.state.English.create_student.name
-          : this.$store.state.Arabic.create_student.name
+          ? this.$store.state.English.create_parent.name
+          : this.$store.state.Arabic.create_parent.name
       }}</label>
 
-      <input
-        type="text"
-        :placeholder="
-          this.$store.state.language == 'English'
-            ? this.$store.state.English.create_student.name_placeholder
-            : this.$store.state.Arabic.create_student.name_placeholder
-        "
-        v-model="this.name"
-        id="name"
-      />
+      <input type="text" placeholder="name" v-model="this.name" id="name" />
       <!-- name  -->
 
-      <!-- emaile  -->
+      <!-- email  -->
       <label for="email">{{
         this.$store.state.language == "English"
-          ? this.$store.state.English.create_student.email
-          : this.$store.state.Arabic.create_student.email
+          ? this.$store.state.English.create_parent.email
+          : this.$store.state.Arabic.create_parent.email
       }}</label>
 
       <input
         type="email"
-        id="email"
         :placeholder="
           this.$store.state.language == 'English'
-            ? this.$store.state.English.update_student.email_placeholder
-            : this.$store.state.Arabic.update_student.email_placeholder
+            ? this.$store.state.English.create_parent.email_placeholder
+            : this.$store.state.Arabic.create_parent.email_placeholder
         "
         v-model="this.email"
+        id="email"
       />
-      <!-- emaile  -->
+      <!-- email  -->
 
       <!-- password  -->
       <label for="password">{{
         this.$store.state.language == "English"
-          ? this.$store.state.English.create_student.password
-          : this.$store.state.Arabic.create_student.password
+          ? this.$store.state.English.create_parent.password
+          : this.$store.state.Arabic.create_parent.password
       }}</label>
 
       <div class="password">
@@ -84,8 +75,8 @@
           :type="this.password_type"
           :placeholder="
             this.$store.state.language == 'English'
-              ? this.$store.state.English.create_student.password_placeholder
-              : this.$store.state.Arabic.create_student.password_placeholder
+              ? this.$store.state.English.create_parent.password_placeholder
+              : this.$store.state.Arabic.create_parent.password_placeholder
           "
           v-model="this.password"
           id="password"
@@ -94,49 +85,12 @@
       </div>
       <!-- password  -->
 
-      <label for="about_me">{{
-        this.$store.state.language == "English"
-          ? this.$store.state.English.create_student.about_me
-          : this.$store.state.Arabic.create_student.about_me
-      }}</label>
-
-      <textarea
-        v-model="this.about_me"
-        id="about_me"
-        :placeholder="
-          this.$store.state.language == 'English'
-            ? this.$store.state.English.create_student.about_me_placeholder
-            : this.$store.state.Arabic.create_student.about_me_placeholder
-        "
-      ></textarea>
-
-      <!-- birth date  -->
-      <label for="birth_date">
-        {{
-          this.$store.state.language == "English"
-            ? this.$store.state.English.create_student.birth_date
-            : this.$store.state.Arabic.create_student.birth_date
-        }}
-      </label>
-
-      <input
-        type="text"
-        :placeholder="
-          this.$store.state.language == 'English'
-            ? this.$store.state.English.create_student.birth_date_placeholder
-            : this.$store.state.Arabic.create_student.birth_date_placeholder
-        "
-        v-model="this.birth_date"
-        id="birth_date"
-      />
-      <!-- birth date  -->
-
       <!-- Phone Number  -->
       <label for="phone">
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.create_student.phone_number
-            : this.$store.state.Arabic.create_student.phone_number
+            ? this.$store.state.English.create_parent.phone_number
+            : this.$store.state.Arabic.create_parent.phone_number
         }}
       </label>
 
@@ -144,44 +98,20 @@
         type="text"
         :placeholder="
           this.$store.state.language == 'English'
-            ? this.$store.state.English.create_student.phone_placeholder
-            : this.$store.state.Arabic.create_student.phone_placeholder
+            ? this.$store.state.English.create_parent.phone_placeholder
+            : this.$store.state.Arabic.create_parent.phone_placeholder
         "
         v-model="this.phone_number"
         id="phone"
       />
       <!-- Phone Number  -->
 
-      <!-- class level  -->
-      <label for="class_level">
-        {{
-          this.$store.state.language == "English"
-            ? this.$store.state.English.create_student.class_level
-            : this.$store.state.Arabic.create_student.class_level
-        }}</label
-      >
-
-      <select name="" id="class_level" v-model="class_level">
-        <option
-          v-for="(class_level, index) in this.$store.state.Classes_level_list"
-          :key="index"
-          :value="class_level.English"
-        >
-          {{
-            this.$store.state.language == "English"
-              ? class_level.English
-              : class_level.Arabic
-          }}
-        </option>
-      </select>
-      <!-- class level  -->
-
       <!-- gender  -->
       <label for="gender">
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.create_student.gender
-            : this.$store.state.Arabic.create_student.gender
+            ? this.$store.state.English.create_parent.gender
+            : this.$store.state.Arabic.create_parent.gender
         }}</label
       >
 
@@ -189,7 +119,7 @@
         <option value="male">
           {{
             this.$store.state.language == "English"
-              ? this.$store.state.English.create_student.male
+              ? this.$store.state.English.create_parent.male
               : this.$store.state.Arabic.create_admin.male
           }}
         </option>
@@ -203,12 +133,51 @@
       </select>
       <!-- gender  -->
 
-      <!-- update button  -->
-      <button @click="CreateStudent">
+      <label for="select-children">
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.create_student.button
-            : this.$store.state.Arabic.create_student.button
+            ? this.$store.state.English.create_parent.children_title
+            : this.$store.state.Arabic.create_parent.children_title
+        }}
+      </label>
+
+      <div class="children">
+        <icon icon="plus" @click="this.$store.commit('ChooseChildren')" />
+        <div
+          class="students-cont"
+          v-if="this.$store.state.choosed_children.length > 0"
+        >
+          <div
+            class="student"
+            v-for="(student_data, index) in this.$store.state.choosed_children"
+            :key="index"
+          >
+            <img
+              :src="student_data.avatar"
+              alt="avatar"
+              @click="GetStudent(student_data._id)"
+            />
+            <div class="info" @click="GetStudent(student_data._id)">
+              <h3>{{ student_data.name }}</h3>
+            </div>
+
+            <button @click="RemoveChild(student_data._id)">
+              {{
+                this.$store.state.language == "English"
+                  ? this.$store.state.English.create_parent.remove_button
+                  : this.$store.state.Arabic.create_parent.remove_button
+              }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- update button  -->
+      <button @click="UpdateStudent">
+        {{
+          this.$store.state.language == "English"
+            ? this.$store.state.English.create_parent.button
+            : this.$store.state.Arabic.create_parent.button
         }}
       </button>
       <!-- update button  -->
@@ -229,34 +198,31 @@ export default {
       name: "",
       // password
       password: "",
+      // email
+      email: "",
       // phone number
       phone_number: "",
       // gender
       gender: "male",
-      // about me
-      about_me: "",
-      // birth date
-      birth_date: "",
       // password input type
       password_type: "password",
-      // email
-      email: "",
       // default avatar
       avatar: this.gender === "male" ? Female_icon : Male_icon,
-      // class level
-      class_level: this.$store.state.student_for_update.class_level,
       // form data
-      formData: new FormData(),
+      formData: "",
     };
   },
+  components: {},
   mounted() {
     setTimeout(() => {
       this.status = "open";
     }, 500);
   },
   methods: {
-    // create student method
-    async CreateStudent() {
+    // update student method
+    async UpdateStudent() {
+      this.formData = new FormData();
+
       // to start the loading animation
       this.$store.state.loading = "open";
 
@@ -275,22 +241,22 @@ export default {
       }
 
       // add the name to form data
-      if (this.name) {
+      if (this.name != this.$store.state.parent_for_update.name) {
         this.formData.append("name", this.name);
       }
 
       // add the email
-      if (this.email) {
-        this.formData.append("email", this.email);
-      }
+      this.formData.append("email", this.email);
 
       // add the phone number to form data
-      if (this.phone_number) {
+      if (
+        this.phone_number != this.$store.state.parent_for_update.phone_number
+      ) {
         this.formData.append("phone_number", this.phone_number);
       }
 
       // add the gender to form data
-      if (this.gender) {
+      if (this.gender != this.$store.state.parent_for_update.gender) {
         this.formData.append("gender", this.gender);
       }
 
@@ -306,26 +272,17 @@ export default {
         }
       }
 
-      // add the class level
-      if (this.class_level) {
-        this.formData.append("class_level", this.class_level);
-      }
-
-      // add about me
-      if (this.about_me) {
-        this.formData.append("about_me", this.about_me);
-      }
-
-      // add birth date
-      if (this.birth_date) {
-        this.formData.append("birth_date", this.birth_date);
-      }
+      // add the children array
+      this.formData.append(
+        "children",
+        JSON.stringify(this.$store.state.choosed_children)
+      );
 
       await axios
         .post(
           this.$store.state.user.user_type == "super"
-            ? this.$store.state.APIs.students.super.create
-            : this.$store.state.APIs.students.admin.create,
+            ? this.$store.state.APIs.parents.super.create
+            : this.$store.state.APIs.parents.admin.create,
           this.formData,
           {
             headers,
@@ -335,18 +292,24 @@ export default {
           // to stop the loading animation
           this.$store.state.loading = "close";
 
+          // to emptying the geted_student array in store
+          this.$store.state.geted_student = "";
+
+          // emptying the choosed children array
+          this.$store.state.choosed_children = [];
+
           // emptying the selecetd images array from store
           this.$store.state.selectd_images = [];
 
-          // emptying the teacher for update in store
-          this.$store.state.student_for_update = "";
-
-          // open the teachers component
-          this.$store.state.active_component_in_dash = "students";
+          // open the parents component
+          this.$store.state.active_component_in_dash = "parents";
         })
         .catch((error) => {
           // to stop the loading animation
           this.$store.state.loading = "close";
+
+          // to emptying the geted_student array in store
+          this.$store.state.geted_student = "";
 
           // open the error from
           this.$store.state.error_form_status = "open";
@@ -360,6 +323,24 @@ export default {
     ChangeInputType() {
       this.password_type =
         this.password_type == "password" ? "text" : "password";
+    },
+
+    // remove the child
+    RemoveChild(id) {
+      // find and check to exists studnet in array
+      const existingStudent = this.$store.state.choosed_children.find(
+        (student) => student._id === id
+      );
+
+      if (existingStudent) {
+        // Use filter to create a new array without the matching student
+        const filteredChildren = this.$store.state.choosed_children.filter(
+          (student) => student._id !== existingStudent._id
+        );
+
+        // Update the state with the filtered array
+        this.$store.state.choosed_children = filteredChildren;
+      }
     },
 
     // select the images
@@ -386,6 +367,11 @@ export default {
 
       // return the avatar to use the ass a path in avatar image
       return this.avatar;
+    },
+
+    // get to student
+    GetStudent(id) {
+      window.location = `/student/${id}`;
     },
   },
 };

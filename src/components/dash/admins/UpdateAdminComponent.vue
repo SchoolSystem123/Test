@@ -142,7 +142,7 @@
         {{
           this.$store.state.language == "English"
             ? this.$store.state.English.update_admin.button
-            : this.$store.state.Arabic.update_admin.buttons
+            : this.$store.state.Arabic.update_admin.button
         }}
       </button>
       <!-- update button  -->

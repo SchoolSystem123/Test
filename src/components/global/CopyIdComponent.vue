@@ -5,11 +5,12 @@
     ref="ObjectId"
     @click="copyId"
   >
-    {{ this.$store.state.language == "English" 
-    ? this.$store.state.English.copy_id
-    : this.$store.state.Arabic.copy_id
+    {{
+      this.$store.state.language == "English"
+        ? this.$store.state.English.copy_id
+        : this.$store.state.Arabic.copy_id
     }}
-      <icon icon="copy" />
+    <icon icon="copy" />
     #{{ this.Id_data.object_type }}:{{ this.Id_data.id }}
   </p>
 </template>
@@ -24,10 +25,11 @@ export default {
     // copy the id to clipboard
     async copyId() {
       // access to the element
-      const IdToCopy = this.$refs.ObjectId.textContent;
 
       try {
-        await navigator.clipboard.writeText(IdToCopy);
+        await navigator.clipboard.writeText(
+          `#${this.Id_data.object_type}:${this.Id_data.id}`
+        );
       } catch (error) {
         // to oprn the error form
         this.$store.state.error_form_status = "open";

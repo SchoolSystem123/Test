@@ -56,7 +56,6 @@ export default {
   methods: {
     // get parents
     async GetParents() {
-      console.log("sended the request ...");
       // to start the loading animation
       this.$store.state.loading = "open";
 
@@ -68,7 +67,6 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response);
           // to stop the loading animation
           this.$store.state.loading = "close";
 

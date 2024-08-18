@@ -12,16 +12,17 @@
     <SidBarComponentVue />
     <!-- sidbar component  -->
 
-    <div class="sid-bar">
+    <div :class="`sid-bar-${this.status}`">
+      <icon :icon="this.icon_type" @click="OpenOrCloseSidBar" />
       <ul>
         <li><router-link to="/"> home </router-link></li>
-        <li @click="ChangeComponent('admins')">Admins</li>
-        <li @click="ChangeComponent('teachers')">Teachers</li>
-        <li @click="ChangeComponent('students')">Students</li>
-        <li @click="ChangeComponent('parents')">Parents</li>
-        <li @click="ChangeComponent('classes')">Classes</li>
-        <li @click="ChangeComponent('homeWorks')">Home Works</li>
-        <li @click="ChangeComponent('messages')">Messages</li>
+        <li @click="ChangeComponent('admins')">Admins 🦸‍♂️</li>
+        <li @click="ChangeComponent('teachers')">Teachers 👨‍🏫</li>
+        <li @click="ChangeComponent('students')">Students 👨‍🎓</li>
+        <li @click="ChangeComponent('parents')">Parents 👨‍👩‍👦‍👦</li>
+        <li @click="ChangeComponent('classes')">Classes ➕</li>
+        <li @click="ChangeComponent('homeWorks')">Home Works ➕</li>
+        <li @click="ChangeComponent('messages')">Messages ➕</li>
 
         <li
           @click="ChangeComponent('create-admin')"
@@ -37,7 +38,7 @@
             this.$store.state.user.user_type == 'admin'
           "
         >
-          Create Teacher
+          Create Teacher 👨‍🏫➕
         </li>
 
         <li
@@ -47,12 +48,22 @@
             this.$store.state.user.user_type == 'admin'
           "
         >
-          Create Student
+          Create Student 👨‍🎓➕
+        </li>
+
+        <li
+          @click="ChangeComponent('create-parent')"
+          v-if="
+            this.$store.state.user.user_type == 'super' ||
+            this.$store.state.user.user_type == 'admin'
+          "
+        >
+          Create Parent 👨‍👩‍👦‍👦➕
         </li>
       </ul>
     </div>
 
-    <div class="section">
+    <div :class="`section-${this.status}`">
       <!-- admins component -->
       <AdminsComponentVue
         v-if="this.$store.state.active_component_in_dash == 'admins'"
@@ -159,9 +170,9 @@
       />
       <!-- update parent component -->
 
-      <!-- Choose students as children component -->
-      <ChooseStudentsAsChildren />
-      <!-- Choose students as children component -->
+      <!-- choose child for parent component -->
+      <ChooseChildrenComponent />
+      <!-- choose child for parent component -->
     </div>
   </div>
 </template>
@@ -190,11 +201,16 @@ import VerifyDeleteStudentComponent from "@/components/global/forms/dash/student
 import VerifyDeleteParentComponent from "@/components/global/forms/dash/parent/VerifyDeleteParentComponent.vue";
 import CreateParentComponent from "@/components/dash/Parents/CreateParentComponent.vue";
 import UpdateParentsComponent from "@/components/dash/Parents/UpdateParentsComponent.vue";
-import ChooseStudentsAsChildren from "@/components/dash/Students/ChooseStudentsAsChildren.vue";
+import ChooseChildrenComponent from "@/components/global/forms/dash/parent/ChooseChildrenComponent.vue";
 
 export default {
   data() {
-    return {};
+    return {
+      // icon type
+      icon_type: "arrow-right",
+      // sid bar status
+      status: "close",
+    };
   },
   mounted() {
     window.addEventListener("load", () => {
@@ -231,12 +247,23 @@ export default {
     VerifyDeleteParentComponent,
     CreateParentComponent,
     UpdateParentsComponent,
-    ChooseStudentsAsChildren,
+    ChooseChildrenComponent,
   },
   methods: {
     // change the component
     ChangeComponent(component) {
       this.$store.state.active_component_in_dash = component;
+    },
+
+    // open or close the sidBar
+    OpenOrCloseSidBar() {
+      // change the isd bar status
+      this.status = this.status == "close" ? "open" : "close";
+      // to change the icon type
+      this.icon_type =
+        this.icon_type == "arrow-right" ? "arrow-left" : "arrow-right";
+      // to open or close the sid bar
+      this.$store.commit("ChangeDashSidBarStatus");
     },
   },
 };

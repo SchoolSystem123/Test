@@ -3,8 +3,8 @@ import axios from "axios";
 
 export default createStore({
   state: {
-    // mood: window.localStorage.getItem("mood") || "darck",
-    mood: "darck",
+    mood: window.localStorage.getItem("mood") || "darck",
+    // mood: "darck",
     language: window.localStorage.getItem("language") || "English",
     language_list_state: "close",
     theme: window.localStorage.getItem("theme") || "orange",
@@ -33,7 +33,10 @@ export default createStore({
     student_for_update : "",
     parent_for_update : "",
     active_component_in_dash: "admins",
-    choose_children : "close",
+    choose_children_status : "close",
+    geted_student : "",
+    choosed_children : [],
+    sid_bar_dash : "close",
     // user_type: JSON.parse(window.localStorage.getItem("Ss-user")).user_type || "admint",
     sidBar: "close",
     information: "test",
@@ -410,7 +413,7 @@ export default createStore({
       },
       delete_admin_form: {
         title: "Delete Admin ...",
-        delete: "Delete",
+        delete: "Delete 🗑️",
         cancel: "Cancel",
       },
       dash_teachers_component: {
@@ -460,7 +463,7 @@ export default createStore({
       },
       delete_teacher_form: {
         title: "Delete Teacher 👨‍🏫 ...",
-        delete: "Delete",
+        delete: "Delete 🗑️",
         cancel: "Cancel",
       },
       dash_students_component: {
@@ -510,7 +513,7 @@ export default createStore({
       },
       delete_student_form: {
         title: "Delete Student 👨‍🎓 ...",
-        delete: "Delete",
+        delete: "Delete 🗑️",
         cancel: "Cancel",
       },
       dash_parents_component: {
@@ -518,8 +521,8 @@ export default createStore({
         update: "Updae",
         delete: "Delete",
       },
-      create_parents: {
-        title: "Create Parents 👨‍👩‍👦‍👦",
+      create_parent: {
+        title: "Create Parent 👨‍👩‍👦‍👦",
         name: "Name",
         email: "Email 📧",
         password: "Password 🔑",
@@ -528,23 +531,24 @@ export default createStore({
         male: "Male 🚹",
         female: "Female 🚺",
         button: "Create",
+        children_title : "Children 👨‍🎓",
+        remove_button : "Remove 🗑️",
         name_placeholder: "Type parent's name here ✍️ ...",
         email_placeholder: "Type parent's email here ✍️ ...",
         password_placeholder: "Type parent's password here ✍️ ...",
         phone_placeholder: " Type parent's phone number here ✍️ ...",
       },
-      update_parents: {
-        title: "Update Student 👨‍👩‍👦‍👦",
+      update_parent: {
+        title: "Update Parent 👨‍👩‍👦‍👦",
         name: "Name",
         password: "Password 🔑",
         phone_number: "Phone Number 📞",
-        class_level: "Class Level 🏫🪜🎚️",
-        about_me : "About Me 💬",
         gender: "Gender ⚧️",
         male: "Male 🚹",
         female: "Female 🚺",
         button: "Update",
-        birth_date : "Birth Date 📆",
+        children_title : "Children 👨‍🎓",
+        remove_button : "Remove 🗑️",
         name_placeholder: "Type parent's name here ✍️ ...",
         email_placeholder: "Type parent's email here ✍️ ...",
         password_placeholder: "Type parent's password here ✍️ ...",
@@ -552,8 +556,16 @@ export default createStore({
       },
       delete_parent_form: {
         title: "Delete Parent 👨‍👩‍👦‍👦 ...",
-        delete: "Delete",
+        delete: "Delete 🗑️",
         cancel: "Cancel",
+      },
+      choose_children_form : {
+        title : "Search and choose children",
+        button : "Search",
+        placeholder : "Type Student Id Here ✍️ ...",
+        section_title : "Finded Students 👨‍🎓",
+        add_button : "Add",
+        remove_button : "Remove"
       },
       theme: "Theme",
       mood: "Mood",
@@ -844,7 +856,7 @@ export default createStore({
       },
       delete_admin_form: {
         title: "حذف حساب الأدمن ...",
-        delete: "حذف",
+        delete: "حذف 🗑️",
         cancel: "إلغاء",
       },
       create_admin: {
@@ -929,7 +941,7 @@ export default createStore({
       },
       delete_teacher_form: {
         title: "حذف المدرس👨‍🏫 ...",
-        delete: "حذف",
+        delete: "حذف 🗑️",
         cancel: "إلغاء",
       },
       dash_students_component: {
@@ -969,6 +981,7 @@ export default createStore({
         male: "ذكر 🚹",
         female: "انثى 🚺",
         button: "تعديل",
+        children_title : "الأطفال 👨‍🎓",
         birth_date : "تاريخ الميلاد 📆",
         name_placeholder: "اكتب اسم الطالب هنا ✍️ ...",
         email_placeholder: "اكتب ايميل الطالب هنا ✍️ ...",
@@ -979,7 +992,7 @@ export default createStore({
       },
       delete_student_form: {
         title: "حذف الطالب 👨‍🎓 ...",
-        delete: "حذف",
+        delete: "حذف 🗑️",
         cancel: "إلغاء",
       },
       dash_parents_component: {
@@ -987,7 +1000,7 @@ export default createStore({
         update: "تعديل",
         delete: "حذف",
       },
-      create_parents: {
+      create_parent: {
         title: "إنشاء ولي أمر 👨‍👩‍👦‍👦",
         name: "الاسم",
         email: "الإيميل 📧",
@@ -997,12 +1010,14 @@ export default createStore({
         male: "ذكر 🚹",
         female: "انثى 🚺",
         button: "إنشاء",
+        children_title : "الأأطفال 👨‍🎓",
+        remove_button : "حذف 🗑️",
         name_placeholder: "اكتب اسم ولي الامر هنا ✍️ ...",
         email_placeholder: "اكتب ايميل ولي الامر هنا ✍️ ...",
         password_placeholder: "اكتب كلمة مرور ولي الامر هنا ✍️ ...",
         phone_placeholder: " اكتب رقم هاتفولي الأمر هنا ✍️ ...",
       },
-      update_parents: {
+      update_parent: {
         title: "تعديل ولي الأمر 👨‍👩‍👦‍👦",
         name: "الاسم",
         password: "كلمة المرور 🔑",
@@ -1011,6 +1026,8 @@ export default createStore({
         male: "ذكر 🚹",
         female: "انثى 🚺",
         button: "تعديل",
+        children_title : "الأأطفال 👨‍🎓",
+        remove_button : "حذف 🗑️",
         name_placeholder: "اكتب اسم ولي الامر هنا ✍️ ...",
         email_placeholder: "اكتب ايميل ولي الامر هنا ✍️ ...",
         password_placeholder: "اكتب كلمة مرور ولي الامر هنا ✍️ ...",
@@ -1018,8 +1035,16 @@ export default createStore({
       },
       delete_parent_form: {
         title: "حذف ولي الأمر 👨‍👩‍👦‍👦 ...",
-        delete: "حذف",
+        delete: "حذف 🗑️",
         cancel: "إلغاء",
+      },
+      choose_children_form : {
+        title : "ابحث واختار الطفل",
+        button : "بحث",
+        placeholder : "اكتب معرف الطالب هنا ✍️ ...",
+        section_title : "الطلاب الذين تم العثور عليهم 👨‍🎓",
+        add_button : "اضافة",
+        remove_button : "حذف"
       },
       theme: "السمات",
       mood: "الوضع",
@@ -1205,6 +1230,11 @@ export default createStore({
       console.log(state.sidBar);
     },
 
+    // open & close the dash's viwe sid bar
+    ChangeDashSidBarStatus(state) {
+      state.sid_bar_dash = state.sid_bar_dash == "clsoe" ? "open" : "cose"
+    },
+
     // open & closethe language list state
     changelanguage_list_state(state) {
       state.language_list_state =
@@ -1261,7 +1291,8 @@ export default createStore({
 
     // open or close the choosing children container
     ChooseChildren(state) {
-      state.choose_children = state.choose_children == "close" ? "open" : "close"
+      // to open or close the choose children form
+      state.choose_children_status = state.choose_children_status == "close" ? "open" : "close"
     }
   },
   actions: {

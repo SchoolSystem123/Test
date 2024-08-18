@@ -338,6 +338,9 @@ export default {
           // emptying the selecetd images array from store
           this.$store.state.selectd_images = [];
 
+          // emptying the choosed children array in store
+          this.$store.state.choosed_children = [];
+
           // emptying the teacher for update in store
           this.$store.state.student_for_update = "";
 
@@ -347,6 +350,12 @@ export default {
         .catch((error) => {
           // to stop the loading animation
           this.$store.state.loading = "close";
+
+          // emptying the choosed children array in store
+          this.$store.state.choosed_children = [];
+
+          // emptying the choosed children array in store
+          this.$store.state.choosed_children = [];
 
           // open the error from
           this.$store.state.error_form_status = "open";

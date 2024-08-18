@@ -6,14 +6,218 @@
   display: flex;
   direction: ltr;
 
-  .sid-bar {
+  .sid-bar-open {
     width: 20%;
     height: 96vh;
     margin: 2vh 10px;
     background-color: $card-darck;
     border-radius: 10px;
+    position: relative;
+    transition-duration: 0.5s;
+
     @media (max-width: $phone) {
       width: 25%;
+    }
+
+    svg {
+      padding: 10px;
+      border-radius: 50%;
+      background-color: $message-darck;
+      color: $font-light;
+      cursor: pointer;
+      position: absolute;
+      right: -15px;
+      top: 20px;
+    }
+
+    // home link (svg)
+    a {
+      text-decoration: none;
+      width: 100%;
+      height: 100%;
+      color: $font-light;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+    }
+
+    ul {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      overflow-y: scroll;
+
+      li {
+        width: 96%;
+        height: 40px;
+        margin: 10px 2%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        padding: 0px 10px;
+        border-radius: 5px;
+        color: $font-light;
+        cursor: pointer;
+        transition-duration: 0.5s;
+        @media (max-width: $phone) {
+          font-size: $x-small;
+        }
+      }
+
+      li:hover {
+        background-color: $note-darck;
+      }
+    }
+
+    ul::-webkit-scrollbar {
+      width: 0px
+    }
+  }
+
+
+
+  .sid-bar-close {
+    @extend .sid-bar-open;
+    width: 0%;
+  }
+
+  .section-open {
+    width: 80%;
+    height: 100vh;
+    transition-duration: 0.5s;
+  }
+
+  .section-close {
+    width: auto;
+    height: 100vh;
+    transition-duration: 0.5s;
+  }
+}
+
+.dash-light-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-light;
+  display: flex;
+  direction: ltr;
+
+  .sid-bar-open {
+    width: 20%;
+    height: 96vh;
+    margin: 2vh 10px;
+    background-color: $card-light;
+    border-radius: 10px;
+    position: relative;
+    transition-duration: 0.5s;
+
+    @media (max-width: $phone) {
+      width: 25%;
+    }
+
+    svg {
+      padding: 10px;
+      border-radius: 50%;
+      background-color: $message-light;
+      color: $font-darck;
+      cursor: pointer;
+      position: absolute;
+      right: -15px;
+      top: 20px;
+    }
+
+    // home link (svg)
+    a {
+      text-decoration: none;
+      width: 100%;
+      height: 100%;
+      color: $font-darck;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+    }
+
+    ul {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      overflow-y: scroll;
+
+      li {
+        width: 96%;
+        height: 40px;
+        margin: 10px 2%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        padding: 0px 10px;
+        border-radius: 5px;
+        color: $font-darck;
+        cursor: pointer;
+        transition-duration: 0.5s;
+
+        @media (max-width: $phone) {
+          font-size: $x-small;
+        }
+      }
+
+      li:hover {
+        background-color: $note-light;
+      }
+    }
+
+    ul::-webkit-scrollbar {
+      width: 0px
+    }
+  }
+
+  .sid-bar-close {
+    @extend .sid-bar-open;
+    width: 0%;
+  }
+
+  .section-open {
+    width: 80%;
+    height: 100vh;
+    transition-duration: 0.5s;
+  }
+
+  .section-close {
+    width: auto;
+    height: 100vh;
+    transition-duration: 0.5s;
+  }
+}
+// darck adn light English style
+
+// darck adn light Arabic style
+.dash-darck-Arabic {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-darck;
+  display: flex;
+  direction: ltr;
+
+  .sid-bar-open {
+    width: 20%;
+    height: 96vh;
+    margin: 2vh 10px;
+    background-color: $card-darck;
+    border-radius: 10px;
+    position: relative;
+    transition-duration: 0.5s;
+    @media (max-width: $phone) {
+      width: 25%;
+    }
+
+    svg {
+      padding: 10px;
+      border-radius: 50%;
+      background-color: $message-darck;
+      color: $font-light;
+      cursor: pointer;
+      position: absolute;
+      right: -15px;
+      top: 20px;
     }
 
     // home link (svg)
@@ -30,6 +234,7 @@
     ul {
       width: 100%;
       height: auto;
+      overflow: hidden;
 
       li {
         width: 96%;
@@ -54,27 +259,53 @@
     }
   }
 
-  .section {
+  .sid-bar-close {
+    @extend .sid-bar-open;
+    width: 0%;
+  }
+
+  .section-open {
     width: 80%;
     height: 100vh;
+    transition-duration: 0.5s;
+  }
+
+  .section-close {
+    width: auto;
+    height: 100vh;
+    transition-duration: 0.5s;
   }
 }
 
-.dash-light-English {
+.dash-light-Arabic {
   width: 100%;
   min-height: 100vh;
   background-color: $body-light;
   display: flex;
   direction: ltr;
 
-  .sid-bar {
+  .sid-bar-open {
     width: 20%;
     height: 96vh;
     margin: 2vh 10px;
     background-color: $card-light;
     border-radius: 10px;
+    position: relative;
+    transition-duration: 0.5s;
+
     @media (max-width: $phone) {
       width: 25%;
+    }
+
+    svg {
+      padding: 10px;
+      border-radius: 50%;
+      background-color: $message-light;
+      color: $font-darck;
+      cursor: pointer;
+      position: absolute;
+      right: -15px;
+      top: 20px;
     }
 
     // home link (svg)
@@ -91,6 +322,7 @@
     ul {
       width: 100%;
       height: auto;
+      overflow: hidden;
 
       li {
         width: 96%;
@@ -115,21 +347,21 @@
     }
   }
 
-  .section {
+  .sid-bar-close {
+    @extend .sid-bar-open;
+    width: 0%;
+  }
+
+  .section-open {
     width: 80%;
     height: 100vh;
+    transition-duration: 0.5s;
   }
-}
-// darck adn light English style
 
-// darck adn light Arabic style
-.dash-darck-Arabic {
-  @extend .dash-darck-English;
-  direction: rtl;
-}
-
-.dash-light-Arabic {
-  @extend .dash-light-English;
-  direction: rtl;
+  .section-close {
+    width: auto;
+    height: 100vh;
+    transition-duration: 0.5s;
+  }
 }
 // darck adn light Arabic style
