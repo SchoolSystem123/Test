@@ -12,7 +12,7 @@
       </h2>
       <icon
         icon="xmark"
-        @click="this.$store.commit('Changeavatar_form_status')"
+        @click="this.$store.commit('Change_avatar_form_status')"
       />
     </div>
 
@@ -21,7 +21,7 @@
       <input type="file" id="avatar" ref="avatar" />
       <!-- file input to select the new avatar -->
       <label for="avatar">
-        <li @click="this.$store.commit('Changeavatar_form_status')">
+        <li @click="this.$store.commit('Change_avatar_form_status')">
           {{
             this.$store.state.language == "English"
               ? this.$store.state.English.update_profile.new
@@ -67,7 +67,7 @@ export default {
       this.$store.state.delete_avatar = "true";
 
       // close the avatar confirm form
-      this.$store.commit("Changeavatar_form_status");
+      this.$store.commit("Change_avatar_form_status");
     },
   },
 };

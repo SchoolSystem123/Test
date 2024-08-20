@@ -1,9 +1,22 @@
 <template>
-  <h1>Classes Component</h1>
+  <div
+    :class="`section-cont-${this.status}-${this.$store.state.mood}-${this.$store.state.language}`"
+  >
+    <div class="header">Classes</div>
+
+    <div class="cards-section">
+      <ClassesPageClassComponentDash
+        v-for="(class_data, index) in this.$store.state.classes"
+        :key="index"
+        :class_data="class_data"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
 import axios from "axios";
+import ClassesPageClassComponentDash from "../../class/ClassesPageClassComponentDash.vue";
 export default {
   name: "classes-component",
   data() {
@@ -20,7 +33,9 @@ export default {
     // call to get classes method
     this.GetClasses();
   },
-  components: {},
+  components: {
+    ClassesPageClassComponentDash,
+  },
   methods: {
     // get classes
     async GetClasses() {

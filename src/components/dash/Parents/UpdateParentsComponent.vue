@@ -17,7 +17,7 @@
       <!-- avatar container  -->
       <div
         :class="`avatar-cont-${this.$store.state.theme}`"
-        @click="this.$store.commit('Changeavatar_form_status')"
+        @click="this.$store.commit('Change_avatar_form_status')"
       >
         <img
           :src="

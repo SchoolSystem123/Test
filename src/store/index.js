@@ -13,10 +13,12 @@ export default createStore({
     delete_hw_form_status: "close",
     copy_message_status: "close",
     avatar_form_status: "close",
+    cover_form_status : "close",
     delete_admin_form_status: "close",
     delete_teacher_form_status: "close",
     delete_student_form_status: "close",
     delete_parent_form_status: "close",
+    delete_class_form_status: "close",
     delete_student_form : "close",
     user: JSON.parse(window.localStorage.getItem("Ss-user")) || "",
     profile: "",
@@ -24,6 +26,7 @@ export default createStore({
     show_user: "",
     selectd_images: [],
     delete_avatar: "false",
+    delete_cover : "false",
     messages: [],
     admin_id_for_delete: "",
     teacher_id_for_delete: "",
@@ -34,8 +37,13 @@ export default createStore({
     parent_for_update : "",
     active_component_in_dash: "admins",
     choose_children_status : "close",
+    choose_teacher_status : "close",
     geted_student : "",
+    geted_teacher : "",
     choosed_children : [],
+    choosed_teacher : "",
+    class_for_update: "",
+    selected_cover : "",
     sid_bar_dash : "close",
     // user_type: JSON.parse(window.localStorage.getItem("Ss-user")).user_type || "admint",
     sidBar: "close",
@@ -342,9 +350,9 @@ export default createStore({
         password: "Password",
         phone: "Phone",
         button: "Update",
-        avatar_form_header: "Avatar Actions",
-        new: "New Avatar",
-        delete: "Delete Avatar",
+        avatar_form_header: "Avatar Actions 🎬",
+        new: "New Avatar 🚀",
+        delete: "Delete Avatar 🗑️",
       },
       show_user_page: {
         gender: "Gender ⚧️ :",
@@ -564,6 +572,40 @@ export default createStore({
         button : "Search",
         placeholder : "Type Student Id Here ✍️ ...",
         section_title : "Finded Students 👨‍🎓",
+        add_button : "Add",
+        remove_button : "Remove"
+      },
+      delete_class_form: {
+        title: "Delete Class ...",
+        delete: "Delete 🗑️",
+        cancel: "Cancel",
+      },
+      dash_classes_component: {
+        title: "Classes 🏫",
+        update: "Updae",
+        delete: "Delete",
+      },
+      update_class: {
+        page_title : "Update Class 🏫",
+        title: "Title ⭕",
+        class_level: "Class level 🏫🪜🎚️",
+        subject : "Subject 📚📖📑",
+        note: "Note 📝",
+        teachers_section_title : "Teacher 👨‍🏫",
+        button: "Update",
+        remove_button : "Remove 🗑️",
+        cover_form_header: "Cover Actions 🎬",
+        new: "New Cover 🚀",
+        delete: "Delete Cover 🗑️",
+        teacher : "Choose The Teacher 👨‍🏫",
+        title_placeholder: "Type class's title here ✍️ ...",
+        note_placeholder: "Type class's note here ✍️ ...",
+      },
+      choose_teacher_form : {
+        title : "Search and choose teacher",
+        button : "Search",
+        placeholder : "Type Teacher Id Here ✍️ ...",
+        section_title : "Finded Teacher 👨‍🏫",
         add_button : "Add",
         remove_button : "Remove"
       },
@@ -819,9 +861,9 @@ export default createStore({
         password: "كلمة المرور",
         phone: "الهاتف",
         button: "تعديل",
-        avatar_form_header: "احداث الأفاتار",
-        new: "افاتار جديد",
-        delete: "حذف الأفاتار",
+        avatar_form_header: "احداث الأفاتار 🎬",
+        new: "افاتار جديد 🚀",
+        delete: "حذف الأفاتار 🗑️",
       },
       show_user_page: {
         gender: "النوع ⚧️ :",
@@ -1046,6 +1088,40 @@ export default createStore({
         add_button : "اضافة",
         remove_button : "حذف"
       },
+      delete_class_form: {
+        title: "حذف الصف ...",
+        delete: "حذف 🗑️",
+        cancel: "إلغاء",
+      },
+      dash_classes_component: {
+        title: "الصفوف 🏫",
+        update: "تعديل",
+        delete: "حذف",
+      },
+      update_class: {
+        page_title : "تعديل الصف 🏫",
+        title: "العنوان ⭕",
+        class_level: "مستوى الصف 🏫🪜🎚️",
+        subject : "لمادة 📚📖📑",
+        note: "ملاحظات 📝",
+        teachers_section_title : "المدرس 👨‍🏫",
+        button: "تعديل",
+        remove_button : "حذف 🗑️",
+        cover_form_header: "احداث الغلاف 🎬",
+        new: "كفر جديد 🚀",
+        delete: "حذف الكفر 🗑️",
+        teacher : "اختر مدرس الصف 👨‍🏫",
+        title_placeholder: "اكتب عنوان الصف هنا ✍️ ...",
+        note_placeholder: "اكتب ملاحظات الصف هنا ✍️ ...",
+      },
+      choose_teacher_form : {
+        title : "ابحث واختار المدرس",
+        button : "بحث",
+        placeholder : "اكتب معرف المدرس هنا ✍️ ...",
+        section_title : "المدرسون الذين تم العثور عليهم 👨‍🏫",
+        add_button : "اضافة",
+        remove_button : "حذف"
+      },
       theme: "السمات",
       mood: "الوضع",
       log_out: "تسجيل الخروج",
@@ -1248,9 +1324,15 @@ export default createStore({
     },
 
     // open || close the avatar form
-    Changeavatar_form_status(state) {
+    Change_avatar_form_status(state) {
       state.avatar_form_status =
         state.avatar_form_status == "close" ? "open" : "close";
+    },
+
+    // open || close the cover form
+    Change_cover_form_status(state) {
+      state.cover_form_status =
+        state.cover_form_status == "close" ? "open" : "close";
     },
 
     // open or close the verify delete home work form
@@ -1293,7 +1375,19 @@ export default createStore({
     ChooseChildren(state) {
       // to open or close the choose children form
       state.choose_children_status = state.choose_children_status == "close" ? "open" : "close"
-    }
+    },
+
+    // open or close the choosing teacher container
+    ChooseTeacher(state) {
+      // to open or close the choose teacher form
+      state.choose_teacher_status = state.choose_teacher_status == "close" ? "open" : "close"
+    },
+
+    // open or close the delete class form verify
+    OpenOrCloseDeleteClassForm(state) {
+      state.delete_class_form_status = 
+      state.delete_class_form_status == "close" ? "open" : "close"
+    },
   },
   actions: {
     // log out admin

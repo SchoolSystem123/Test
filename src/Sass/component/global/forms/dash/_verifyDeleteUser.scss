@@ -12,6 +12,7 @@
   justify-content: space-around;
   align-items: center;
   transition-duration: 0.5s;
+  z-index: 50;
 
   @media (max-width: $phone) {
     height: 20%;
@@ -56,6 +57,7 @@
 .delete-form-darck-English-close {
   @extend .delete-form-darck-English-open;
   top: -50%;
+  z-index: -50;
 }
 
 .delete-form-light-English-open {
@@ -71,6 +73,7 @@
   justify-content: space-around;
   align-items: center;
   transition-duration: 0.5s;
+  z-index: 50;
 
   @media (max-width: $phone) {
     height: 20%;
@@ -115,6 +118,7 @@
 .delete-form-light-English-close {
   @extend .delete-form-light-English-open;
   top: -50%;
+  z-index: -50;
 }
 // darck and light English style
 
@@ -132,6 +136,7 @@
   justify-content: space-around;
   align-items: center;
   transition-duration: 0.5s;
+  z-index: 50;
 
   @media (max-width: $phone) {
     height: 20%;
@@ -176,6 +181,7 @@
 .delete-form-darck-Arabic-close {
   @extend .delete-form-darck-Arabic-open;
   top: -50%;
+  z-index: -50;
 }
 
 .delete-form-light-Arabic-open {
@@ -191,6 +197,7 @@
   justify-content: space-around;
   align-items: center;
   transition-duration: 0.5s;
+  z-index: 50;
 
   @media (max-width: $phone) {
     height: 20%;
@@ -235,5 +242,6 @@
 .delete-form-light-Arabic-close {
   @extend .delete-form-light-Arabic-open;
   top: -50%;
+  z-index: -50;
 }
 // darck and light Arabic style

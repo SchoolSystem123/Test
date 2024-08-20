@@ -20,7 +20,7 @@
         <li @click="ChangeComponent('teachers')">Teachers 👨‍🏫</li>
         <li @click="ChangeComponent('students')">Students 👨‍🎓</li>
         <li @click="ChangeComponent('parents')">Parents 👨‍👩‍👦‍👦</li>
-        <li @click="ChangeComponent('classes')">Classes ➕</li>
+        <li @click="ChangeComponent('classes')">Classes 🏫</li>
         <li @click="ChangeComponent('homeWorks')">Home Works ➕</li>
         <li @click="ChangeComponent('messages')">Messages ➕</li>
 
@@ -173,6 +173,24 @@
       <!-- choose child for parent component -->
       <ChooseChildrenComponent />
       <!-- choose child for parent component -->
+
+      <!-- verify delete class component -->
+      <VerifyDeleteClassComponent />
+      <!-- verify delete class component -->
+
+      <!-- update class component -->
+      <UpdateClassComponent
+        v-if="this.$store.state.active_component_in_dash == 'update-class'"
+      />
+      <!-- update class component -->
+
+      <!-- choose teacher for parent component -->
+      <ChooseTeacherComponent />
+      <!-- choose teacher for parent component -->
+
+      <!-- update class cover component -->
+      <CoverFormComponent />
+      <!-- update class cover component -->
     </div>
   </div>
 </template>
@@ -202,6 +220,10 @@ import VerifyDeleteParentComponent from "@/components/global/forms/dash/parent/V
 import CreateParentComponent from "@/components/dash/Parents/CreateParentComponent.vue";
 import UpdateParentsComponent from "@/components/dash/Parents/UpdateParentsComponent.vue";
 import ChooseChildrenComponent from "@/components/global/forms/dash/parent/ChooseChildrenComponent.vue";
+import VerifyDeleteClassComponent from "@/components/global/forms/dash/class/VerifyDeleteClassComponent.vue";
+import UpdateClassComponent from "@/components/dash/Classes/UpdateClassComponent.vue";
+import ChooseTeacherComponent from "@/components/global/forms/dash/class/ChooseTeacherComponent.vue";
+import CoverFormComponent from "@/components/global/forms/dash/class/CoverFormComponent.vue";
 
 export default {
   data() {
@@ -248,6 +270,10 @@ export default {
     CreateParentComponent,
     UpdateParentsComponent,
     ChooseChildrenComponent,
+    VerifyDeleteClassComponent,
+    UpdateClassComponent,
+    ChooseTeacherComponent,
+    CoverFormComponent,
   },
   methods: {
     // change the component
