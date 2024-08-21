@@ -60,6 +60,17 @@
         >
           Create Parent 👨‍👩‍👦‍👦➕
         </li>
+
+        <li
+          @click="ChangeComponent('create-class')"
+          v-if="
+            this.$store.state.user.user_type == 'super' ||
+            this.$store.state.user.user_type == 'admin' ||
+            this.$store.state.user.user_type == 'teacher'
+          "
+        >
+          Create Class 🏫➕
+        </li>
       </ul>
     </div>
 
@@ -191,6 +202,12 @@
       <!-- update class cover component -->
       <CoverFormComponent />
       <!-- update class cover component -->
+
+      <!-- create class component -->
+      <CreateClassComponent
+        v-if="this.$store.state.active_component_in_dash == 'create-class'"
+      />
+      <!-- create class component -->
     </div>
   </div>
 </template>
@@ -224,6 +241,7 @@ import VerifyDeleteClassComponent from "@/components/global/forms/dash/class/Ver
 import UpdateClassComponent from "@/components/dash/Classes/UpdateClassComponent.vue";
 import ChooseTeacherComponent from "@/components/global/forms/dash/class/ChooseTeacherComponent.vue";
 import CoverFormComponent from "@/components/global/forms/dash/class/CoverFormComponent.vue";
+import CreateClassComponent from "@/components/dash/Classes/CreateClassComponent.vue";
 
 export default {
   data() {
@@ -274,6 +292,7 @@ export default {
     UpdateClassComponent,
     ChooseTeacherComponent,
     CoverFormComponent,
+    CreateClassComponent,
   },
   methods: {
     // change the component

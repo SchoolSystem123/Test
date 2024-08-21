@@ -1,5 +1,5 @@
 // darck and light English style
-.up-class-open-darck-English {
+.create-class-darck-English-open {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -17,10 +17,7 @@
     border: 1px solid;
     padding: 5px 0px;
     border-color: transparent transparent $border-light transparent;
-
-    h3 {
-      color: $font-light;
-    }
+    color: $font-light;
   }
 
   .form {
@@ -187,17 +184,17 @@
   }
 }
 
-.up-class-open-darck-English::-webkit-scrollbar {
+.create-class-darck-English-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.up-class-close-darck-English {
-  @extend .up-class-open-darck-English;
+.create-class-darck-English-close {
+  @extend .create-class-darck-English-open;
   opacity: 0;
   padding: 30% 5px 5px 5px;
 }
 
-.up-class-open-light-English {
+.create-class-light-English-open {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -385,50 +382,4 @@
     }
   }
 }
-
-
-.up-class-open-light-English::-webkit-scrollbar {
-  width: 0px;
-}
-
-.up-class-close-light-English {
-  @extend .up-class-open-light-English;
-  opacity: 0;
-  padding: 30% 5px 5px 5px;
-}
 // darck and light English style
-
-// darck and light Arabic style
-.up-class-open-darck-Arabic {
-  @extend .up-class-open-darck-English;
-  direction: rtl;
-}
-
-.up-class-open-darck-Arabic::-webkit-scrollbar {
-  width: 0px;
-}
-
-.up-class-close-darck-Arabic {
-  @extend .up-class-open-darck-Arabic;
-  opacity: 0;
-  padding: 30% 5px 5px 5px;
-}
-
-.up-class-open-light-Arabic {
-  @extend .up-class-open-light-English;
-  direction: rtl;
-}
-
-
-.up-class-open-light-Arabic::-webkit-scrollbar {
-  width: 0px;
-}
-
-.up-class-close-light-Arabic {
-  @extend .up-class-open-light-Arabic;
-  opacity: 0;
-  padding: 30% 5px 5px 5px;
-}
-// darck and light Arabic style
-
-

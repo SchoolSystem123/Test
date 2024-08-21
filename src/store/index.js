@@ -609,6 +609,19 @@ export default createStore({
         add_button : "Add",
         remove_button : "Remove"
       },
+      create_class: {
+        page_title : "Create Class 🏫",
+        title: "Title ⭕",
+        class_level: "Class level 🏫🪜🎚️",
+        subject : "Subject 📚📖📑",
+        note: "Note 📝",
+        teachers_section_title : "Teacher 👨‍🏫",
+        button: "Update",
+        remove_button : "Remove 🗑️",
+        teacher : "Choose The Teacher 👨‍🏫",
+        title_placeholder: "Type class's title here ✍️ ...",
+        note_placeholder: "Type class's note here ✍️ ...",
+      },
       theme: "Theme",
       mood: "Mood",
       log_out: "Log out",
@@ -1114,6 +1127,19 @@ export default createStore({
         title_placeholder: "اكتب عنوان الصف هنا ✍️ ...",
         note_placeholder: "اكتب ملاحظات الصف هنا ✍️ ...",
       },
+      create_class: {
+        page_title : "إنشاء الصف 🏫",
+        title: "العنوان ⭕",
+        class_level: "مستوى الصف 🏫🪜🎚️",
+        subject : "لمادة 📚📖📑",
+        note: "ملاحظات 📝",
+        teachers_section_title : "المدرس 👨‍🏫",
+        button: "تعديل",
+        remove_button : "حذف 🗑️",
+        teacher : "اختر مدرس الصف 👨‍🏫",
+        title_placeholder: "اكتب عنوان الصف هنا ✍️ ...",
+        note_placeholder: "اكتب ملاحظات الصف هنا ✍️ ...",
+      },
       choose_teacher_form : {
         title : "ابحث واختار المدرس",
         button : "بحث",
@@ -1149,7 +1175,7 @@ export default createStore({
           delete: "https://rrr-zb8x.onrender.com/api/v1/admin/class/delete",
           update: "https://rrr-zb8x.onrender.com/api/v1/admin/class/update",
         },
-        teachers: {
+        teacher: {
           create: "https://rrr-zb8x.onrender.com/api/v1/teacher/class/create",
           delete: "https://rrr-zb8x.onrender.com/api/v1/teacher/class/delete",
           update: "https://rrr-zb8x.onrender.com/api/v1/teacher/class/update",

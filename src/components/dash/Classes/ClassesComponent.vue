@@ -2,7 +2,13 @@
   <div
     :class="`section-cont-${this.status}-${this.$store.state.mood}-${this.$store.state.language}`"
   >
-    <div class="header">Classes</div>
+    <div class="header">
+      {{
+        this.$store.state.language == "English"
+          ? this.$store.state.English.dash_classes_component.title
+          : this.$store.state.Arabic.dash_classes_component.title
+      }}
+    </div>
 
     <div class="cards-section">
       <ClassesPageClassComponentDash
@@ -58,8 +64,6 @@ export default {
 
           // set the classes data from response to classes array in store
           this.$store.state.classes = Response.data.classes_data;
-
-          console.log(Response);
         })
         .catch((error) => {
           // to stop the loading animation

@@ -38,9 +38,19 @@
 
     <!-- buttons cont  -->
     <div class="buttons">
-      <button class="update" @click="GoToUpdateClass">Update</button>
+      <button class="update" @click="GoToUpdateClass">
+        {{
+          this.$store.state.language == "English"
+            ? this.$store.state.English.dash_classes_component.update
+            : this.$store.state.Arabic.dash_classes_component.update
+        }}
+      </button>
       <button class="delete" @click="DeleteClass(class_data._id)">
-        Delete
+        {{
+          this.$store.state.language == "English"
+            ? this.$store.state.English.dash_classes_component.delete
+            : this.$store.state.Arabic.dash_classes_component.delete
+        }}
       </button>
       <!-- buttons cont  -->
     </div>
@@ -80,6 +90,9 @@ export default {
     GoToUpdateClass() {
       // set the class data to class_for_update in store
       this.$store.state.class_for_update = this.class_data;
+
+      // update the choosed teacher in store to show it in teachers conatiner in update class componene
+      this.$store.state.choosed_teacher = this.class_data.teacher;
 
       // update the active component to open the update class component
       this.$store.state.active_component_in_dash = "update-class";
