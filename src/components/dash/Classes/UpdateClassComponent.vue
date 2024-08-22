@@ -299,7 +299,6 @@ export default {
         for (const file of cover) {
           this.formData.append("cover", file, file.name);
         }
-        // this.formData.append("cover", this.$store.state.selected_cover.file);
       }
 
       // add the delete cover filed

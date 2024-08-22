@@ -3,7 +3,13 @@
     :class="`create-class-${this.$store.state.mood}-${this.$store.state.language}-${this.status}`"
   >
     <!-- header -->
-    <div class="header">Create Class</div>
+    <div class="header">
+      {{
+        this.$store.state.language == "English"
+          ? this.$store.state.English.create_class.page_title
+          : this.$store.state.Arabic.create_class.page_title
+      }}
+    </div>
     <!-- header -->
 
     <div class="form">
@@ -170,7 +176,7 @@
       <!-- choosed teacher container -->
       <!-- teacher  -->
 
-      <button @click="UpdateClass">
+      <button @click="CreateClass">
         {{
           this.$store.state.language == "English"
             ? this.$store.state.English.create_class.button
@@ -242,6 +248,9 @@ export default {
   methods: {
     // create class method
     async CreateClass() {
+      // create a form data
+      this.formData = new FormData();
+
       // to start the loading animation
       this.$store.state.loading = "open";
 
@@ -253,16 +262,28 @@ export default {
       // update the api
       if (this.$store.state.user.user_type == "super") {
         // update the api
-        this.api = this.$store.state.APIs.classes.super.craete;
+        this.api = this.$store.state.APIs.classes.super.create;
 
         // add the super admin id to form data
         this.formData.append("super_admin_id", this.$store.state.user.user._id);
+
+        // add the teacher id
+        this.formData.append(
+          "teacher_id",
+          this.$store.state.choosed_teacher._id
+        );
       } else if (this.$store.state.user.user_type == "admin") {
         // update admin
-        this.api = this.$store.state.APIs.classes.admin.craete;
+        this.api = this.$store.state.APIs.classes.admin.create;
 
         // add the admin id to form data
         this.formData.append("admin_id", this.$store.state.user.user._id);
+
+        // add the teacher id
+        this.formData.append(
+          "teacher_id",
+          this.$store.state.choosed_teacher._id
+        );
       } else if (this.$store.state.user.user_type == "teacher") {
         // update api
         this.api = this.$store.state.APIs.classes.teacher.create;
@@ -283,20 +304,58 @@ export default {
       // add the class level
       this.formData.append("class_level", this.class_level);
 
-      // add the teacher id
-      this.formData.append("teacher_id", this.$store.state.choosed_teacher._id);
+      // add the cover
+      if (this.$store.state.selected_cover) {
+        // create a new array from selected cover in store
+        let cover = Array.from(this.$store.state.selected_cover);
+        for (const file of cover) {
+          this.formData.append("cover", file, file.name);
+        }
+      }
 
       await axios
-        .post(this.api, this.formData, { headers })
-        .then((response) => {
-          console.log(response);
+        .post(this.api, this.formData, {
+          headers,
+        })
+        .then(() => {
+          // to stop the loading
+          this.$store.state.loading = "close";
 
           // emptying the choosed teacher
           this.$store.state.choosed_teacher = "";
+
+          // change the active componenet in store
+          this.$store.state.active_component_in_dash = "classes";
         })
-        .catsh((error) => {
-          console.log(error);
+        .catch((error) => {
+          // to stop the loading
+          this.$store.state.loading = "close";
+
+          // open the error form
+          this.$store.state.error_form_status = "open";
+
+          // set the error message to error message in store
+          this.$store.state.error_message = error.response.data.message;
         });
+    },
+
+    // reader selecetd image
+    readerFile() {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        this.cover = e.target.result;
+      };
+
+      reader.readAsDataURL(this.$store.state.selected_cover[0]);
+
+      // return the cover to use the ass a path in cover image
+      return this.cover;
+    },
+
+    // remove the choosed teacher method
+    RemoveTeacher() {
+      this.$store.state.choosed_teacher = "";
     },
   },
   watch: {
