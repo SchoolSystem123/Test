@@ -1,5 +1,5 @@
 // darck and light English style
-.create-class-darck-English-open {
+.create-message-darck-English-open {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -184,17 +184,17 @@
   }
 }
 
-.create-class-darck-English-open::-webkit-scrollbar {
+.create-message-darck-English-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.create-class-darck-English-close {
-  @extend .create-class-darck-English-open;
+.create-message-darck-English-close {
+  @extend .create-message-darck-English-open;
   opacity: 0;
   padding: 30% 5px 5px 5px;
 }
 
-.create-class-light-English-open {
+.create-message-light-English-open {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -386,23 +386,23 @@
 
 
 // darck and light Arabic style
-.create-class-darck-Arabic-open {
-  @extend .create-class-darck-English-open;
+.create-message-darck-Arabic-open {
+  @extend .create-message-darck-English-open;
   direction: rtl;
 }
 
-.create-class-darck-Arabic-open::-webkit-scrollbar {
+.create-message-darck-Arabic-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.create-class-darck-Arabic-close {
-  @extend .create-class-darck-Arabic-open;
+.create-message-darck-Arabic-close {
+  @extend .create-message-darck-Arabic-open;
   opacity: 0;
   padding: 30% 5px 5px 5px;
 }
 
-.create-class-light-Arabic-open {
-  @extend .create-class-light-English-open;
+.create-message-light-Arabic-open {
+  @extend .create-message-light-English-open;
   direction: rtl;
 }
 // darck and light Arabic style

@@ -35,7 +35,7 @@ export default createStore({
     teacher_for_update: "",
     student_for_update : "",
     parent_for_update : "",
-    active_component_in_dash: "admins",
+    active_component_in_dash: "messages",
     choose_children_status : "close",
     choose_teacher_status : "close",
     geted_student : "",
@@ -100,6 +100,17 @@ export default createStore({
       },
       { English: "Literary_baccalaureate", Arabic: "بكالوريا أدبي " },
       { English: "Scientific_baccalaureate", Arabic: "بكالوريا علمي" },
+    ],
+    recipient_list : [
+      { English: "for students 👨‍🎓", Arabic: "👨‍🎓 للطلاب" , value : "students"},
+      { English: "for parents 👨‍👩‍👦‍👦", Arabic: "👨‍👩‍👦‍👦 لأولياء الأمور" , value : "parents"},
+      { English: "for teachers 👨‍🏫", Arabic: "👨‍🏫 للمدرسين" , value : "teachers"},
+      { English: "public 📢", Arabic: "📢 للجميع" , value : "public"},
+    ],
+    messages_level_list : [
+      { English: "normal 🟨", Arabic: "🟨 متوسطة الأهمية" , value : "normal"},
+      { English: "important 🟧", Arabic: "🟧 هامة" , value : "important"},
+      { English: "veryimportant 🟥 ", Arabic: "🟥  هامة جدا" , value : "veryimportant"},
     ],
     English: {
       login: {
@@ -621,6 +632,18 @@ export default createStore({
         teacher : "Choose The Teacher 👨‍🏫",
         title_placeholder: "Type class's title here ✍️ ...",
         note_placeholder: "Type class's note here ✍️ ...",
+      },
+      create_message : {
+        page_title : "Create Messages 💬",
+        title : "Title ⭕",
+        description : "Description 📑",
+        note : "Note 📝",
+        Recipient : "Recipient 🎯",
+        level : "Message Level 💬🎚️",
+        title_placeholder : "Type Messages's title here ✍️ ...",
+        description_placeholder : "Type Messages's description here ✍️ ...",
+        note_placeholder : "Type Messages's note here ✍️ ...",
+        button : "Create"
       },
       theme: "Theme",
       mood: "Mood",
@@ -1147,6 +1170,18 @@ export default createStore({
         section_title : "المدرسون الذين تم العثور عليهم 👨‍🏫",
         add_button : "اضافة",
         remove_button : "حذف"
+      },
+      create_message : {
+        page_title : "إنشاء رسالة 💬",
+        title : "العنوان ⭕",
+        description : "الوصف 📑",
+        note : "الملاحظة 📝",
+        Recipient : "المستهد فون 🎯",
+        level : "مستوى اهمية الرسالة 💬🎚️",
+        title_placeholder : "اكتب عنوان الراسالة هنا ✍️ ...",
+        description_placeholder : "اكتب وصف الرسالة هنا ✍️ ...",
+        note_placeholder : "اكتب ملاظة لرسالة هنا ✍️ ...",
+        button : "إنشاء"
       },
       theme: "السمات",
       mood: "الوضع",

@@ -72,6 +72,9 @@ body {
 
 @import "./component/dash/classes/classInDash";
 @import "./component/dash/classes/classes";
+
+@import "./component/dash/messages/messages" ;
+@import "./component/dash/messages/createMessage" ;
 // @import "./component/dash/parents/parentInDash";
 // @import "./component/dash/parents/updateParent";
 @import "./pages/login";

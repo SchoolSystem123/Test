@@ -71,6 +71,16 @@
         >
           Create Class 🏫➕
         </li>
+
+        <li
+          @click="ChangeComponent('create-message')"
+          v-if="
+            this.$store.state.user.user_type == 'super' ||
+            this.$store.state.user.user_type == 'admin'
+          "
+        >
+          Create Message 💬➕
+        </li>
       </ul>
     </div>
 
@@ -208,6 +218,12 @@
         v-if="this.$store.state.active_component_in_dash == 'create-class'"
       />
       <!-- create class component -->
+
+      <!-- create message component -->
+      <CreateMessagesComponent
+        v-if="this.$store.state.active_component_in_dash == 'create-message'"
+      />
+      <!-- create message component -->
     </div>
   </div>
 </template>
@@ -242,6 +258,7 @@ import UpdateClassComponent from "@/components/dash/Classes/UpdateClassComponent
 import ChooseTeacherComponent from "@/components/global/forms/dash/class/ChooseTeacherComponent.vue";
 import CoverFormComponent from "@/components/global/forms/dash/class/CoverFormComponent.vue";
 import CreateClassComponent from "@/components/dash/Classes/CreateClassComponent.vue";
+import CreateMessagesComponent from "@/components/dash/Messages/CreateMessagesComponent.vue";
 
 export default {
   data() {
@@ -293,6 +310,7 @@ export default {
     ChooseTeacherComponent,
     CoverFormComponent,
     CreateClassComponent,
+    CreateMessagesComponent,
   },
   methods: {
     // change the component
