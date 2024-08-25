@@ -303,3 +303,619 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../../Sass/varibels/variables";
+
+// darck and light English style
+.up-admin-open-darck-English {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: ltr;
+
+  // component header style
+  .header {
+    width: 100%;
+    height: auto;
+    border: 1px solid;
+    border-color: transparent transparent $border-light transparent;
+
+    h3 {
+      color: $font-light;
+    }
+  }
+
+  .form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    // blue avatar cont
+    .avatar-cont-blue {
+      width: 100px;
+      height: 100px;
+      border-radius: 5px;
+      margin: 20px 0px 0px 0px;
+      cursor: pointer;
+      background: linear-gradient(to top, $first-blue, $second-blue);
+
+      img {
+        width: 90%;
+        height: 90%;
+        margin: 5%;
+        border-radius: 5px;
+      }
+    }
+
+    // orange avatar cont
+    .avatar-cont-orange {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-orange, $second-orange);
+    }
+
+    // pink avatar cont
+    .avatar-cont-pink {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-pink, $second-pink);
+    }
+
+    // green avatar cont
+    .avatar-cont-green {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-green, $second-green);
+    }
+
+    // input's labels
+    label {
+      width: 100%;
+      height: auto;
+      padding: 5px 0px;
+      margin: 10px 0px;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+      color: $font-light;
+    }
+
+    // input style
+    input {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      padding: 0px 10px;
+      margin: 10px 0px;
+      background-color: $body-light;
+    }
+
+    // password's conatiner
+    .password {
+      width: 100%;
+      height: 40px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $body-light;
+      padding: 0px 10px;
+
+      input {
+        width: 80%;
+        height: 100%;
+        outline: none;
+        border: none;
+        padding: 0px;
+      }
+
+      svg {
+        transition-duration: 0.5s;
+        cursor: pointer;
+      }
+
+      svg:hover {
+        color: $blue;
+      }
+    }
+
+    // gender and Permissions list style
+    select {
+      width: 100%;
+      height: 40px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      margin: 10px 0px;
+      background-color: $body-light;
+      padding: 0px 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      color: $font-light;
+      background-color: $green;
+      cursor: pointer;
+    }
+  }
+}
+
+.up-admin-open-darck-English::-webkit-scrollbar {
+  width: 0px;
+}
+
+.up-admin-close-darck-English {
+  @extend .up-admin-open-darck-English;
+  opacity: 0;
+  padding: 30% 5px 5px 5px;
+}
+
+.up-admin-open-light-English {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: ltr;
+
+  // component header style
+  .header {
+    width: 100%;
+    height: auto;
+    border: 1px solid;
+    border-color: transparent transparent $border-darck transparent;
+
+    h3 {
+      color: $font-darck;
+    }
+  }
+
+  .form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    // blue avatar cont
+    .avatar-cont-blue {
+      width: 100px;
+      height: 100px;
+      border-radius: 5px;
+      margin: 20px 0px 0px 0px;
+      cursor: pointer;
+      background: linear-gradient(to top, $first-blue, $second-blue);
+
+      img {
+        width: 90%;
+        height: 90%;
+        margin: 5%;
+        border-radius: 5px;
+      }
+    }
+
+    // orange avatar cont
+    .avatar-cont-orange {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-orange, $second-orange);
+    }
+
+    // pink avatar cont
+    .avatar-cont-pink {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-pink, $second-pink);
+    }
+
+    // green avatar cont
+    .avatar-cont-green {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-green, $second-green);
+    }
+
+    // input's labels
+    label {
+      width: 100%;
+      height: auto;
+      padding: 5px 0px;
+      margin: 10px 0px;
+      border: 1px solid;
+      border-color: transparent transparent $border-darck transparent;
+      color: $font-darck;
+    }
+
+    // input style
+    input {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      padding: 0px 10px;
+      margin: 10px 0px;
+      background-color: $message-light;
+    }
+
+    // password's conatiner
+    .password {
+      width: 100%;
+      height: 40px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $message-light;
+      padding: 0px 10px;
+
+      input {
+        width: 80%;
+        height: 100%;
+        outline: none;
+        border: none;
+        padding: 0px;
+      }
+
+      svg {
+        transition-duration: 0.5s;
+        cursor: pointer;
+      }
+
+      svg:hover {
+        color: $blue;
+      }
+    }
+
+    // gender and Permissions list style
+    select {
+      width: 100%;
+      height: 40px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      margin: 10px 0px;
+      background-color: $message-light;
+      padding: 0px 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      color: $font-light;
+      background-color: $green;
+      cursor: pointer;
+    }
+  }
+}
+
+.up-admin-open-light-English::-webkit-scrollbar {
+  width: 0px;
+}
+
+.up-admin-close-light-English {
+  @extend .up-admin-open-darck-English;
+  opacity: 0;
+  padding: 30% 5px 5px 5px;
+}
+// darck and light English style
+
+// darck and light Arabic style
+.up-admin-open-darck-Arabic {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: ltr;
+
+  // component header style
+  .header {
+    width: 100%;
+    height: auto;
+    border: 1px solid;
+    border-color: transparent transparent $border-light transparent;
+
+    h3 {
+      color: $font-light;
+    }
+  }
+
+  .form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    // blue avatar cont
+    .avatar-cont-blue {
+      width: 100px;
+      height: 100px;
+      border-radius: 5px;
+      margin: 20px 0px 0px 0px;
+      cursor: pointer;
+      background: linear-gradient(to top, $first-blue, $second-blue);
+
+      img {
+        width: 90%;
+        height: 90%;
+        margin: 5%;
+        border-radius: 5px;
+      }
+    }
+
+    // orange avatar cont
+    .avatar-cont-orange {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-orange, $second-orange);
+    }
+
+    // pink avatar cont
+    .avatar-cont-pink {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-pink, $second-pink);
+    }
+
+    // green avatar cont
+    .avatar-cont-green {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-green, $second-green);
+    }
+
+    // input's labels
+    label {
+      width: 100%;
+      height: auto;
+      padding: 5px 0px;
+      margin: 10px 0px;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+      color: $font-light;
+    }
+
+    // input style
+    input {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      padding: 0px 10px;
+      margin: 10px 0px;
+      background-color: $body-light;
+    }
+
+    // password's conatiner
+    .password {
+      width: 100%;
+      height: 40px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $body-light;
+      padding: 0px 10px;
+
+      input {
+        width: 80%;
+        height: 100%;
+        outline: none;
+        border: none;
+        padding: 0px;
+      }
+
+      svg {
+        transition-duration: 0.5s;
+        cursor: pointer;
+      }
+
+      svg:hover {
+        color: $blue;
+      }
+    }
+
+    // gender and Permissions list style
+    select {
+      width: 100%;
+      height: 40px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      margin: 10px 0px;
+      background-color: $body-light;
+      padding: 0px 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      color: $font-light;
+      background-color: $green;
+      cursor: pointer;
+    }
+  }
+}
+
+.up-admin-open-darck-Arabic::-webkit-scrollbar {
+  width: 0px;
+}
+
+.up-admin-close-darck-Arabic {
+  @extend .up-admin-open-darck-Arabic;
+  opacity: 0;
+  padding: 30% 5px 5px 5px;
+}
+
+.up-admin-open-light-Arabic {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: ltr;
+
+  // component header style
+  .header {
+    width: 100%;
+    height: auto;
+    border: 1px solid;
+    border-color: transparent transparent $border-darck transparent;
+
+    h3 {
+      color: $font-darck;
+    }
+  }
+
+  .form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    // blue avatar cont
+    .avatar-cont-blue {
+      width: 100px;
+      height: 100px;
+      border-radius: 5px;
+      margin: 20px 0px 0px 0px;
+      cursor: pointer;
+      background: linear-gradient(to top, $first-blue, $second-blue);
+
+      img {
+        width: 90%;
+        height: 90%;
+        margin: 5%;
+        border-radius: 5px;
+      }
+    }
+
+    // orange avatar cont
+    .avatar-cont-orange {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-orange, $second-orange);
+    }
+
+    // pink avatar cont
+    .avatar-cont-pink {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-pink, $second-pink);
+    }
+
+    // green avatar cont
+    .avatar-cont-green {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-green, $second-green);
+    }
+
+    // input's labels
+    label {
+      width: 100%;
+      height: auto;
+      padding: 5px 0px;
+      margin: 10px 0px;
+      border: 1px solid;
+      border-color: transparent transparent $border-darck transparent;
+      color: $font-darck;
+    }
+
+    // input style
+    input {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      padding: 0px 10px;
+      margin: 10px 0px;
+      background-color: $message-light;
+    }
+
+    // password's conatiner
+    .password {
+      width: 100%;
+      height: 40px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $message-light;
+      padding: 0px 10px;
+
+      input {
+        width: 80%;
+        height: 100%;
+        outline: none;
+        border: none;
+        padding: 0px;
+      }
+
+      svg {
+        transition-duration: 0.5s;
+        cursor: pointer;
+      }
+
+      svg:hover {
+        color: $blue;
+      }
+    }
+
+    // gender and Permissions list style
+    select {
+      width: 100%;
+      height: 40px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      margin: 10px 0px;
+      background-color: $message-light;
+      padding: 0px 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      color: $font-light;
+      background-color: $green;
+      cursor: pointer;
+    }
+  }
+}
+
+.up-admin-open-light-Arabic::-webkit-scrollbar {
+  width: 0px;
+}
+
+.up-admin-close-light-Arabic {
+  @extend .up-admin-open-darck-Arabic;
+  opacity: 0;
+  padding: 30% 5px 5px 5px;
+}
+// darck and light Arabic style
+</style>

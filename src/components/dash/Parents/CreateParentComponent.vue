@@ -376,3 +376,1227 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../../Sass/varibels/variables";
+
+// darck and light English style
+.create-parent-darck-English-open {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: ltr;
+
+  .header {
+    width: 100%;
+    height: 30px;
+    border: 1px solid;
+    border-color: transparent transparent $border-light transparent;
+    color: $font-light;
+    margin: 5px 0px;
+  }
+
+  .form {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    .avatar-blue {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-blue, $second-blue);
+
+      #avatar-label {
+        cursor: pointer;
+        border: none;
+        input {
+          display: none;
+        }
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .avatar-orange {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-orange, $second-orange);
+
+      #avatar-label {
+        cursor: pointer;
+        border: none;
+        input {
+          display: none;
+        }
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .avatar-pink {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-pink, $second-pink);
+
+      #avatar-label {
+        cursor: pointer;
+        border: none;
+        input {
+          display: none;
+        }
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .avatar-green {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-green, $second-green);
+
+      #avatar-label {
+        cursor: pointer;
+        border: none;
+        input {
+          display: none;
+        }
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    label {
+      width: 100%;
+      height: 30px;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+      color: $font-light;
+      padding: 5px 0px;
+      margin: 10px 0px;
+    }
+
+    input {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      padding-left: 10px;
+      background-color: $body-light;
+    }
+
+    // about me textarea
+    textarea {
+      @extend input;
+      height: 100px;
+      resize: none;
+      padding: 10px;
+    }
+
+    // password container style
+    .password {
+      width: 100%;
+      height: 40px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: $body-light;
+      padding: 0px 5px;
+
+      input {
+        outline: none;
+        border: none;
+      }
+
+      svg {
+        transition-duration: 0.5s;
+        cursor: pointer;
+      }
+
+      svg:hover {
+        color: $blue;
+      }
+    }
+
+    select {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      background-color: $body-light;
+
+      option {
+        border-radius: 5px;
+        height: 20px;
+        margin: 10px 0px;
+      }
+    }
+
+    // children conatiner
+    .children {
+      width: 100%;
+      height: 120px;
+      overflow-y: scroll;
+      margin: 20px 0px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: start;
+      align-items: center;
+      padding: 3px;
+      border-radius: 5px;
+      position: relative;
+      background-color: $card-darck;
+
+      // add icon
+      svg {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        padding: 5px;
+        background-color: $blue;
+        color: $font-light;
+        cursor: pointer;
+        border-radius: 3px;
+
+        @media (max-width: $phone) {
+          right: 3px;
+          top: 3px;
+        }
+      }
+
+      .students-cont {
+        width: 98%;
+        height: auto;
+        margin: 1%;
+        border-radius: 10px;
+
+        .student {
+          width: 100%;
+          height: 100px;
+          margin: 5px 0px;
+          border-radius: 5px;
+          background-color: $body-darck;
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 90px;
+            height: 90px;
+            border-radius: 5px;
+            margin: 0px 5px;
+            cursor: pointer;
+          }
+
+          .info {
+            width: 75%;
+            height: 100%;
+            cursor: pointer;
+
+            h3 {
+              width: 100%;
+              color: $font-light;
+              margin: 10px 5px;
+            }
+
+            @media (max-width: $phone) {
+              width: 50%;
+            }
+          }
+
+          button {
+            padding: 7px 15px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            color: $font-light;
+            cursor: pointer;
+            background-color: $red;
+
+            @media (max-width: $phone) {
+              padding: 5px 10px;
+              font-size: $xx-small;
+            }
+          }
+        }
+      }
+    }
+
+    .children::-webkit-scrollbar {
+      width: 0px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      color: $font-light;
+      background-color: $green;
+      cursor: pointer;
+    }
+  }
+}
+
+.create-parent-darck-English-close {
+  @extend .create-parent-darck-English-open;
+  padding: 30% 5px 5px 5px;
+  opacity: 0;
+}
+
+.create-parent-darck-English-open::-webkit-scrollbar {
+  width: 0px;
+}
+
+.create-parent-light-English-open {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: ltr;
+
+  .header {
+    width: 100%;
+    height: 30px;
+    border: 1px solid;
+    border-color: transparent transparent $border-darck transparent;
+    color: $font-darck;
+    margin: 5px 0px;
+  }
+
+  .form {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    .avatar-blue {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-blue, $second-blue);
+
+      #avatar-label {
+        cursor: pointer;
+        border: none;
+        input {
+          display: none;
+        }
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .avatar-orange {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-orange, $second-orange);
+
+      #avatar-label {
+        cursor: pointer;
+        border: none;
+        input {
+          display: none;
+        }
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .avatar-pink {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-pink, $second-pink);
+
+      #avatar-label {
+        cursor: pointer;
+        border: none;
+        input {
+          display: none;
+        }
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .avatar-green {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-green, $second-green);
+
+      #avatar-label {
+        cursor: pointer;
+        border: none;
+        input {
+          display: none;
+        }
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    label {
+      width: 100%;
+      height: 30px;
+      border: 1px solid;
+      border-color: transparent transparent $border-darck transparent;
+      color: $font-darck;
+      padding: 5px 0px;
+      margin: 10px 0px;
+    }
+
+    input {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      padding-left: 10px;
+      background-color: $message-light;
+    }
+
+    // about me textarea
+    textarea {
+      @extend input;
+      height: 100px;
+      resize: none;
+      padding: 10px;
+    }
+
+    // password container style
+    .password {
+      width: 100%;
+      height: 40px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: $message-light;
+      padding: 0px 5px;
+
+      input {
+        outline: none;
+        border: none;
+      }
+
+      svg {
+        transition-duration: 0.5s;
+        cursor: pointer;
+      }
+
+      svg:hover {
+        color: $blue;
+      }
+    }
+
+    select {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      background-color: $message-light;
+
+      option {
+        border-radius: 5px;
+        height: 20px;
+        margin: 10px 0px;
+      }
+    }
+
+    // children conatiner
+    .children {
+      width: 100%;
+      height: 120px;
+      overflow-y: scroll;
+      margin: 20px 0px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: start;
+      align-items: center;
+      padding: 3px;
+      border-radius: 5px;
+      position: relative;
+      background-color: $card-light;
+
+      // add icon
+      svg {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        padding: 5px;
+        background-color: $blue;
+        color: $font-light;
+        cursor: pointer;
+        border-radius: 3px;
+
+        @media (max-width: $phone) {
+          right: 3px;
+          top: 3px;
+        }
+      }
+
+      .students-cont {
+        width: 98%;
+        height: auto;
+        margin: 1%;
+        border-radius: 10px;
+
+        .student {
+          width: 100%;
+          height: 100px;
+          margin: 5px 0px;
+          border-radius: 5px;
+          background-color: $body-light;
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 90px;
+            height: 90px;
+            border-radius: 5px;
+            margin: 0px 5px;
+            cursor: pointer;
+          }
+
+          .info {
+            width: 75%;
+            height: 100%;
+            cursor: pointer;
+
+            h3 {
+              width: 100%;
+              color: $font-darck;
+              margin: 10px 5px;
+            }
+
+            @media (max-width: $phone) {
+              width: 50%;
+            }
+          }
+
+          button {
+            padding: 7px 15px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            color: $font-light;
+            cursor: pointer;
+            background-color: $red;
+
+            @media (max-width: $phone) {
+              padding: 5px 10px;
+              font-size: $xx-small;
+            }
+          }
+        }
+      }
+    }
+
+    .children::-webkit-scrollbar {
+      width: 0px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      color: $font-light;
+      background-color: $green;
+      cursor: pointer;
+    }
+  }
+}
+
+.create-parent-light-English-close {
+  @extend .create-parent-light-English-open;
+  padding: 30% 5px 5px 5px;
+  opacity: 0;
+}
+
+.create-parent-light-English-open::-webkit-scrollbar {
+  width: 0px;
+}
+// darck and light English style
+
+// darck and light Arabic style
+.create-parent-darck-Arabic-open {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: ltr;
+
+  .header {
+    width: 100%;
+    height: 30px;
+    border: 1px solid;
+    border-color: transparent transparent $border-light transparent;
+    color: $font-light;
+    margin: 5px 0px;
+  }
+
+  .form {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    .avatar-blue {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-blue, $second-blue);
+
+      #avatar-label {
+        cursor: pointer;
+        border: none;
+        input {
+          display: none;
+        }
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .avatar-orange {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-orange, $second-orange);
+
+      #avatar-label {
+        cursor: pointer;
+        border: none;
+        input {
+          display: none;
+        }
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .avatar-pink {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-pink, $second-pink);
+
+      #avatar-label {
+        cursor: pointer;
+        border: none;
+        input {
+          display: none;
+        }
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .avatar-green {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-green, $second-green);
+
+      #avatar-label {
+        cursor: pointer;
+        border: none;
+        input {
+          display: none;
+        }
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    label {
+      width: 100%;
+      height: 30px;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+      color: $font-light;
+      padding: 5px 0px;
+      margin: 10px 0px;
+    }
+
+    input {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      padding-left: 10px;
+      background-color: $body-light;
+    }
+
+    // about me textarea
+    textarea {
+      @extend input;
+      height: 100px;
+      resize: none;
+      padding: 10px;
+    }
+
+    // password container style
+    .password {
+      width: 100%;
+      height: 40px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: $body-light;
+      padding: 0px 5px;
+
+      input {
+        outline: none;
+        border: none;
+      }
+
+      svg {
+        transition-duration: 0.5s;
+        cursor: pointer;
+      }
+
+      svg:hover {
+        color: $blue;
+      }
+    }
+
+    select {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      background-color: $body-light;
+
+      option {
+        border-radius: 5px;
+        height: 20px;
+        margin: 10px 0px;
+      }
+    }
+
+    // children conatiner
+    .children {
+      width: 100%;
+      height: 120px;
+      overflow-y: scroll;
+      margin: 20px 0px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: start;
+      align-items: center;
+      padding: 3px;
+      border-radius: 5px;
+      position: relative;
+      background-color: $card-darck;
+
+      // add icon
+      svg {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        padding: 5px;
+        background-color: $blue;
+        color: $font-light;
+        cursor: pointer;
+        border-radius: 3px;
+
+        @media (max-width: $phone) {
+          right: 3px;
+          top: 3px;
+        }
+      }
+
+      .students-cont {
+        width: 98%;
+        height: auto;
+        margin: 1%;
+        border-radius: 10px;
+
+        .student {
+          width: 100%;
+          height: 100px;
+          margin: 5px 0px;
+          border-radius: 5px;
+          background-color: $body-darck;
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 90px;
+            height: 90px;
+            border-radius: 5px;
+            margin: 0px 5px;
+            cursor: pointer;
+          }
+
+          .info {
+            width: 75%;
+            height: 100%;
+            cursor: pointer;
+
+            h3 {
+              width: 100%;
+              color: $font-light;
+              margin: 10px 5px;
+            }
+
+            @media (max-width: $phone) {
+              width: 50%;
+            }
+          }
+
+          button {
+            padding: 7px 15px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            color: $font-light;
+            cursor: pointer;
+            background-color: $red;
+
+            @media (max-width: $phone) {
+              padding: 5px 10px;
+              font-size: $xx-small;
+            }
+          }
+        }
+      }
+    }
+
+    .children::-webkit-scrollbar {
+      width: 0px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      color: $font-light;
+      background-color: $green;
+      cursor: pointer;
+    }
+  }
+}
+
+.create-parent-darck-Arabic-close {
+  @extend .create-parent-darck-Arabic-open;
+  padding: 30% 5px 5px 5px;
+  opacity: 0;
+}
+
+.create-parent-darck-Arabic-open::-webkit-scrollbar {
+  width: 0px;
+}
+
+.create-parent-light-Arabic-open {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: ltr;
+
+  .header {
+    width: 100%;
+    height: 30px;
+    border: 1px solid;
+    border-color: transparent transparent $border-darck transparent;
+    color: $font-darck;
+    margin: 5px 0px;
+  }
+
+  .form {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    .avatar-blue {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-blue, $second-blue);
+
+      #avatar-label {
+        cursor: pointer;
+        border: none;
+        input {
+          display: none;
+        }
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .avatar-orange {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-orange, $second-orange);
+
+      #avatar-label {
+        cursor: pointer;
+        border: none;
+        input {
+          display: none;
+        }
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .avatar-pink {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-pink, $second-pink);
+
+      #avatar-label {
+        cursor: pointer;
+        border: none;
+        input {
+          display: none;
+        }
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .avatar-green {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      margin: 10px 0px;
+      background: linear-gradient(to top, $first-green, $second-green);
+
+      #avatar-label {
+        cursor: pointer;
+        border: none;
+        input {
+          display: none;
+        }
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    label {
+      width: 100%;
+      height: 30px;
+      border: 1px solid;
+      border-color: transparent transparent $border-darck transparent;
+      color: $font-darck;
+      padding: 5px 0px;
+      margin: 10px 0px;
+    }
+
+    input {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      padding-left: 10px;
+      background-color: $message-light;
+    }
+
+    // about me textarea
+    textarea {
+      @extend input;
+      height: 100px;
+      resize: none;
+      padding: 10px;
+    }
+
+    // password container style
+    .password {
+      width: 100%;
+      height: 40px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: $message-light;
+      padding: 0px 5px;
+
+      input {
+        outline: none;
+        border: none;
+      }
+
+      svg {
+        transition-duration: 0.5s;
+        cursor: pointer;
+      }
+
+      svg:hover {
+        color: $blue;
+      }
+    }
+
+    select {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      background-color: $message-light;
+
+      option {
+        border-radius: 5px;
+        height: 20px;
+        margin: 10px 0px;
+      }
+    }
+
+    // children conatiner
+    .children {
+      width: 100%;
+      height: 120px;
+      overflow-y: scroll;
+      margin: 20px 0px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: start;
+      align-items: center;
+      padding: 3px;
+      border-radius: 5px;
+      position: relative;
+      background-color: $card-light;
+
+      // add icon
+      svg {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        padding: 5px;
+        background-color: $blue;
+        color: $font-light;
+        cursor: pointer;
+        border-radius: 3px;
+
+        @media (max-width: $phone) {
+          right: 3px;
+          top: 3px;
+        }
+      }
+
+      .students-cont {
+        width: 98%;
+        height: auto;
+        margin: 1%;
+        border-radius: 10px;
+
+        .student {
+          width: 100%;
+          height: 100px;
+          margin: 5px 0px;
+          border-radius: 5px;
+          background-color: $body-light;
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 90px;
+            height: 90px;
+            border-radius: 5px;
+            margin: 0px 5px;
+            cursor: pointer;
+          }
+
+          .info {
+            width: 75%;
+            height: 100%;
+            cursor: pointer;
+
+            h3 {
+              width: 100%;
+              color: $font-darck;
+              margin: 10px 5px;
+            }
+
+            @media (max-width: $phone) {
+              width: 50%;
+            }
+          }
+
+          button {
+            padding: 7px 15px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            color: $font-light;
+            cursor: pointer;
+            background-color: $red;
+
+            @media (max-width: $phone) {
+              padding: 5px 10px;
+              font-size: $xx-small;
+            }
+          }
+        }
+      }
+    }
+
+    .children::-webkit-scrollbar {
+      width: 0px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      color: $font-light;
+      background-color: $green;
+      cursor: pointer;
+    }
+  }
+}
+
+.create-parent-light-Arabic-close {
+  @extend .create-parent-light-Arabic-open;
+  padding: 30% 5px 5px 5px;
+  opacity: 0;
+}
+
+.create-parent-light-Arabic-open::-webkit-scrollbar {
+  width: 0px;
+}
+// darck and light Arabic style
+</style>

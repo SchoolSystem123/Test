@@ -12,94 +12,118 @@ body {
   height: auto;
 }
 
+//? global components 
 @import "./varibels/variables";
-@import "./component/sidBar";
-@import "./component/global/nav";
+// @import "./component/sidBar";
+// @import "./component/global/nav";
 @import "./component/global/supersearch";
-@import "./component/global/errorForm";
+// @import "./component/global/errorForm";
 @import "./component/info";
-@import "./component/global/loading";
+// @import "./component/global/loading";
 @import "./component/class/class";
-@import "./component/global/scrollTop";
-@import "./component/global/nav/smallNav";
+// @import "./component/global/scrollTop";
+// @import "./component/global/nav/smallNav";
 @import "./component/global/note";
-@import "./component/footer/footer";
-@import "./component/global/copyMessage";
-@import "./component/global/copyIdComponent";
+// @import "./component/footer/footer";
+// @import "./component/global/copyMessage";
+// @import "./component/global/copyIdComponent";
 
-@import "./component/teacher/teacher";
-@import "./component/admin/admin";
-@import "./component/homeWork/homeWork";
-@import "./component/student/student";
-@import "./component/student/studentInStudents";
-@import "./component/global/ShurtCutsButtins/updateHWBtn";
-@import "./component/global/ShurtCutsButtins/deleteHWBtn";
-@import "./component/global/forms/deleteHw";
-@import "./component/global/forms/avatarForm";
-@import "./component/global/forms/dash/class/coverForm";
-@import "./component/global/search";
-@import "./component/class/classInClasses";
-@import "./component/admin/admin";
-@import "./component/admin/adminInAdminsPage";
-@import "./component/teacher/teacherInTeachersPage";
-@import "./component/global/ShurtCutsButtins/createClass";
-@import "./component/parent/parentInParentsPage";
-@import "./component/homeWork/HwInHwPage";
-@import "./component/plan/plan";
-@import "./component/plan/planInProfile";
-@import "./component/message/message";
-@import "./component/food/food";
-@import "./component/global/buttons/CoyOrRemovePlan";
-@import "./component/dash/admins/admins";
-@import "./component/dash/admins/adminInDash";
-@import "./component/dash/admins/createAdmin";
-@import "./component/global/forms/dash/verifyDeleteUser";
-@import "./component/dash/admins/updateAdmin";
-@import "./component/dash/classes/updateClass";
-@import "./component/dash/classes/createClass";
 
-@import "./component/dash/teachers/createTeacher";
-@import "./component/dash/teachers/teacherInDash";
-@import "./component/dash/teachers/updateTeacher";
+// @import "./component/student/student";
 
-@import "./component/dash/students/createStudent";
-@import "./component/dash/students/studentInDash";
-@import "./component/dash/students/updateStudent";
 
-@import "./component/dash/parents/createParents";
-@import "./component/dash/parents/parentInDash";
-@import "./component/dash/parents/updateParent";
 
-@import "./component/dash/classes/classInDash";
-@import "./component/dash/classes/classes";
 
-@import "./component/dash/messages/messages" ;
-@import "./component/dash/messages/createMessage" ;
+
+//? global components 
+
+//? dash components 
+
+
+
+
+
+
+
+
+
+
+//! don
+// @import "./component/admin/admin";
+// @import "./component/teacher/teacher";
+// @import "./component/homeWork/homeWork";
+
+
+// @import "./component/student/studentInStudents1";
+// @import "./component/global/forms/deleteHw";
+// @import "./component/global/forms/avatarForm";
+// @import "./component/global/search";
+// @import "./component/class/classInClasses";
+
+// @import "./component/admin/admin";
+// @import "./component/admin/adminInAdminsPage";
+// @import "./component/teacher/teacherInTeachersPage";
+// @import "./component/parent/parentInParentsPage";
+
+// @import "./component/homeWork/HwInHwPage";
+// @import "./component/plan/plan";
+// @import "./component/plan/planInProfile";
+// @import "./component/food/food";
+// @import "./component/message/message";
+// @import "./component/global/buttons/CoyOrRemovePlan";
+
+
+// @import "./component/global/forms/dash/class/coverForm";
+// @import "./component/dash/admins/admins";
+// @import "./component/dash/admins/adminInDash";
+// @import "./component/dash/admins/createAdmin";
+// @import "./component/global/forms/dash/verifyDeleteUser";
+// @import "./component/dash/admins/updateAdmin";
+// @import "./component/dash/classes/updateClass";
+// @import "./component/dash/classes/createClass";
+// @import "./component/dash/teachers/createTeacher";
+// @import "./component/dash/teachers/teacherInDash";
+// @import "./component/dash/teachers/updateTeacher";
+// @import "./component/dash/students/studentInDash";
+// @import "./component/dash/students/updateStudent";
+// @import "./component/dash/students/createStudent";
+// @import "./component/dash/parents/updateParent";
+// @import "./component/dash/parents/parentInDash";
+// @import "./component/dash/parents/createParents";
+
+// @import "./component/dash/classes/classInDash";
+// @import "./component/dash/classes/classes";
 // @import "./component/dash/parents/parentInDash";
 // @import "./component/dash/parents/updateParent";
+// @import "./component/global/forms/dash/parents/chooseChildren";
+// @import "./component/global/forms/dash/class/chooseTeacher";
+// @import "./component/dash/messages/messages" ;
+// @import "./component/dash/messages/message" ;
+// @import "./component/dash/messages/createMessage" ;
+// @import "./component/dash/messages/updateMessage" ;
+//? dash components 
+
+//? pages files 
 @import "./pages/login";
-
-@import "./component/global/forms/dash/parents/chooseChildren";
-@import "./component/global/forms/dash/class/chooseTeacher";
-
-// @import "./pages/home";
-// @import "./pages/class";
-// @import "./pages/homeWork";
-// @import "./pages/classes";
-// @import "./pages/students";
-// @import "./pages/admins";
+@import "./pages/home";
+@import "./pages/class";
+@import "./pages/homeWork";
+@import "./pages/classes";
+@import "./pages/students";
+@import "./pages/admins";
 
 @import "./pages/teachers";
-// @import "./pages/parents";
-// @import "./pages/install";
-// @import "./pages/homeWorks";
+@import "./pages/parents";
+@import "./pages/install";
+@import "./pages/homeWorks";
 
-// @import "./pages/plans";
-// @import "./pages/plan";
-// @import "./pages/messages";
-// @import "./pages/foods";
-// @import "./pages/food";
-@import "./pages/dash/dash";
+@import "./pages/plans";
+@import "./pages/plan";
+@import "./pages/messages";
+@import "./pages/foods";
+@import "./pages/food";
+// @import "./pages/dash/dash";
 
 // @import "./pages/profile/profile";
 // @import "./pages/profile/updateProfile";
+//? pages files 

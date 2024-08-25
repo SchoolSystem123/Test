@@ -100,3 +100,231 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../sass/varibels/variables";
+
+// darck and light English style
+.parents-parent-darck-English-list {
+  width: 98%;
+  height: 90px;
+  margin: 5px 1%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  background-color: $card-darck;
+  transition-duration: 0.5s;
+  cursor: pointer;
+  direction: ltr;
+
+  // admin avatar
+  img {
+    width: 80px;
+    height: 80px;
+    margin: 5px;
+    border-radius: 5px;
+  }
+
+  .info {
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0px 5px;
+
+    // admin name
+    h3 {
+      width: 100%;
+      color: $font-light;
+    }
+
+    p {
+      color: $font-light;
+      max-width: 90%;
+      height: auto;
+      margin: 2px 1%;
+      font-size: $x-small;
+      padding: 2px;
+      border-radius: 3px;
+      background-color: $note-darck;
+      @media (max-width: $phone) {
+        font-size: $xx-small;
+      }
+    }
+
+    // admin color
+    .admin {
+      background-color: green;
+      color: $font-light;
+    }
+
+    // supper admin color
+    .super-admin {
+      background-color: red;
+      color: $font-light;
+    }
+  }
+
+  .buttons {
+    width: 15%;
+    height: 100%;
+    margin: 0px 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      width: 100%;
+      height: 40%;
+      border: none;
+      border-radius: 5px;
+      color: $font-light;
+      cursor: pointer;
+      background-color: $blue;
+      @media (max-width: $phone) {
+        font-size: $xx-small;
+      }
+    }
+  }
+}
+
+.parents-parent-darck-English-list:hover {
+  box-shadow: 0 0 5px $black;
+}
+.parents-parent-light-English-list {
+  @extend .parents-parent-darck-English-list;
+  background-color: $card-light;
+
+  .info {
+    // admin name
+    h3 {
+      color: $font-darck;
+    }
+
+    p {
+      color: $font-darck;
+      background-color: $note-light;
+    }
+  }
+}
+
+.parents-parent-light-English-list:hover {
+  box-shadow: 0 0 5px $black;
+}
+// darck and light English style
+
+// darck and light Arabic style
+.parents-parent-darck-Arabic-list {
+  width: 98%;
+  height: 90px;
+  margin: 5px 1%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  background-color: $card-darck;
+  transition-duration: 0.5s;
+  cursor: pointer;
+  direction: rtl;
+
+  // admin avatar
+  img {
+    width: 80px;
+    height: 80px;
+    margin: 5px;
+    border-radius: 5px;
+  }
+
+  .info {
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0px 5px;
+
+    // admin name
+    h3 {
+      width: 100%;
+      color: $font-light;
+    }
+
+    p {
+      color: $font-light;
+      max-width: 90%;
+      height: auto;
+      margin: 2px 1%;
+      font-size: $x-small;
+      padding: 2px;
+      border-radius: 3px;
+      background-color: $note-darck;
+      @media (max-width: $phone) {
+        font-size: $xx-small;
+      }
+    }
+
+    // admin color
+    .admin {
+      background-color: green;
+      color: $font-light;
+    }
+
+    // supper admin color
+    .super-admin {
+      background-color: red;
+      color: $font-light;
+    }
+  }
+
+  .buttons {
+    width: 15%;
+    height: 100%;
+    margin: 0px 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      width: 100%;
+      height: 40%;
+      border: none;
+      border-radius: 5px;
+      color: $font-light;
+      cursor: pointer;
+      background-color: $blue;
+      @media (max-width: $phone) {
+        font-size: $xx-small;
+      }
+    }
+  }
+}
+
+.parents-parent-darck-Arabic-list:hover {
+  box-shadow: 0 0 5px $black;
+}
+.parents-parent-light-Arabic-list {
+  @extend .parents-parent-darck-Arabic-list;
+  background-color: $card-light;
+
+  .info {
+    // admin name
+    h3 {
+      color: $font-darck;
+    }
+
+    p {
+      color: $font-darck;
+      background-color: $note-light;
+    }
+  }
+}
+
+.parents-parent-light-Arabic-list:hover {
+  box-shadow: 0 0 5px $black;
+}
+// darck and light Arabic style
+</style>

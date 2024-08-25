@@ -1,11 +1,15 @@
 <template>
   <nav :class="`nav-${this.$store.state.mood}-${this.$store.state.theme}`">
     <div class="header">
-      <img :src="this.$store.state.user ? this.$store.state.user.user.avatar : '' " alt="" @click="this.$store.commit('changeSidBarStatus')">
+      <img
+        :src="this.$store.state.user ? this.$store.state.user.user.avatar : ''"
+        alt=""
+        @click="this.$store.commit('changeSidBarStatus')"
+      />
       <div class="message">
-        <h3>{{ this.$store.state.user 
-      ? this.$store.state.user.user.name 
-      : null }}</h3>
+        <h3>
+          {{ this.$store.state.user ? this.$store.state.user.user.name : null }}
+        </h3>
         <p>Good Day 👋</p>
       </div>
       <router-link to="/messages">
@@ -17,12 +21,125 @@
 </template>
 
 <script>
-import SuperSearchComponentVue from './SuperSearchComponent.vue'
+import SuperSearchComponentVue from "./SuperSearchComponent.vue";
 
 export default {
-  name : "Nav-component",
-  components : {
-    SuperSearchComponentVue
+  name: "Nav-component",
+  components: {
+    SuperSearchComponentVue,
+  },
+};
+</script>
+
+<style lang="scss">
+@import "../../Sass/varibels/variables";
+
+.nav-darck-blue {
+  width: 100%;
+  height: 200px;
+  background-color: $body-darck;
+  box-shadow: 0 0 10px $black;
+  border-radius: 10px;
+  background: linear-gradient(to top, $first-blue, $second-blue);
+  overflow: hidden;
+  @media (max-width: $laptop) {
+    width: 100%;
+  }
+
+  .header {
+    width: 98%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1% 1% 10px 1%;
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 3px solid $blue;
+      cursor: pointer;
+    }
+
+    .message {
+      width: 50%;
+      height: auto;
+      @media (max-width: $phone) {
+        margin-left: -25%;
+      }
+
+      @media (min-width: $phone) {
+        margin-left: -30%;
+      }
+
+      @media (min-width: $tablet) {
+        margin-left: -35%;
+      }
+
+      h3 {
+        width: 100%;
+        height: auto;
+        color: $font-light;
+      }
+
+      p {
+        width: 100%;
+        height: auto;
+        color: $font-light;
+        font-size: small;
+      }
+    }
+
+    svg {
+      cursor: pointer;
+      color: $font-light;
+      margin: -15px 10px 0px 0px;
+      @media (max-width: $phone) {
+        margin: -10px 10px;
+      }
+    }
   }
 }
-</script>
+
+.nav-darck-pink {
+  @extend .nav-darck-blue;
+  background: linear-gradient(to top, $first-pink, $second-pink);
+}
+
+.nav-darck-orange {
+  @extend .nav-darck-blue;
+  background: linear-gradient(to top, $first-orange, $second-orange);
+}
+
+.nav-darck-green {
+  @extend .nav-darck-blue;
+  background: linear-gradient(to top, $first-green, $second-green);
+}
+
+// light mood
+
+.nav-light-blue {
+  @extend .nav-darck-blue;
+  background-color: $body-light;
+  background: linear-gradient(to top, $first-blue, $second-blue);
+}
+
+.nav-light-orange {
+  @extend .nav-light-blue;
+  background-color: $body-light;
+  background: linear-gradient(to top, $first-orange, $second-orange);
+}
+
+.nav-light-pink {
+  @extend .nav-light-blue;
+  background-color: $body-light;
+  background: linear-gradient(to top, $first-pink, $second-pink);
+}
+
+.nav-light-green {
+  @extend .nav-light-blue;
+  background-color: $body-light;
+  background: linear-gradient(to top, $first-green, $second-green);
+}
+</style>

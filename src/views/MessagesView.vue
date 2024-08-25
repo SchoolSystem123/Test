@@ -89,12 +89,19 @@ export default {
   methods: {
     // get all messages method
     async GetAllMessages() {
+      // create params
+      let params;
+      if (
+        this.$store.state.user.user_type != "super" &&
+        this.$store.state.user.user_type != "admin"
+      ) {
+        params = {
+          recipient: `${this.$store.state.user.user_type}s`,
+        };
+      }
       await axios
         .get(this.$store.state.APIs.messages.get_all, {
-          params: {
-            //! sedn the  recipient type to return messages
-            recipient: `${this.$store.state.user.user_type}s`,
-          },
+          params,
         })
         .then((response) => {
           // open the page conatiner

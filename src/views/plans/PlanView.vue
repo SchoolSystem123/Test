@@ -187,8 +187,9 @@ export default {
     CopyORremoveThePlanCompoenetVue,
   },
   mounted() {
-    // to start the loading compoenet on load page
+    // to start the loading animation on loaded the page
     window.addEventListener("load", () => {
+      // to start the loading animation
       this.$store.state.loading = "open";
     });
 
@@ -206,7 +207,6 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response);
           // to close the loading component
           this.$store.state.loading = "close";
 

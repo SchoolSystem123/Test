@@ -360,3 +360,983 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../../Sass/varibels/variables";
+
+// darck and light English style
+.up-parent-open-darck-English {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: ltr;
+
+  // component header style
+  .header {
+    width: 100%;
+    height: auto;
+    border: 1px solid;
+    border-color: transparent transparent $border-light transparent;
+
+    h3 {
+      color: $font-light;
+    }
+  }
+
+  .form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    // blue avatar cont
+    .avatar-cont-blue {
+      width: 100px;
+      height: 100px;
+      border-radius: 5px;
+      margin: 20px 0px 0px 0px;
+      cursor: pointer;
+      background: linear-gradient(to top, $first-blue, $second-blue);
+
+      img {
+        width: 90%;
+        height: 90%;
+        margin: 5%;
+        border-radius: 5px;
+      }
+    }
+
+    // orange avatar cont
+    .avatar-cont-orange {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-orange, $second-orange);
+    }
+
+    // pink avatar cont
+    .avatar-cont-pink {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-pink, $second-pink);
+    }
+
+    // green avatar cont
+    .avatar-cont-green {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-green, $second-green);
+    }
+
+    // input's labels
+    label {
+      width: 100%;
+      height: auto;
+      padding: 5px 0px;
+      margin: 10px 0px;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+      color: $font-light;
+    }
+
+    // input style
+    input {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      padding: 0px 10px;
+      margin: 10px 0px;
+      background-color: $body-light;
+    }
+
+    // password's conatiner
+    .password {
+      width: 100%;
+      height: 40px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $body-light;
+      padding: 0px 10px;
+
+      input {
+        width: 80%;
+        height: 100%;
+        outline: none;
+        border: none;
+        padding: 0px;
+      }
+
+      svg {
+        transition-duration: 0.5s;
+        cursor: pointer;
+      }
+
+      svg:hover {
+        color: $blue;
+      }
+    }
+
+    // gender and Permissions list style
+    select {
+      width: 100%;
+      height: 40px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      margin: 10px 0px;
+      background-color: $body-light;
+      padding: 0px 10px;
+    }
+
+    // children conatiner
+    .children {
+      width: 100%;
+      height: 120px;
+      overflow-y: scroll;
+      margin: 20px 0px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: start;
+      align-items: center;
+      padding: 3px;
+      border-radius: 5px;
+      position: relative;
+      background-color: $card-darck;
+
+      // add icon
+      svg {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        padding: 5px;
+        background-color: $blue;
+        color: $font-light;
+        cursor: pointer;
+        border-radius: 3px;
+
+        @media (max-width: $phone) {
+          right: 3px;
+          top: 3px;
+        }
+      }
+
+      .students-cont {
+        width: 98%;
+        height: auto;
+        margin: 1%;
+        border-radius: 10px;
+
+        .student {
+          width: 100%;
+          height: 100px;
+          margin: 5px 0px;
+          border-radius: 5px;
+          background-color: $body-darck;
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 90px;
+            height: 90px;
+            border-radius: 5px;
+            margin: 0px 5px;
+          }
+
+          .info {
+            width: 75%;
+            height: 100%;
+
+            h3 {
+              width: 100%;
+              color: $font-light;
+              margin: 10px 5px;
+            }
+
+            @media (max-width: $phone) {
+              width: 50%;
+            }
+          }
+
+          button {
+            padding: 7px 15px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            color: $font-light;
+            cursor: pointer;
+            background-color: $red;
+
+            @media (max-width: $phone) {
+              padding: 5px 10px;
+              font-size: $xx-small;
+            }
+          }
+        }
+      }
+    }
+
+    .children::-webkit-scrollbar {
+      width: 0px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      color: $font-light;
+      background-color: $green;
+      cursor: pointer;
+    }
+  }
+}
+
+.up-parent-open-darck-English::-webkit-scrollbar {
+  width: 0px;
+}
+
+.up-parent-close-darck-English {
+  @extend .up-parent-open-darck-English;
+  opacity: 0;
+  padding: 30% 5px 5px 5px;
+}
+
+.up-parent-open-light-English {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: ltr;
+
+  // component header style
+  .header {
+    width: 100%;
+    height: auto;
+    border: 1px solid;
+    border-color: transparent transparent $border-darck transparent;
+
+    h3 {
+      color: $font-darck;
+    }
+  }
+
+  .form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    // blue avatar cont
+    .avatar-cont-blue {
+      width: 100px;
+      height: 100px;
+      border-radius: 5px;
+      margin: 20px 0px 0px 0px;
+      cursor: pointer;
+      background: linear-gradient(to top, $first-blue, $second-blue);
+
+      img {
+        width: 90%;
+        height: 90%;
+        margin: 5%;
+        border-radius: 5px;
+      }
+    }
+
+    // orange avatar cont
+    .avatar-cont-orange {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-orange, $second-orange);
+    }
+
+    // pink avatar cont
+    .avatar-cont-pink {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-pink, $second-pink);
+    }
+
+    // green avatar cont
+    .avatar-cont-green {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-green, $second-green);
+    }
+
+    // input's labels
+    label {
+      width: 100%;
+      height: auto;
+      padding: 5px 0px;
+      margin: 10px 0px;
+      border: 1px solid;
+      border-color: transparent transparent $border-darck transparent;
+      color: $font-darck;
+    }
+
+    // input style
+    input {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      padding: 0px 10px;
+      margin: 10px 0px;
+      background-color: $message-light;
+    }
+
+    // password's conatiner
+    .password {
+      width: 100%;
+      height: 40px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $message-light;
+      padding: 0px 10px;
+
+      input {
+        width: 80%;
+        height: 100%;
+        outline: none;
+        border: none;
+        padding: 0px;
+      }
+
+      svg {
+        transition-duration: 0.5s;
+        cursor: pointer;
+      }
+
+      svg:hover {
+        color: $blue;
+      }
+    }
+
+    // gender and Permissions list style
+    select {
+      width: 100%;
+      height: 40px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      margin: 10px 0px;
+      background-color: $message-light;
+      padding: 0px 10px;
+    }
+
+    // children conatiner
+    .children {
+      width: 100%;
+      height: 120px;
+      overflow-y: scroll;
+      margin: 20px 0px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: start;
+      align-items: center;
+      padding: 3px;
+      border-radius: 5px;
+      position: relative;
+      background-color: $card-light;
+
+      // add icon
+      svg {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        padding: 5px;
+        background-color: $blue;
+        color: $font-light;
+        cursor: pointer;
+        border-radius: 3px;
+
+        @media (max-width: $phone) {
+          right: 3px;
+          top: 3px;
+        }
+      }
+
+      .students-cont {
+        width: 98%;
+        height: auto;
+        margin: 1%;
+        border-radius: 10px;
+
+        .student {
+          width: 100%;
+          height: 100px;
+          margin: 5px 0px;
+          border-radius: 5px;
+          background-color: $body-light;
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 90px;
+            height: 90px;
+            border-radius: 5px;
+            margin: 0px 5px;
+          }
+
+          .info {
+            width: 75%;
+            height: 100%;
+
+            h3 {
+              width: 100%;
+              color: $font-darck;
+              margin: 10px 5px;
+            }
+
+            @media (max-width: $phone) {
+              width: 50%;
+            }
+          }
+
+          button {
+            padding: 7px 15px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            color: $font-light;
+            cursor: pointer;
+            background-color: $red;
+
+            @media (max-width: $phone) {
+              padding: 5px 10px;
+              font-size: $xx-small;
+            }
+          }
+        }
+      }
+    }
+
+    .children::-webkit-scrollbar {
+      width: 0px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      color: $font-light;
+      background-color: $green;
+      cursor: pointer;
+    }
+  }
+}
+
+.up-parent-open-light-English::-webkit-scrollbar {
+  width: 0px;
+}
+
+.up-parent-close-light-English {
+  @extend .up-parent-open-light-English;
+  opacity: 0;
+  padding: 30% 5px 5px 5px;
+}
+// darck and light English style
+
+// darck and light Arabic style
+.up-parent-open-darck-Arabic {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: rtl;
+
+  // component header style
+  .header {
+    width: 100%;
+    height: auto;
+    border: 1px solid;
+    border-color: transparent transparent $border-light transparent;
+
+    h3 {
+      color: $font-light;
+    }
+  }
+
+  .form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    // blue avatar cont
+    .avatar-cont-blue {
+      width: 100px;
+      height: 100px;
+      border-radius: 5px;
+      margin: 20px 0px 0px 0px;
+      cursor: pointer;
+      background: linear-gradient(to top, $first-blue, $second-blue);
+
+      img {
+        width: 90%;
+        height: 90%;
+        margin: 5%;
+        border-radius: 5px;
+      }
+    }
+
+    // orange avatar cont
+    .avatar-cont-orange {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-orange, $second-orange);
+    }
+
+    // pink avatar cont
+    .avatar-cont-pink {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-pink, $second-pink);
+    }
+
+    // green avatar cont
+    .avatar-cont-green {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-green, $second-green);
+    }
+
+    // input's labels
+    label {
+      width: 100%;
+      height: auto;
+      padding: 5px 0px;
+      margin: 10px 0px;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+      color: $font-light;
+    }
+
+    // input style
+    input {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      padding: 0px 10px;
+      margin: 10px 0px;
+      background-color: $body-light;
+    }
+
+    // password's conatiner
+    .password {
+      width: 100%;
+      height: 40px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $body-light;
+      padding: 0px 10px;
+
+      input {
+        width: 80%;
+        height: 100%;
+        outline: none;
+        border: none;
+        padding: 0px;
+      }
+
+      svg {
+        transition-duration: 0.5s;
+        cursor: pointer;
+      }
+
+      svg:hover {
+        color: $blue;
+      }
+    }
+
+    // gender and Permissions list style
+    select {
+      width: 100%;
+      height: 40px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      margin: 10px 0px;
+      background-color: $body-light;
+      padding: 0px 10px;
+    }
+
+    // children conatiner
+    .children {
+      width: 100%;
+      height: 120px;
+      overflow-y: scroll;
+      margin: 20px 0px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: start;
+      align-items: center;
+      padding: 3px;
+      border-radius: 5px;
+      position: relative;
+      background-color: $card-darck;
+
+      // add icon
+      svg {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        padding: 5px;
+        background-color: $blue;
+        color: $font-light;
+        cursor: pointer;
+        border-radius: 3px;
+
+        @media (max-width: $phone) {
+          right: 3px;
+          top: 3px;
+        }
+      }
+
+      .students-cont {
+        width: 98%;
+        height: auto;
+        margin: 1%;
+        border-radius: 10px;
+
+        .student {
+          width: 100%;
+          height: 100px;
+          margin: 5px 0px;
+          border-radius: 5px;
+          background-color: $body-darck;
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 90px;
+            height: 90px;
+            border-radius: 5px;
+            margin: 0px 5px;
+          }
+
+          .info {
+            width: 75%;
+            height: 100%;
+
+            h3 {
+              width: 100%;
+              color: $font-light;
+              margin: 10px 5px;
+            }
+
+            @media (max-width: $phone) {
+              width: 50%;
+            }
+          }
+
+          button {
+            padding: 7px 15px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            color: $font-light;
+            cursor: pointer;
+            background-color: $red;
+
+            @media (max-width: $phone) {
+              padding: 5px 10px;
+              font-size: $xx-small;
+            }
+          }
+        }
+      }
+    }
+
+    .children::-webkit-scrollbar {
+      width: 0px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      color: $font-light;
+      background-color: $green;
+      cursor: pointer;
+    }
+  }
+}
+
+.up-parent-open-darck-Arabic::-webkit-scrollbar {
+  width: 0px;
+}
+
+.up-parent-close-darck-Arabic {
+  @extend .up-parent-open-darck-Arabic;
+  opacity: 0;
+  padding: 30% 5px 5px 5px;
+}
+
+.up-parent-open-light-Arabic {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: rtl;
+
+  // component header style
+  .header {
+    width: 100%;
+    height: auto;
+    border: 1px solid;
+    border-color: transparent transparent $border-darck transparent;
+
+    h3 {
+      color: $font-darck;
+    }
+  }
+
+  .form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    // blue avatar cont
+    .avatar-cont-blue {
+      width: 100px;
+      height: 100px;
+      border-radius: 5px;
+      margin: 20px 0px 0px 0px;
+      cursor: pointer;
+      background: linear-gradient(to top, $first-blue, $second-blue);
+
+      img {
+        width: 90%;
+        height: 90%;
+        margin: 5%;
+        border-radius: 5px;
+      }
+    }
+
+    // orange avatar cont
+    .avatar-cont-orange {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-orange, $second-orange);
+    }
+
+    // pink avatar cont
+    .avatar-cont-pink {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-pink, $second-pink);
+    }
+
+    // green avatar cont
+    .avatar-cont-green {
+      @extend .avatar-cont-blue;
+      background: linear-gradient(to top, $first-green, $second-green);
+    }
+
+    // input's labels
+    label {
+      width: 100%;
+      height: auto;
+      padding: 5px 0px;
+      margin: 10px 0px;
+      border: 1px solid;
+      border-color: transparent transparent $border-darck transparent;
+      color: $font-darck;
+    }
+
+    // input style
+    input {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      padding: 0px 10px;
+      margin: 10px 0px;
+      background-color: $message-light;
+    }
+
+    // password's conatiner
+    .password {
+      width: 100%;
+      height: 40px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $message-light;
+      padding: 0px 10px;
+
+      input {
+        width: 80%;
+        height: 100%;
+        outline: none;
+        border: none;
+        padding: 0px;
+      }
+
+      svg {
+        transition-duration: 0.5s;
+        cursor: pointer;
+      }
+
+      svg:hover {
+        color: $blue;
+      }
+    }
+
+    // gender and Permissions list style
+    select {
+      width: 100%;
+      height: 40px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      margin: 10px 0px;
+      background-color: $message-light;
+      padding: 0px 10px;
+    }
+
+    // children conatiner
+    .children {
+      width: 100%;
+      height: 120px;
+      overflow-y: scroll;
+      margin: 20px 0px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: start;
+      align-items: center;
+      padding: 3px;
+      border-radius: 5px;
+      position: relative;
+      background-color: $card-light;
+
+      // add icon
+      svg {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        padding: 5px;
+        background-color: $blue;
+        color: $font-light;
+        cursor: pointer;
+        border-radius: 3px;
+
+        @media (max-width: $phone) {
+          right: 3px;
+          top: 3px;
+        }
+      }
+
+      .students-cont {
+        width: 98%;
+        height: auto;
+        margin: 1%;
+        border-radius: 10px;
+
+        .student {
+          width: 100%;
+          height: 100px;
+          margin: 5px 0px;
+          border-radius: 5px;
+          background-color: $body-light;
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 90px;
+            height: 90px;
+            border-radius: 5px;
+            margin: 0px 5px;
+          }
+
+          .info {
+            width: 75%;
+            height: 100%;
+
+            h3 {
+              width: 100%;
+              color: $font-darck;
+              margin: 10px 5px;
+            }
+
+            @media (max-width: $phone) {
+              width: 50%;
+            }
+          }
+
+          button {
+            padding: 7px 15px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            color: $font-light;
+            cursor: pointer;
+            background-color: $red;
+
+            @media (max-width: $phone) {
+              padding: 5px 10px;
+              font-size: $xx-small;
+            }
+          }
+        }
+      }
+    }
+
+    .children::-webkit-scrollbar {
+      width: 0px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      color: $font-light;
+      background-color: $green;
+      cursor: pointer;
+    }
+  }
+}
+
+.up-parent-open-light-Arabic::-webkit-scrollbar {
+  width: 0px;
+}
+
+.up-parent-close-light-Arabic {
+  @extend .up-parent-open-light-Arabic;
+  opacity: 0;
+  padding: 30% 5px 5px 5px;
+}
+// darck and light Arabic style
+</style>

@@ -24,6 +24,7 @@
       <input
         type="text"
         id="title"
+        v-model="this.title"
         :placeholder="
           this.$store.state.language == 'English'
             ? this.$store.state.English.create_message.title_placeholder
@@ -144,8 +145,8 @@ export default {
       recipient: "public",
       // level
       level: "normal",
-      // formData
-      formData: "",
+      // body_data
+      body_data: {},
     };
   },
   components: {},
@@ -158,7 +159,7 @@ export default {
     // create message mthod
     async CreateMessage() {
       // to craete new formData
-      this.formData = new FormData();
+      // this.formData = new FormData();
 
       // to start the loading animation
       this.$store.state.loading = "open";
@@ -169,46 +170,54 @@ export default {
       };
 
       // add the editor id to body data
-      if (this.$store.state.user.user_type == "super") {
-        this.formData.append("super_admin_id", this.$store.state.user.user._id);
-        console.log(`super admin id`, this.$store.state.user.user._id);
-      } else if (this.$store.state.user.user_type == "admin") {
-        console.log(`admin id`, this.$store.state.user.user._id);
-        this.formData.append("admin_id", this.$store.state.user.user._id);
+      if (this.$store.state.user.user_type === "super") {
+        // this.formData.append("super_admin_id", this.$store.state.user.user._id);
+        this.body_data.super_admin_id = this.$store.state.user.user._id;
+      } else if (this.$store.state.user.user_type === "admin") {
+        // this.formData.append("admin_id", this.$store.state.user.user._id);
+        this.body_data.admin_id = this.$store.state.user.user._id;
       }
 
       // add the title to body data
-      this.formData.append("title", this.title);
+      // this.formData.append("title", this.title);
+      this.body_data.title = this.title;
 
       // add description to body data
-      this.formData.append("description", this.description);
+      // this.formData.append("description", this.description);
+      this.body_data.description = this.description;
 
       // add the note to body data
-      this.formData.append("note", this.note);
+      // this.formData.append("note", this.note);
+      this.body_data.note = this.note;
 
       // add the recipient to body data
-      this.formData.append("recipient", this.recipient);
+      // this.formData.append("recipient", this.recipient);
+      this.body_data.recipient = this.recipient;
 
       // add the level to body data
-      this.formData.append("level", this.level);
-
+      // this.formData.append("level", this.level);
+      this.body_data.level = this.level;
       await axios
         .post(
           this.$store.state.user.user_type == "super"
             ? this.$store.state.APIs.messages.super.create
             : this.$store.state.APIs.messages.admin.create,
-          this.formData,
+          this.body_data,
           {
             headers,
           }
         )
-        .then((response) => {
+        .then(() => {
           // to stop the loading animation
           this.$store.state.loading = "close";
 
-          console.log(response);
-          // update the active_component_in_dash in store
-          this.$store.state.active_component_in_dash = "messages";
+          // emptyig the body data to delete
+          this.body_data = {};
+
+          // emptying the all message data
+          this.title = "";
+          this.description = "";
+          this.note = "";
         })
         .catch((error) => {
           // to stop the loading animation
@@ -224,3 +233,437 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../../Sass/varibels/variables";
+
+// darck and light English style
+.create-message-darck-English-open {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: ltr;
+
+  // component header style
+  .header {
+    width: 100%;
+    height: auto;
+    border: 1px solid;
+    padding: 5px 0px;
+    border-color: transparent transparent $border-light transparent;
+    color: $font-light;
+  }
+
+  .form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    .cover-cont {
+      width: 100%;
+      height: auto;
+      margin: 20px 0px;
+
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+    }
+
+    // input's labels
+    label {
+      width: 100%;
+      height: auto;
+      padding: 5px 0px;
+      margin: 10px 0px;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+      color: $font-light;
+    }
+
+    // input style
+    input {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      padding: 0px 10px;
+      margin: 10px 0px;
+      background-color: $body-light;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 5px 5px 5px 10px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      resize: none;
+      margin: 10px 0px;
+      background-color: $body-light;
+    }
+
+    // gender and Permissions list style
+    select {
+      width: 100%;
+      height: 40px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      margin: 10px 0px;
+      background-color: $body-light;
+      padding: 0px 10px;
+    }
+
+    .teacher-cont {
+      width: 100%;
+      height: 120px;
+      border-radius: 5px;
+      background-color: $card-darck;
+      position: relative;
+      margin: 5px 0px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        padding: 5px;
+        border-radius: 3px;
+        background-color: $blue;
+        color: $font-light;
+        cursor: pointer;
+      }
+
+      .teacher {
+        width: 98%;
+        height: auto;
+        border-radius: 5px;
+        background-color: $body-darck;
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 90px;
+          height: 90px;
+          border-radius: 5px;
+          margin: 3px;
+          cursor: pointer;
+        }
+
+        .info {
+          width: 70%;
+          height: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          margin: 0px 5px;
+          cursor: pointer;
+
+          h3 {
+            width: 100%;
+            height: auto;
+            color: $font-light;
+          }
+
+          p {
+            padding: 3px;
+            border-radius: 3px;
+            background-color: $card-darck;
+            color: $font-light;
+            font-size: $x-small;
+            margin: 3px;
+
+            @media (max-width:$phone) {
+              font-size: $xx-small;
+            }
+          }
+
+          .editor {
+            @extend p;
+            background-color: $green;
+          }
+        } 
+        
+        button {
+          background-color: $red;
+          color: $font-light;
+          margin: 0px 5px;
+          @media (max-width:$phone) {
+            padding: 5px 10px;
+            font-size: $xx-small;
+          }
+        }
+      }
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      color: $font-light;
+      background-color: $green;
+      cursor: pointer;
+      margin: 10px 0px;
+    }
+  }
+}
+
+.create-message-darck-English-open::-webkit-scrollbar {
+  width: 0px;
+}
+
+.create-message-darck-English-close {
+  @extend .create-message-darck-English-open;
+  opacity: 0;
+  padding: 30% 5px 5px 5px;
+}
+
+.create-message-light-English-open {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: ltr;
+
+  // component header style
+  .header {
+    width: 100%;
+    height: auto;
+    border: 1px solid;
+    padding: 5px 0px;
+    border-color: transparent transparent $border-darck transparent;
+
+    h3 {
+      color: $font-darck;
+    }
+  }
+
+  .form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    .cover-cont {
+      width: 100%;
+      height: auto;
+      margin: 20px 0px;
+
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+    }
+
+    // input's labels
+    label { 
+      width: 100%;
+      height: auto;
+      padding: 5px 0px;
+      margin: 10px 0px;
+      border: 1px solid;
+      border-color: transparent transparent $border-darck transparent;
+      color: $font-darck;
+    }
+
+    // input style
+    input {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      padding: 0px 10px;
+      margin: 10px 0px;
+      background-color: $message-light;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 5px 5px 5px 10px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      resize: none;
+      margin: 10px 0px;
+      background-color: $message-light;
+    }
+
+    // gender and Permissions list style
+    select {
+      width: 100%;
+      height: 40px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      margin: 10px 0px;
+      background-color: $message-light;
+      padding: 0px 10px;
+    }
+
+    .teacher-cont {
+      width: 100%;
+      height: 120px;
+      border-radius: 5px;
+      background-color: $message-light;
+      position: relative;
+      margin: 5px 0px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        padding: 5px;
+        border-radius: 3px;
+        background-color: $blue;
+        color: $font-light;
+        cursor: pointer;
+      }
+
+      .teacher {
+        width: 98%;
+        height: auto;
+        border-radius: 5px;
+        background-color: $body-light;
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 90px;
+          height: 90px;
+          border-radius: 5px;
+          margin: 3px;
+          cursor: pointer;
+        }
+
+        .info {
+          width: 70%;
+          height: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          margin: 0px 5px;
+          cursor: pointer;
+
+          h3 {
+            width: 100%;
+            height: auto;
+            color: $font-darck;
+          }
+
+          p {
+            padding: 3px;
+            border-radius: 3px;
+            background-color: $message-light;
+            color: $font-darck;
+            font-size: $x-small;
+            margin: 3px;
+
+            @media (max-width:$phone) {
+              font-size: $xx-small;
+            }
+          }
+
+          .editor {
+            @extend p;
+            color: $font-light;
+            background-color: $green;
+          }
+        } 
+
+        button {
+          background-color: $red;
+          color: $font-light;
+          margin: 0px 5px;
+          @media (max-width:$phone) {
+            padding: 5px 10px;
+            font-size: $xx-small;
+          }
+        }
+      }
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      color: $font-light;
+      background-color: $green;
+      cursor: pointer;
+      margin: 10px 0px;
+    }
+  }
+}
+
+.create-message-light-English-open::-webkit-scrollbar {
+  width: 0px;
+}
+
+.create-message-light-English-close {
+  @extend .create-message-light-English-open;
+  opacity: 0;
+  padding: 30% 5px 5px 5px;
+}
+// darck and light English style
+
+
+// darck and light Arabic style
+.create-message-darck-Arabic-open {
+  @extend .create-message-darck-English-open;
+  direction: rtl;
+}
+
+.create-message-darck-Arabic-open::-webkit-scrollbar {
+  width: 0px;
+}
+
+.create-message-darck-Arabic-close {
+  @extend .create-message-darck-Arabic-open;
+  opacity: 0;
+  padding: 30% 5px 5px 5px;
+}
+
+.create-message-light-Arabic-open {
+  @extend .create-message-light-English-open;
+  direction: rtl;
+}
+
+.create-message-light-Arabic-open::-webkit-scrollbar {
+  width: 0px;
+}
+
+.create-message-light-Arabic-close {
+  @extend .create-message-light-Arabic-open;
+  opacity: 0;
+  padding: 30% 5px 5px 5px;
+}
+// darck and light Arabic style
+
+</style>

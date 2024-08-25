@@ -139,3 +139,127 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../../Sass/varibels/variables";
+
+// darck and light style
+.section-cont-open-darck {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+
+  @media (min-width: $phone) {
+    padding: 5px;
+  }
+
+  .header {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    p {
+      padding: 7px 20px;
+      border-radius: 5px;
+      color: $font-light;
+      background-color: $note-darck;
+      margin: 5px;
+      font-size: $small;
+      @media (max-width: $phone) {
+        font-size: $x-small;
+        padding: 6px 10px;
+      }
+    }
+
+    button {
+      padding: 7px 17px;
+      border-radius: 5px;
+      color: $font-light;
+      background-color: $blue;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      margin: 5px;
+      @media (max-width: $phone) {
+        font-size: $x-small;
+        padding: 6px 10px;
+      }
+    }
+
+    // header title
+    .title {
+      width: 100%;
+      height: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+      h3 {
+        width: auto;
+        height: auto;
+        color: $font-light;
+      }
+
+      svg {
+        padding: 3px;
+        border-radius: 3px;
+        color: $font-light;
+        border: 1px solid $border-light;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .cards-section {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+  }
+}
+
+.section-cont-open-darck::-webkit-scrollbar {
+  width: 0px;
+}
+
+.section-cont-close-darck {
+  @extend .section-cont-open-darck;
+  padding: 30% 5px 5px 5px;
+  opacity: 0;
+}
+
+.section-cont-open-light {
+  @extend .section-cont-open-darck;
+  .header {
+    // header title
+    .title {
+      border-color: transparent transparent $border-darck transparent;
+      h3 {
+        color: $font-darck;
+      }
+    }
+  }
+}
+
+.section-cont-close-light {
+  @extend .section-cont-open-light;
+  padding: 30% 5px 5px 5px;
+  opacity: 0;
+}
+
+.section-cont-open-light::-webkit-scrollbar {
+  width: 0px;
+}
+// darck and light style
+</style>

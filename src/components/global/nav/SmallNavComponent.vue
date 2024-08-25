@@ -1,6 +1,10 @@
 <template>
   <div :class="`small-nav-${this.$store.state.mood}`">
-    <icon icon="bars" @click="this.$store.commit('changeSidBarStatus')" id="bars"/>
+    <icon
+      icon="bars"
+      @click="this.$store.commit('changeSidBarStatus')"
+      id="bars"
+    />
 
     <router-link to="/messages">
       <icon icon="bell" />
@@ -10,6 +14,53 @@
 
 <script>
 export default {
-  name : "small-nav-component"
-}
+  name: "small-nav-component",
+};
 </script>
+
+<style lang="scss">
+@import "../../../Sass/varibels/variables";
+
+.small-nav-darck {
+  width: 90%;
+  height: auto;
+  padding: 10px;
+  border-radius: 5px;
+  backdrop-filter: blur(30px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 10px;
+  left: 5%;
+  z-index: 50;
+  @media (min-width: $tablet) {
+    width: 50%;
+    left: 25%;
+  }
+
+  svg {
+    font-size: $large;
+    color: $font-light;
+    cursor: pointer;
+  }
+
+  #bars {
+    padding: 5px;
+    border: 1px solid $border-light;
+    border-radius: 5px;
+  }
+}
+
+.small-nav-light {
+  @extend .small-nav-darck;
+
+  svg {
+    color: $font-darck;
+  }
+
+  #bars {
+    border: 1px solid $border-darck;
+  }
+}
+</style>

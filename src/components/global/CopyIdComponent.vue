@@ -59,3 +59,61 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../Sass/varibels/variables";
+
+// Darck mood
+.copy-id-darck-English {
+  max-width: 60%;
+  margin: 10px 5%;
+  color: $font-light;
+  cursor: pointer;
+  transition-duration: 0.5s;
+  font-size: $x-small;
+  padding: 3px;
+  border-radius: 5px;
+  background-color: $card-darck;
+  @media (min-width: $tablet) {
+    max-width: 35%;
+  }
+}
+
+.copy-id-darck-English:hover {
+  color: $blue;
+}
+
+.copy-id-darck-Arabic {
+  @extend .copy-id-darck-English;
+  color: $font-light;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.copy-id-darck-Arabic:hover {
+  color: $blue;
+}
+// Darck mood
+
+// Light mood
+.copy-id-light-English {
+  @extend .copy-id-darck-English;
+  color: $font-darck;
+  background-color: $card-light;
+}
+
+.copy-id-light-English:hover {
+  color: $blue;
+}
+
+.copy-id-light-Arabic {
+  @extend .copy-id-darck-English;
+  color: $font-darck;
+  background-color: $card-light;
+}
+
+.copy-id-light-Arabic:hover {
+  color: $blue;
+}
+// Lght mood
+</style>

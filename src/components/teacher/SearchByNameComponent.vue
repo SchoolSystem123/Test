@@ -49,7 +49,7 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response)
+          console.log(response);
           // check if the response has any admin
           if (response.data.teachers_data.length > 0) {
             // set the teachers data from response to teachers array in store
@@ -82,3 +82,117 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../Sass/varibels/variables";
+
+// darck english style
+.search-darck-English {
+  width: 90%;
+  height: 40px;
+  margin: 5% 10% 15% 5%;
+  direction: ltr;
+
+  // search by title section
+  p {
+    width: 100%;
+    color: $font-light;
+  }
+
+  .cont {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    background-color: $message-darck;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5% 10% 5% 0%;
+
+    input {
+      width: 80%;
+      height: 100%;
+      background-color: $message-darck;
+      border: none;
+      outline: none;
+      color: $font-light;
+    }
+
+    svg {
+      color: $font-light;
+      cursor: pointer;
+    }
+  }
+}
+// darck english style
+
+// light english style
+.search-light-English {
+  @extend .search-darck-English;
+  width: 90%;
+  height: 40px;
+  margin: 5% 10% 5% 5%;
+
+  p {
+    color: $font-darck;
+  }
+
+  .cont {
+    margin: 5% 10% 10% 0%;
+    background-color: $message-light;
+    input {
+      background-color: $message-light;
+      color: $font-darck;
+    }
+
+    svg {
+      color: $font-darck;
+    }
+  }
+}
+// light english style
+
+// darck english style
+.search-darck-Arabic {
+  @extend .search-darck-English;
+  width: 90%;
+  height: 40px;
+  margin: 5% 10% 15% 5%;
+  direction: rtl;
+
+  p {
+    margin-right: -5%;
+  }
+
+  .cont {
+    margin: 5% -5% 5% 10%;
+  }
+}
+// darck english style
+
+// light english style
+.search-light-Arabic {
+  @extend .search-darck-Arabic;
+  width: 90%;
+  height: 40px;
+  margin: 5% 10% 5% 5%;
+
+  // search section title
+  p {
+    color: $font-darck;
+  }
+
+  .cont {
+    background-color: $message-light;
+    input {
+      background-color: $message-light;
+      color: $font-darck;
+    }
+
+    svg {
+      color: $font-darck;
+    }
+  }
+}
+// light english style
+</style>

@@ -1,378 +1,245 @@
 <template>
   <div
-    :class="`create-class-${this.$store.state.mood}-${this.$store.state.language}-${this.status}`"
+    :class="`update-message-${this.$store.state.mood}-${this.$store.state.language}-${this.status}`"
   >
-    <!-- header -->
+    <!-- header  -->
     <div class="header">
       {{
         this.$store.state.language == "English"
-          ? this.$store.state.English.create_class.page_title
-          : this.$store.state.Arabic.create_class.page_title
+          ? this.$store.state.English.update_message.page_title
+          : this.$store.state.Arabic.update_message.page_title
       }}
     </div>
-    <!-- header -->
+    <!-- header  -->
 
+    <!-- form  -->
     <div class="form">
-      <!-- cover container  -->
-      <div
-        :class="`cover-cont`"
-        @click="this.$store.commit('Change_cover_form_status')"
-      >
-        <img
-          :src="
-            this.$store.state.selected_cover ? this.readerFile() : this.cover
-          "
-          alt=""
-        />
-      </div>
-      <!-- cover container  -->
-
       <!-- title  -->
       <label for="title">{{
         this.$store.state.language == "English"
-          ? this.$store.state.English.create_class.title
-          : this.$store.state.Arabic.create_class.title
+          ? this.$store.state.English.update_message.title
+          : this.$store.state.Arabic.update_message.title
       }}</label>
 
       <input
+        type="text"
         id="title"
         v-model="this.title"
         :placeholder="
           this.$store.state.language == 'English'
-            ? this.$store.state.English.create_class.title_placeholder
-            : this.$store.state.Arabic.create_class.title_placeholder
+            ? this.$store.state.English.update_message.title_placeholder
+            : this.$store.state.Arabic.update_message.title_placeholder
         "
       />
       <!-- title  -->
 
-      <!-- note  -->
-      <label for="note">{{
+      <!-- description  -->
+      <label for="description">{{
         this.$store.state.language == "English"
-          ? this.$store.state.English.create_class.note
-          : this.$store.state.Arabic.create_class.note
+          ? this.$store.state.English.update_message.description
+          : this.$store.state.Arabic.update_message.description
       }}</label>
 
       <textarea
-        name=""
+        id="description"
+        v-model="this.description"
+        :placeholder="
+          this.$store.state.language == 'English'
+            ? this.$store.state.English.update_message.description_placeholder
+            : this.$store.state.Arabic.update_message.description_placeholder
+        "
+      >
+      </textarea>
+      <!-- description  -->
+
+      <!-- note  -->
+      <label for="note">{{
+        this.$store.state.language == "English"
+          ? this.$store.state.English.update_message.note
+          : this.$store.state.Arabic.update_message.note
+      }}</label>
+
+      <textarea
         id="note"
         v-model="this.note"
         :placeholder="
           this.$store.state.language == 'English'
-            ? this.$store.state.English.create_class.note_placeholder
-            : this.$store.state.Arabic.create_class.note_placeholder
+            ? this.$store.state.English.update_message.note_placeholder
+            : this.$store.state.Arabic.update_message.note_placeholder
         "
-      ></textarea>
+      >
+      </textarea>
       <!-- note  -->
 
-      <!-- subject  -->
-      <label for="subject">{{
+      <!-- recipient  -->
+      <label for="recipient">{{
         this.$store.state.language == "English"
-          ? this.$store.state.English.create_class.subject
-          : this.$store.state.Arabic.create_class.subject
+          ? this.$store.state.English.update_message.Recipient
+          : this.$store.state.Arabic.update_message.Recipient
       }}</label>
 
-      <select name="" id="subject" v-model="this.subject">
+      <select name="" id="recipient" v-model="this.recipient">
         <option
-          v-for="(subject, index) in this.$store.state.subjects_list"
+          v-for="(recipient, index) in this.$store.state.recipient_list"
           :key="index"
-          :value="subject.English"
+          :value="recipient.value"
         >
           {{
             this.$store.state.language == "English"
-              ? subject.English
-              : subject.Arabic
+              ? recipient.English
+              : recipient.Arabic
           }}
         </option>
       </select>
-      <!-- subject  -->
+      <!-- recipient  -->
 
-      <!-- class level  -->
-      <label for="class_level">{{
+      <!-- level  -->
+      <label for="level">{{
         this.$store.state.language == "English"
-          ? this.$store.state.English.create_class.class_level
-          : this.$store.state.Arabic.create_class.class_level
+          ? this.$store.state.English.update_message.level
+          : this.$store.state.Arabic.update_message.level
       }}</label>
 
-      <select name="" id="class_level" v-model="this.class_level">
+      <select name="" id="level" v-model="this.level">
         <option
-          v-for="(class_level, index) in this.$store.state.Classes_level_list"
+          v-for="(level, index) in this.$store.state.messages_level_list"
           :key="index"
-          :value="class_level.English"
+          :value="level.value"
         >
           {{
             this.$store.state.language == "English"
-              ? class_level.English
-              : class_level.Arabic
+              ? level.English
+              : level.Arabic
           }}
         </option>
       </select>
-      <!-- class level  -->
+      <!-- level  -->
 
-      <!-- teacher  -->
-      <label for="">
+      <button @click="UpdateMessage">
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.create_class.teachers_section_title
-            : this.$store.state.Arabic.create_class.teachers_section_title
-        }}</label
-      >
-
-      <!-- choosed teacher container -->
-      <div class="teacher-cont">
-        <icon icon="plus" @click="this.$store.commit(`ChooseTeacher`)" />
-        <div class="teacher" v-if="this.$store.state.choosed_teacher">
-          <!-- avatar  -->
-          <img
-            :src="this.$store.state.choosed_teacher.avatar"
-            alt="Image"
-            @click="GoTeacher(this.$store.state.choosed_teacher._id)"
-          />
-          <!-- avatar  -->
-
-          <!-- info cont  -->
-
-          <div
-            class="info"
-            @click="GoTeacher(this.$store.state.choosed_teacher._id)"
-          >
-            <h3>{{ this.$store.state.choosed_teacher.name }}</h3>
-
-            <p>
-              ⚧️ : {{ this.$store.state.choosed_teacher.gender }}
-              {{
-                this.$store.state.choosed_teacher.gender == "male" ? "🚹" : "🚺"
-              }}
-            </p>
-
-            <p v-if="this.$store.state.choosed_teacher.classes">
-              🏛️ : {{ this.$store.state.choosed_teacher.classes.length }}
-            </p>
-
-            <p>{{ this.$store.state.choosed_teacher.gender }}</p>
-
-            <p v-if="this.$store.state.choosed_teacher.editor" class="editor">
-              {{ this.$store.state.choosed_teacher.editor ? "editor" : null }}
-            </p>
-
-            <p>⭐ : {{ this.$store.state.choosed_teacher.rate }}</p>
-
-            <p>📚📖📑 : {{ this.$store.state.choosed_teacher.subject }}</p>
-
-            <p>🏫🪜🎚️ : {{ this.$store.state.choosed_teacher.class_level }}</p>
-          </div>
-          <!-- info cont  -->
-
-          <!-- remove the choosed teacher  -->
-          <button @click="RemoveTeacher">
-            {{
-              this.$store.state.language == "English"
-                ? this.$store.state.English.create_class.remove_button
-                : this.$store.state.Arabic.create_class.remove_button
-            }}
-          </button>
-          <!-- remove the choosed teacher  -->
-        </div>
-      </div>
-      <!-- choosed teacher container -->
-      <!-- teacher  -->
-
-      <button @click="CreateClass">
-        {{
-          this.$store.state.language == "English"
-            ? this.$store.state.English.create_class.button
-            : this.$store.state.Arabic.create_class.button
+            ? this.$store.state.English.update_message.button
+            : this.$store.state.Arabic.update_message.button
         }}
       </button>
     </div>
+    <!-- form  -->
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import Math from "../../../assets/classes covers/Math.jpg";
-import Arabic from "../../../assets/classes covers/arabic.jpg";
-import English from "../../../assets/classes covers/english.jpg";
-import French from "../../../assets/classes covers/french.jpg";
-import History from "../../../assets/classes covers/history.jpg";
-import Philosophy from "../../../assets/classes covers/phalsephe.jpg";
-import Physics from "../../../assets/classes covers/physic.jpg";
-import Sciences from "../../../assets/classes covers/sinces.jpg";
-import Islam from "../../../assets/classes covers/Islam.jpg";
-import Geography from "../../../assets/classes covers/gegrophya.jpg";
-import Chemistry from "../../../assets/classes covers/chimster.jpg";
-import Alwatania from "../../../assets/classes covers/alwataniajpg.jpg";
 export default {
-  name: "create-class-component",
+  name: "update-mesage-component",
   data() {
     return {
+      // page status
       status: "close",
       // title
-      title: "",
+      title: this.$store.state.message_for_update.title,
+      // description
+      description: this.$store.state.message_for_update.description,
       // note
-      note: "",
-      // class level
-      class_level: "First_grade",
-      // subject
-      subject: "Math",
-      // teacher
-      teacher: "",
-      // covers list
-      covers: {
-        Math,
-        Arabic,
-        English,
-        French,
-        History,
-        Philosophy,
-        Physics,
-        Sciences,
-        Islam,
-        Geography,
-        Chemistry,
-        Alwatania,
-      },
-      // cover
-      cover: Math,
-      // api
-      api: "",
-      // form data
-      formData: "",
+      note: this.$store.state.message_for_update.note,
+      // recipient
+      recipient: this.$store.state.message_for_update.recipient,
+      // level
+      level: this.$store.state.message_for_update.level,
+      // body data
+      body_data: {},
     };
   },
+  components: {},
   mounted() {
-    // to open the page smooth
     setTimeout(() => {
       this.status = "open";
     }, 500);
   },
   methods: {
-    // create class method
-    async CreateClass() {
-      // create a form data
-      this.formData = new FormData();
-
-      // to start the loading animation
+    // update message method
+    async UpdateMessage() {
+      // to start the loading
       this.$store.state.loading = "open";
 
-      // create header
+      // create headers
       const headers = {
         Authorization: `Bearer ${this.$store.state.user.token}`,
       };
 
-      // update the api
+      // add the super_admin_id or admin_id
       if (this.$store.state.user.user_type == "super") {
-        // update the api
-        this.api = this.$store.state.APIs.classes.super.create;
-
-        // add the super admin id to form data
-        this.formData.append("super_admin_id", this.$store.state.user.user._id);
-
-        // add the teacher id
-        this.formData.append(
-          "teacher_id",
-          this.$store.state.choosed_teacher._id
-        );
+        this.body_data.super_admin_id = this.$store.state.user.user._id;
       } else if (this.$store.state.user.user_type == "admin") {
-        // update admin
-        this.api = this.$store.state.APIs.classes.admin.create;
-
-        // add the admin id to form data
-        this.formData.append("admin_id", this.$store.state.user.user._id);
-
-        // add the teacher id
-        this.formData.append(
-          "teacher_id",
-          this.$store.state.choosed_teacher._id
-        );
-      } else if (this.$store.state.user.user_type == "teacher") {
-        // update api
-        this.api = this.$store.state.APIs.classes.teacher.create;
-
-        // add the teacher id to form data
-        this.formData.append("teacher_id", this.$store.state.user.user._id);
+        this.body_data.admin_id = this.$store.state.user.user._id;
       }
 
+      // add the message id
+      this.body_data.message_id = this.$store.state.message_for_update._id;
+
       // add the title
-      this.formData.append("title", this.title);
+      if (this.title != this.$store.state.message_for_update.title) {
+        this.body_data.title = this.title;
+      }
+
+      // add the description
+      if (
+        this.description != this.$store.state.message_for_update.description
+      ) {
+        this.body_data.description = this.description;
+      }
 
       // add the note
-      this.formData.append("note", this.note);
+      if (this.note != this.$store.state.message_for_update.note) {
+        this.body_data.note = this.note;
+      }
 
-      // add the subject
-      this.formData.append("subject", this.subject);
+      // add the recipient
+      if (this.recipient != this.$store.state.message_for_update.recipient) {
+        this.body_data.recipient = this.recipient;
+      }
 
-      // add the class level
-      this.formData.append("class_level", this.class_level);
-
-      // add the cover
-      if (this.$store.state.selected_cover) {
-        // create a new array from selected cover in store
-        let cover = Array.from(this.$store.state.selected_cover);
-        for (const file of cover) {
-          this.formData.append("cover", file, file.name);
-        }
+      // add the level
+      if (this.level != this.$store.state.message_for_update.level) {
+        this.body_data.level = this.level;
       }
 
       await axios
-        .post(this.api, this.formData, {
-          headers,
-        })
+        .put(
+          this.$store.state.user.user_type == "super"
+            ? this.$store.state.APIs.messages.super.update
+            : this.$store.state.APIs.messages.admin.update,
+          this.body_data,
+          { headers }
+        )
         .then(() => {
-          // to stop the loading
+          // to stop the loading loading
           this.$store.state.loading = "close";
 
-          // emptying the choosed teacher
-          this.$store.state.choosed_teacher = "";
-
-          // change the active componenet in store
-          this.$store.state.active_component_in_dash = "classes";
+          // change the active componenet in dash
+          this.$store.state.active_component_in_dash = "messages";
         })
         .catch((error) => {
-          // to stop the loading
+          // to open the componenet smooth
+          this.status = "open";
+
+          // to stop the loading animation
           this.$store.state.loading = "close";
 
-          // open the error form
-          this.$store.state.error_form_status = "open";
-
-          // set the error message to error message in store
+          // to set the reqeust's error message to error message var in store
           this.$store.state.error_message = error.response.data.message;
+
+          // to open the error form
+          this.$store.state.error_form_status = "open";
         });
-    },
-
-    // reader selecetd image
-    readerFile() {
-      const reader = new FileReader();
-
-      reader.onload = (e) => {
-        this.cover = e.target.result;
-      };
-
-      reader.readAsDataURL(this.$store.state.selected_cover[0]);
-
-      // return the cover to use the ass a path in cover image
-      return this.cover;
-    },
-
-    // remove the choosed teacher method
-    RemoveTeacher() {
-      this.$store.state.choosed_teacher = "";
-    },
-  },
-  watch: {
-    // watch the cover on change
-    subject(newCover) {
-      // update the cover
-      this.cover = this.covers[newCover];
     },
   },
 };
 </script>
 
 <style lang="scss">
-@import "../../../Sass/varibels/variables";
-
+@import "../../../sass/varibels/variables";
 // darck and light English style
-.create-class-darck-English-open {
+.update-message-darck-English-open {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -557,17 +424,17 @@ export default {
   }
 }
 
-.create-class-darck-English-open::-webkit-scrollbar {
+.update-message-darck-English-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.create-class-darck-English-close {
-  @extend .create-class-darck-English-open;
+.update-message-darck-English-close {
+  @extend .update-message-darck-English-open;
   opacity: 0;
   padding: 30% 5px 5px 5px;
 }
 
-.create-class-light-English-open {
+.update-message-light-English-open {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -755,27 +622,47 @@ export default {
     }
   }
 }
-// darck and light English style
 
-// darck and light Arabic style
-.create-class-darck-Arabic-open {
-  @extend .create-class-darck-English-open;
-  direction: rtl;
-}
-
-.create-class-darck-Arabic-open::-webkit-scrollbar {
+.update-message-light-English-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.create-class-darck-Arabic-close {
-  @extend .create-class-darck-Arabic-open;
+.update-message-light-English-close {
+  @extend .update-message-light-English-open;
+  opacity: 0;
+  padding: 30% 5px 5px 5px;
+}
+// darck and light English style
+
+// darck and light Arabic style
+.update-message-darck-Arabic-open {
+  @extend .update-message-darck-English-open;
+  direction: rtl;
+}
+
+.update-message-darck-Arabic-open::-webkit-scrollbar {
+  width: 0px;
+}
+
+.update-message-darck-Arabic-close {
+  @extend .update-message-darck-Arabic-open;
   opacity: 0;
   padding: 30% 5px 5px 5px;
 }
 
-.create-class-light-Arabic-open {
-  @extend .create-class-light-English-open;
+.update-message-light-Arabic-open {
+  @extend .update-message-light-English-open;
   direction: rtl;
+}
+
+.update-message-light-Arabic-open::-webkit-scrollbar {
+  width: 0px;
+}
+
+.update-message-light-Arabic-close {
+  @extend .update-message-light-Arabic-open;
+  opacity: 0;
+  padding: 30% 5px 5px 5px;
 }
 // darck and light Arabic style
 </style>

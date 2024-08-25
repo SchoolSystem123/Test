@@ -295,7 +295,7 @@
 }
 
 .create-parent-darck-English-close {
-  @extend .section-cont-open-darck;
+  @extend .create-parent-darck-English-open;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
@@ -600,7 +600,7 @@
 }
 
 .create-parent-light-English-close {
-  @extend .section-cont-open-darck;
+  @extend .create-parent-light-English-open;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
@@ -907,7 +907,7 @@
 }
 
 .create-parent-darck-Arabic-close {
-  @extend .section-cont-open-darck;
+  @extend .create-parent-darck-Arabic-open ;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
@@ -1212,7 +1212,7 @@
 }
 
 .create-parent-light-Arabic-close {
-  @extend .section-cont-open-darck;
+  @extend .create-parent-light-Arabic-open;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }

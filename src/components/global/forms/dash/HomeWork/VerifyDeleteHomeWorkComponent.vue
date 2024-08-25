@@ -1,118 +1,124 @@
 <template>
   <div
-    :class="`verify-delete-hw-${this.$store.state.delete_hw_form_status}-${this.$store.state.language}`"
+    :class="`delete-form-${this.$store.state.mood}-${this.$store.state.language}-${this.$store.state.delete_home_work_form_status}`"
   >
-    <h3 class="header">
+    <div class="header">
       {{
         this.$store.state.language == "English"
-          ? this.$store.state.English.delete_hw_form.message
-          : this.$store.state.Arabic.delete_hw_form.message
+          ? this.$store.state.English.delete_home_work_form.title
+          : this.$store.state.Arabic.delete_home_work_form.title
       }}
-    </h3>
-    <button class="delete" @click="deleteHW">Delete</button>
-    <button class="cancel" @click="this.$store.commit('OpenOrCloseDeleteHW')">
-      Cancel
+    </div>
+
+    <!-- delete button  -->
+    <button class="delete" @click="DeleteHomWork">
+      {{
+        this.$store.state.language == "English"
+          ? this.$store.state.English.delete_home_work_form.delete
+          : this.$store.state.Arabic.delete_home_work_form.delete
+      }}
     </button>
+    <!-- delete button  -->
+
+    <!-- cancel button   -->
+    <button
+      class="cancel"
+      @click="this.$store.commit('OpenOrCloseDeleteHomeWorkForm')"
+    >
+      {{
+        this.$store.state.language == "English"
+          ? this.$store.state.English.delete_home_work_form.cancel
+          : this.$store.state.Arabic.delete_home_work_form.cancel
+      }}
+    </button>
+    <!-- cancel button   -->
   </div>
 </template>
 
 <script>
 import axios from "axios";
-
 export default {
-  name: "verify-delete-home-work-form",
+  name: "verify-delete-home-work",
   data() {
     return {
+      // api
       api: "",
-      body: "",
     };
   },
-  mounted() {
-    if (this.$store.state.user.user_type == "super") {
-      this.api = this.$store.state.APIs.home_works.super.delete;
-    } else if (this.$store.state.user.user_type == "admin") {
-      this.api = this.$store.state.APIs.home_works.admin.delete;
-    } else if (this.$store.state.user.user_type == "teacher") {
-      this.api = this.$store.state.APIs.home_works.teacher.delete;
-    }
-  },
-  props: {
-    home_work_id: String,
-  },
   methods: {
-    SelectBody() {
-      if (this.$store.state.user.user_type == "super") {
-        this.body = {
-          super_admin_id: this.$store.state.user.user._id,
-          home_work_id: this.$store.state.home_work._id,
-        };
-      } else if (this.$store.state.user.user_type == "admin") {
-        this.body = {
-          admin_id: this.$store.state.user.user._id,
-          home_work_id: this.$store.state.home_work._id,
-        };
-      } else if (this.$store.state.user.user_type == "teacher") {
-        this.body = {
-          teacher_id: this.$store.state.user.user._id,
-          home_work_id: this.$store.state.home_work._id,
-        };
-      }
-    },
-
-    // delete home work method
-    async deleteHW() {
+    // delete message method
+    async DeleteHomWork() {
       // to start the loading animation
       this.$store.state.loading = "open";
 
-      // to close confirm form
-      this.$store.state.delete_hw_form_status = "close";
-
-      // call to select the body method
-      this.SelectBody();
-
       // create headers
-      const config = {
+      const headers = {
         Authorization: `Bearer ${this.$store.state.user.token}`,
       };
 
-      try {
-        await axios
-          .delete(this.api, { data: this.body, headers: config })
-          .then(() => {
-            // to stope the loading animation
-            this.$store.state.loading = "close";
+      // create body data
+      let data;
 
-            // to remove the class data from store to reload whene send user to class page
-            this.$store.state.class = "";
+      // check if the user is super
+      if (this.$store.state.user.user_type == "super") {
+        // update the api
+        this.api = this.$store.state.APIs.home_works.super.delete;
 
-            // send the user to class page
-            window.location = `/class/${this.$store.state.home_work.class_id._id}`;
-          })
-          .catch((error) => {
-            // to stope the loading animation
-            this.$store.state.loading = "close";
+        // update the body data
+        data = {
+          super_admin_id: this.$store.state.user.user._id,
+          home_work_id: this.$store.state.home_work_id_for_delete,
+        };
+      } else if (this.$store.state.user.user_type == "admin") {
+        // update the api
+        this.api = this.$store.state.APIs.home_works.admin.delete;
 
-            // to set the error message to error message var in store
-            this.$store.state.error_message = error.response.data.message;
+        // update the body data
+        data = {
+          admin_id: this.$store.state.user.user._id,
+          home_work_id: this.$store.state.home_work_id_for_delete,
+        };
+      } else if (this.$store.state.user.user_type == "teacher") {
+        // update the api
+        this.api = this.$store.state.APIs.home_works.teacher.delete;
 
-            // to open the error from
-            this.$store.state.error_form_status = "open";
-            console.log(error);
-          });
-      } catch (error) {
-        console.log(`error is : ${error}`);
-        // to set the error message to error message var in store
-        this.$store.state.error_message = error.response.data.message;
-
-        // to open the error from
-        this.$store.state.error_form_status = "open";
+        // update the body data
+        data = {
+          teacher_id: this.$store.state.user.user._id,
+          home_work_id: this.$store.state.home_work_id_for_delete,
+        };
       }
+
+      await axios
+        .delete(this.api, { data, headers })
+        .then(() => {
+          // to stop the loading animation
+          this.$store.state.loading = "close";
+
+          // close the verify delete teacher form
+          this.$store.commit("OpenOrCloseDeleteHomeWorkForm");
+
+          window.location.reload();
+        })
+        .catch((error) => {
+          // to stop the loading animation
+          this.$store.state.loading = "close";
+
+          // close the verify delete admin form
+          this.$store.commit("OpenOrCloseDeleteHomeWorkForm");
+
+          // to set the reqeust's error message to error message var in store
+          this.$store.state.error_message = error.response.data.message;
+
+          // to open the error form
+          this.$store.state.error_form_status = "open";
+        });
     },
   },
 };
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
 @import "../../../Sass/varibels/variables";
 
 // darck and light English style
@@ -362,4 +368,4 @@ export default {
   z-index: -50;
 }
 // darck and light Arabic style
-</style>
+</style> -->

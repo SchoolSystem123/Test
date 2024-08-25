@@ -1,5 +1,5 @@
 // darck and light English style
-.create-message-darck-English-open {
+.update-message-darck-English-open {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -184,17 +184,17 @@
   }
 }
 
-.create-message-darck-English-open::-webkit-scrollbar {
+.update-message-darck-English-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.create-message-darck-English-close {
-  @extend .create-message-darck-English-open;
+.update-message-darck-English-close {
+  @extend .update-message-darck-English-open;
   opacity: 0;
   padding: 30% 5px 5px 5px;
 }
 
-.create-message-light-English-open {
+.update-message-light-English-open {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -383,12 +383,12 @@
   }
 }
 
-.create-message-light-English-open::-webkit-scrollbar {
+.update-message-light-English-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.create-message-light-English-close {
-  @extend .create-message-light-English-open;
+.update-message-light-English-close {
+  @extend .update-message-light-English-open;
   opacity: 0;
   padding: 30% 5px 5px 5px;
 }
@@ -396,32 +396,32 @@
 
 
 // darck and light Arabic style
-.create-message-darck-Arabic-open {
-  @extend .create-message-darck-English-open;
+.update-message-darck-Arabic-open {
+  @extend .update-message-darck-English-open;
   direction: rtl;
 }
 
-.create-message-darck-Arabic-open::-webkit-scrollbar {
+.update-message-darck-Arabic-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.create-message-darck-Arabic-close {
-  @extend .create-message-darck-Arabic-open;
+.update-message-darck-Arabic-close {
+  @extend .update-message-darck-Arabic-open;
   opacity: 0;
   padding: 30% 5px 5px 5px;
 }
 
-.create-message-light-Arabic-open {
-  @extend .create-message-light-English-open;
+.update-message-light-Arabic-open {
+  @extend .update-message-light-English-open;
   direction: rtl;
 }
 
-.create-message-light-Arabic-open::-webkit-scrollbar {
+.update-message-light-Arabic-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.create-message-light-Arabic-close {
-  @extend .create-message-light-Arabic-open;
+.update-message-light-Arabic-close {
+  @extend .update-message-light-Arabic-open;
   opacity: 0;
   padding: 30% 5px 5px 5px;
 }

@@ -21,8 +21,8 @@
         <li @click="ChangeComponent('students')">Students 👨‍🎓</li>
         <li @click="ChangeComponent('parents')">Parents 👨‍👩‍👦‍👦</li>
         <li @click="ChangeComponent('classes')">Classes 🏫</li>
-        <li @click="ChangeComponent('homeWorks')">Home Works ➕</li>
-        <li @click="ChangeComponent('messages')">Messages ➕</li>
+        <li @click="ChangeComponent('home-works')">Home Works ➕</li>
+        <li @click="ChangeComponent('messages')">Messages 💬</li>
 
         <li
           @click="ChangeComponent('create-admin')"
@@ -117,7 +117,7 @@
 
       <!-- Home Works component -->
       <HomeWorksComponentVue
-        v-if="this.$store.state.active_component_in_dash == 'homeWorks'"
+        v-if="this.$store.state.active_component_in_dash == 'home-works'"
       />
       <!-- Home Works component -->
 
@@ -224,6 +224,26 @@
         v-if="this.$store.state.active_component_in_dash == 'create-message'"
       />
       <!-- create message component -->
+
+      <!-- delete message component -->
+      <VerifyDeleteMessageComponent />
+      <!-- delete message component -->
+
+      <!-- update message component -->
+      <UpdateMessagesComponent
+        v-if="this.$store.state.active_component_in_dash == 'update-message'"
+      />
+      <!-- update message component -->
+
+      <!-- delete home work form component -->
+      <VerifyDeleteHomeWorkComponent />
+      <!-- delete home work form component -->
+
+      <!-- update home work component -->
+      <UpdateHomeWorkComponent
+        v-if="this.$store.state.active_component_in_dash == 'update-home-work'"
+      />
+      <!-- update home work component -->
     </div>
   </div>
 </template>
@@ -259,6 +279,10 @@ import ChooseTeacherComponent from "@/components/global/forms/dash/class/ChooseT
 import CoverFormComponent from "@/components/global/forms/dash/class/CoverFormComponent.vue";
 import CreateClassComponent from "@/components/dash/Classes/CreateClassComponent.vue";
 import CreateMessagesComponent from "@/components/dash/Messages/CreateMessagesComponent.vue";
+import VerifyDeleteMessageComponent from "@/components/global/forms/dash/message/VerifyDeleteMessageComponent.vue";
+import UpdateMessagesComponent from "@/components/dash/Messages/UpdateMessagesComponent.vue";
+import VerifyDeleteHomeWorkComponent from "@/components/global/forms/dash/HomeWork/VerifyDeleteHomeWorkComponent.vue";
+import UpdateHomeWorkComponent from "@/components/dash/Home Works/UpdateHomeWorkComponent.vue";
 
 export default {
   data() {
@@ -311,6 +335,10 @@ export default {
     CoverFormComponent,
     CreateClassComponent,
     CreateMessagesComponent,
+    VerifyDeleteMessageComponent,
+    UpdateMessagesComponent,
+    VerifyDeleteHomeWorkComponent,
+    UpdateHomeWorkComponent,
   },
   methods: {
     // change the component
@@ -331,3 +359,240 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../Sass/varibels/variables";
+// darck adn light English style
+.dash-darck-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-darck;
+  display: flex;
+  direction: ltr;
+
+  .sid-bar-open {
+    width: 20%;
+    height: 96vh;
+    margin: 2vh 10px;
+    background-color: $card-darck;
+    border-radius: 10px;
+    position: relative;
+    transition-duration: 0.5s;
+    // overflow-y:scroll ;
+
+    @media (max-width: $phone) {
+      width: 40%;
+    }
+
+    svg {
+      padding: 10px;
+      border-radius: 50%;
+      background-color: $message-darck;
+      color: $font-light;
+      cursor: pointer;
+      position: absolute;
+      right: -15px;
+      top: 20px;
+    }
+
+    // home link (svg)
+    a {
+      text-decoration: none;
+      width: 100%;
+      height: 100%;
+      color: $font-light;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+    }
+
+    ul {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      overflow-y: scroll;
+
+      li {
+        width: 96%;
+        height: 40px;
+        margin: 10px 2%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        padding: 0px 10px;
+        border-radius: 5px;
+        color: $font-light;
+        cursor: pointer;
+        transition-duration: 0.5s;
+        @media (max-width: $phone) {
+          font-size: $x-small;
+        }
+      }
+
+      li:hover {
+        background-color: $note-darck;
+      }
+    }
+
+    ul::-webkit-scrollbar {
+      width: 0px;
+    }
+  }
+
+  .sid-bar-close {
+    @extend .sid-bar-open;
+    width: 0%;
+  }
+
+  .section-open {
+    width: 80%;
+    height: 100vh;
+    transition-duration: 0.5s;
+  }
+
+  .section-close {
+    width: 100%;
+    height: 100vh;
+    transition-duration: 0.5s;
+  }
+}
+
+.dash-light-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-light;
+  display: flex;
+  direction: ltr;
+
+  .sid-bar-open {
+    width: 20%;
+    height: 96vh;
+    margin: 2vh 10px;
+    background-color: $card-light;
+    border-radius: 10px;
+    position: relative;
+    transition-duration: 0.5s;
+
+    @media (max-width: $phone) {
+      width: 40%;
+    }
+
+    svg {
+      padding: 10px;
+      border-radius: 50%;
+      background-color: $message-light;
+      color: $font-darck;
+      cursor: pointer;
+      position: absolute;
+      right: -15px;
+      top: 20px;
+    }
+
+    // home link (svg)
+    a {
+      text-decoration: none;
+      width: 100%;
+      height: 100%;
+      color: $font-darck;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+    }
+
+    ul {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      overflow-y: scroll;
+
+      li {
+        width: 96%;
+        height: 40px;
+        margin: 10px 2%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        padding: 0px 10px;
+        border-radius: 5px;
+        color: $font-darck;
+        cursor: pointer;
+        transition-duration: 0.5s;
+
+        @media (max-width: $phone) {
+          font-size: $x-small;
+        }
+      }
+
+      li:hover {
+        background-color: $note-light;
+      }
+    }
+
+    ul::-webkit-scrollbar {
+      width: 0px;
+    }
+  }
+
+  .sid-bar-close {
+    @extend .sid-bar-open;
+    width: 0%;
+  }
+
+  .section-open {
+    width: 80%;
+    height: 100vh;
+    transition-duration: 0.5s;
+  }
+
+  .section-close {
+    width: 100%;
+    height: 100vh;
+    transition-duration: 0.5s;
+  }
+}
+// darck adn light English style
+
+// darck adn light Arabic style
+.dash-darck-Arabic {
+  @extend .dash-darck-English;
+}
+
+.dash-light-Arabic {
+  @extend .dash-light-English;
+}
+// darck adn light Arabic style
+
+// @import "../../component/global/forms/dash/class/coverForm";
+// @import "../../component/dash/admins/admins";
+// @import "../../component/dash/admins/adminInDash";
+// @import "../../component/dash/admins/createAdmin";
+// @import "../../component/global/forms/dash/verifyDeleteUser";
+// @import "../../component/dash/admins/updateAdmin";
+// @import "../../component/dash/classes/updateClass";
+// @import "../../component/dash/classes/createClass";
+
+// @import "../../component/dash/teachers/createTeacher";
+// @import "../../component/dash/teachers/teacherInDash";
+// @import "../../component/dash/teachers/updateTeacher";
+
+// @import "../../component/dash/students/createStudent";
+// @import "../../component/dash/students/studentInDash";
+// @import "../../component/dash/students/updateStudent";
+
+// @import "../../component/dash/parents/createParents";
+// @import "../../component/dash/parents/parentInDash";
+// @import "../../component/dash/parents/updateParent";
+
+// @import "../../component/dash/classes/classInDash";
+// @import "../../component/dash/classes/classes";
+
+// @import "../../component/dash/messages/messages" ;
+// @import "../../component/dash/messages/message" ;
+// @import "../../component/dash/messages/createMessage" ;
+// @import "../../component/dash/messages/updateMessage" ;
+// @import "../../component/dash/parents/parentInDash";
+// @import "../../component/dash/parents/updateParent";
+
+// @import "../../component/global/forms/dash/parents/chooseChildren";
+// @import "../../component/global/forms/dash/class/chooseTeacher";
+</style>

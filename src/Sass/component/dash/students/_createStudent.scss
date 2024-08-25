@@ -201,7 +201,7 @@
 }
 
 .create-student-darck-English-close {
-  @extend .section-cont-open-darck;
+  @extend .create-student-darck-English-open;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
@@ -411,7 +411,7 @@
 }
 
 .create-student-light-English-close {
-  @extend .section-cont-open-light;
+  @extend .create-student-light-English-open;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
@@ -624,7 +624,7 @@
 }
 
 .create-student-darck-Arabic-close {
-  @extend .section-cont-open-darck;
+  @extend .create-student-darck-Arabic-open;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
@@ -835,7 +835,7 @@
 }
 
 .create-student-light-Arabic-close {
-  @extend .section-cont-open-light;
+  @extend .create-student-light-Arabic-open;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }

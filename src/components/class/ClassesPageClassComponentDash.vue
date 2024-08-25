@@ -100,3 +100,175 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../Sass/varibels/variables";
+
+// darck English style
+.classes-class-darck-English {
+  width: 90%;
+  height: auto;
+  background: $card-darck;
+  cursor: pointer;
+  margin: 5%;
+  border-radius: 10px;
+  position: relative;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: center;
+  direction: ltr;
+
+  @media (min-width: $phone) {
+    width: 40%;
+    height: auto;
+  }
+
+  // class's cover and avatar cont style
+  .cover-cont {
+    width: 98%;
+    height: auto;
+    margin: 1%;
+    position: relative;
+
+    .cover {
+      width: 100%;
+      max-height: 300px;
+      border-radius: 10px;
+    }
+
+    .avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 5px;
+      position: absolute;
+      left: 10px;
+      bottom: 15px;
+      z-index: 20;
+    }
+  }
+  // cover and avatar cont style
+
+  // class's title style
+  h2 {
+    width: 98%;
+    height: auto;
+    color: $font-light;
+    margin: 20px 1% 0% 1%;
+  }
+
+  p {
+    width: auto;
+    height: auto;
+    color: $font-light;
+    font-size: $x-small;
+    margin: 5px 2%;
+    padding: 3px;
+    border-radius: 3px;
+    background-color: $note-darck;
+  }
+}
+// darck English style
+
+// light English style
+.classes-class-light-English {
+  @extend .classes-class-darck-English;
+  background: $card-light;
+
+  // class's title style
+  h2 {
+    color: $font-darck;
+  }
+
+  p {
+    color: $font-darck;
+    background-color: $note_light;
+  }
+}
+// darck English style
+
+// darck Arabic style
+.classes-class-darck-Arabic {
+  width: 90%;
+  height: auto;
+  background: $card-darck;
+  cursor: pointer;
+  margin: 5%;
+  border-radius: 10px;
+  position: relative;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: center;
+  direction: rtl;
+
+  @media (min-width: $phone) {
+    width: 40%;
+    height: auto;
+  }
+
+  // class's cover and avatar cont style
+  .cover-cont {
+    width: 98%;
+    height: auto;
+    margin: 1%;
+    position: relative;
+
+    .cover {
+      width: 100%;
+      max-height: 300px;
+      border-radius: 10px;
+    }
+
+    .avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 5px;
+      position: absolute;
+      left: 10px;
+      bottom: 15px;
+      z-index: 20;
+    }
+  }
+  // cover and avatar cont style
+
+  // class's title style
+  h2 {
+    width: 98%;
+    height: auto;
+    color: $font-light;
+    margin: 20px 1% 0% 1%;
+  }
+
+  p {
+    width: auto;
+    height: auto;
+    color: $font-light;
+    font-size: $x-small;
+    margin: 5px 2%;
+    padding: 3px;
+    border-radius: 3px;
+    background-color: $note-darck;
+  }
+}
+// darck Arabic style
+
+// light Arabic style
+.classes-class-light-Arabic {
+  @extend .classes-class-darck-Arabic;
+  background: $card-light;
+
+  // class's title style
+  h2 {
+    color: $font-darck;
+  }
+
+  p {
+    color: $font-darck;
+    background-color: $note_light;
+  }
+}
+// darck Arabic style
+</style>

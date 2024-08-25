@@ -1,18 +1,177 @@
 <template>
-  <div :class="`loading-cont-${this.$store.state.mood}-${this.$store.state.loading}`">
+  <div
+    :class="`loading-cont-${this.$store.state.mood}-${this.$store.state.loading}`"
+  >
     <div :class="`cont-${this.$store.state.theme}`">
-      <div class="center">
-      </div>
+      <div class="center"></div>
     </div>
-    <p>{{ this.$store.state.language == "English"
-      ? this.$store.state.English.loading
-      : this.$store.state.Arabic.loading
-      }}</p>
+    <p>
+      {{
+        this.$store.state.language == "English"
+          ? this.$store.state.English.loading
+          : this.$store.state.Arabic.loading
+      }}
+    </p>
   </div>
 </template>
 
 <script>
 export default {
-  name : "loading-component"
-}
+  name: "loading-component",
+};
 </script>
+
+<style lang="scss">
+@import "../../Sass/varibels/variables";
+
+.loading-cont-darck-open {
+  width: 20%;
+  height: 20%;
+  border-radius: 5px;
+  backdrop-filter: blur(200px);
+  box-shadow: 0 0 5px $black;
+  transition-duration: 0.5s;
+  position: fixed;
+  top: 5%;
+  left: 35%;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  transition-duration: 0.5s;
+  @media (max-width: $phone) {
+    width: 30%;
+    height: 15%;
+    left: 35%;
+  }
+
+  @media (min-width: $phone) and (max-width: $laptop) {
+    width: 15%;
+    height: 25%;
+    left: 43%;
+  }
+
+  @media (min-width: $laptop) {
+    width: 15%;
+    height: 20%;
+    left: 43%;
+  }
+
+  // blue theme's loading cont
+  .cont-blue {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(to top, $first-blue, $second-blue, $first-blue);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px $black inset;
+    animation: loading 2s linear infinite;
+    @media (max-width: $phone) {
+      width: 80px;
+      height: 80px;
+    }
+
+    .center {
+      width: 70%;
+      height: 70%;
+      background-color: $body-darck;
+      border-radius: 50%;
+      box-shadow: 0 0 5px $black;
+    }
+  }
+
+  // pink theme's loading cont
+  .cont-orange {
+    @extend .cont-blue;
+    background: linear-gradient(
+      to top,
+      $first-orange,
+      $second-orange,
+      $first-orange
+    );
+    @media (max-width: $phone) {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  // green theme's loading cont
+  .cont-green {
+    @extend .cont-blue;
+    background: linear-gradient(
+      to top,
+      $first-green,
+      $second-green,
+      $first-green
+    );
+    @media (max-width: $phone) {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  // pink theme's loading cont
+  .cont-pink {
+    @extend .cont-blue;
+    background: linear-gradient(to top, $first-pink, $second-pink, $first-pink);
+    @media (max-width: $phone) {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  p {
+    width: 100%;
+    font-size: $small;
+    text-align: center;
+    color: $font-light;
+    text-shadow: 0 0 5px $black;
+  }
+
+  // load animation ( rotate )
+  @keyframes loading {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.loading-cont-darck-close {
+  @extend .loading-cont-darck-open;
+  top: -50%;
+}
+
+.loading-cont-light-close {
+  @extend .loading-cont-darck-close;
+  p {
+    color: $font-darck;
+    text-shadow: 0 0 10px $font-darck;
+  }
+
+  .cont-blue {
+    .center {
+      width: 70%;
+      height: 70%;
+      background-color: $body-light;
+      border-radius: 50%;
+      box-shadow: 0 0 5px $black;
+    }
+  }
+}
+
+.loading-cont-light-open {
+  @extend .loading-cont-light-close;
+  top: 5%;
+
+  p {
+    color: $font-darck;
+    text-shadow: 0 0 10px $font-darck;
+  }
+}
+</style>

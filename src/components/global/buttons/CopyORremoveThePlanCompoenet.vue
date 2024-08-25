@@ -187,3 +187,38 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../../Sass//varibels/variables";
+
+// join blue
+.btn-blue {
+  padding: 7px 20px;
+  border: none;
+  border-radius: 5px;
+  color: $font-light;
+  background: linear-gradient(to top, $first-blue, $second-blue);
+  cursor: pointer;
+  position: absolute;
+  right: 5%;
+  transition-duration: 0.5s;
+}
+
+// btn orange
+.btn-orange {
+  @extend .btn-blue;
+  background: linear-gradient(to top, $first-orange, $second-orange);
+}
+
+// btn pink
+.btn-pink {
+  @extend .btn-blue;
+  background: linear-gradient(to top, $first-pink, $second-pink);
+}
+
+// btn green
+.btn-green {
+  @extend .btn-blue;
+  background: linear-gradient(to top, $first-green, $second-green);
+}
+</style>

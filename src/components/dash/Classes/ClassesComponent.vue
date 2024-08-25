@@ -79,3 +79,137 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../../sass/varibels/variables";
+
+// darck and light classes English component style
+.section-cont-open-darck-English {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: ltr;
+
+  @media (min-width: $phone) {
+    padding: 5px;
+  }
+
+  .header {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid;
+    border-color: transparent transparent $border-light transparent;
+    color: $font-light;
+  }
+
+  .cards-section {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+.section-cont-open-darck-English::-webkit-scrollbar {
+  width: 0px;
+}
+
+.section-cont-close-darck-English {
+  @extend .section-cont-open-darck-English;
+  padding: 30% 5px 5px 5px;
+  opacity: 0;
+}
+
+.section-cont-open-light-English {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: ltr;
+
+  @media (min-width: $phone) {
+    padding: 5px;
+  }
+
+  .header {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid;
+    border-color: transparent transparent $border-darck transparent;
+    color: $font-darck;
+  }
+
+  .cards-section {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+.section-cont-open-light-English::-webkit-scrollbar {
+  width: 0px;
+}
+
+.section-cont-close-light-English {
+  @extend .section-cont-open-light-English;
+  padding: 30% 5px 5px 5px;
+  opacity: 0;
+}
+// darck and light classes English component style
+
+// darck and light classes Arabic component style
+.section-cont-open-darck-Arabic {
+  @extend .section-cont-open-darck-English;
+  direction: rtl;
+}
+
+.section-cont-open-darck-Arabic::-webkit-scrollbar {
+  width: 0px;
+}
+
+.section-cont-close-darck-Arabic {
+  @extend .section-cont-open-darck-Arabic;
+  padding: 30% 5px 5px 5px;
+  opacity: 0;
+}
+
+.section-cont-open-light-Arabic {
+  @extend .section-cont-open-light-English;
+  direction: rtl;
+}
+
+.section-cont-open-light-Arabic::-webkit-scrollbar {
+  width: 0px;
+}
+
+.section-cont-close-light-Arabic {
+  @extend .section-cont-open-light-Arabic;
+  padding: 30% 5px 5px 5px;
+  opacity: 0;
+}
+// darck and light classes Arabic component style
+</style>

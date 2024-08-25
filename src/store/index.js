@@ -19,7 +19,9 @@ export default createStore({
     delete_student_form_status: "close",
     delete_parent_form_status: "close",
     delete_class_form_status: "close",
+    delete_home_work_form_status: "close",
     delete_student_form : "close",
+    delete_message_form_status : "close",
     user: JSON.parse(window.localStorage.getItem("Ss-user")) || "",
     profile: "",
     user_type: "",
@@ -35,7 +37,11 @@ export default createStore({
     teacher_for_update: "",
     student_for_update : "",
     parent_for_update : "",
-    active_component_in_dash: "messages",
+    message_id_for_delete : "",
+    message_for_update : "",
+    home_work_id_for_delete : "",
+    home_work_for_update : "",
+    active_component_in_dash: "home-works",
     choose_children_status : "close",
     choose_teacher_status : "close",
     geted_student : "",
@@ -67,6 +73,27 @@ export default createStore({
     plan: "",
     foods: [],
     food: "",
+    Links: [
+      { path: "/dash", English_title: "Dashboard", Arabic_title : "لوحة التحكم", access: ["super" , "admin" , "teacher"] },
+      { path: "/profile", English_title: "Profile", Arabic_title : "حسابي", access: ["super" , "admin" , "teacher" , "student" , "parent"] },
+      { path: "/", English_title: "Home", Arabic_title: "الصفحة الرئيسية", access: ["super" , "admin" , "teacher" , "student" , "parent"] },
+      { path: "/classes", English_title: "Classes", Arabic_title: "الصفوف",access: ["super" , "admin" , "teacher" , "student" , "parent"] },
+      { path: "/classes", English_title: "My Classes", Arabic_title: "صفوفي",access: ["super" , "admin" , "teacher" , "student" , "parent"] },
+      { path: "/students", English_title: "Students", Arabic_title: "الطلاب",access: ["super" , "admin" , "teacher" , "student" , "parent"] },
+      { path: "/teachers", English_title: "Teachers", Arabic_title: "المدرسون",access: ["super" , "admin" , "teacher" , "student" , "parent"] },
+      { path: "/admins", English_title: "Admins", Arabic_title: "المدراء",access: ["super" , "admin" , "teacher" , "student" , "parent"] },
+      { path: "/parents", English_title: "Parents", Arabic_title: "أولياء الأمور",access: ["super" , "admin" , "teacher" , "parent"] },
+      { path: "/plans", English_title: "Plans", Arabic_title: "الخطط",access: ["super" , "admin" , "teacher" , "student" , "parent"] },
+      { path: "/my/plans", English_title: "My Plans", Arabic_title: "خططي",access: ["super" , "admin" , "teacher" , "student" , "parent"] },
+      { path: "/my/children", English_title: "My Children", Arabic_title: "أبنائي", access: ["parent"] },
+      { path: "/foods", English_title: "Food Guide", Arabic_title: "دليل الطعام", access: ["super" , "admin" , "teacher" , "parent"] },
+      { path: "/about", English_title: "About us", Arabic_title: "معلومات عنا", access: ["super" , "admin" , "teacher" , "student" , "parent"] },
+      {
+        url: "https://rami-web.onrender.com",
+        title: "Developer",
+        access: "public",
+      },
+    ],
     subjects_list: [
       { English: "Math", Arabic: "رياضيات" },
       { English: "Arabic", Arabic: "عربي" },
@@ -112,6 +139,11 @@ export default createStore({
       { English: "important 🟧", Arabic: "🟧 هامة" , value : "important"},
       { English: "veryimportant 🟥 ", Arabic: "🟥  هامة جدا" , value : "veryimportant"},
     ],
+    home_work_level_list : [
+      { English: "easy 🟩 ", Arabic: "🟩  سهلة" , value : "easy"},
+      { English: "normal 🟧", Arabic: "🟧 وسط" , value : "normal"},
+      { English: "hard 🟥", Arabic: "🟥 صعبة" , value : "hard"},
+    ],
     English: {
       login: {
         title: "log in to your account ...",
@@ -139,26 +171,6 @@ export default createStore({
         placeholder: "Type Id here to search ...",
         button: "Search",
       },
-      links: [
-        { path: "/profile", title: "Profile", access: "public" },
-        { path: "/", title: "Home", access: "public" },
-        { path: "/classes", title: "Classes", access: "public" },
-        { path: "/classes", title: "My Classes", access: "public" },
-        { path: "/students", title: "Students", access: "public" },
-        { path: "/teachers", title: "Teachers", access: "public" },
-        { path: "/admins", title: "Admins", access: "public" },
-        { path: "/parents", title: "Parents", access: "admin" },
-        { path: "/plans", title: "Plans", access: "public" },
-        { path: "/my/plans", title: "My Plans", access: "public" },
-        { path: "/my/children", title: "My Children", access: "parent" },
-        { path: "/foods", title: "Food", access: "public" },
-        { path: "/about", title: "About us", access: "public" },
-        {
-          url: "https://rami-web.onrender.com",
-          title: "Developer",
-          access: "public",
-        },
-      ],
       language: {
         pages: "Pages",
         title: "Language",
@@ -339,6 +351,12 @@ export default createStore({
         level: "level 🔥 : ",
         recipient: "recipient 📌 : ",
         created_by: "Created By 👉 : ",
+        delete : "Delete",
+        update : "Update"
+      },
+      messages_component : {
+        title : "Messages 💬",
+        default_message : "📍⛔😕 No Any Message 😕⛔📍"
       },
       foods_page: {
         page_title: "Food page 😋🍴",
@@ -633,6 +651,11 @@ export default createStore({
         title_placeholder: "Type class's title here ✍️ ...",
         note_placeholder: "Type class's note here ✍️ ...",
       },
+      delete_messages_form: {
+        title: "Delete Message 💬 ...",
+        delete: "Delete 🗑️",
+        cancel: "Cancel",
+      },
       create_message : {
         page_title : "Create Messages 💬",
         title : "Title ⭕",
@@ -644,6 +667,41 @@ export default createStore({
         description_placeholder : "Type Messages's description here ✍️ ...",
         note_placeholder : "Type Messages's note here ✍️ ...",
         button : "Create"
+      },
+      update_message : {
+        page_title : "Update Messages 💬",
+        title : "Title ⭕",
+        description : "Description 📑",
+        note : "Note 📝",
+        Recipient : "Recipient 🎯",
+        level : "Message Level 💬🎚️",
+        title_placeholder : "Type Messages's title here ✍️ ...",
+        description_placeholder : "Type Messages's description here ✍️ ...",
+        note_placeholder : "Type Messages's note here ✍️ ...",
+        button : "Update"
+      },
+      home_works_in_dash : {
+        page_title : "Home Works 🏚️💯🔝",
+        component_title : "Home Work 🏚️💯🔝",
+        delete : "Delete",
+        update : "Update"
+      },
+      delete_home_work_form: {
+        title: "Delete Home Work 🏚️💯🔝 ...",
+        delete: "Delete 🗑️",
+        cancel: "Cancel",
+      },
+      update_home_work : {
+        page_title : "Update Home Work 🏚️💯🔝",
+        title : "Title ⭕",
+        description : "Description 📑",
+        note : "Note 📝",
+        level : "Home Work Level 🏚️💯🔝🎚️",
+        images : "Images 🖼️",
+        title_placeholder : "Type home work's title here ✍️ ...",
+        description_placeholder : "Type home work's description here ✍️ ...",
+        note_placeholder : "Type home work's note here ✍️ ...",
+        button : "Update"
       },
       theme: "Theme",
       mood: "Mood",
@@ -875,6 +933,12 @@ export default createStore({
         created_at: "كتبت في 📆 :",
         recipient: "المعنيين 📌 : ",
         created_by: "الكاتب 👈 : ",
+        delete : "حذف",
+        update : "تعديل"
+      },
+      messages_component : {
+        title : "الرسائل 💬",
+        default_message : "📍⛔😕 لا يوجد اي رسالة 😕⛔📍"
       },
       foods_page: {
         page_title: "صفحة الأطعمة 😋🍴",
@@ -1183,6 +1247,46 @@ export default createStore({
         note_placeholder : "اكتب ملاظة لرسالة هنا ✍️ ...",
         button : "إنشاء"
       },
+      update_message : {
+        page_title : "تعديل رسالة 💬",
+        title : "العنوان ⭕",
+        description : "الوصف 📑",
+        note : "الملاحظة 📝",
+        Recipient : "المستهد فون 🎯",
+        level : "مستوى اهمية الرسالة 💬🎚️",
+        title_placeholder : "اكتب عنوان الراسالة هنا ✍️ ...",
+        description_placeholder : "اكتب وصف الرسالة هنا ✍️ ...",
+        note_placeholder : "اكتب ملاظة لرسالة هنا ✍️ ...",
+        button : "تعديل"
+      },
+      home_works_in_dash : {
+        page_title : "الوظائف 🏚️💯🔝",
+        component_title : "وظيفة 🏚️💯🔝",
+        delete : "حذف",
+        update : "تعديل"
+      },
+      delete_messages_form: {
+        title: "حذف الرسالة 💬 ...",
+        delete: "حذف 🗑️",
+        cancel: "إلغاء",
+      },
+      delete_home_work_form: {
+        title: " ... 🏚️💯🔝 حذف الوظيفة",
+        delete: "🗑️ حذف",
+        cancel: "إلغاء",
+      },
+      update_home_work : {
+        page_title : "تعديل الوظيفة 🏚️💯🔝",
+        title : "العنوان ⭕",
+        description : "الوصف 📑",
+        note : "ملاحظة 📝",
+        level : "مستوى الوظيفة 🏚️💯🔝🎚️",
+        images : "الصور 🖼️",
+        title_placeholder : "اكتب عنوان الوظيفة هنا ✍️ ...",
+        description_placeholder : "اكتب وصف الوظيفة هنا ✍️ ...",
+        note_placeholder : "اكتب ملاحظة الوظيفة هنا ✍️ ...",
+        button : "تعديل"
+      },
       theme: "السمات",
       mood: "الوضع",
       log_out: "تسجيل الخروج",
@@ -1282,8 +1386,8 @@ export default createStore({
         },
       },
       home_works: {
-        get_home_work_all: "https://rrr-zb8x.onrender.com/api/v1/hw/get/all",
-        get_home_work_one: "https://rrr-zb8x.onrender.com/api/v1/hw/get/one",
+        get_all: "https://rrr-zb8x.onrender.com/api/v1/hw/get/all",
+        get_one: "https://rrr-zb8x.onrender.com/api/v1/hw/get/one",
         super: {
           create: "https://rrr-zb8x.onrender.com/api/v1/super/hw/create",
           delete: "https://rrr-zb8x.onrender.com/api/v1/super/hw/delete",
@@ -1414,6 +1518,13 @@ export default createStore({
         state.delete_teacher_form_status == "close" ? "open" : "close";
     },
 
+    // open or close the delete message form verify
+    OpenOrCloseDeleteMessage(state) {
+      state.delete_message_form_status = state.delete_message_form_status == "close"
+      ? "open"
+      : "close"
+    },
+
     // open or close the update admin form verify
     OpenOrCloseUpdateAdminForm(state) {
       state.update_admin_form =
@@ -1449,6 +1560,13 @@ export default createStore({
       state.delete_class_form_status = 
       state.delete_class_form_status == "close" ? "open" : "close"
     },
+
+    // open or close the delete home work form verify
+    OpenOrCloseDeleteHomeWorkForm(state) {
+      state.delete_home_work_form_status = 
+      state.delete_home_work_form_status == "close" ? "open" : "close"
+    },
+
   },
   actions: {
     // log out admin
