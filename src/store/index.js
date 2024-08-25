@@ -50,6 +50,7 @@ export default createStore({
     choosed_teacher : "",
     class_for_update: "",
     selected_cover : "",
+    new_home_work_images : [],
     sid_bar_dash : "close",
     // user_type: JSON.parse(window.localStorage.getItem("Ss-user")).user_type || "admint",
     sidBar: "close",

@@ -446,13 +446,13 @@ export default {
 
   .section-open {
     width: 80%;
-    height: 100vh;
+    height: 98vh;
     transition-duration: 0.5s;
   }
 
   .section-close {
     width: 100%;
-    height: 100vh;
+    height: 98vh;
     transition-duration: 0.5s;
   }
 }
@@ -540,13 +540,13 @@ export default {
 
   .section-open {
     width: 80%;
-    height: 100vh;
+    height: 98vh;
     transition-duration: 0.5s;
   }
 
   .section-close {
     width: 100%;
-    height: 100vh;
+    height: 98vh;
     transition-duration: 0.5s;
   }
 }
