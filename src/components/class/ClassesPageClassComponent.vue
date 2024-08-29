@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`classes-class-${this.$store.state.mood}-${this.$store.state.language}`"
+    :class="`classes-page-class-${this.$store.state.mood}-${this.$store.state.language}`"
   >
     <!-- cover and teacher avatar cont  -->
     <div class="cover-cont">
@@ -12,7 +12,7 @@
       />
 
       <img
-        :src="this.class_data.teacher != null && this.class_data.teacher.avatar"
+        :src="this.class_data.teacher ? this.class_data.teacher.avatar : null"
         alt="avatar"
         class="avatar"
         @click="GoTeacher(this.class_data.teacher._id)"
@@ -20,17 +20,19 @@
     </div>
     <!-- cover and teacher avatar cont  -->
 
-    <h2>{{ this.class_data.title }}</h2>
+    <div class="info">
+      <h2>{{ this.class_data.title }}</h2>
 
-    <p>📚📖📑 : {{ this.class_data.subject }}</p>
-    <p>🏫🪜🎚️ : {{ this.class_data.class_level }}</p>
-    <p v-if="this.class_data.home_works">
-      🏚️💯🔝 : {{ this.class_data.home_works.length }}
-    </p>
-    <p v-if="this.class_data.students">
-      👨‍🎓 : {{ this.class_data.students.length }}
-    </p>
-    <p>📆 : {{ this.class_data.created_at.split("T")[0] }}</p>
+      <p>📚📖📑 : {{ this.class_data.subject }}</p>
+      <p>🏫🪜🎚️ : {{ this.class_data.class_level }}</p>
+      <p v-if="this.class_data.home_works">
+        🏚️💯🔝 : {{ this.class_data.home_works.length }}
+      </p>
+      <p v-if="this.class_data.students">
+        👨‍🎓 : {{ this.class_data.students.length }}
+      </p>
+      <p>📆 : {{ this.class_data.created_at.split("T")[0] }}</p>
+    </div>
   </div>
 </template>
 
@@ -61,23 +63,16 @@ export default {
 @import "../../sass/varibels/variables";
 
 // darck and light English style
-.classes-class-darck-English {
-  width: 100%;
+.classes-page-class-darck-English {
+  width: 90%;
   height: auto;
-  margin: 5px 0%;
+  margin: 5px 5%;
   cursor: pointer;
-  display: flex;
-  justify-content: start;
   position: relative;
   border-radius: 10px;
   background-color: $card-darck;
   transition-duration: 0.5s;
   direction: ltr;
-
-  @media (min-width: $phone) {
-    width: 47%;
-    height: auto;
-  }
 
   // cover
   .cover-cont {
@@ -87,8 +82,9 @@ export default {
 
     // class's cover
     .cover {
-      width: 100%;
-      height: 100%;
+      width: 98%;
+      height: auto;
+      margin: 1%;
       border-radius: 5px;
     }
 
@@ -96,13 +92,12 @@ export default {
     .avatar {
       width: 60px;
       height: 60px;
-      border: 5px;
+      border-radius: 5px;
       position: absolute;
-      bottom: -10%;
-      left: 1%;
+      bottom: 15px;
+      left: 10px;
 
       @media (min-width: $phone) {
-        bottom: -5%;
         width: 90px;
         height: 90px;
       }
@@ -111,8 +106,9 @@ export default {
 
   // info style
   .info {
-    max-width: 100%;
+    width: 96%;
     height: auto;
+    margin: 0px 2%;
     display: flex;
     flex-wrap: wrap;
     justify-content: start;
@@ -137,62 +133,22 @@ export default {
       }
     }
   }
-
-  // buttons container style
-  .buttons {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    margin: 5px 0px;
-
-    .update {
-      width: 100%;
-      height: 40px;
-      margin: 5px 0px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      color: $font-light;
-      background-color: $green;
-    }
-
-    .delete {
-      width: 100%;
-      height: 40px;
-      border: none;
-      margin: 5px 0px;
-      border-radius: 5px;
-      cursor: pointer;
-      color: $font-light;
-      background-color: $red;
-    }
-  }
 }
 
-.classes-class-darck-English:hover {
+.classes-page-class-darck-English:hover {
   box-shadow: 0 0 10px $black;
 }
 
-.classes-class-light-English {
-  width: 100%;
+.classes-page-class-light-English {
+  width: 90%;
   height: auto;
-  margin: 5px 0%;
+  margin: 5px 5%;
   cursor: pointer;
-  display: flex;
-  justify-content: start;
   position: relative;
   border-radius: 10px;
   background-color: $card-light;
   transition-duration: 0.5s;
   direction: ltr;
-
-  @media (min-width: $phone) {
-    width: 47%;
-    height: auto;
-  }
 
   // cover
   .cover-cont {
@@ -202,8 +158,9 @@ export default {
 
     // class's cover
     .cover {
-      width: 100%;
-      height: 100%;
+      width: 98%;
+      height: auto;
+      margin: 1%;
       border-radius: 5px;
     }
 
@@ -211,13 +168,12 @@ export default {
     .avatar {
       width: 60px;
       height: 60px;
-      border: 5px;
+      border-radius: 5px;
       position: absolute;
-      bottom: -10%;
-      left: 1%;
+      bottom: 15px;
+      left: 10px;
 
       @media (min-width: $phone) {
-        bottom: -5%;
         width: 90px;
         height: 90px;
       }
@@ -226,8 +182,9 @@ export default {
 
   // info style
   .info {
-    max-width: 100%;
+    width: 96%;
     height: auto;
+    margin: 0px 2%;
     display: flex;
     flex-wrap: wrap;
     justify-content: start;
@@ -246,69 +203,35 @@ export default {
       padding: 3px;
       border-radius: 3px;
       background-color: $note-light;
-
       @media (max-width: $phone) {
         font-size: $xx-small;
         padding: 2px;
       }
     }
   }
-
-  // buttons container style
-  .buttons {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    margin: 5px 0px;
-
-    .update {
-      width: 100%;
-      height: 40px;
-      margin: 5px 0px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      color: $font-light;
-      background-color: $green;
-    }
-
-    .delete {
-      width: 100%;
-      height: 40px;
-      border: none;
-      margin: 5px 0px;
-      border-radius: 5px;
-      cursor: pointer;
-      color: $font-light;
-      background-color: $red;
-    }
-  }
 }
 
-.classes-class-light-English:hover {
+.classes-page-class-light-English:hover {
   box-shadow: 0 0 10px $black;
 }
 // darck and light English style
 
 // darck and light Arabic style
-.classes-class-darck-Arabic {
-  @extend .classes-class-darck-English;
+.classes-page-class-darck-Arabic {
+  @extend .classes-page-class-darck-English;
   direction: rtl;
 }
 
-.classes-class-darck-Arabic:hover {
+.classes-page-class-darck-Arabic:hover {
   box-shadow: 0 0 10px $black;
 }
 
-.classes-class-light-Arabic {
-  @extend .classes-class-light-English;
+.classes-page-class-light-Arabic {
+  @extend .classes-page-class-light-English;
   direction: rtl;
 }
 
-.classes-class-light-Arabic:hover {
+.classes-page-class-light-Arabic:hover {
   box-shadow: 0 0 10px $black;
 }
 // darck and light Arabic style

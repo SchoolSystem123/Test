@@ -19,7 +19,7 @@
     <!-- admins header  -->
 
     <div class="cards-section">
-      <TeacherInTeachersVpageComponentVue
+      <TeacherInTeachersComponent
         v-for="(teacher_data, index) in this.$store.state.teachers"
         :key="index"
         :teacher_data="teacher_data"
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import TeacherInTeachersVpageComponentVue from "@/components/teacher/TeacherInTeacherspageComponent.vue";
+import TeacherInTeachersComponent from "@/components/teacher/TeacherInTeachersComponent.vue";
 import StartRateTeachersComponentVue from "@/components/global/buttons/StartRateTeachersComponent.vue";
 import axios from "axios";
 export default {
@@ -48,7 +48,7 @@ export default {
     };
   },
   components: {
-    TeacherInTeachersVpageComponentVue,
+    TeacherInTeachersComponent,
     StartRateTeachersComponentVue,
   },
   mounted() {

@@ -41,16 +41,21 @@ export default createStore({
     message_for_update : "",
     home_work_id_for_delete : "",
     home_work_for_update : "",
-    active_component_in_dash: "home-works",
+    active_component_in_dash: "create-home-work",
     choose_children_status : "close",
     choose_teacher_status : "close",
+    choose_class_status : "close",
     geted_student : "",
+    geted_class : "",
     geted_teacher : "",
     choosed_children : [],
     choosed_teacher : "",
+    choosed_class : "",
     class_for_update: "",
     selected_cover : "",
     new_home_work_images : [],
+    home_work_images_for_delete : [],
+    class_id_for_create_home_work : "",
     sid_bar_dash : "close",
     // user_type: JSON.parse(window.localStorage.getItem("Ss-user")).user_type || "admint",
     sidBar: "close",
@@ -639,6 +644,14 @@ export default createStore({
         add_button : "Add",
         remove_button : "Remove"
       },
+      choose_class_form : {
+        title : "Search and choose class",
+        button : "Search",
+        placeholder : "Type Class's Id Here ✍️ ...",
+        section_title : "Finded Class 🏫",
+        select : "Select",
+        unselect : "UnSelect"
+      },
       create_class: {
         page_title : "Create Class 🏫",
         title: "Title ⭕",
@@ -703,6 +716,18 @@ export default createStore({
         description_placeholder : "Type home work's description here ✍️ ...",
         note_placeholder : "Type home work's note here ✍️ ...",
         button : "Update"
+      },
+      create_home_work : {
+        page_title : "Create Home Work 🏚️💯🔝",
+        title : "Title ⭕",
+        description : "Description 📑",
+        note : "Note 📝",
+        level : "Home Work Level 🏚️💯🔝🎚️",
+        images : "Images 🖼️",
+        title_placeholder : "Type home work's title here ✍️ ...",
+        description_placeholder : "Type home work's description here ✍️ ...",
+        note_placeholder : "Type home work's note here ✍️ ...",
+        button : "Create"
       },
       theme: "Theme",
       mood: "Mood",
@@ -1236,6 +1261,14 @@ export default createStore({
         add_button : "اضافة",
         remove_button : "حذف"
       },
+      choose_class_form : {
+        title : "ابحث و اختار الصف",
+        button : "ابحث",
+        placeholder : "اكتب معرف الصف هنا  ✍️ ...",
+        section_title : "الصفوف التي تم لعثور عليها 🏫",
+        select : "تحديد",
+        unselect : "إلغاء التحديد"
+      },
       create_message : {
         page_title : "إنشاء رسالة 💬",
         title : "العنوان ⭕",
@@ -1287,6 +1320,18 @@ export default createStore({
         description_placeholder : "اكتب وصف الوظيفة هنا ✍️ ...",
         note_placeholder : "اكتب ملاحظة الوظيفة هنا ✍️ ...",
         button : "تعديل"
+      },
+      create_home_work : {
+        page_title : "إنشاء الوظيفة 🏚️💯🔝",
+        title : "العنوان ⭕",
+        description : "الوصف 📑",
+        note : "ملاحظة 📝",
+        level : "مستوى الوظيفة 🏚️💯🔝🎚️",
+        images : "الصور 🖼️",
+        title_placeholder : "اكتب عنوان الوظيفة هنا ✍️ ...",
+        description_placeholder : "اكتب وصف الوظيفة هنا ✍️ ...",
+        note_placeholder : "اكتب ملاحظة الوظيفة هنا ✍️ ...",
+        button : "إنشاء"
       },
       theme: "السمات",
       mood: "الوضع",
@@ -1554,6 +1599,12 @@ export default createStore({
     ChooseTeacher(state) {
       // to open or close the choose teacher form
       state.choose_teacher_status = state.choose_teacher_status == "close" ? "open" : "close"
+    },
+
+    // open or close the choosing class container
+    ChooseClass(state) {
+      // to open or close the choose class form
+      state.choose_class_status = state.choose_class_status == "close" ? "open" : "close"
     },
 
     // open or close the delete class form verify

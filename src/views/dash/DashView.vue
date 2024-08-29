@@ -21,7 +21,7 @@
         <li @click="ChangeComponent('students')">Students 👨‍🎓</li>
         <li @click="ChangeComponent('parents')">Parents 👨‍👩‍👦‍👦</li>
         <li @click="ChangeComponent('classes')">Classes 🏫</li>
-        <li @click="ChangeComponent('home-works')">Home Works ➕</li>
+        <li @click="ChangeComponent('home-works')">Home Works 🏚️💯🔝</li>
         <li @click="ChangeComponent('messages')">Messages 💬</li>
 
         <li
@@ -80,6 +80,17 @@
           "
         >
           Create Message 💬➕
+        </li>
+
+        <li
+          @click="ChangeComponent('create-home-work')"
+          v-if="
+            this.$store.state.user.user_type == 'super' ||
+            this.$store.state.user.user_type == 'admin' ||
+            this.$store.state.user.user_type == 'teacher'
+          "
+        >
+          Create Home Work 🏚️💯🔝➕
         </li>
       </ul>
     </div>
@@ -244,6 +255,16 @@
         v-if="this.$store.state.active_component_in_dash == 'update-home-work'"
       />
       <!-- update home work component -->
+
+      <!-- create home work component -->
+      <CreateHomeWorkComponent
+        v-if="this.$store.state.active_component_in_dash == 'create-home-work'"
+      />
+      <!-- create home work component -->
+
+      <!-- choosing class form component -->
+      <ChooseClassComponent />
+      <!-- choosing class form component -->
     </div>
   </div>
 </template>
@@ -283,6 +304,8 @@ import VerifyDeleteMessageComponent from "@/components/global/forms/dash/message
 import UpdateMessagesComponent from "@/components/dash/Messages/UpdateMessagesComponent.vue";
 import VerifyDeleteHomeWorkComponent from "@/components/global/forms/dash/HomeWork/VerifyDeleteHomeWorkComponent.vue";
 import UpdateHomeWorkComponent from "@/components/dash/Home Works/UpdateHomeWorkComponent.vue";
+import CreateHomeWorkComponent from "@/components/dash/Home Works/CreateHomeWorkComponent.vue";
+import ChooseClassComponent from "@/components/global/forms/dash/HomeWork/ChooseClassComponent.vue";
 
 export default {
   data() {
@@ -339,6 +362,8 @@ export default {
     UpdateMessagesComponent,
     VerifyDeleteHomeWorkComponent,
     UpdateHomeWorkComponent,
+    CreateHomeWorkComponent,
+    ChooseClassComponent,
   },
   methods: {
     // change the component

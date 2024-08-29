@@ -6,7 +6,6 @@
     <LoadingComponentVue />
     <CopyMessageComponentVue />
     <ErrorComponentVue />
-    <VerifyDeleteHWComponentVue />
     <div :class="this.status ? 'open-cont' : 'close-cont'">
       <SmallNavComponentVue />
 
@@ -25,18 +24,6 @@
           {{ this.$store.state.home_work.created_at.split("T")[0] }} : 📆
         </p>
       </div>
-
-      <!-- update home work shurt btn component  -->
-      <UpdateHWhSurtCutBtnComponentVue
-        v-if="this.$store.state.user"
-        :home_work_id="this.$store.state.home_work._id"
-      />
-
-      <!-- delete home work shurt cut btn component  -->
-      <DeleteHWShurtCutBtnComponentVue
-        v-if="this.$store.state.user.user"
-        :home_work_id="this.$store.state.home_work._id"
-      />
 
       <!-- cover container  -->
       <div class="cover-cont">
@@ -143,11 +130,11 @@
       </h4>
 
       <!-- class component  -->
-      <ClassComponentVue
+      <!-- <ClassComponentVue
         @click="GoToClass(this.$store.state.home_work.class_id._id)"
         v-if="this.$store.state.home_work"
         :class_data="this.$store.state.home_work.class_id"
-      />
+      /> -->
       <!-- class component  -->
 
       <!-- author -->
@@ -201,13 +188,10 @@ import LoadingComponentVue from "@/components/global/LoadingComponent.vue";
 import CopyIdComponentVue from "@/components/global/CopyIdComponent.vue";
 import CopyMessageComponentVue from "@/components/global/CopyMessageComponent.vue";
 import ErrorComponentVue from "@/components/global/ErrorComponent.vue";
-import ClassComponentVue from "@/components/class/ClassComponent.vue";
+// import ClassComponentVue from "@/components/class/ClassComponent.vue";
 import FooterComponentVue from "@/components/global/FooterComponent.vue";
 import ScrollTopComponentVue from "@/components/global/ScrollTopComponent.vue";
 import NoteComponentVue from "@/components/global/NoteComponent.vue";
-import UpdateHWhSurtCutBtnComponentVue from "@/components/global/shurtCutsButtons/UpdateHWShurtCutBtnComponent.vue";
-import DeleteHWShurtCutBtnComponentVue from "@/components/global/shurtCutsButtons/DeleteHWShurtCutBtnComponent.vue";
-import VerifyDeleteHWComponentVue from "@/components/global/forms/VerifyDeleteHWComponent.vue";
 
 export default {
   name: "home-work-page",
@@ -226,13 +210,10 @@ export default {
     CopyIdComponentVue,
     CopyMessageComponentVue,
     ErrorComponentVue,
-    ClassComponentVue,
+    // ClassComponentVue,
     FooterComponentVue,
     ScrollTopComponentVue,
     NoteComponentVue,
-    UpdateHWhSurtCutBtnComponentVue,
-    DeleteHWShurtCutBtnComponentVue,
-    VerifyDeleteHWComponentVue,
   },
   mounted() {
     // to start the loading animation on loaded the page
@@ -253,7 +234,7 @@ export default {
       try {
         axios
           .get(
-            `${this.$store.state.APIs.home_works.get_home_work_one}?home_work_id=${this.home_work_id}`
+            `${this.$store.state.APIs.home_works.get_one}?home_work_id=${this.home_work_id}`
           )
           .then((response) => {
             // open the page conatiner
@@ -299,3 +280,850 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../Sass/varibels/variables";
+
+// English page
+// darck home English work page
+.home-work-page-darck-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-darck;
+  direction: ltr;
+
+  // open conatiner style
+  .open-cont {
+    width: 50%;
+    height: auto;
+    margin: auto;
+    transition-duration: 0.5s;
+    padding: 7% 0px 5% 0px;
+    opacity: 1;
+    position: relative;
+
+    @media (max-width: $phone) {
+      padding: 15% 0px 5% 0px;
+      width: 100%;
+    }
+
+    // page title style
+    .page-title {
+      width: 80%;
+      height: auto;
+      margin: auto;
+      padding: 5px 0px;
+      color: $font-light;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      p {
+        font-size: $x-small;
+      }
+    }
+
+    // cover conatiner style
+    .cover-cont {
+      width: 80%;
+      min-height: 30px;
+      border-radius: 5px;
+      margin: 5% 5% 5% 10%;
+      cursor: pointer;
+      padding: 5px;
+      position: relative;
+
+      // cover
+      .cover {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      // note component
+      #note-English-cont {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+      }
+    }
+
+    // title
+    .title {
+      width: 80%;
+      height: auto;
+      margin: 5% 5% 0% 10%;
+      color: $font-light;
+    }
+
+    // description
+    .description {
+      width: 80%;
+      height: auto;
+      margin: 5% 10% 5% 10%;
+      // background-color: orangered;
+      color: $font-light;
+    }
+
+    // copy id component
+    .copy-id-darck-English {
+      width: 80%;
+      margin: -2% 10% 0% 10%;
+    }
+
+    // subject style
+    .subject {
+      width: 80%;
+      height: auto;
+      margin: 5% 10%;
+      color: $font-light;
+    }
+
+    .section-title {
+      width: 80%;
+      margin: 5% 0% 5% 10%;
+      color: $font-light;
+      height: auto;
+      padding: 5px 0px;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+    }
+
+    // images images conatiner
+    .images-cont {
+      width: 80%;
+      height: auto;
+      margin: 2% 0% 2% 10%;
+      // background-color: green;
+
+      .images-heade {
+        width: 100%;
+        height: 40px;
+        margin: 15px 0px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid;
+        border-color: transparent transparent $border-light transparent;
+
+        h4 {
+          width: 60%;
+          height: auto;
+          padding: 5px 0px;
+          color: $font-light;
+          margin: 20px 0px;
+        }
+
+        p {
+          width: auto;
+          height: auto;
+          color: $font-light;
+        }
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin: 5px 0%;
+        cursor: pointer;
+      }
+
+      .result-message {
+        width: 100%;
+        height: auto;
+        text-align: center;
+        color: $font-light;
+      }
+    }
+
+    // card
+    .class-darck {
+      width: 80%;
+      height: auto;
+      margin-left: 10%;
+      background-color: $card-darck;
+      cursor: pointer;
+      border-radius: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      transition-duration: 0.5s;
+
+      // cover
+      img {
+        width: 70px;
+        height: 70px;
+        border-radius: 5px;
+        margin: 5px;
+      }
+
+      h2 {
+        width: auto;
+        margin: -7% 0% 0% 2%;
+        font-size: $medium;
+      }
+    }
+
+    .class-darck:hover {
+      background-color: $border-darck;
+    }
+
+    // author container style
+    .author {
+      width: 80%;
+      height: auto;
+      // background-color: green;
+      margin: 2% 0% 2% 10%;
+
+      // section title
+      h4 {
+        width: 100%;
+        height: auto;
+        color: $font-light;
+        padding: 5px 0px;
+        border: 1px solid;
+        border-color: transparent transparent $border-light transparent;
+      }
+
+      // link
+      a {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        text-decoration: none;
+        background-color: $card-darck;
+        border-radius: 10px;
+        padding: 5px;
+        margin: 5% 0%;
+        transition-duration: 0.5s;
+
+        // author avatar
+        img {
+          width: 70px;
+          height: 70px;
+          border-radius: 5px;
+        }
+
+        // author name
+        h3 {
+          width: auto;
+          color: $font-light;
+          margin: -7% 0% 0% 5%;
+        }
+      }
+
+      a:hover {
+        background-color: $border-darck;
+      }
+    }
+
+    .footer-darck-English {
+      width: 80%;
+      margin-left: 10%;
+    }
+
+    // level hard nion
+    .level-hard {
+      width: 5px;
+      height: 80%;
+      background-color: $hard;
+      border-radius: 2px;
+      box-shadow: 0 0 5px $hard;
+      position: fixed;
+      left: 5%;
+      top: 10%;
+      transition-duration: 0.5s;
+      @media (max-width: $phone) {
+        height: 90%;
+        top: 8%;
+      }
+
+      @media (min-width: $tablet) {
+        position: absolute;
+        height: 90%;
+        top: 5%;
+      }
+    }
+
+    // level normal nion
+    .level-normal {
+      @extend .level-hard;
+      background-color: $normal;
+      box-shadow: 0 0 5px $normal;
+    }
+
+    // level easy nion
+    .level-easy {
+      @extend .level-hard;
+      background-color: $easy;
+      box-shadow: 0 0 5px $easy;
+    }
+  }
+
+  // close conatiner style
+  .close-cont {
+    @extend .open-cont;
+    padding: 20% 0px 5% 0px;
+    opacity: 0;
+
+    // level hard nion
+    .level-hard {
+      margin-left: -20%;
+      transition-duration: 0.5s;
+    }
+  }
+}
+
+// darck home English work page
+
+// light home English work page
+.home-work-page-light-English {
+  @extend .home-work-page-darck-English;
+  background-color: $body-light;
+
+  // open conatiner style
+  .open-cont {
+    // cover conatiner style
+    .cover-cont {
+      // cover
+      .cover {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      // note component
+      #note-English-cont {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+
+        #open {
+          left: 5%;
+        }
+        svg {
+          color: $font-darck;
+          background-color: $font-light;
+        }
+      }
+    }
+
+    // page title style
+    .page-title {
+      color: $font-darck;
+      border-color: transparent transparent $border-darck transparent;
+    }
+
+    // title
+    .title {
+      color: $font-darck;
+    }
+
+    // description
+    .description {
+      color: $font-darck;
+    }
+
+    // copy id component
+    .copy-id-light-English {
+      font-size: $x-small;
+      width: 80%;
+      margin: -2% 10% 0% 10%;
+    }
+
+    // subject style
+    .subject {
+      color: $font-darck;
+    }
+
+    .section-title {
+      color: $font-darck;
+      border-color: transparent transparent $border-darck transparent;
+    }
+
+    // images images conatiner
+    .images-cont {
+      .images-heade {
+        border-color: transparent transparent $border-darck transparent;
+
+        h4 {
+          color: $font-darck;
+        }
+
+        p {
+          color: $font-darck;
+        }
+      }
+
+      .result-message {
+        color: $font-darck;
+      }
+    }
+
+    // card
+    .class-light {
+      background-color: $card-light;
+    }
+
+    .class-light:hover {
+      background-color: $border-light;
+    }
+
+    // author container style
+    .author {
+      // section title
+      h4 {
+        color: $font-darck;
+        border-color: transparent transparent $border-darck transparent;
+      }
+
+      // link
+      a {
+        background-color: $card-light;
+
+        // author name
+        h3 {
+          color: $font-darck;
+        }
+      }
+
+      a:hover {
+        background-color: $border-light;
+      }
+    }
+
+    .footer-light-English {
+      width: 80%;
+      margin-right: 10%;
+    }
+  }
+
+  // close conatiner style
+  .close-cont {
+    @extend .open-cont;
+    padding: 20% 0px 5% 0px;
+    opacity: 0;
+
+    // level hard nion
+    .level-hard {
+      margin-left: -20%;
+      transition-duration: 0.5s;
+    }
+  }
+}
+// light home English work page
+// English page
+
+// Arabic page
+// darck home Arabic work page
+.home-work-page-darck-Arabic {
+  @extend .home-work-page-darck-English;
+  direction: rtl;
+
+  // open conatiner style
+  .open-cont {
+    // cover conatiner style
+    .cover-cont {
+      margin: 5% 10% 5% 5%;
+
+      // cover
+      .cover {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      // note component
+      #note-Arabic-cont {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+
+        #open {
+          position: absolute;
+          top: 35px;
+          right: 20px;
+        }
+
+        svg {
+          color: $font-light;
+          background-color: $message_darck;
+        }
+      }
+    }
+
+    // title
+    .title {
+      width: 80%;
+      height: auto;
+      margin: -5% 10% 0% 0%;
+      color: $font-light;
+    }
+
+    // description
+    .description {
+      width: 80%;
+      height: auto;
+      margin: 5% 10% 5% 10%;
+      color: $font-light;
+    }
+
+    // copy id component
+    .copy-id-darck-English {
+      width: 80%;
+      margin: -2% 10% 0% 10%;
+    }
+
+    // subject style
+    .subject {
+      width: 80%;
+      height: auto;
+      margin: 5% 10%;
+      color: $font-light;
+    }
+
+    .section-title {
+      width: 80%;
+      margin: 5% 10% 5% 0%;
+      color: $font-light;
+      height: auto;
+      padding: 5px 0px;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+    }
+
+    // images images conatiner
+    .images-cont {
+      width: 80%;
+      height: auto;
+      margin: 2% 10% 2% 0%;
+
+      .images-heade {
+        width: 100%;
+        height: 40px;
+        margin: 15px 0px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid;
+        border-color: transparent transparent $border-light transparent;
+
+        h4 {
+          width: 60%;
+          height: auto;
+          padding: 5px 0px;
+          color: $font-light;
+          margin: 20px 0px;
+        }
+
+        p {
+          width: auto;
+          height: auto;
+          color: $font-light;
+        }
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin: 5px 0%;
+        cursor: pointer;
+      }
+
+      .result-message {
+        width: 100%;
+        height: auto;
+        text-align: center;
+        color: $font-light;
+      }
+    }
+
+    // card
+    .class-darck {
+      width: 80%;
+      height: auto;
+      margin-right: 10%;
+      background-color: $card-darck;
+      cursor: pointer;
+      border-radius: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      transition-duration: 0.5s;
+
+      // cover
+      img {
+        width: 70px;
+        height: 70px;
+        border-radius: 5px;
+        margin: 5px;
+      }
+
+      h2 {
+        width: auto;
+        margin: -7% 2% 0% 0%;
+        font-size: $medium;
+      }
+    }
+
+    .class-darck:hover {
+      background-color: $border-darck;
+    }
+
+    // author container style
+    .author {
+      width: 80%;
+      height: auto;
+      margin: 2% 10% 2% 0%;
+
+      // section title
+      h4 {
+        width: 100%;
+        height: auto;
+        color: $font-light;
+        padding: 5px 0px;
+        border: 1px solid;
+        border-color: transparent transparent $border-light transparent;
+      }
+
+      // link
+      a {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        text-decoration: none;
+        background-color: $card-darck;
+        border-radius: 10px;
+        padding: 5px;
+        margin: 5% 0%;
+        transition-duration: 0.5s;
+
+        // author avatar
+        img {
+          width: 70px;
+          height: 70px;
+          border-radius: 5px;
+        }
+
+        // author name
+        h3 {
+          width: auto;
+          color: $font-light;
+          margin: -7% 5% 0% 0%;
+        }
+      }
+
+      a:hover {
+        background-color: $border-darck;
+      }
+    }
+
+    .footer-darck {
+      width: 80%;
+      margin-left: 10%;
+    }
+
+    // level hard nion
+    .level-hard {
+      width: 5px;
+      height: 80%;
+      background-color: $hard;
+      border-radius: 2px;
+      box-shadow: 0 0 5px $hard;
+      position: fixed;
+      left: 5%;
+      top: 10%;
+      transition-duration: 0.5s;
+      @media (max-width: $phone) {
+        height: 90%;
+        top: 8%;
+      }
+
+      @media (min-width: $tablet) {
+        position: absolute;
+        height: 90%;
+        top: 5%;
+      }
+    }
+
+    // level normal nion
+    .level-normal {
+      @extend .level-hard;
+      background-color: $normal;
+      box-shadow: 0 0 5px $normal;
+    }
+
+    // level easy nion
+    .level-easy {
+      @extend .level-hard;
+      background-color: $easy;
+      box-shadow: 0 0 5px $easy;
+    }
+  }
+
+  // close conatiner style
+  .close-cont {
+    @extend .open-cont;
+    padding: 20% 0px 5% 0px;
+    opacity: 0;
+
+    // level hard nion
+    .level-hard {
+      margin-left: -20%;
+      transition-duration: 0.5s;
+    }
+  }
+}
+
+// light home English work page
+.home-work-page-light-Arabic {
+  @extend .home-work-page-darck-Arabic;
+  background-color: $body-light;
+
+  // open conatiner style
+  .open-cont {
+    // cover conatiner style
+    .cover-cont {
+      margin: 5% 10% 5% 5%;
+
+      // cover
+      .cover {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      // note component
+      #note-Arabic-cont {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+
+        #open {
+          position: absolute;
+          top: 35px;
+          right: 20px;
+        }
+
+        svg {
+          color: $font-darck;
+          background-color: $font-light;
+        }
+      }
+    }
+
+    // page title style
+    .page-title {
+      color: $font-darck;
+      border-color: transparent transparent $border-darck transparent;
+    }
+
+    // title
+    .title {
+      color: $font-darck;
+    }
+
+    // description
+    .description {
+      color: $font-darck;
+    }
+
+    // copy id component
+    .copy-id-light-English {
+      font-size: $x-small;
+      width: 80%;
+      margin: -2% 10% 0% 10%;
+    }
+
+    // subject style
+    .subject {
+      color: $font-darck;
+    }
+
+    .section-title {
+      color: $font-darck;
+      border-color: transparent transparent $border-darck transparent;
+    }
+
+    // images images conatiner
+    .images-cont {
+      .images-heade {
+        border-color: transparent transparent $border-darck transparent;
+
+        h4 {
+          color: $font-darck;
+        }
+
+        p {
+          color: $font-darck;
+        }
+      }
+
+      .result-message {
+        color: $font-darck;
+      }
+    }
+
+    // card
+    .class-light {
+      background-color: $card-light;
+    }
+
+    .class-light:hover {
+      background-color: $border-light;
+    }
+
+    // author container style
+    .author {
+      // section title
+      h4 {
+        color: $font-darck;
+        border-color: transparent transparent $border-darck transparent;
+      }
+
+      // link
+      a {
+        background-color: $card-light;
+
+        // author name
+        h3 {
+          color: $font-darck;
+        }
+      }
+
+      a:hover {
+        background-color: $border-light;
+      }
+    }
+
+    .footer-light-Arabic {
+      width: 80%;
+      margin-right: 10%;
+    }
+  }
+
+  // close conatiner style
+  .close-cont {
+    @extend .open-cont;
+    padding: 20% 0px 5% 0px;
+    opacity: 0;
+
+    // level hard nion
+    .level-hard {
+      margin-left: -20%;
+      transition-duration: 0.5s;
+    }
+  }
+}
+// light home English work page
+// Arabic page
+</style>

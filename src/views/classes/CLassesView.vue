@@ -19,16 +19,6 @@
       <SmallNavComponentVue />
       <!-- small nav scomponent  -->
 
-      <!-- create class shurt cut component  -->
-      <CreateClassShurtCutBtnComponentVue
-        v-if="
-          this.$store.state.user &&
-          this.$store.state.user.user_type != 'student' &&
-          this.$store.state.user.user_type != 'parent'
-        "
-      />
-      <!-- create class shurt cut component  -->
-
       <!-- page title  -->
       <h3 class="page-title">
         {{
@@ -73,7 +63,6 @@ import ClassesPageClassComponentVue from "@/components/class/ClassesPageClassCom
 import LoadingComponentVue from "@/components/global/LoadingComponent.vue";
 import ScrollTopComponentVue from "@/components/global/ScrollTopComponent.vue";
 import ErrorComponentVue from "@/components/global/ErrorComponent.vue";
-import CreateClassShurtCutBtnComponentVue from "@/components/global/shurtCutsButtons/CreateClassShurtCutBtnComponent.vue";
 
 export default {
   name: "classes-page",
@@ -96,7 +85,6 @@ export default {
     LoadingComponentVue,
     ScrollTopComponentVue,
     ErrorComponentVue,
-    CreateClassShurtCutBtnComponentVue,
   },
   mounted() {
     // to start the loading animation on loaded the page
@@ -166,3 +154,151 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../Sass/varibels/variables";
+
+// darck English
+.classes-darck-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-darck;
+  direction: ltr;
+
+  // open classes container style
+  .cont-open {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    padding: 5% 0px 5% 0px;
+    opacity: 1;
+    transition-duration: 0.5s;
+
+    @media (max-width: $phone) {
+      width: 100%;
+      padding: 10% 0px 5% 0px;
+    }
+
+    // page title style
+    .page-title {
+      width: 90%;
+      margin: 5%;
+      padding: 10px 0px;
+      color: $font-light;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+    }
+
+    // classes conatiner
+    .classes-cont {
+      width: 100%;
+      height: auto;
+
+      // results title
+      .results {
+        width: 90%;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 13% 5%;
+        padding: 5px 0px;
+        border: 1px solid;
+        border-color: transparent transparent $border-light transparent;
+        color: $font-light;
+      }
+    }
+  }
+
+  // close classes container style
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0px 5% 0px;
+    transition-duration: 0.5s;
+    opacity: 0;
+  }
+}
+// darck English
+
+// light English
+.classes-light-English {
+  @extend .classes-darck-English;
+  background-color: $body-light;
+
+  // open classes container style
+  .cont-open {
+    // page title style
+    .page-title {
+      color: $font-darck;
+      border-color: transparent transparent $border-darck transparent;
+    }
+
+    // classes conatiner
+    .classes-cont {
+      .results {
+        border-color: transparent transparent $border-darck transparent;
+        color: $font-darck;
+
+        svg {
+          border: 1px solid $border-darck;
+        }
+      }
+    }
+  }
+
+  // close classes container style
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0px 5% 0px;
+    transition-duration: 0.5s;
+    opacity: 0;
+  }
+}
+// light English
+
+// darck Arabic
+.classes-darck-Arabic {
+  @extend .classes-darck-English;
+  width: 100%;
+  min-height: 100vh;
+  direction: rtl;
+}
+// darck Arabic
+
+// light Arabic
+.classes-light-Arabic {
+  @extend .classes-light-English;
+  background-color: $body-light;
+  direction: rtl;
+
+  // open classes container style
+  .cont-open {
+    // page title style
+    .page-title {
+      color: $font-darck;
+      border-color: transparent transparent $border-darck transparent;
+    }
+
+    // classes conatiner
+    .classes-cont {
+      .results {
+        border-color: transparent transparent $border-darck transparent;
+        color: $font-darck;
+
+        svg {
+          border: 1px solid $border-darck;
+        }
+      }
+    }
+  }
+
+  // close classes container style
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0px 5% 0px;
+    transition-duration: 0.5s;
+    opacity: 0;
+  }
+}
+// light Arabic
+</style>

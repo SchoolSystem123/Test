@@ -14,7 +14,7 @@
     <div class="cover-cont">
       <img
         class="cover"
-        :src="this.home_work.images[1]"
+        :src="this.home_work.images[0]"
         alt="cover"
         v-if="this.home_work.images && this.home_work.images.length > 0"
         @click="GoHomeWork(this.home_work._id)"
@@ -24,12 +24,12 @@
       <!-- author avatar  -->
       <img
         class="avatar"
+        v-if="this.home_work.created_by"
         :src="this.home_work.created_by.avatar"
-        v-if="this.home_work.created_by.avatar"
         alt="avatar"
       />
 
-      <h3>
+      <h3 v-if="this.home_work.created_by">
         {{ this.home_work.created_by.name }}
       </h3>
       <!-- author avatar  -->

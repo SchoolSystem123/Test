@@ -6,8 +6,8 @@
     <div class="header">
       {{
         this.$store.state.language == "English"
-          ? this.$store.state.English.update_home_work.page_title
-          : this.$store.state.Arabic.update_home_work.page_title
+          ? this.$store.state.English.create_home_work.page_title
+          : this.$store.state.Arabic.create_home_work.page_title
       }}
     </div>
     <!-- header  -->
@@ -18,25 +18,13 @@
         <label for="images">
           <icon icon="plus" />
         </label>
-        <p v-if="this.$store.state.home_work_for_update.images">
-          {{
-            this.$store.state.home_work_for_update.images.length +
-            this.$store.state.new_home_work_images.length
-          }}/5
-        </p>
+        <p>{{ this.images.length }}/5</p>
         <input type="file" id="images" ref="images" multiple />
       </div>
       <!-- section heade  -->
 
       <!-- images section  -->
-      <div class="images-section" v-if="this.$store.state.home_work_for_update">
-        <img
-          v-for="(path, index) in this.$store.state.home_work_for_update.images"
-          :key="index"
-          :src="path"
-          alt=""
-          @click="DeleteImage(index, path)"
-        />
+      <div class="images-section">
         <img
           v-for="(path, index) in this.images"
           :key="index"
@@ -53,8 +41,8 @@
       <!-- title  -->
       <label for="title">{{
         this.$store.state.language == "English"
-          ? this.$store.state.English.update_home_work.title
-          : this.$store.state.Arabic.update_home_work.title
+          ? this.$store.state.English.create_home_work.title
+          : this.$store.state.Arabic.create_home_work.title
       }}</label>
 
       <input
@@ -63,8 +51,8 @@
         v-model="this.title"
         :placeholder="
           this.$store.state.language == 'English'
-            ? this.$store.state.English.update_home_work.title_placeholder
-            : this.$store.state.Arabic.update_home_work.title_placeholder
+            ? this.$store.state.English.create_home_work.title_placeholder
+            : this.$store.state.Arabic.create_home_work.title_placeholder
         "
       />
       <!-- title  -->
@@ -72,8 +60,8 @@
       <!-- description  -->
       <label for="description">{{
         this.$store.state.language == "English"
-          ? this.$store.state.English.update_home_work.description
-          : this.$store.state.Arabic.update_home_work.description
+          ? this.$store.state.English.create_home_work.description
+          : this.$store.state.Arabic.create_home_work.description
       }}</label>
 
       <textarea
@@ -82,8 +70,8 @@
         v-model="this.description"
         :placeholder="
           this.$store.state.language == 'English'
-            ? this.$store.state.English.update_home_work.description_placeholder
-            : this.$store.state.Arabic.update_home_work.description_placeholder
+            ? this.$store.state.English.create_home_work.description_placeholder
+            : this.$store.state.Arabic.create_home_work.description_placeholder
         "
       ></textarea>
       <!-- description  -->
@@ -91,8 +79,8 @@
       <!-- note  -->
       <label for="note">{{
         this.$store.state.language == "English"
-          ? this.$store.state.English.update_home_work.note
-          : this.$store.state.Arabic.update_home_work.note
+          ? this.$store.state.English.create_home_work.note
+          : this.$store.state.Arabic.create_home_work.note
       }}</label>
 
       <textarea
@@ -101,8 +89,8 @@
         v-model="this.note"
         :placeholder="
           this.$store.state.language == 'English'
-            ? this.$store.state.English.update_home_work.note_placeholder
-            : this.$store.state.Arabic.update_home_work.note_placeholder
+            ? this.$store.state.English.create_home_work.note_placeholder
+            : this.$store.state.Arabic.create_home_work.note_placeholder
         "
       ></textarea>
       <!-- note  -->
@@ -110,8 +98,8 @@
       <!-- level  -->
       <label for="level">{{
         this.$store.state.language == "English"
-          ? this.$store.state.English.update_home_work.level
-          : this.$store.state.Arabic.update_home_work.level
+          ? this.$store.state.English.create_home_work.level
+          : this.$store.state.Arabic.create_home_work.level
       }}</label>
 
       <select name="" id="level" v-model="this.level">
@@ -129,12 +117,49 @@
       </select>
       <!-- level  -->
 
+      <!-- select class -->
+      <label for="">Select Class</label>
+      <div class="select-class-cont">
+        <icon icon="plus" @click="this.$store.commit('ChooseClass')" />
+
+        <div class="card" v-if="this.$store.state.choosed_class">
+          <img :src="this.$store.state.choosed_class.cover" alt="cover" />
+
+          <div class="info">
+            <h3>{{ this.$store.state.choosed_class.title }}</h3>
+
+            <p>🏫🪜🎚️ : {{ this.$store.state.choosed_class.class_level }}</p>
+
+            <p>📚📖📑 : {{ this.$store.state.choosed_class.subject }}</p>
+
+            <p v-if="this.$store.state.choosed_class">
+              🏚️💯🔝 : {{ this.$store.state.choosed_class.home_works.length }}
+            </p>
+
+            <p v-if="this.$store.state.choosed_class">
+              👨‍🎓 : {{ this.$store.state.choosed_class.students.length }}
+            </p>
+          </div>
+
+          <!-- add button  -->
+          <button @click="Unselect">
+            {{
+              this.$store.state.language == "English"
+                ? this.$store.state.English.choose_class_form.unselect
+                : this.$store.state.Arabic.choose_class_form.unselect
+            }}
+          </button>
+          <!-- add button -->
+        </div>
+      </div>
+      <!-- select class -->
+
       <!-- button  -->
-      <button @click="UpdateHomeWork">
+      <button @click="CreateHomeWork">
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.update_home_work.button
-            : this.$store.state.Arabic.update_home_work.button
+            ? this.$store.state.English.create_home_work.button
+            : this.$store.state.Arabic.create_home_work.button
         }}
       </button>
       <!-- button  -->
@@ -146,27 +171,19 @@
 <script>
 import axios from "axios";
 export default {
-  name: "update-home-work-component",
+  name: "create-home-work-component",
   data() {
     return {
       // page status
       status: "close",
       // title
-      title: this.$store.state.home_work_for_update.title
-        ? this.$store.state.home_work_for_update.title
-        : "sad",
+      title: "",
       // description
-      description: this.$store.state.home_work_for_update.description
-        ? this.$store.state.home_work_for_update.description
-        : "",
+      description: "",
       // note
-      note: this.$store.state.home_work_for_update.note
-        ? this.$store.state.home_work_for_update.note
-        : "",
+      note: "",
       // level
-      level: this.$store.state.home_work_for_update.level
-        ? this.$store.state.home_work_for_update.level
-        : "",
+      level: "easy",
       // api
       api: "",
       // images's array
@@ -185,8 +202,8 @@ export default {
   },
   components: {},
   methods: {
-    // update the home work
-    async UpdateHomeWork() {
+    // create the home work
+    async CreateHomeWork() {
       // to create a new form data
       this.formData = new FormData();
 
@@ -201,59 +218,46 @@ export default {
       // update the api
       if (this.$store.state.user.user_type == "super") {
         // update the api
-        this.api = this.$store.state.APIs.home_works.super.update;
+        this.api = this.$store.state.APIs.home_works.super.create;
 
         // add the super admin id to form data
         this.formData.append("super_admin_id", this.$store.state.user.user._id);
       } else if (this.$store.state.user.user_type == "admin") {
         // update the api
-        this.api = this.$store.state.APIs.home_works.admin.update;
+        this.api = this.$store.state.APIs.home_works.admin.create;
 
         // add the admin id to form data
         this.formData.append("admin_id", this.$store.state.user.user._id);
       } else if (this.$store.state.user.user_type == "teacher") {
         // update the api
-        this.api = this.$store.state.APIs.home_works.teacher.update;
+        this.api = this.$store.state.APIs.home_works.teacher.create;
 
         // add the teacher id to form data
         this.formData.append("teacher_id", this.$store.state.user.user._id);
       }
 
-      // add the home work id
-      this.formData.append(
-        "home_work_id",
-        this.$store.state.home_work_for_update._id
-      );
-
       // add the title
-      if (this.title != this.$store.state.home_work_for_update.title) {
+      if (this.title) {
         this.formData.append("title", this.title);
       }
 
       // add the description
-      if (
-        this.description != this.$store.state.home_work_for_update.description
-      ) {
+      if (this.description) {
         this.formData.append("description", this.description);
       }
 
       // add the note
-      if (this.note != this.$store.state.home_work_for_update.note) {
+      if (this.note) {
         this.formData.append("note", this.note);
       }
 
       // add the level
-      if (this.level != this.$store.state.home_work_for_update.level) {
+      if (this.level) {
         this.formData.append("level", this.level);
       }
 
-      // add the delete images array to form data
-      if (this.$store.state.home_work_images_for_delete.length > 0) {
-        this.formData.append(
-          "images_for_delete",
-          JSON.stringify(this.$store.state.home_work_images_for_delete)
-        );
-      }
+      // add the class id
+      this.formData.append("class_id", this.$store.state.choosed_class._id);
 
       // add the new images to form data
       if (this.$store.state.new_home_work_images.length > 0) {
@@ -263,7 +267,7 @@ export default {
       }
 
       await axios
-        .put(this.api, this.formData, { headers })
+        .post(this.api, this.formData, { headers })
         .then((response) => {
           console.log(response);
           // to stop the loading
@@ -271,9 +275,6 @@ export default {
 
           // update the active component in store
           this.$store.state.active_component_in_dash = "home-works";
-
-          // emptying the images form delete array in store
-          this.$store.state.home_work_images_for_delete = [];
         })
         .catch((error) => {
           // to stop the loading
@@ -287,29 +288,22 @@ export default {
         });
     },
 
-    // delete trhe image from images cont
-    DeleteImage(index, path) {
-      // to delete the clicked image
-      this.$store.state.home_work_for_update.images.splice(index, 1);
-
-      // to add the deleted image's path in images_for_delete
-      this.$store.state.home_work_images_for_delete.push(path);
-    },
-
     // delete the new image on click
     DeleteNewImage(index) {
+      // delete the image's path from images array in this component
       this.images.splice(index, 1);
+
+      // delete the image from this.$store.state.new_home_work_images array in stor
+      this.$store.state.new_home_work_images.splice(index, 1);
     },
 
     // to set the new selectedimages
     handleFileChange(event) {
-      if (
-        event.target.files.length +
-          this.$store.state.home_work_for_update.images.length <=
-        5
-      ) {
-        this.$store.state.new_home_work_images = event.target.files;
+      if (event.target.files.length <= 5) {
+        // emptying the images array to delete all last paths
+        this.images = [];
 
+        this.$store.state.new_home_work_images = Array.from(event.target.files);
         // call to reader files method
         this.readerFiles();
       } else {
@@ -341,6 +335,11 @@ export default {
         // add the promise results to images array
         this.images.push(await promise);
       }
+    },
+
+    // unselect the class
+    Unselect() {
+      this.$store.state.choosed_class = "";
     },
   },
 };
@@ -484,6 +483,96 @@ export default {
       background-color: $body-light;
     }
 
+    .select-class-cont {
+      width: 100%;
+      height: 120px;
+      background-color: $card-darck;
+      position: relative;
+      margin: 10px 0px;
+      border-radius: 5px;
+      overflow-y: scroll;
+
+      svg {
+        padding: 4px;
+        border-radius: 3px;
+        background-color: $blue;
+        color: $font-light;
+        cursor: pointer;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+      }
+
+      .card {
+        width: 98%;
+        height: 100px;
+        margin: 3% 1% 1% 1%;
+        border-radius: 5px;
+        background-color: $body-darck;
+        border-radius: 5px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+
+        img {
+          width: 90px;
+          height: 90px;
+          border-radius: 5px;
+          margin: 0px 5px;
+        }
+
+        .info {
+          width: 70%;
+          height: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: start;
+          align-items: center;
+          margin: 0px 5px;
+
+          h3 {
+            width: 100%;
+            height: auto;
+            color: $font-light;
+          }
+
+          p {
+            padding: 3px;
+            border-radius: 3px;
+            color: $font-light;
+            background-color: $card-darck;
+            font-size: $x-small;
+            margin: 3px;
+
+            @media (max-width: $phone) {
+              font-size: $xx-small;
+              margin: 1px;
+            }
+          }
+
+          .editor {
+            @extend p;
+            background-color: $green;
+          }
+        }
+
+        button {
+          padding: 7px 15px;
+          border-radius: 5px;
+          background-color: $red;
+          cursor: pointer;
+          color: $font-light;
+          border: none;
+          outline: none;
+          margin: 0px 5px;
+        }
+      }
+    }
+
+    .select-class-cont::-webkit-scrollbar {
+      width: 0px;
+    }
+
     button {
       padding: 10px 20px;
       border-radius: 5px;
@@ -556,7 +645,7 @@ export default {
         padding: 5px;
         border-radius: 3px;
         background-color: $blue;
-        color: $font-darck;
+        color: $font-light;
         cursor: pointer;
       }
 
@@ -641,6 +730,96 @@ export default {
       background-color: $body-darck;
     }
 
+    .select-class-cont {
+      width: 100%;
+      height: 120px;
+      background-color: $card-light;
+      position: relative;
+      margin: 10px 0px;
+      border-radius: 5px;
+      overflow-y: scroll;
+
+      svg {
+        padding: 4px;
+        border-radius: 3px;
+        background-color: $blue;
+        color: $font-darck;
+        cursor: pointer;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+      }
+
+      .card {
+        width: 98%;
+        height: 100px;
+        margin: 3% 1% 1% 1%;
+        border-radius: 5px;
+        background-color: $body-light;
+        border-radius: 5px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+
+        img {
+          width: 90px;
+          height: 90px;
+          border-radius: 5px;
+          margin: 0px 5px;
+        }
+
+        .info {
+          width: 70%;
+          height: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: start;
+          align-items: center;
+          margin: 0px 5px;
+
+          h3 {
+            width: 100%;
+            height: auto;
+            color: $font-darck;
+          }
+
+          p {
+            padding: 3px;
+            border-radius: 3px;
+            color: $font-darck;
+            background-color: $card-light;
+            font-size: $x-small;
+            margin: 3px;
+
+            @media (max-width: $phone) {
+              font-size: $xx-small;
+              margin: 1px;
+            }
+          }
+
+          .editor {
+            @extend p;
+            background-color: $green;
+          }
+        }
+
+        button {
+          padding: 7px 15px;
+          border-radius: 5px;
+          background-color: $red;
+          cursor: pointer;
+          color: $font-light;
+          border: none;
+          outline: none;
+          margin: 0px 5px;
+        }
+      }
+    }
+
+    .select-class-cont::-webkit-scrollbar {
+      width: 0px;
+    }
+
     button {
       padding: 10px 20px;
       border-radius: 5px;
@@ -648,7 +827,7 @@ export default {
       outline: none;
       margin: 10px 0px;
       background-color: $green;
-      color: $font-darck;
+      color: $font-light;
       cursor: pointer;
     }
   }
@@ -659,7 +838,7 @@ export default {
 }
 
 .up-home-work-light-English-close {
-  @extend .up-home-work-darck-English-open;
+  @extend .up-home-work-light-English-open;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
@@ -800,6 +979,96 @@ export default {
       background-color: $body-light;
     }
 
+    .select-class-cont {
+      width: 100%;
+      height: 120px;
+      background-color: $card-darck;
+      position: relative;
+      margin: 10px 0px;
+      border-radius: 5px;
+      overflow-y: scroll;
+
+      svg {
+        padding: 4px;
+        border-radius: 3px;
+        background-color: $blue;
+        color: $font-light;
+        cursor: pointer;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+      }
+
+      .card {
+        width: 98%;
+        height: 100px;
+        margin: 3% 1% 1% 1%;
+        border-radius: 5px;
+        background-color: $body-darck;
+        border-radius: 5px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+
+        img {
+          width: 90px;
+          height: 90px;
+          border-radius: 5px;
+          margin: 0px 5px;
+        }
+
+        .info {
+          width: 70%;
+          height: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: start;
+          align-items: center;
+          margin: 0px 5px;
+
+          h3 {
+            width: 100%;
+            height: auto;
+            color: $font-light;
+          }
+
+          p {
+            padding: 3px;
+            border-radius: 3px;
+            color: $font-light;
+            background-color: $card-darck;
+            font-size: $x-small;
+            margin: 3px;
+
+            @media (max-width: $phone) {
+              font-size: $xx-small;
+              margin: 1px;
+            }
+          }
+
+          .editor {
+            @extend p;
+            background-color: $green;
+          }
+        }
+
+        button {
+          padding: 7px 15px;
+          border-radius: 5px;
+          background-color: $red;
+          cursor: pointer;
+          color: $font-light;
+          border: none;
+          outline: none;
+          margin: 0px 5px;
+        }
+      }
+    }
+
+    .select-class-cont::-webkit-scrollbar {
+      width: 0px;
+    }
+
     button {
       padding: 10px 20px;
       border-radius: 5px;
@@ -872,7 +1141,7 @@ export default {
         padding: 5px;
         border-radius: 3px;
         background-color: $blue;
-        color: $font-darck;
+        color: $font-light;
         cursor: pointer;
       }
 
@@ -957,6 +1226,96 @@ export default {
       background-color: $body-darck;
     }
 
+    .select-class-cont {
+      width: 100%;
+      height: 120px;
+      background-color: $card-light;
+      position: relative;
+      margin: 10px 0px;
+      border-radius: 5px;
+      overflow-y: scroll;
+
+      svg {
+        padding: 4px;
+        border-radius: 3px;
+        background-color: $blue;
+        color: $font-darck;
+        cursor: pointer;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+      }
+
+      .card {
+        width: 98%;
+        height: 100px;
+        margin: 3% 1% 1% 1%;
+        border-radius: 5px;
+        background-color: $body-light;
+        border-radius: 5px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+
+        img {
+          width: 90px;
+          height: 90px;
+          border-radius: 5px;
+          margin: 0px 5px;
+        }
+
+        .info {
+          width: 70%;
+          height: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: start;
+          align-items: center;
+          margin: 0px 5px;
+
+          h3 {
+            width: 100%;
+            height: auto;
+            color: $font-darck;
+          }
+
+          p {
+            padding: 3px;
+            border-radius: 3px;
+            color: $font-darck;
+            background-color: $card-light;
+            font-size: $x-small;
+            margin: 3px;
+
+            @media (max-width: $phone) {
+              font-size: $xx-small;
+              margin: 1px;
+            }
+          }
+
+          .editor {
+            @extend p;
+            background-color: $green;
+          }
+        }
+
+        button {
+          padding: 7px 15px;
+          border-radius: 5px;
+          background-color: $red;
+          cursor: pointer;
+          color: $font-light;
+          border: none;
+          outline: none;
+          margin: 0px 5px;
+        }
+      }
+    }
+
+    .select-class-cont::-webkit-scrollbar {
+      width: 0px;
+    }
+
     button {
       padding: 10px 20px;
       border-radius: 5px;
@@ -964,7 +1323,7 @@ export default {
       outline: none;
       margin: 10px 0px;
       background-color: $green;
-      color: $font-darck;
+      color: $font-light;
       cursor: pointer;
     }
   }
@@ -975,7 +1334,7 @@ export default {
 }
 
 .up-home-work-light-Arabic-close {
-  @extend .up-home-work-darck-Arabic-open;
+  @extend .up-home-work-light-Arabic-open;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }

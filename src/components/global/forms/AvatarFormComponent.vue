@@ -59,7 +59,6 @@ export default {
   methods: {
     handleFileChange(event) {
       this.$store.state.selectd_images = event.target.files;
-      console.log(event.target.files);
     },
 
     DeleteAvatar() {

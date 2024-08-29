@@ -47,11 +47,12 @@
         <!-- results headers  -->
 
         <!-- admin component   -->
-        <TeacherInTeachersVpageComponentVue
+        <TeacherInTeacherspageComponent
           v-for="(teacher_data, index) in this.$store.state.teachers"
           :key="index"
           :teacher_data="teacher_data"
           :view_style="this.view_style"
+          :Dash="this.Dash"
         />
         <!-- admin component   -->
       </div>
@@ -69,7 +70,7 @@ import LoadingComponentVue from "@/components/global/LoadingComponent.vue";
 import SearchByNameComponentVue from "@/components/teacher/SearchByNameComponent.vue";
 import ScrollTopComponentVue from "@/components/global/ScrollTopComponent.vue";
 import ErrorComponentVue from "@/components/global/ErrorComponent.vue";
-import TeacherInTeachersVpageComponentVue from "../../components/teacher/TeacherInTeacherspageComponent.vue";
+import TeacherInTeacherspageComponent from "@/components/teacher/TeacherInTeacherspageComponent.vue";
 
 export default {
   name: "admin-page",
@@ -83,6 +84,8 @@ export default {
       scroll_page: 0,
       // open or close the compoenet
       status: false,
+      // to hidde the buttons container in teachers view
+      Dash: false,
     };
   },
   components: {
@@ -92,7 +95,7 @@ export default {
     SearchByNameComponentVue,
     ScrollTopComponentVue,
     ErrorComponentVue,
-    TeacherInTeachersVpageComponentVue,
+    TeacherInTeacherspageComponent,
   },
   mounted() {
     // to start the loading animation on loaded the page
@@ -167,3 +170,327 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../Sass/varibels/variables";
+
+// darck and light English style
+.teachers-darck-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-darck;
+  direction: ltr;
+
+  .cont-open {
+    width: 50%;
+    height: auto;
+    margin: auto;
+    transition-duration: 0.5s;
+    padding: 10% 0% 0% 0%;
+    opacity: 1;
+    @media (max-width: $phone) {
+      padding: 20% 0% 0% 0%;
+      width: 100%;
+    }
+
+    // page title style
+    .page-title {
+      width: 90%;
+      height: auto;
+      margin: 10px 5%;
+      padding: 5px 0px;
+      color: $font-light;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+    }
+
+    // result cont style
+    .result-cont-list {
+      width: 100%;
+      min-height: 80vh;
+      padding: 10px 0px;
+    }
+
+    // result cont style
+    .result-cont-window-restore {
+      @extend .result-cont-list;
+      width: 100%;
+      min-height: 80vh;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    // result header style
+    .results-heade {
+      width: 90%;
+      height: auto;
+      margin: 10px 5%;
+      padding: 5px 0px;
+      color: $font-light;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      // elements view style icon
+      svg {
+        padding: 5px;
+        color: $font-light;
+        border-radius: 5px;
+        border: 1px solid $border-light;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0% 0% 0%;
+    @media (max-width: $phone) {
+      padding: 40% 0% 0% 0%;
+    }
+    opacity: 0;
+  }
+}
+
+.teachers-light-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-light;
+  direction: ltr;
+
+  .cont-open {
+    width: 50%;
+    height: auto;
+    margin: auto;
+    transition-duration: 0.5s;
+    padding: 10% 0% 0% 0%;
+    opacity: 1;
+    @media (max-width: $phone) {
+      padding: 20% 0% 0% 0%;
+      width: 100%;
+    }
+
+    // page title style
+    .page-title {
+      width: 90%;
+      height: auto;
+      margin: 10px 5%;
+      padding: 5px 0px;
+      color: $font-darck;
+      border: 1px solid;
+      border-color: transparent transparent $border-darck transparent;
+    }
+
+    // result cont style
+    .result-cont-list {
+      width: 100%;
+      min-height: 80vh;
+      padding: 10px 0px;
+    }
+
+    // result cont style
+    .result-cont-window-restore {
+      @extend .result-cont-list;
+      width: 100%;
+      min-height: 80vh;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    // result header style
+    .results-heade {
+      width: 90%;
+      height: auto;
+      margin: 20px 5%;
+      padding: 5px 0px;
+      color: $font-darck;
+      border: 1px solid;
+      border-color: transparent transparent $border-darck transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      // elements view style icon
+      svg {
+        padding: 5px;
+        color: $font-darck;
+        border-radius: 5px;
+        border: 1px solid $border-darck;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0% 0% 0%;
+    @media (max-width: $phone) {
+      padding: 40% 0% 0% 0%;
+    }
+    opacity: 0;
+  }
+}
+// darck and light English style
+
+// darck and light Arabic style
+.teachers-darck-Arabic {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-darck;
+  direction: rtl;
+
+  .cont-open {
+    width: 50%;
+    height: auto;
+    margin: auto;
+    transition-duration: 0.5s;
+    padding: 10% 0% 0% 0%;
+    opacity: 1;
+    @media (max-width: $phone) {
+      padding: 20% 0% 0% 0%;
+      width: 100%;
+    }
+
+    // page title style
+    .page-title {
+      width: 90%;
+      height: auto;
+      margin: 10px 5%;
+      padding: 5px 0px;
+      color: $font-light;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+    }
+
+    // result cont style
+    .result-cont-list {
+      width: 100%;
+      min-height: 80vh;
+      padding: 10px 0px;
+    }
+
+    // result cont style
+    .result-cont-window-restore {
+      @extend .result-cont-list;
+      width: 100%;
+      min-height: 80vh;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    // result header style
+    .results-heade {
+      width: 90%;
+      height: auto;
+      margin: 10px 5%;
+      padding: 5px 0px;
+      color: $font-light;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      // elements view style icon
+      svg {
+        padding: 5px;
+        color: $font-light;
+        border-radius: 5px;
+        border: 1px solid $border-light;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0% 0% 0%;
+    @media (max-width: $phone) {
+      padding: 40% 0% 0% 0%;
+    }
+    opacity: 0;
+  }
+}
+
+.teachers-light-Arabic {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-light;
+  direction: rtl;
+
+  .cont-open {
+    width: 50%;
+    height: auto;
+    margin: auto;
+    transition-duration: 0.5s;
+    padding: 10% 0% 0% 0%;
+    opacity: 1;
+    @media (max-width: $phone) {
+      padding: 20% 0% 0% 0%;
+      width: 100%;
+    }
+
+    // page title style
+    .page-title {
+      width: 90%;
+      height: auto;
+      margin: 10px 5%;
+      padding: 5px 0px;
+      color: $font-darck;
+      border: 1px solid;
+      border-color: transparent transparent $border-darck transparent;
+    }
+
+    // result cont style
+    .result-cont-list {
+      width: 100%;
+      min-height: 80vh;
+      padding: 10px 0px;
+    }
+
+    // result cont style
+    .result-cont-window-restore {
+      @extend .result-cont-list;
+      width: 100%;
+      min-height: 80vh;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    // result header style
+    .results-heade {
+      width: 90%;
+      height: auto;
+      margin: 20px 5%;
+      padding: 5px 0px;
+      color: $font-darck;
+      border: 1px solid;
+      border-color: transparent transparent $border-darck transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      // elements view style icon
+      svg {
+        padding: 5px;
+        color: $font-darck;
+        border-radius: 5px;
+        border: 1px solid $border-darck;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0% 0% 0%;
+    @media (max-width: $phone) {
+      padding: 40% 0% 0% 0%;
+    }
+    opacity: 0;
+  }
+}
+// darck and light Arabic style
+</style>

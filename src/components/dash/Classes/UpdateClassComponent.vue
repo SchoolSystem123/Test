@@ -375,7 +375,7 @@ export default {
 };
 </script>
 
-<!-- <style lang="scss">
+<style lang="scss">
 @import "../../../Sass/varibels/variables";
 
 // darck and light English style
@@ -808,4 +808,4 @@ export default {
   padding: 30% 5px 5px 5px;
 }
 // darck and light Arabic style
-</style> -->
+</style>

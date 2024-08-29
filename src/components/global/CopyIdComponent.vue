@@ -65,13 +65,12 @@ export default {
 
 // Darck mood
 .copy-id-darck-English {
-  max-width: 60%;
+  padding: 4px;
   margin: 10px 5%;
   color: $font-light;
   cursor: pointer;
   transition-duration: 0.5s;
   font-size: $x-small;
-  padding: 3px;
   border-radius: 5px;
   background-color: $card-darck;
   @media (min-width: $tablet) {
