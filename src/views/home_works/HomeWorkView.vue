@@ -52,6 +52,17 @@
       <!-- title  -->
       <h2 class="title">{{ this.$store.state.home_work.title }}</h2>
 
+      <!-- subject  -->
+      <p class="subject">
+        {{
+          this.$store.state.language == "English"
+            ? this.$store.state.English.home_work_page.subject
+            : this.$store.state.Arabic.home_work_page.subject
+        }}
+        {{ this.$store.state.home_work.subject }}
+      </p>
+      <!-- subject  -->
+
       <!-- description  -->
       <p class="description">
         {{
@@ -61,20 +72,12 @@
         }}
         {{ this.$store.state.home_work.description }}
       </p>
+      <!-- description  -->
 
       <!-- copy id component  -->
       <CopyIdComponentVue
         :Id_data="{ id: this.$store.state.home_work._id, object_type: 'H' }"
       />
-
-      <p class="subject">
-        {{
-          this.$store.state.language == "English"
-            ? this.$store.state.English.home_work_page.subject
-            : this.$store.state.Arabic.home_work_page.subject
-        }}
-        {{ this.$store.state.home_work.subject }}
-      </p>
 
       <!-- images container  -->
       <div class="images-cont">
@@ -775,8 +778,8 @@ export default {
     }
 
     // copy id component
-    .copy-id-darck-English {
-      width: 80%;
+    .copy-id-darck-Arabic {
+      width: auto;
       margin: -2% 10% 0% 10%;
     }
 
@@ -1038,9 +1041,8 @@ export default {
     }
 
     // copy id component
-    .copy-id-light-English {
-      font-size: $x-small;
-      width: 80%;
+    .copy-id-light-Arabic {
+      width: auto;
       margin: -2% 10% 0% 10%;
     }
 

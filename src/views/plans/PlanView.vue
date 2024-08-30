@@ -232,3 +232,246 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../Sass/varibels/variables";
+
+// darck and light English style
+.plan-page-darck-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-darck;
+  direction: ltr;
+
+  .cont-open {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    padding: 10% 0px 10px 0px;
+    transition-duration: 0.5s;
+    opacity: 1;
+
+    @media (max-width: $phone) {
+      padding: 20% 0% 0% 0%;
+      width: 100%;
+    }
+
+    // plans title style
+    h1 {
+      width: 90%;
+      height: auto;
+      margin: 5px 5%;
+      color: $font-light;
+    }
+
+    // description
+    .description {
+      width: 90%;
+      height: auto;
+      margin: 10px 5%;
+      color: $font-light;
+    }
+
+    // notes conatiner style
+    .notes-cont {
+      width: 90%;
+      height: auto;
+      margin: 10px 5%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: start;
+
+      p {
+        width: auto;
+        height: auto;
+        padding: 3px;
+        border-radius: 3px;
+        color: $font-light;
+        font-size: $x-small;
+        margin: 3px;
+        background-color: $note-darck;
+      }
+    }
+
+    .plan-btn-cont {
+      position: relative;
+      width: 100%;
+      height: 40px;
+      margin: 5px 0%;
+    }
+
+    .plan-info {
+      width: 90%;
+      height: auto;
+      margin: 10px 5%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $body-darck;
+      box-shadow: 0 0 5px $black;
+      padding: 5px;
+      border-radius: 10px;
+
+      .line {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-around;
+        padding: 5px;
+        margin: 5px 0px;
+        position: relative;
+        border: 1px solid;
+        border-color: transparent transparent $border-light transparent;
+
+        .day {
+          padding: 5px;
+          position: absolute;
+          left: 5px;
+          top: 5px;
+          border-radius: 5px;
+          color: $font-light;
+          font-size: $small;
+          background-color: $note-darck;
+        }
+
+        .info-cont {
+          width: 100%;
+          height: auto;
+          border-radius: 5px;
+          padding: 5px;
+          background-color: $card-darck;
+          margin-top: 10%;
+
+          div {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 3px;
+            border-radius: 3px;
+            margin: 5px 0px;
+            background-color: $note-darck;
+
+            p {
+              margin: 3px;
+              color: $font-light;
+              font-size: $small;
+            }
+          }
+        }
+      }
+    }
+
+    .author {
+      width: 90%;
+      height: auto;
+      margin: 5px 5%;
+      border-radius: 10px;
+      background-color: $card-darck;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      padding: 1px;
+      box-shadow: 0 0 5px $black;
+      cursor: pointer;
+
+      img {
+        width: 80px;
+        height: 80px;
+        border-radius: 5px;
+      }
+
+      h3 {
+        color: $font-light;
+        margin: -10px 0px 0px 5px;
+      }
+    }
+  }
+
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0px 10px 0px;
+    transition-duration: 0.5s;
+    opacity: 0;
+
+    @media (max-width: $phone) {
+      padding: 40% 0% 0% 0%;
+      width: 100%;
+    }
+  }
+}
+
+.plan-page-light-English {
+  @extend .plan-page-darck-English;
+  background-color: $body-light;
+
+  .cont-open {
+    // plans title style
+    h1 {
+      color: $font-darck;
+    }
+
+    // description
+    .description {
+      color: $font-darck;
+    }
+
+    // notes conatiner style
+    .notes-cont {
+      p {
+        color: $font-darck;
+        background-color: $note-light;
+      }
+    }
+
+    .plan-info {
+      background-color: $body-light;
+
+      .line {
+        border-color: transparent transparent $border-darck transparent;
+
+        .day {
+          color: $font-darck;
+          background-color: $note-light;
+        }
+
+        .info-cont {
+          background-color: $card-light;
+
+          div {
+            background-color: $note-light;
+
+            p {
+              color: $font-darck;
+            }
+          }
+        }
+      }
+    }
+
+    .author {
+      background-color: $card-light;
+
+      h3 {
+        color: $font-darck;
+      }
+    }
+  }
+}
+// darck and light English style
+
+// darck and light Arabic style
+.plan-page-darck-Arabic {
+  @extend .plan-page-darck-English;
+  direction: ltr;
+}
+
+.plan-page-light-Arabic {
+  @extend .plan-page-light-English;
+  direction: rtl;
+}
+// darck and light Arabic style
+</style>

@@ -57,8 +57,6 @@
 
 <script>
 //? importing components
-//? importing components
-//todo importing components
 // importing components
 import SmallNavComponentVue from "@/components/global/nav/SmallNavComponent.vue";
 import SidBarComponentVue from "@/components/global/SidBarComponent.vue";
@@ -169,141 +167,190 @@ export default {
 <style lang="scss">
 @import "../../Sass/varibels/variables";
 
-// darck and light English list style
-.plans-page-list-darck-English {
+// darck and light English style
+.plans-page-darck-English {
   width: 100%;
-  height: auto;
-  border-radius: 10px;
-  background-color: $card-darck;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 5px;
-  margin: 5px 0px;
-  transition-duration: 0.5s;
-  cursor: pointer;
+  min-height: 100vh;
+  background-color: $body-darck;
   direction: ltr;
 
-  // plan title style
-  h2 {
-    width: 100%;
-    height: auto;
-    color: $font-light;
+  // open container style to open it smooth
+  .cont-open {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    padding: 10% 0px 10px 0px;
+    transition-duration: 0.5s;
+    opacity: 1;
+
+    @media (max-width: $phone) {
+      width: 100%;
+      height: auto;
+      padding: 20% 0px 10px 0px;
+    }
+
+    // page title
+    .page-title {
+      width: 90%;
+      height: auto;
+      margin: 10px 5%;
+      padding: 5px 0px;
+      color: $font-light;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+    }
+
+    // results container style
+    .results-cont {
+      width: 90%;
+      height: auto;
+      margin: 10px auto;
+
+      // results section header
+      .results-heade {
+        width: 100%;
+        height: auto;
+        padding: 5px 0px;
+        margin: 10px 0px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid;
+        border-color: transparent transparent $border-light transparent;
+
+        p {
+          color: $font-light;
+        }
+
+        // elemnts view icon
+        svg {
+          padding: 5px;
+          border: 1px solid $border-light;
+          border-radius: 5px;
+          color: $font-light;
+          cursor: pointer;
+        }
+      }
+
+      // plans container style
+      .plans-cont {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
   }
 
-  // notes style
-  p {
-    width: auto;
-    height: auto;
-    padding: 3px;
-    color: $font-light;
-    font-size: $x-small;
-    border-radius: 3px;
-    margin: 3px;
-    background-color: $note-darck;
+  // closed cont style
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0px 10px 0px;
+    transition-duration: 0.5s;
+    opacity: 0;
+    @media (max-width: $phone) {
+      padding: 40% 0% 0% 0%;
+    }
   }
 }
 
-.plans-page-list-light-English {
-  @extend .plans-page-list-darck-English;
-  background-color: $card-light;
-
-  // plan title
-  h2 {
-    color: $font-darck;
-  }
-
-  // notes style
-  p {
-    color: $font-darck;
-    background-color: $note-light;
-  }
-}
-// darck and light English list style
-
-// darck and light Arabic list style
-.plans-page-list-darck-Arabic {
+.plans-page-light-English {
   width: 100%;
-  height: auto;
-  border-radius: 10px;
-  background-color: $card-darck;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 5px;
-  margin: 5px 0px;
-  transition-duration: 0.5s;
-  cursor: pointer;
+  min-height: 100vh;
+  background-color: $body-light;
+  direction: ltr;
+
+  // open container style to open it smooth
+  .cont-open {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    padding: 10% 0px 10px 0px;
+    transition-duration: 0.5s;
+    opacity: 1;
+
+    @media (max-width: $phone) {
+      width: 100%;
+      height: auto;
+      padding: 20% 0px 10px 0px;
+    }
+
+    // page title
+    .page-title {
+      width: 90%;
+      height: auto;
+      margin: 10px 5%;
+      padding: 5px 0px;
+      color: $font-darck;
+      border: 1px solid;
+      border-color: transparent transparent $border-darck transparent;
+    }
+
+    // results container style
+    .results-cont {
+      width: 90%;
+      height: auto;
+      margin: 10px auto;
+
+      // results section header
+      .results-heade {
+        width: 100%;
+        height: auto;
+        padding: 5px 0px;
+        margin: 10px 0px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid;
+        border-color: transparent transparent $border-darck transparent;
+
+        p {
+          color: $font-darck;
+        }
+
+        // elemnts view icon
+        svg {
+          padding: 5px;
+          border: 1px solid $border-darck;
+          border-radius: 5px;
+          color: $font-darck;
+          cursor: pointer;
+        }
+      }
+
+      // plans container style
+      .plans-cont {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+  }
+
+  // closed cont style
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0px 10px 0px;
+    transition-duration: 0.5s;
+    opacity: 0;
+    @media (max-width: $phone) {
+      padding: 40% 0% 0% 0%;
+    }
+  }
+}
+// darck and light English style
+
+// darck and light Arabic style
+.plans-page-darck-Arabic {
+  @extend .plans-page-darck-English;
   direction: rtl;
-
-  // plan title style
-  h2 {
-    width: 100%;
-    height: auto;
-    color: $font-light;
-  }
-
-  // notes style
-  p {
-    width: auto;
-    height: auto;
-    padding: 3px;
-    color: $font-light;
-    font-size: $x-small;
-    border-radius: 3px;
-    margin: 3px;
-    background-color: $note-darck;
-  }
 }
 
-.plans-page-list-light-Arabic {
-  @extend .plans-page-list-darck-Arabic;
-  background-color: $card-light;
-
-  // plan title
-  h2 {
-    color: $font-darck;
-  }
-
-  // notes style
-  p {
-    color: $font-darck;
-    background-color: $note-light;
-  }
-}
-// darck and light Arabic list style
-
-// darck and light English window-restore style
-.plans-page-window-restore-darck-English {
-  @extend .plans-page-list-darck-English;
-  width: 45%;
-  margin: 5px 2%;
-}
-
-.plans-page-window-restore-light-English {
-  @extend .plans-page-window-restore-darck-English;
-  background-color: $card-light;
-
-  // plan title
-  h2 {
-    color: $font-darck;
-  }
-
-  // notes style
-  p {
-    color: $font-darck;
-    background-color: $note-light;
-  }
-}
-// darck and light English window-restore style
-
-// darck and light Arabic window-restore style
-.plans-page-window-restore-darck-Arabic {
-  @extend .plans-page-window-restore-darck-English;
+.plans-page-light-Arabic {
+  @extend .plans-page-light-English;
+  @extend .plans-page-darck-Arabic;
   direction: rtl;
 }
-
-.plans-page-window-restore-light-Arabic {
-  @extend .plans-page-window-restore-light-English;
-  direction: rtl;
-}
-// darck and light Arabic window-restore style
+// darck and light Arabic style
 </style>

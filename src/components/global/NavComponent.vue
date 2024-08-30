@@ -57,7 +57,7 @@ export default {
     img {
       width: 50px;
       height: 50px;
-      border-radius: 50%;
+      border-radius: 10px;
       border: 3px solid $blue;
       cursor: pointer;
     }

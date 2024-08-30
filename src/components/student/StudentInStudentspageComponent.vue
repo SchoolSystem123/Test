@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`students-student-${this.$store.state.mood}-${this.$store.state.language}-${this.view_style}`"
+    :class="`students-student-dash-${this.$store.state.mood}-${this.$store.state.language}-${this.view_style}`"
   >
     <!-- student avatar  -->
     <img
@@ -108,12 +108,11 @@ export default {
 
 <style lang="scss">
 @import "../../Sass/varibels/variables";
-
 // darck style
-.students-student-darck-English-list {
-  width: 90%;
+.students-student-dash-darck-English-list {
+  width: 98%;
   height: 90px;
-  margin: 5px 5%;
+  margin: 5px 1%;
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
@@ -121,6 +120,7 @@ export default {
   background-color: $card-darck;
   transition-duration: 0.5s;
   cursor: pointer;
+  direction: ltr;
 
   // admin avatar
   img {
@@ -177,60 +177,14 @@ export default {
   }
 }
 
-.students-student-darck-English-list:hover {
-  box-shadow: 0 0 5px $black;
-}
-
-.students-student-darck-English-window-restore {
-  @extend .students-student-darck-English-list;
-  width: 45%;
-  margin: 10px 2%;
-  height: auto;
-  flex-wrap: wrap;
-
-  // admin avatar
-  img {
-    width: 96%;
-    height: 160px;
-    margin: 2%;
-    border-radius: 10px;
-  }
-
-  .info {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: 0px 5px 5px 5px;
-
-    // admin name
-    h3 {
-      width: 100%;
-      color: $font-light;
-    }
-
-    p {
-      color: $font-light;
-      max-width: 90%;
-      height: auto;
-      margin: 1px 2%;
-      font-size: $x-small;
-      padding: 2px;
-      border-radius: 3px;
-      background-color: $note-darck;
-    }
-  }
-}
-
-.students-student-darck-English-window-restore:hover {
+.students-student-dash-darck-English-list:hover {
   box-shadow: 0 0 5px $black;
 }
 // darck style
 
 // light style
-.students-student-light-English-list {
-  @extend .students-student-darck-English-list;
+.students-student-dash-light-English-list {
+  @extend .students-student-dash-darck-English-list;
   background-color: $card-light;
 
   .info {
@@ -246,66 +200,27 @@ export default {
   }
 }
 
-.students-student-light-English-list:hover {
-  box-shadow: 0 0 5px $black;
-}
-
-.students-student-light-English-window-restore {
-  @extend .students-student-darck-English-window-restore;
-  width: 45%;
-  margin: 10px 2%;
-  height: auto;
-  flex-wrap: wrap;
-  background-color: $card-light;
-
-  .info {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: 0px 5px 5px 5px;
-
-    // admin name
-    h3 {
-      width: 100%;
-      color: $font-darck;
-    }
-
-    p {
-      color: $font-darck;
-      background-color: $note-light;
-    }
-  }
-}
-
-.students-student-light-English-window-restore:hover {
+.students-student-dash-light-English-list:hover {
   box-shadow: 0 0 5px $black;
 }
 // darck style
 
 // darck style
-.students-student-darck-Arabic-list {
-  @extend .students-student-darck-English-list;
+.students-student-dash-darck-Arabic-list {
+  @extend .students-student-dash-darck-English-list;
+  direction: rtl;
 }
 
-.students-student-darck-Arabic-list:hover {
-  box-shadow: 0 0 5px $black;
-}
-
-.students-student-darck-Arabic-window-restore {
-  @extend .students-student-darck-English-window-restore;
-}
-
-.students-student-darck-Arabic-window-restore:hover {
+.students-student-dash-darck-Arabic-list:hover {
   box-shadow: 0 0 5px $black;
 }
 // darck style
 
 // light style
-.students-student-light-Arabic-list {
-  @extend .students-student-light-English-list;
+.students-student-dash-light-Arabic-list {
+  @extend .students-student-dash-light-English-list;
   background-color: $card-light;
+  direction: rtl;
 
   .info {
     // admin name
@@ -320,40 +235,7 @@ export default {
   }
 }
 
-.students-student-light-Arabic-list:hover {
-  box-shadow: 0 0 5px $black;
-}
-
-.students-student-light-Arabic-window-restore {
-  @extend .students-student-darck-English-window-restore;
-  background-color: $card-light;
-  width: 45%;
-  margin: 10px 2%;
-  height: auto;
-  flex-wrap: wrap;
-
-  .info {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: 0px 5px 5px 5px;
-
-    // admin name
-    h3 {
-      width: 100%;
-      color: $font-darck;
-    }
-
-    p {
-      color: $font-darck;
-      background-color: $note-light;
-    }
-  }
-}
-
-.students-student-light-Arabic-window-restore:hover {
+.students-student-dash-light-Arabic-list:hover {
   box-shadow: 0 0 5px $black;
 }
 // darck style

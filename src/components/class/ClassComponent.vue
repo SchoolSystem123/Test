@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`class-profile-${this.$store.state.mood}-${this.$store.state.language}`"
+    :class="`class-home-${this.$store.state.mood}-${this.$store.state.language}`"
     @click="GetToClass(this.class_data._id)"
   >
     <!-- class cover -->
@@ -53,3 +53,89 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../Sass/varibels/variables";
+
+// darck and light English style
+.class-home-darck-English {
+  width: 100%;
+  height: 100%;
+  direction: ltr;
+
+  img {
+    width: 100%;
+    max-height: 80%;
+    border-radius: 5px;
+  }
+
+  .info {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+
+    h2 {
+      width: 100%;
+      height: auto;
+      color: $font-light;
+    }
+
+    p {
+      font-size: $xx-small;
+      padding: 3px;
+      border-radius: 3px;
+      color: $font-light;
+      background-color: $note-darck;
+      margin: 3px;
+    }
+  }
+}
+
+.class-home-light-English {
+  width: 100%;
+  height: 100%;
+  direction: ltr;
+
+  img {
+    width: 100%;
+    max-height: 80%;
+    border-radius: 5px;
+  }
+
+  .info {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+
+    h2 {
+      width: 100%;
+      height: auto;
+      color: $font-darck;
+    }
+
+    p {
+      font-size: $xx-small;
+      padding: 3px;
+      border-radius: 3px;
+      color: $font-darck;
+      background-color: $note-light;
+      margin: 3px;
+    }
+  }
+}
+// darck and light English style
+
+// darck and light English style
+.class-home-darck-Arabic {
+  @extend .class-home-darck-English;
+  direction: rtl;
+}
+
+.class-home-light-Arabic {
+  @extend .class-home-light-English;
+  direction: rtl;
+}
+// darck and light English style
+</style>

@@ -364,7 +364,7 @@ export default {
     // cover
     .cover {
       width: 90%;
-      max-height: 250px;
+      max-height: 400px;
       border-radius: 10px;
       margin-left: 5%;
     }
@@ -427,7 +427,10 @@ export default {
         justify-content: start;
         align-items: center;
         text-decoration: none;
-        margin: 5%;
+        margin: 3% 2%;
+        border-radius: 5px;
+        padding: 5px;
+        background-color: $card-darck;
 
         // author avatar
         .avatar {
@@ -552,6 +555,7 @@ export default {
         color: $font-darck;
       }
     }
+
     .author {
       color: $font-darck;
 
@@ -560,7 +564,25 @@ export default {
       }
 
       a {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        text-decoration: none;
+        margin: 3% 2%;
+        border-radius: 5px;
+        padding: 5px;
+        background-color: $card-light;
+
+        // author avatar
+        .avatar {
+          width: 50px;
+          height: 50px;
+          border-radius: 10px;
+        }
+
+        // author name
         h5 {
+          margin-left: 2%;
           color: $font-darck;
         }
       }
@@ -623,7 +645,7 @@ export default {
 
   // opend cont
   .open-cont {
-    #note-English-cont {
+    #note-Arabic-cont {
       position: absolute;
       z-index: 50;
       margin: 2% 7% 0% 0%;
@@ -654,13 +676,29 @@ export default {
         margin: 7% 5% 0% 0%;
       }
     }
+
     .author {
       a {
-        margin: 5%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        text-decoration: none;
+        margin: 1% 2%;
+        border-radius: 5px;
+        padding: 5px;
+        background-color: $card-darck;
 
-        // athor name
+        // author avatar
+        .avatar {
+          width: 50px;
+          height: 50px;
+          border-radius: 10px;
+        }
+
+        // author name
         h5 {
-          margin-right: 2%;
+          margin-left: 2%;
+          color: $font-light;
         }
       }
     }
@@ -750,7 +788,25 @@ export default {
       }
 
       a {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        text-decoration: none;
+        margin: 2% 2%;
+        border-radius: 5px;
+        padding: 5px;
+        background-color: $card-light;
+
+        // author avatar
+        .avatar {
+          width: 50px;
+          height: 50px;
+          border-radius: 10px;
+        }
+
+        // author name
         h5 {
+          margin-left: 2%;
           color: $font-darck;
         }
       }

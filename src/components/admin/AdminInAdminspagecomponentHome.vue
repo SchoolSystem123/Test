@@ -1,49 +1,86 @@
 <template>
   <div
-    :class="`parents-parent-home-${this.$store.state.mood}-${this.$store.state.language}-${this.view_style}`"
-    @click="getToaAmin(this.parent_data._id)"
+    :class="`admins-admin-home-${this.$store.state.mood}-${this.$store.state.language}-${this.view_style}`"
+    @click="getToaAmin(this.admin_data._id)"
   >
     <!-- admin avatar  -->
-    <img :src="this.parent_data.avatar" alt="avatar" />
+    <img :src="this.admin_data.avatar" alt="cover" />
     <!-- admin avatar  -->
 
     <div class="info">
       <!-- admin name  -->
-      <h3>{{ this.parent_data.name }}</h3>
+      <h3>{{ this.admin_data.name }}</h3>
       <!-- admin name  -->
-
-      <!-- parent gender  -->
+      <!-- admin level  -->
+      <p
+        v-if="this.admin_data.is_admin"
+        :class="this.admin_data.is_admin == true ? 'admin' : null"
+      >
+        {{
+          this.$store.state.language == "English"
+            ? this.$store.state.English.admin_component.admin
+            : this.$store.state.Arabic.admin_component.admin
+        }}
+      </p>
+      <!-- admin level  -->
+      <!-- admin level  -->
+      <p
+        v-if="this.admin_data.is_supper_admin"
+        :class="this.admin_data.is_supper_admin == true ? 'super-admin' : null"
+      >
+        {{
+          this.$store.state.language == "English"
+            ? this.$store.state.English.admin_component.supper_admin
+            : this.$store.state.Arabic.admin_component.supper_admin
+        }}
+      </p>
+      <!-- admin level  -->
+      <!-- admin gender  -->
       <p>
-        ⚧️ : {{ this.parent_data.gender }}
-        {{ this.parent_data.gender == "male" ? "🚹" : "🚺" }}
+        ⚧️ : {{ this.admin_data.gender }}
+        {{ this.admin_data.gender == "male" ? "🚹" : "🚺" }}
       </p>
-      <!-- parent gender  -->
-
-      <!-- parent's children  -->
-      <p>👶🧒👱‍♂️ : {{ this.parent_data.children.length }}</p>
-      <!-- parent's children  -->
-
-      <p v-if="this.parent_data.created_at">
-        📆 : {{ this.parent_data.created_at.split("T")[0] }}
-      </p>
+      <!-- admin gender  -->
+      <!-- admin joind at  -->
+      <p>📆 : {{ this.admin_data.joind_at.split("T")[0] }}</p>
+      <!-- admin joind at  -->
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "parent-in-parents-apge-component",
+  name: "admin-in-admins-apge-component",
   data() {
     return {};
   },
   props: {
-    parent_data: Object,
+    admin_data: Object,
     view_style: String,
+    Dash: Boolean,
   },
   components: {},
   methods: {
     getToaAmin(id) {
-      window.location = `/parent/${id}`;
+      window.location = `/admin/${id}`;
+    },
+
+    // delete admin
+    DeleteAdmin() {
+      // update admin id for delete in store
+      this.$store.state.admin_id_for_delete = this.admin_data._id;
+
+      // open the delete admin form verify
+      this.$store.commit("OpenOrCloseDeleteAdminForm");
+    },
+
+    // open and update the activ component in dash
+    GoToUpdateAdmi() {
+      // update the admin_id_for_update var in store
+      this.$store.state.admin_for_update = this.admin_data;
+
+      // update the active component name
+      this.$store.state.active_component_in_dash = "update-admin";
     },
   },
 };
@@ -53,7 +90,7 @@ export default {
 @import "../../Sass/varibels/variables";
 
 // darck style
-.parents-parent-home-darck-English-list {
+.admins-admin-home-darck-English-list {
   width: 90%;
   height: 90px;
   margin: 5px 5%;
@@ -112,12 +149,12 @@ export default {
   }
 }
 
-.parents-parent-home-darck-English-list:hover {
+.admins-admin-home-darck-English-list:hover {
   box-shadow: 0 0 5px $black;
 }
 
-.parents-parent-home-darck-English-window-restore {
-  @extend .parents-parent-home-darck-English-list;
+.admins-admin-home-darck-English-window-restore {
+  @extend .admins-admin-home-darck-English-list;
   width: 45%;
   margin: 10px 2%;
   height: auto;
@@ -158,14 +195,14 @@ export default {
   }
 }
 
-.parents-parent-home-darck-English-window-restore:hover {
+.admins-admin-home-darck-English-window-restore:hover {
   box-shadow: 0 0 5px $black;
 }
 // darck style
 
 // light style
-.parents-parent-home-light-English-list {
-  @extend .parents-parent-home-darck-English-list;
+.admins-admin-home-light-English-list {
+  @extend .admins-admin-home-darck-English-list;
   background-color: $card-light;
 
   .info {
@@ -181,12 +218,12 @@ export default {
   }
 }
 
-.parents-parent-home-light-English-list:hover {
+.admins-admin-home-light-English-list:hover {
   box-shadow: 0 0 5px $black;
 }
 
-.parents-parent-home-light-English-window-restore {
-  @extend .parents-parent-home-darck-English-window-restore;
+.admins-admin-home-light-English-window-restore {
+  @extend .admins-admin-home-darck-English-window-restore;
   width: 45%;
   margin: 10px 2%;
   height: auto;
@@ -214,32 +251,32 @@ export default {
   }
 }
 
-.parents-parent-home-light-English-window-restore:hover {
+.admins-admin-home-light-English-window-restore:hover {
   box-shadow: 0 0 5px $black;
 }
 // darck style
 
 // darck style
-.parents-parent-home-darck-Arabic-list {
-  @extend .parents-parent-home-darck-English-list;
+.admins-admin-home-darck-Arabic-list {
+  @extend .admins-admin-home-darck-English-list;
 }
 
-.parents-parent-home-darck-Arabic-list:hover {
+.admins-admin-home-darck-Arabic-list:hover {
   box-shadow: 0 0 5px $black;
 }
 
-.parents-parent-home-darck-Arabic-window-restore {
-  @extend .parents-parent-home-darck-English-window-restore;
+.admins-admin-home-darck-Arabic-window-restore {
+  @extend .admins-admin-home-darck-English-window-restore;
 }
 
-.parents-parent-home-darck-Arabic-window-restore:hover {
+.admins-admin-home-darck-Arabic-window-restore:hover {
   box-shadow: 0 0 5px $black;
 }
 // darck style
 
 // light style
-.parents-parent-home-light-Arabic-list {
-  @extend .parents-parent-home-light-English-list;
+.admins-admin-home-light-Arabic-list {
+  @extend .admins-admin-home-light-English-list;
   background-color: $card-light;
 
   .info {
@@ -255,12 +292,12 @@ export default {
   }
 }
 
-.parents-parent-home-light-Arabic-list:hover {
+.admins-admin-home-light-Arabic-list:hover {
   box-shadow: 0 0 5px $black;
 }
 
-.parents-parent-home-light-Arabic-window-restore {
-  @extend .parents-parent-home-darck-English-window-restore;
+.admins-admin-home-light-Arabic-window-restore {
+  @extend .admins-admin-home-darck-English-window-restore;
   background-color: $card-light;
   width: 45%;
   margin: 10px 2%;
@@ -288,7 +325,7 @@ export default {
   }
 }
 
-.parents-parent-home-light-Arabic-window-restore:hover {
+.admins-admin-home-light-Arabic-window-restore:hover {
   box-shadow: 0 0 5px $black;
 }
 // darck style

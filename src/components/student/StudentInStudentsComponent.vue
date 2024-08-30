@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`students-student-${this.$store.state.mood}-${this.$store.state.language}-${this.view_style}`"
+    :class="`students-student-page-${this.$store.state.mood}-${this.$store.state.language}-${this.view_style}`"
     @click="getToaStudent(this.student_data._id)"
   >
     <!-- student avatar  -->
@@ -48,7 +48,7 @@
 
 <script>
 export default {
-  name: "student-in-students-apge-component",
+  name: "student-in-students-page",
   data() {
     return {};
   },
@@ -68,12 +68,11 @@ export default {
 
 <style lang="scss">
 @import "../../Sass/varibels/variables";
-
-// darck and light English style
-.students-student-darck-English-list {
-  width: 98%;
+// darck style
+.students-student-page-darck-English-list {
+  width: 90%;
   height: 90px;
-  margin: 5px 1%;
+  margin: 5px 5%;
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
@@ -81,7 +80,6 @@ export default {
   background-color: $card-darck;
   transition-duration: 0.5s;
   cursor: pointer;
-  direction: ltr;
 
   // admin avatar
   img {
@@ -114,9 +112,6 @@ export default {
       padding: 2px;
       border-radius: 3px;
       background-color: $note-darck;
-      @media (max-width: $phone) {
-        font-size: $xx-small;
-      }
     }
   }
 
@@ -134,71 +129,39 @@ export default {
       height: 40%;
       border: none;
       border-radius: 5px;
-      color: $font-light;
+      color: #ffffff;
       cursor: pointer;
-      background-color: $blue;
-      @media (max-width: $phone) {
-        font-size: $xx-small;
-      }
+      background-color: #008fe2;
     }
   }
 }
 
-.students-student-darck-English-list:hover {
+.students-student-page-darck-English-list:hover {
   box-shadow: 0 0 5px $black;
 }
 
-.students-student-light-English-list {
-  @extend .students-student-darck-English-list;
-  background-color: $card-light;
-
-  .info {
-    // admin name
-    h3 {
-      color: $font-darck;
-    }
-
-    p {
-      color: $font-darck;
-      background-color: $note-light;
-    }
-  }
-}
-
-.students-student-light-English-list:hover {
-  box-shadow: 0 0 5px $black;
-}
-// darck and light English style
-
-// darck and light Arabic style
-.students-student-darck-Arabic-list {
-  width: 98%;
-  height: 90px;
-  margin: 5px 1%;
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  background-color: $card-darck;
-  transition-duration: 0.5s;
-  cursor: pointer;
-  direction: rtl;
+.students-student-page-darck-English-window-restore {
+  @extend .students-student-page-darck-English-list;
+  width: 45%;
+  margin: 10px 2%;
+  height: auto;
+  flex-wrap: wrap;
 
   // admin avatar
   img {
-    width: 80px;
-    height: 80px;
-    margin: 5px;
-    border-radius: 5px;
+    width: 96%;
+    height: 160px;
+    margin: 2%;
+    border-radius: 10px;
   }
 
   .info {
-    width: 80%;
+    width: 100%;
     height: auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    margin: 0px 5px;
+    margin: 0px 5px 5px 5px;
 
     // admin name
     h3 {
@@ -210,59 +173,23 @@ export default {
       color: $font-light;
       max-width: 90%;
       height: auto;
-      margin: 2px 1%;
+      margin: 1px 2%;
       font-size: $x-small;
       padding: 2px;
       border-radius: 3px;
       background-color: $note-darck;
-      @media (max-width: $phone) {
-        font-size: $xx-small;
-      }
-    }
-
-    // admin color
-    .admin {
-      background-color: green;
-      color: $font-light;
-    }
-
-    // supper admin color
-    .super-admin {
-      background-color: red;
-      color: $font-light;
-    }
-  }
-
-  .buttons {
-    width: 15%;
-    height: 100%;
-    margin: 0px 5px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-
-    button {
-      width: 100%;
-      height: 40%;
-      border: none;
-      border-radius: 5px;
-      color: $font-light;
-      cursor: pointer;
-      background-color: $blue;
-      @media (max-width: $phone) {
-        font-size: $xx-small;
-      }
     }
   }
 }
 
-.students-student-darck-Arabic-list:hover {
+.students-student-page-darck-English-window-restore:hover {
   box-shadow: 0 0 5px $black;
 }
+// darck style
 
-.students-student-light-Arabic-list {
-  @extend .students-student-darck-Arabic-list;
+// light style
+.students-student-page-light-English-list {
+  @extend .students-student-page-darck-English-list;
   background-color: $card-light;
 
   .info {
@@ -278,8 +205,115 @@ export default {
   }
 }
 
-.students-student-light-Arabic-list:hover {
+.students-student-page-light-English-list:hover {
   box-shadow: 0 0 5px $black;
 }
-// darck and light Arabic style
+
+.students-student-page-light-English-window-restore {
+  @extend .students-student-page-darck-English-window-restore;
+  width: 45%;
+  margin: 10px 2%;
+  height: auto;
+  flex-wrap: wrap;
+  background-color: $card-light;
+
+  .info {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0px 5px 5px 5px;
+
+    // admin name
+    h3 {
+      width: 100%;
+      color: $font-darck;
+    }
+
+    p {
+      color: $font-darck;
+      background-color: $note-light;
+    }
+  }
+}
+
+.students-student-page-light-English-window-restore:hover {
+  box-shadow: 0 0 5px $black;
+}
+// darck style
+
+// darck style
+.students-student-page-darck-Arabic-list {
+  @extend .students-student-page-darck-English-list;
+}
+
+.students-student-page-darck-Arabic-list:hover {
+  box-shadow: 0 0 5px $black;
+}
+
+.students-student-page-darck-Arabic-window-restore {
+  @extend .students-student-page-darck-English-window-restore;
+}
+
+.students-student-page-darck-Arabic-window-restore:hover {
+  box-shadow: 0 0 5px $black;
+}
+// darck style
+
+// light style
+.students-student-page-light-Arabic-list {
+  @extend .students-student-page-light-English-list;
+  background-color: $card-light;
+
+  .info {
+    // admin name
+    h3 {
+      color: $font-darck;
+    }
+
+    p {
+      color: $font-darck;
+      background-color: $note-light;
+    }
+  }
+}
+
+.students-student-page-light-Arabic-list:hover {
+  box-shadow: 0 0 5px $black;
+}
+
+.students-student-page-light-Arabic-window-restore {
+  @extend .students-student-page-darck-English-window-restore;
+  background-color: $card-light;
+  width: 45%;
+  margin: 10px 2%;
+  height: auto;
+  flex-wrap: wrap;
+
+  .info {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0px 5px 5px 5px;
+
+    // admin name
+    h3 {
+      width: 100%;
+      color: $font-darck;
+    }
+
+    p {
+      color: $font-darck;
+      background-color: $note-light;
+    }
+  }
+}
+
+.students-student-page-light-Arabic-window-restore:hover {
+  box-shadow: 0 0 5px $black;
+}
+// darck style
 </style>

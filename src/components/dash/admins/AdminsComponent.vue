@@ -31,7 +31,7 @@
 
 <script>
 import axios from "axios";
-import AdminInAdminpagecomponentVue from "@/components/admin/AdminInAdminspagecomponent.vue";
+import AdminInAdminpagecomponentVue from "@/components/admin/AdminInAdminspagecomponentDash.vue";
 
 export default {
   name: "admins-component",
