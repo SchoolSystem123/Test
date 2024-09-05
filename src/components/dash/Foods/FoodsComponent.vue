@@ -1,13 +1,23 @@
 <template>
-  <h1>Foods component</h1>
+  <div
+    :class="`foods-dash-${this.$store.state.mood}-${this.$store.state.language}-${this.status}`"
+  >
+    sa
+  </div>
 </template>
 <script>
 export default {
   name: "food-component",
   data() {
-    return {};
+    return {
+      status: "close",
+    };
   },
-  mounted() {},
+  mounted() {
+    setTimeout(() => {
+      this.status = "open";
+    }, 500);
+  },
   components: {},
   methods: {},
 };

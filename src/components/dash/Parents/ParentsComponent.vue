@@ -13,6 +13,7 @@
               : this.$store.state.Arabic.dash_parents_component.title
           }}
         </h3>
+        <div class="count">{{ this.parents_count }}</div>
       </div>
       <StartRateTeachersComponentVue />
     </div>
@@ -44,16 +45,41 @@ export default {
       page: 1,
       // elements view style
       view_style: "list",
+      // parents count
+      parents_count: 0,
     };
   },
   components: {
     ParentInParentsPageComponentDash,
   },
   mounted() {
+    // call to the get parents method
+    this.GetParentsCount();
+
     // call to Get parents methdo
     this.GetParents();
   },
   methods: {
+    //get to all parents count
+    async GetParentsCount() {
+      await axios
+        .get(this.$store.state.APIs.parents.get_count)
+        .then((response) => {
+          // set the students count to the parents count in data
+          this.parents_count = response.data.parents_count;
+        })
+        .catch((error) => {
+          // to stop the loading animation
+          this.$store.state.loading = "close";
+
+          // to set the reqeust's error message to error message var in store
+          this.$store.state.error_message = error.response.data.message;
+
+          // to open the error form
+          this.$store.state.error_form_status = "open";
+        });
+    },
+
     // get parents
     async GetParents() {
       // to start the loading animation
@@ -152,10 +178,11 @@ export default {
   .header {
     width: 100%;
     height: auto;
-
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    border: 1px solid;
+    border-color: transparent transparent $border-light transparent;
 
     p {
       padding: 7px 20px;
@@ -192,8 +219,7 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border: 1px solid;
-      border-color: transparent transparent $border-light transparent;
+
       h3 {
         width: auto;
         height: auto;
@@ -234,8 +260,8 @@ export default {
   @extend .section-cont-open-darck;
   .header {
     // header title
+    border-color: transparent transparent $border-darck transparent;
     .title {
-      border-color: transparent transparent $border-darck transparent;
       h3 {
         color: $font-darck;
       }

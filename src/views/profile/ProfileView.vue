@@ -300,6 +300,9 @@ export default {
       window.location = "/login";
     }
 
+    // call to get messages count method
+    this.GetMessagesCount();
+
     //* to start the loading animation on loaded the page
     window.addEventListener("load", () => {
       // to start the loading animation
@@ -354,6 +357,28 @@ export default {
           parent_id: this.$store.state.user.user._id,
         };
       }
+    },
+
+    async GetMessagesCount() {
+      await axios
+        .get(this.$store.state.APIs.messages.get_count, {
+          params: {
+            recipient: "super",
+          },
+        })
+        .then((response) => {
+          // set the messages count to messages count in store
+          this.$store.state.messages_count = response.data.Messages_count;
+        })
+        .catch((error) => {
+          console.log(error);
+
+          // to set the reqeust's error message to error message var in store
+          this.$store.state.error_message = error.response.data.message;
+
+          // to open the error form
+          this.$store.state.error_form_status = "open";
+        });
     },
 
     // get to use profile data

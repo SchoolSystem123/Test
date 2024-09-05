@@ -13,6 +13,7 @@
               : this.$store.state.Arabic.dash_teachers_component.title
           }}
         </h3>
+        <div class="count">{{ this.teachers_count }}</div>
       </div>
       <StartRateTeachersComponentVue />
     </div>
@@ -45,6 +46,8 @@ export default {
       page: 1,
       // elements view style
       view_style: "list",
+      // teachers count
+      teachers_count: 0,
     };
   },
   components: {
@@ -52,10 +55,33 @@ export default {
     StartRateTeachersComponentVue,
   },
   mounted() {
+    // call to get teachers count
+    this.GetTeachersCount();
+
     // call to Get teachers methdo
     this.GetTeachers();
   },
   methods: {
+    //get to all teachers count
+    async GetTeachersCount() {
+      await axios
+        .get(this.$store.state.APIs.teachers.get_count)
+        .then((response) => {
+          // set the students count to the students count in data
+          this.teachers_count = response.data.teachers_count;
+        })
+        .catch((error) => {
+          // to stop the loading animation
+          this.$store.state.loading = "close";
+
+          // to set the reqeust's error message to error message var in store
+          this.$store.state.error_message = error.response.data.message;
+
+          // to open the error form
+          this.$store.state.error_form_status = "open";
+        });
+    },
+
     // get teachers
     async GetTeachers() {
       // to start the loading animation
@@ -161,7 +187,6 @@ export default {
   .header {
     width: 100%;
     height: auto;
-
     display: flex;
     flex-wrap: wrap;
     align-items: center;

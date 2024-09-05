@@ -13,6 +13,7 @@
               : this.$store.state.Arabic.dash_students_component.title
           }}
         </h3>
+        <div class="count">{{ this.students_count }}</div>
       </div>
       <StartRateTeachersComponentVue />
     </div>
@@ -44,19 +45,43 @@ export default {
       page: 1,
       // elements view style
       view_style: "list",
+      // students count
+      students_count: 0,
     };
   },
   components: {
     StudentInStudentsComponent,
   },
   mounted() {
-    // call to Get teachers methdo
-    this.GetTeachers();
+    // call to the get students count method
+    this.GetStudentsCount();
+
+    // call to Get students methdo
+    this.GetStudents();
   },
   methods: {
-    // get teachers
-    async GetTeachers() {
-      console.log("sended the request ...");
+    // get to all students count methods
+    async GetStudentsCount() {
+      await axios
+        .get(this.$store.state.APIs.students.get_count)
+        .then((response) => {
+          // set the students count to the students count in data
+          this.students_count = response.data.students_count;
+        })
+        .catch((error) => {
+          // to stop the loading animation
+          this.$store.state.loading = "close";
+
+          // to set the reqeust's error message to error message var in store
+          this.$store.state.error_message = error.response.data.message;
+
+          // to open the error form
+          this.$store.state.error_form_status = "open";
+        });
+    },
+
+    // get students
+    async GetStudents() {
       // to start the loading animation
       this.$store.state.loading = "open";
 
@@ -90,20 +115,20 @@ export default {
         });
     },
 
-    // get more teachers method
-    async GetMoreTeachers() {
+    // get more students method
+    async GetMoreStudents() {
       await axios
-        .get(this.$store.state.APIs.teachers.get_all, {
+        .get(this.$store.state.APIs.students.get_all, {
           params: {
             limit: this.limit,
             page: this.page,
           },
         })
         .then((response) => {
-          // set the teachers data from response to teachers array in store
-          this.$store.state.teachers = [
-            ...this.$store.state.teachers,
-            ...response.data.teachers_data,
+          // set the students data from response to students array in store
+          this.$store.state.students = [
+            ...this.$store.state.students,
+            ...response.data.students_data,
           ];
         })
         .catch((error) => {
@@ -125,8 +150,8 @@ export default {
         // to change page
         this.page += 1;
 
-        // call to Get Teachers method
-        this.GetMoreTeachers();
+        // call to Get students method
+        this.GetMoreStudents();
       }
     },
   },
@@ -153,7 +178,7 @@ export default {
 
   .header {
     width: 100%;
-    height: auto;
+    height: 40px;
 
     display: flex;
     flex-wrap: wrap;
@@ -190,24 +215,28 @@ export default {
     // header title
     .title {
       width: 100%;
-      height: 30px;
+      height: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       border: 1px solid;
       border-color: transparent transparent $border-light transparent;
+
       h3 {
-        width: auto;
+        width: 90%;
         height: auto;
         color: $font-light;
       }
 
-      svg {
-        padding: 3px;
-        border-radius: 3px;
+      .count {
+        width: 10%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         color: $font-light;
-        border: 1px solid $border-light;
-        cursor: pointer;
+        font-size: $x-small;
+        background-color: none;
       }
     }
   }

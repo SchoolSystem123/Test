@@ -1,13 +1,19 @@
 <template>
   <div
     :class="`section-cont-${this.status}-${this.$store.state.mood}-${this.$store.state.language}`"
+    @scroll="handleScroll"
   >
     <div class="header">
-      {{
-        this.$store.state.language == "English"
-          ? this.$store.state.English.dash_classes_component.title
-          : this.$store.state.Arabic.dash_classes_component.title
-      }}
+      <h3>
+        {{
+          this.$store.state.language == "English"
+            ? this.$store.state.English.dash_classes_component.title
+            : this.$store.state.Arabic.dash_classes_component.title
+        }}
+      </h3>
+      <div class="count">
+        {{ this.classes_count }}
+      </div>
     </div>
 
     <div class="cards-section">
@@ -33,9 +39,14 @@ export default {
       page: 1,
       // status var to open th page smoothe
       status: "close",
+      // classes count
+      classes_count: 0,
     };
   },
   mounted() {
+    // call to get classes count method
+    this.GetClassesCount();
+
     // call to get classes method
     this.GetClasses();
   },
@@ -43,6 +54,26 @@ export default {
     ClassesPageClassComponentDash,
   },
   methods: {
+    // get classes count
+    async GetClassesCount() {
+      await axios
+        .get(this.$store.state.APIs.classes.get_count)
+        .then((response) => {
+          // set the classes count from response to the class count in data
+          this.classes_count = response.data.classes_count;
+        })
+        .catch((error) => {
+          // to stop the loading animation
+          this.$store.state.loading = "close";
+
+          // to set the reqeust's error message to error message var in store
+          this.$store.state.error_message = error.response.data.message;
+
+          // to open the error form
+          this.$store.state.error_form_status = "open";
+        });
+    },
+
     // get classes
     async GetClasses() {
       // to start the loading
@@ -76,6 +107,46 @@ export default {
           this.$store.state.error_form_status = "open";
         });
     },
+
+    // get more classes method
+    async GetMoreClasses() {
+      await axios
+        .get(this.$store.state.APIs.classes.get_all, {
+          params: {
+            limit: this.limit,
+            page: this.page,
+          },
+        })
+        .then((response) => {
+          // set the classes data from response to classes array in store
+          this.$store.state.classes = [
+            ...this.$store.state.classes,
+            ...response.data.classes_data,
+          ];
+        })
+        .catch((error) => {
+          // to set the reqeust's error message to error message var in store
+          this.$store.state.error_message = error.response.data.message;
+
+          // to open the error form
+          this.$store.state.error_form_status = "open";
+        });
+    },
+
+    // handel scroll method
+    handleScroll(event) {
+      this.scroll_page = event.target.scrollTop;
+      // check if the window height is donw
+      if (this.scroll_page > 350) {
+        this.scroll_page = window.scrollY;
+
+        // to change page
+        this.page += 1;
+
+        // call to Get More classes method
+        this.GetMoreClasses();
+      }
+    },
   },
 };
 </script>
@@ -108,6 +179,14 @@ export default {
     border: 1px solid;
     border-color: transparent transparent $border-light transparent;
     color: $font-light;
+
+    .count {
+      width: 10%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   .cards-section {
@@ -154,6 +233,14 @@ export default {
     border: 1px solid;
     border-color: transparent transparent $border-darck transparent;
     color: $font-darck;
+
+    .count {
+      width: 10%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   .cards-section {

@@ -8,6 +8,9 @@
 
     <router-link to="/messages">
       <icon icon="bell" />
+      <p v-if="this.$store.state.messages_count > 0">
+        {{ this.$store.state.messages_count }}
+      </p>
     </router-link>
   </div>
 </template>
@@ -50,6 +53,41 @@ export default {
     border: 1px solid $border-light;
     border-radius: 5px;
   }
+
+  a {
+    width: 10%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    svg {
+      cursor: pointer;
+      color: $font-light;
+    }
+
+    p {
+      position: absolute;
+      right: 35%;
+      top: -70%;
+
+      @media (max-width: $phone) {
+        top: -80%;
+        right: 15%;
+      }
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: $xx-small;
+      background-color: $red;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      color: $font-light;
+    }
+  }
 }
 
 .small-nav-light {
@@ -61,6 +99,41 @@ export default {
 
   #bars {
     border: 1px solid $border-darck;
+  }
+
+  a {
+    width: 10%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    svg {
+      cursor: pointer;
+      color: $font-darck;
+    }
+
+    p {
+      position: absolute;
+      right: 35%;
+      top: -70%;
+
+      @media (max-width: $phone) {
+        top: -80%;
+        right: 15%;
+      }
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: $xx-small;
+      background-color: $red;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      color: $font-light;
+    }
   }
 }
 </style>

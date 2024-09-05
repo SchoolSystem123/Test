@@ -39,6 +39,7 @@
     <!-- links list -->
     <ul>
       <li
+        @click="this.$store.commit('changeSidBarStatus')"
         v-for="(link, index) in this.$store.state.Links"
         :key="index"
         :class="
@@ -61,6 +62,17 @@
             this.$store.state.language == "English"
               ? link.English_title
               : link.Arabic_title
+          }}
+          <icon icon="arrow-right" />
+        </a>
+      </li>
+
+      <li class="show">
+        <a :href="`${this.$store.state.developer.url}`"
+          >{{
+            this.$store.state.language == "English"
+              ? this.$store.state.developer.English
+              : this.$store.state.developer.Arabic
           }}
           <icon icon="arrow-right" />
         </a>
@@ -135,6 +147,7 @@
       </div>
     </div>
 
+    <!-- log out button  -->
     <button
       class="log-out"
       v-if="this.$store.state.user"
@@ -146,6 +159,21 @@
           : this.$store.state.Arabic.log_out
       }}
     </button>
+    <!-- log out button  -->
+
+    <!-- log in button  -->
+    <button
+      class="log-in"
+      v-if="!this.$store.state.user"
+      @click="this.GoToLogIn"
+    >
+      {{
+        this.$store.state.language == "English"
+          ? this.$store.state.English.log_in
+          : this.$store.state.Arabic.log_in
+      }}
+    </button>
+    <!-- log in button  -->
   </div>
 </template>
 
@@ -167,12 +195,18 @@ export default {
       // save the selected theme in Storage
       window.localStorage.setItem("theme", theme);
     },
+
     changeLanguage(language) {
       // update language value in store
       this.$store.state.language = language;
 
       // save the selected language in Storage
       window.localStorage.setItem("language", language);
+    },
+
+    // go to log in method
+    GoToLogIn() {
+      window.location = "/login";
     },
   },
 };
@@ -402,6 +436,18 @@ export default {
     margin: 10px 1% 1% 1%;
     cursor: pointer;
     background-color: $red;
+    border: none;
+    border-radius: 5px;
+    color: $font-light;
+  }
+
+  // log in button custom
+  .log-in {
+    width: 98%;
+    height: 40px;
+    margin: 10px 1% 1% 1%;
+    cursor: pointer;
+    background-color: $green;
     border: none;
     border-radius: 5px;
     color: $font-light;

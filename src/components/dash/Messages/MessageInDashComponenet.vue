@@ -121,6 +121,11 @@ export default {
       // to open the deleteing the message verify form
       this.$store.commit("OpenOrCloseDeleteMessage");
     },
+
+    // go to message author method
+    GetAuthor(id) {
+      window.location = `/admin/${id}`;
+    },
   },
 };
 </script>

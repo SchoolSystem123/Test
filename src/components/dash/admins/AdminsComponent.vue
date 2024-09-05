@@ -13,6 +13,7 @@
               : this.$store.state.Arabic.dash_admins_component.title
           }}
         </h3>
+        <div class="count">{{ this.admins_count }}</div>
       </div>
     </div>
     <!-- admins header  -->
@@ -46,13 +47,16 @@ export default {
       page: 1,
       // window scroll page
       scroll_page: 0,
+      // admins count
+      admins_count: "",
     };
   },
   mounted() {
+    // call to get admins count
+    this.GetAdminsCount();
+
     // call to Get Admins methdo
     this.GetAdmins();
-
-    // window.addEventListener("scroll", this.handleScroll);
   },
   components: {
     AdminInAdminpagecomponentVue,
@@ -79,6 +83,25 @@ export default {
 
           // set the admins data from response to admins array in store
           this.$store.state.admins = response.data.admins_data;
+        })
+        .catch((error) => {
+          // to stop the loading animation
+          this.$store.state.loading = "close";
+
+          // to set the reqeust's error message to error message var in store
+          this.$store.state.error_message = error.response.data.message;
+
+          // to open the error form
+          this.$store.state.error_form_status = "open";
+        });
+    },
+
+    // get admins count
+    async GetAdminsCount() {
+      await axios
+        .get(this.$store.state.APIs.admins.get_count)
+        .then((response) => {
+          this.admins_count = response.data.admins_count;
         })
         .catch((error) => {
           // to stop the loading animation
@@ -155,62 +178,22 @@ export default {
 
   .header {
     width: 100%;
-    height: auto;
-
+    height: 50px;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
+    border: 1px solid;
+    border-color: transparent transparent $border-light transparent;
 
-    p {
-      padding: 7px 20px;
-      border-radius: 5px;
+    h3 {
+      width: 80%;
+      height: 100%;
       color: $font-light;
-      background-color: $note-darck;
-      margin: 5px;
-      font-size: $small;
-      @media (max-width: $phone) {
-        font-size: $x-small;
-        padding: 6px 10px;
-      }
     }
 
-    button {
-      padding: 7px 17px;
-      border-radius: 5px;
+    .count {
+      width: 10%;
+      height: 100%;
       color: $font-light;
-      background-color: $blue;
-      cursor: pointer;
-      border: none;
-      outline: none;
-      margin: 5px;
-      @media (max-width: $phone) {
-        font-size: $x-small;
-        padding: 6px 10px;
-      }
-    }
-
-    // header title
-    .title {
-      width: 100%;
-      height: 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border: 1px solid;
-      border-color: transparent transparent $border-light transparent;
-      h3 {
-        width: auto;
-        height: auto;
-        color: $font-light;
-      }
-
-      svg {
-        padding: 3px;
-        border-radius: 3px;
-        color: $font-light;
-        border: 1px solid $border-light;
-        cursor: pointer;
-      }
     }
   }
 
@@ -237,12 +220,23 @@ export default {
 .section-cont-open-light {
   @extend .section-cont-open-darck;
   .header {
-    // header title
-    .title {
-      border-color: transparent transparent $border-darck transparent;
-      h3 {
-        color: $font-darck;
-      }
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border: 1px solid;
+    border-color: transparent transparent $border-darck transparent;
+
+    h3 {
+      width: 80%;
+      height: 100%;
+      color: $font-darck;
+    }
+
+    .count {
+      width: 10%;
+      height: 100%;
+      color: $font-darck;
     }
   }
 }

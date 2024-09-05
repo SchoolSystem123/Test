@@ -1,5 +1,8 @@
 <template>
-  <div :class="`section-cont-${this.status}-${this.$store.state.mood}`">
+  <div
+    :class="`section-cont-${this.status}-${this.$store.state.mood}`"
+    @scroll="handleScroll"
+  >
     <!-- header  -->
     <div class="header">
       <h3>
@@ -9,6 +12,9 @@
             : this.$store.state.Arabic.home_works_in_dash.page_title
         }}
       </h3>
+      <div class="count">
+        {{ this.home_works_count }}
+      </div>
     </div>
     <!-- header  -->
 
@@ -38,9 +44,14 @@ export default {
       page: 1,
       // view_style
       view_style: "window-restore",
+      // home works count
+      home_works_count: 0,
     };
   },
   mounted() {
+    // call to get home works count method
+    this.GetHomeWorksCount();
+
     // call to get home works method
     this.GetHomeWorks();
   },
@@ -48,6 +59,27 @@ export default {
     HomeWorkComponent,
   },
   methods: {
+    // get home works count method
+    async GetHomeWorksCount() {
+      await axios
+        .get(this.$store.state.APIs.home_works.get_count)
+        .then((response) => {
+          console.log(response);
+          // set the home works count from response to the home works count in data
+          this.home_works_count = response.data.home_work_count;
+        })
+        .catch((error) => {
+          // to stop the loading animation
+          this.$store.state.loading = "close";
+
+          // to set the reqeust's error message to error message var in store
+          this.$store.state.error_message = error.response.data.message;
+
+          // to open the error form
+          this.$store.state.error_form_status = "open";
+        });
+    },
+
     // get home works method
     async GetHomeWorks() {
       // to start the loading
@@ -83,6 +115,46 @@ export default {
           // to open the error form
           this.$store.state.error_form_status = "open";
         });
+    },
+
+    // get more home works method
+    async GetMoreHomeWorks() {
+      await axios
+        .get(this.$store.state.APIs.home_works.get_all, {
+          params: {
+            limit: this.limit,
+            page: this.page,
+          },
+        })
+        .then((response) => {
+          // set the home works data from response to home works array in store
+          this.$store.state.home_works = [
+            ...this.$store.state.home_works,
+            ...response.data.home_works_data,
+          ];
+        })
+        .catch((error) => {
+          // to set the reqeust's error message to error message var in store
+          this.$store.state.error_message = error.response.data.message;
+
+          // to open the error form
+          this.$store.state.error_form_status = "open";
+        });
+    },
+
+    // handel scroll method
+    handleScroll(event) {
+      this.scroll_page = event.target.scrollTop;
+      // check if the window height is donw
+      if (this.scroll_page > 350) {
+        this.scroll_page = window.scrollY;
+
+        // to change page
+        this.page += 1;
+
+        // call to Get More HomeWorks method
+        this.GetMoreHomeWorks();
+      }
     },
   },
 };
@@ -121,6 +193,12 @@ export default {
       color: $font-light;
     }
 
+    .count {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     svg {
       padding: 5px;
       border: 1px solid $border-light;
@@ -154,11 +232,15 @@ export default {
   @extend .section-cont-open-darck;
   .header {
     // header title
-    .title {
-      border-color: transparent transparent $border-darck transparent;
-      h3 {
-        color: $font-darck;
-      }
+    border-color: transparent transparent $border-darck transparent;
+    h3 {
+      color: $font-darck;
+    }
+
+    .count {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }

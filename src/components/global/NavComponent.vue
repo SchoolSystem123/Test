@@ -14,6 +14,9 @@
       </div>
       <router-link to="/messages">
         <icon icon="bell" />
+        <p v-if="this.$store.state.messages_count > 0">
+          {{ this.$store.state.messages_count }}
+        </p>
       </router-link>
     </div>
     <SuperSearchComponentVue />
@@ -73,10 +76,6 @@ export default {
         margin-left: -30%;
       }
 
-      @media (min-width: $tablet) {
-        margin-left: -35%;
-      }
-
       h3 {
         width: 100%;
         height: auto;
@@ -91,12 +90,38 @@ export default {
       }
     }
 
-    svg {
-      cursor: pointer;
-      color: $font-light;
-      margin: -15px 10px 0px 0px;
-      @media (max-width: $phone) {
-        margin: -10px 10px;
+    a {
+      width: 10%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+
+      svg {
+        cursor: pointer;
+        color: $font-light;
+      }
+
+      p {
+        position: absolute;
+        right: 35%;
+        top: -70%;
+
+        @media (max-width: $phone) {
+          top: -80%;
+          right: 15%;
+        }
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: $xx-small;
+        background-color: $red;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        color: $font-light;
       }
     }
   }

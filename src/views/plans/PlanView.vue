@@ -207,6 +207,7 @@ export default {
           },
         })
         .then((response) => {
+          console.log(response);
           // to close the loading component
           this.$store.state.loading = "close";
 

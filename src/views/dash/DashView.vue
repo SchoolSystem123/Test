@@ -23,12 +23,13 @@
         <li @click="ChangeComponent('classes')">Classes 🏫</li>
         <li @click="ChangeComponent('home-works')">Home Works 🏚️💯🔝</li>
         <li @click="ChangeComponent('messages')">Messages 💬</li>
+        <li @click="ChangeComponent('plans')">Plans 📌📚</li>
 
         <li
           @click="ChangeComponent('create-admin')"
           v-if="this.$store.state.user.user_type == 'super'"
         >
-          Create Admin
+          Create Admin 🦸‍♂️➕
         </li>
 
         <li
@@ -91,6 +92,16 @@
           "
         >
           Create Home Work 🏚️💯🔝➕
+        </li>
+
+        <li
+          @click="ChangeComponent('create-plan')"
+          v-if="
+            this.$store.state.user.user_type == 'super' ||
+            this.$store.state.user.user_type == 'admin'
+          "
+        >
+          Create Plan 📌📚➕
         </li>
       </ul>
     </div>
@@ -265,6 +276,40 @@
       <!-- choosing class form component -->
       <ChooseClassComponent />
       <!-- choosing class form component -->
+
+      <!-- plans component -->
+      <PlansComponent
+        v-if="this.$store.state.active_component_in_dash == 'plans'"
+      />
+      <!-- plans component -->
+
+      <!-- create plan component -->
+      <CreatePlansComponent
+        v-if="this.$store.state.active_component_in_dash == 'create-plan'"
+      />
+      <!-- create plan component -->
+
+      <!-- add subject component -->
+      <AddSubjectFormComponent />
+      <!-- add subject component -->
+
+      <!-- verify delete plan form component -->
+      <VerifyDeletePlanComponent />
+      <!-- verify delete plan form component -->
+
+      <!-- Update Plan component -->
+      <UpdatePlansComponent
+        v-if="this.$store.state.active_component_in_dash == 'update-plan'"
+      />
+      <!-- Update Plan component -->
+
+      <!-- Update Plan info component -->
+      <UpdateSubjectFormComponent />
+      <!-- Update Plan info component -->
+
+      <FoodsComponent
+        v-if="this.$store.state.active_component_in_dash == 'foods'"
+      />
     </div>
   </div>
 </template>
@@ -306,6 +351,13 @@ import VerifyDeleteHomeWorkComponent from "@/components/global/forms/dash/HomeWo
 import UpdateHomeWorkComponent from "@/components/dash/Home Works/UpdateHomeWorkComponent.vue";
 import CreateHomeWorkComponent from "@/components/dash/Home Works/CreateHomeWorkComponent.vue";
 import ChooseClassComponent from "@/components/global/forms/dash/HomeWork/ChooseClassComponent.vue";
+import PlansComponent from "@/components/dash/Plans/PlansComponent.vue";
+import CreatePlansComponent from "@/components/dash/Plans/CreatePlansComponent.vue";
+import AddSubjectFormComponent from "@/components/global/forms/dash/plan/AddSubjectFormComponent.vue";
+import VerifyDeletePlanComponent from "@/components/global/forms/dash/plan/VerifyDeletePlanComponent.vue";
+import UpdatePlansComponent from "@/components/dash/Plans/UpdatePlansComponent.vue";
+import UpdateSubjectFormComponent from "@/components/global/forms/dash/plan/UpdateSubjectFormComponent.vue";
+import FoodsComponent from "@/components/dash/Foods/FoodsComponent.vue";
 
 export default {
   data() {
@@ -364,6 +416,13 @@ export default {
     UpdateHomeWorkComponent,
     CreateHomeWorkComponent,
     ChooseClassComponent,
+    PlansComponent,
+    CreatePlansComponent,
+    AddSubjectFormComponent,
+    VerifyDeletePlanComponent,
+    UpdatePlansComponent,
+    UpdateSubjectFormComponent,
+    FoodsComponent,
   },
   methods: {
     // change the component

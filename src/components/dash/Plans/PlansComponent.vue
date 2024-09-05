@@ -1,36 +1,49 @@
 <template>
   <div
-    :class="`messages-cont-${this.$store.state.mood}-${this.$store.state.language}-${this.status}`"
+    :class="`plans-cont-${this.$store.state.mood}-${this.$store.state.language}-${this.status}`"
+    @scroll="handleScroll"
   >
     <!-- header  -->
     <div class="header">
       <h3>
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.messages_component.title
-            : this.$store.state.Arabic.messages_component.title
+            ? this.$store.state.English.plans_component.title
+            : this.$store.state.Arabic.plans_component.title
         }}
       </h3>
 
       <div class="count">
-        {{ this.messages_count }}
+        {{ this.plans_count }}
       </div>
     </div>
     <!-- header  -->
 
     <!-- messages container  -->
-    <div class="messgaes-cont">
-      <p class="default_message" v-if="this.$store.state.messages.length == 0">
+    <div class="plans-container">
+      <p class="default_message" v-if="this.$store.state.plans.length == 0">
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.messages_component.default_message
-            : this.$store.state.Arabic.messages_component.default_message
+            ? this.$store.state.English.plans_component.default_message
+            : this.$store.state.Arabic.plans_component.default_message
         }}
       </p>
-      <MessageInDashComponenet
-        v-for="(message_data, index) in this.$store.state.messages"
+      <PlanInPlansPageComponentDash
+        v-for="(plan_data, index) in this.$store.state.plans"
         :key="index"
-        :message_data="message_data"
+        :Plan_data="plan_data"
+      />
+
+      <PlanInPlansPageComponentDash
+        v-for="(plan_data, index) in this.$store.state.plans"
+        :key="index"
+        :Plan_data="plan_data"
+      />
+
+      <PlanInPlansPageComponentDash
+        v-for="(plan_data, index) in this.$store.state.plans"
+        :key="index"
+        :Plan_data="plan_data"
       />
     </div>
     <!-- messages container  -->
@@ -39,39 +52,38 @@
 
 <script>
 import axios from "axios";
-import MessageInDashComponenet from "./MessageInDashComponenet.vue";
+import PlanInPlansPageComponentDash from "@/components/plan/PlanInPlansPageComponentDash.vue";
 export default {
   name: "message-component",
   data() {
     return {
-      // messages count
-      messages_count: 0,
+      // plans count
+      plans_count: 0,
       // to open the component smooth
       status: "close",
+      // page of documents
+      page: 1,
     };
   },
   mounted() {
-    // call to get messages count
-    this.GetClassesCount();
+    // call to get plans count
+    this.GetPLansCount();
 
-    // call to the get messages method
-    this.GetMessages();
+    // call to the get plans method
+    this.GetPlans();
   },
   components: {
-    MessageInDashComponenet,
+    // MessageInDashComponenet,
+    PlanInPlansPageComponentDash,
   },
   methods: {
     // get classes count
-    async GetClassesCount() {
+    async GetPLansCount() {
       await axios
-        .get(this.$store.state.APIs.messages.get_count, {
-          params: {
-            recipient: this.$store.state.user.user_type,
-          },
-        })
+        .get(this.$store.state.APIs.plans.get_count)
         .then((response) => {
           // set the classes count from response to the class count in data
-          this.messages_count = response.data.Messages_count;
+          this.plans_count = response.data.Plans_count;
         })
         .catch((error) => {
           // to stop the loading animation
@@ -85,13 +97,18 @@ export default {
         });
     },
 
-    // get messages method
-    async GetMessages() {
+    // get plans method
+    async GetPlans() {
       // to start the loading
       this.$store.state.loading = "open";
 
       await axios
-        .get(this.$store.state.APIs.messages.get_all)
+        .get(this.$store.state.APIs.plans.get_all, {
+          params: {
+            page: this.page,
+            limit: this.limit,
+          },
+        })
         .then((response) => {
           // to stop the loading
           this.$store.state.loading = "close";
@@ -100,7 +117,7 @@ export default {
           this.status = "open";
 
           // set the messages data from response to messages array in store
-          this.$store.state.messages = response.data.messages_data;
+          this.$store.state.plans = response.data.plans_data;
 
           // to stop the loading animation
           this.$store.state.loading = "close";
@@ -119,6 +136,46 @@ export default {
           this.$store.state.error_form_status = "open";
         });
     },
+
+    // get more plans method
+    async GetMorePlans() {
+      await axios
+        .get(this.$store.state.APIs.plans.get_all, {
+          params: {
+            limit: this.limit,
+            page: this.page,
+          },
+        })
+        .then((response) => {
+          // set the plans data from response to plans array in store
+          this.$store.state.plans = [
+            ...this.$store.state.plans,
+            ...response.data.plans_data,
+          ];
+        })
+        .catch((error) => {
+          // to set the reqeust's error message to error message var in store
+          this.$store.state.error_message = error.response.data.message;
+
+          // to open the error form
+          this.$store.state.error_form_status = "open";
+        });
+    },
+
+    // handel scroll method
+    handleScroll(event) {
+      this.scroll_page = event.target.scrollTop;
+      // check if the window height is donw
+      if (this.scroll_page > 100) {
+        this.scroll_page = window.scrollY;
+
+        // to change page
+        this.page += 1;
+
+        // call to Get More plans method
+        this.GetMorePlans();
+      }
+    },
   },
 };
 </script>
@@ -126,7 +183,7 @@ export default {
 <style lang="scss">
 @import "../../../Sass/varibels/variables";
 // darck and light English messages component style
-.messages-cont-darck-English-open {
+.plans-cont-darck-English-open {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -167,12 +224,16 @@ export default {
     }
   }
 
-  .messgaes-cont {
+  .plans-container {
     width: 100%;
     height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+
     @media (min-width: $phone) {
       display: flex;
-      flex-wrap: wrap;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
@@ -196,17 +257,17 @@ export default {
   }
 }
 
-.messages-cont-darck-English-open::-webkit-scrollbar {
+.plans-cont-darck-English-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.messages-cont-darck-English-close {
-  @extend .messages-cont-darck-English-open;
+.plans-cont-darck-English-close {
+  @extend .plans-cont-darck-English-open;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
 
-.messages-cont-light-English-open {
+.plans-cont-light-English-open {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -247,9 +308,13 @@ export default {
     }
   }
 
-  .messgaes-cont {
+  .plans-container {
     width: 100%;
     height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
     @media (min-width: $phone) {
       display: flex;
       flex-wrap: wrap;
@@ -275,12 +340,12 @@ export default {
   }
 }
 
-.messages-cont-light-English-open::-webkit-scrollbar {
+.plans-cont-light-English-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.messages-cont-light-English-close {
-  @extend .messages-cont-darck-English-open;
+.plans-cont-light-English-close {
+  @extend .plans-cont-darck-English-open;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
@@ -288,7 +353,7 @@ export default {
 // darck and light English messages component style
 
 // darck and light Arabic messages component style
-.messages-cont-darck-Arabic-open {
+.plans-cont-darck-Arabic-open {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -329,9 +394,14 @@ export default {
     }
   }
 
-  .messgaes-cont {
+  .plans-container {
     width: 100%;
     height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+
     @media (min-width: $phone) {
       display: flex;
       flex-wrap: wrap;
@@ -357,17 +427,17 @@ export default {
   }
 }
 
-.messages-cont-darck-Arabic-open::-webkit-scrollbar {
+.plans-cont-darck-Arabic-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.messages-cont-darck-Arabic-close {
-  @extend .messages-cont-darck-Arabic-open;
+.plans-cont-darck-Arabic-close {
+  @extend .plans-cont-darck-Arabic-open;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
 
-.messages-cont-light-Arabic-open {
+.plans-cont-light-Arabic-open {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -408,9 +478,14 @@ export default {
     }
   }
 
-  .messgaes-cont {
+  .plans-container {
     width: 100%;
     height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+
     @media (min-width: $phone) {
       display: flex;
       flex-wrap: wrap;
@@ -436,12 +511,12 @@ export default {
   }
 }
 
-.messages-cont-light-Arabic-open::-webkit-scrollbar {
+.plans-cont-light-Arabic-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.messages-cont-light-Arabic-close {
-  @extend .messages-cont-darck-Arabic-open;
+.plans-cont-light-Arabic-close {
+  @extend .plans-cont-darck-Arabic-open;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }

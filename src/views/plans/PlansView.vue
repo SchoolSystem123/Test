@@ -74,7 +74,7 @@ export default {
       // plans view style
       view_style: "list",
       // limit of plans
-      limit: 50,
+      limit: 20,
       // page of plans in data base
       page: 1,
       // to open or close the scrollTp button
