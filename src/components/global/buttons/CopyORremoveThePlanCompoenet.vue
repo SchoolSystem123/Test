@@ -32,9 +32,11 @@ export default {
   data() {
     return {
       // check if the plan's studenst or teachers array is has a user id
-      method_type: this.$store.state.user.user.my_plans.includes(this.plan_id)
-        ? "remove"
-        : "copy",
+      method_type:
+        this.$store.state.user.user.my_plans &&
+        this.$store.state.user.user.my_plans.includes(this.plan_id)
+          ? "remove"
+          : "copy",
 
       // body data
       body_data: "",
@@ -83,6 +85,7 @@ export default {
           { headers }
         )
         .then((response) => {
+          console.log(response);
           // check if the user's my_plans array is has plan id
           if (!this.$store.state.user.user.my_plans.includes(this.plan_id)) {
             // add the plan id to user plans array

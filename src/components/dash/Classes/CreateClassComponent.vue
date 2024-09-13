@@ -109,7 +109,7 @@
       <!-- class level  -->
 
       <!-- teacher  -->
-      <label for="">
+      <label for="" v-if="this.$store.state.user.user_type != 'teacher'">
         {{
           this.$store.state.language == "English"
             ? this.$store.state.English.create_class.teachers_section_title
@@ -118,7 +118,10 @@
       >
 
       <!-- choosed teacher container -->
-      <div class="teacher-cont">
+      <div
+        class="teacher-cont"
+        v-if="this.$store.state.user.user_type != 'teacher'"
+      >
         <icon icon="plus" @click="this.$store.commit(`ChooseTeacher`)" />
         <div class="teacher" v-if="this.$store.state.choosed_teacher">
           <!-- avatar  -->
@@ -240,6 +243,11 @@ export default {
     };
   },
   mounted() {
+    // check if the user is teacher add his data to choosed_teacher in store
+    if (this.$store.state.user.user_type == "teacher") {
+      this.$store.state.choosed_teacher = this.$store.state.user.user;
+    }
+
     // to open the page smooth
     setTimeout(() => {
       this.status = "open";
@@ -356,6 +364,11 @@ export default {
     // remove the choosed teacher method
     RemoveTeacher() {
       this.$store.state.choosed_teacher = "";
+    },
+
+    // go to teacher method
+    GoTeacher(id) {
+      window.location = `/teacher/${id}`;
     },
   },
   watch: {

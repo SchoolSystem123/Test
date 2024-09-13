@@ -41,16 +41,16 @@
           </p>
           <!-- gender  -->
 
-          <!-- class level  -->
+          <!-- children level  -->
           <p>
             {{
               this.$store.state.language == "English"
-                ? this.$store.state.English.show_user_page.class_level
-                : this.$store.state.Arabic.show_user_page.class_level
+                ? this.$store.state.English.show_user_page.children
+                : this.$store.state.Arabic.show_user_page.children
             }}
-            {{ this.$store.state.show_user.data.class_level }}
+            {{ this.$store.state.show_user.data.children.length }}
           </p>
-          <!-- class level  -->
+          <!-- children level  -->
 
           <!-- joind at  -->
           <p v-if="this.$store.state.show_user.data.joind_at">
@@ -91,6 +91,39 @@
         <!--  about me  -->
       </div>
       <!-- section one container  -->
+
+      <!-- section three container  -->
+      <div class="section-tow" v-if="this.$store.state.show_user.data">
+        <div class="title">
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.show_user_page.plans_cont.title
+              : this.$store.state.Arabic.show_user_page.plans_cont.title
+          }}
+        </div>
+
+        <StudentInStudentsComponent
+          v-for="(child_data, index) in this.$store.state.show_user.data
+            .children"
+          :key="index"
+          :student_data="child_data"
+          :view_style="`list`"
+        />
+
+        <!-- default results messgaes  -->
+        <p
+          class="default_message"
+          v-if="this.$store.state.show_user.data.children.length == 0"
+        >
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.show_user_page.default_message_plans
+              : this.$store.state.Arabic.show_user_page.default_message_plans
+          }}
+        </p>
+        <!-- default results messgaes  -->
+      </div>
+      <!-- section three container  -->
     </div>
 
     <!-- scroll to top compoenent  -->
@@ -101,6 +134,7 @@
 
 <script>
 //? importing components
+import StudentInStudentsComponent from "@/components/student/StudentInStudentsComponent.vue";
 import SmallNavComponentVue from "@/components/global/nav/SmallNavComponent.vue";
 import SidBarComponentVue from "@/components/global/SidBarComponent.vue";
 import LoadingComponentVue from "@/components/global/LoadingComponent.vue";
@@ -127,6 +161,7 @@ export default {
     LoadingComponentVue,
     CopyIdComponentVue,
     CopyMessageComponentVue,
+    StudentInStudentsComponent,
   },
   mounted() {
     //* to start the loading animation on loaded the page
@@ -150,10 +185,11 @@ export default {
       await axios
         .get(this.$store.state.APIs.parents.get_one, {
           params: {
-            teacher_id: this.$route.params.id,
+            parent_id: this.$route.params.id,
           },
         })
         .then((response) => {
+          console.log(response);
           // update the status to open the cont
           this.status = true;
 

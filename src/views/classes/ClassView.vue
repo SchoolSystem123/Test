@@ -253,6 +253,11 @@ export default {
     };
   },
   mounted() {
+    setTimeout(() => {
+      // to start the loading animation
+      this.$store.state.loading = "open";
+    }, 100);
+
     // check if the class svaed in store or not
     if (!this.$store.state.class) {
       this.GetClass();
@@ -284,9 +289,6 @@ export default {
 
     // get class method
     async GetClass() {
-      // to start the loading animation
-      this.$store.state.loading = "open";
-
       await axios
         .get(
           `${this.$store.state.APIs.classes.get_one}?class_id=${this.$route.params.id}`

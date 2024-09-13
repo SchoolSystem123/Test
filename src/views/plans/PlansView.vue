@@ -93,11 +93,10 @@ export default {
     ScrollTopComponentVue,
   },
   mounted() {
-    // to start the loading animation on load the page
-    window.addEventListener("load", () => {
-      // start the loading animation
+    setTimeout(() => {
+      // to start the loading animation
       this.$store.state.loading = "open";
-    });
+    }, 100);
 
     // call to handel method on window scroll
     window.addEventListener("scroll", this.handelScroll);

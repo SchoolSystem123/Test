@@ -103,6 +103,23 @@
         >
           Create Plan 📌📚➕
         </li>
+
+        <li
+          @click="ChangeComponent('create-food')"
+          v-if="
+            this.$store.state.user.user_type == 'super' ||
+            this.$store.state.user.user_type == 'admin'
+          "
+        >
+          Create Food 😋🍴➕
+        </li>
+
+        <li
+          @click="ChangeComponent('my-classes')"
+          v-if="this.$store.state.user.user_type == 'teacher'"
+        >
+          My Classes ⭕📌🏫
+        </li>
       </ul>
     </div>
 
@@ -307,9 +324,32 @@
       <UpdateSubjectFormComponent />
       <!-- Update Plan info component -->
 
+      <!-- foods component -->
       <FoodsComponent
         v-if="this.$store.state.active_component_in_dash == 'foods'"
       />
+      <!-- foods component -->
+
+      <!-- verify delete food component -->
+      <VerifyDeleteFoodComponent />
+      <!-- verify delete food component -->
+
+      <!-- update food component -->
+      <UpdateFoodComponent
+        v-if="this.$store.state.active_component_in_dash == 'update-food'"
+      />
+      <!-- update food component -->
+
+      <!-- create food component -->
+      <CreateFoodComponent
+        v-if="this.$store.state.active_component_in_dash == 'create-food'"
+      />
+
+      <!-- my classes component -->
+      <TeacherCLassesView
+        v-if="this.$store.state.active_component_in_dash == 'my-classes'"
+      />
+      <!-- my classes component -->
     </div>
   </div>
 </template>
@@ -358,6 +398,10 @@ import VerifyDeletePlanComponent from "@/components/global/forms/dash/plan/Verif
 import UpdatePlansComponent from "@/components/dash/Plans/UpdatePlansComponent.vue";
 import UpdateSubjectFormComponent from "@/components/global/forms/dash/plan/UpdateSubjectFormComponent.vue";
 import FoodsComponent from "@/components/dash/Foods/FoodsComponent.vue";
+import VerifyDeleteFoodComponent from "@/components/global/forms/dash/food/VerifyDeleteFoodComponent.vue";
+import UpdateFoodComponent from "@/components/dash/Foods/UpdateFoodComponent.vue";
+import CreateFoodComponent from "@/components/dash/Foods/CreateFoodComponent.vue";
+import TeacherCLassesView from "@/components/dash/Teachers/TeacherCLassesView.vue";
 
 export default {
   data() {
@@ -423,6 +467,10 @@ export default {
     UpdatePlansComponent,
     UpdateSubjectFormComponent,
     FoodsComponent,
+    VerifyDeleteFoodComponent,
+    UpdateFoodComponent,
+    CreateFoodComponent,
+    TeacherCLassesView,
   },
   methods: {
     // change the component

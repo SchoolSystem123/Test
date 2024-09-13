@@ -202,7 +202,9 @@
         />
         <!-- class component  -->
 
-        <router-link to="/my/classes">
+        <router-link
+          :to="`/classes/student/${this.$store.state.show_user.data._id}`"
+        >
           {{
             this.$store.state.language == "English"
               ? this.$store.state.English.show_user_page.classes_cont.title
@@ -232,7 +234,9 @@
         />
         <!-- class component  -->
 
-        <router-link to="/user/plans">
+        <router-link
+          :to="`/plans/student/${this.$store.state.show_user.data._id}`"
+        >
           {{
             this.$store.state.language == "English"
               ? this.$store.state.English.show_user_page.plans_cont.title
@@ -284,11 +288,10 @@ export default {
     PlanInProfilePageCompoeneVue,
   },
   mounted() {
-    //* to start the loading animation on loaded the page
-    window.addEventListener("load", () => {
+    setTimeout(() => {
       // to start the loading animation
       this.$store.state.loading = "open";
-    });
+    }, 100);
 
     // call to get student method
     this.GetStudent();

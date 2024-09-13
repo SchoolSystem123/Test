@@ -87,11 +87,15 @@ export default {
     ErrorComponentVue,
   },
   mounted() {
-    // to start the loading animation on loaded the page
-    window.addEventListener("load", () => {
+    setTimeout(() => {
+      // open the page conatiner
+      this.status = true;
+    }, 500);
+
+    setTimeout(() => {
       // to start the loading animation
       this.$store.state.loading = "open";
-    });
+    }, 100);
 
     // call the get classes method on load the page
     this.GetCLasses();
@@ -110,9 +114,6 @@ export default {
           },
         })
         .then((Response) => {
-          // open the page conatiner
-          this.status = true;
-
           // copy the classes from response and add that to classes array in store
           this.$store.state.classes = [
             ...this.$store.state.classes,

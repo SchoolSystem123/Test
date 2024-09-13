@@ -98,11 +98,10 @@ export default {
     TeacherInTeacherspageComponent,
   },
   mounted() {
-    // to start the loading animation on loaded the page
-    window.addEventListener("load", () => {
+    setTimeout(() => {
       // to start the loading animation
       this.$store.state.loading = "open";
-    });
+    }, 100);
 
     // call the get teachers method on load the page
     this.GetTeachers();

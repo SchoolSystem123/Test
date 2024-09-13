@@ -25,6 +25,7 @@ export default createStore({
     delete_student_form_status: "close",
     delete_parent_form_status: "close",
     remove_plan_form_dash_status : "close",
+    remove_food_form_dash_status : "close",
     delete_class_form_status: "close",
     delete_home_work_form_status: "close",
     delete_student_form : "close",
@@ -43,6 +44,7 @@ export default createStore({
     teacher_id_for_delete: "",
     parent_id_for_delete : "",
     plan_id_for_delete : "",
+    food_id_for_delete : "",
     admin_for_update: "",
     teacher_for_update: "",
     student_for_update : "",
@@ -52,6 +54,7 @@ export default createStore({
     home_work_id_for_delete : "",
     home_work_for_update : "",
     plan_data_for_update : "",
+    food_data_for_update : "",
     active_component_in_dash: "foods",
     choose_children_status : "close",
     choose_teacher_status : "close",
@@ -66,6 +69,8 @@ export default createStore({
     selected_cover : "",
     new_home_work_images : [],
     home_work_images_for_delete : [],
+    food_images_for_delete : [],
+    new_food_images : [],
     class_id_for_create_home_work : "",
     sid_bar_dash : "close",
     // user_type: JSON.parse(window.localStorage.getItem("Ss-user")).user_type || "admint",
@@ -87,6 +92,8 @@ export default createStore({
     admins: [],
     admin: "",
     plans: [],
+    my_plans : [],
+    my_classes : [],
     plan: "",
     foods: [],
     food: "",
@@ -96,13 +103,13 @@ export default createStore({
       { path: "/profile", English_title: "Profile 🧾", Arabic_title : "حسابي 🧾", access: ["super" , "admin" , "teacher" , "student" , "parent"] },
       { path: "/", English_title: "Home 🏠", Arabic_title: "الصفحة الرئيسية 🏠", access: ["super" , "admin" , "teacher" , "student" , "parent"] },
       { path: "/classes", English_title: "Classes 🏛️", Arabic_title: "الصفوف 🏛️",access: ["super" , "admin" , "teacher" , "student" , "parent"] },
-      { path: "/classes", English_title: "My Classes", Arabic_title: "صفوفي",access: ["super" , "admin" , "teacher" , "student" , "parent"] },
+      { path: "/my/classes", English_title: "My Classes 🏫⭕📌", Arabic_title: "صفوفي",access: ["teacher" , "student"] },
       { path: "/students", English_title: "Students 👨‍🎓", Arabic_title: "الطلاب 👨‍🎓",access: ["super" , "admin" , "teacher" , "student" , "parent"] },
       { path: "/teachers", English_title: "Teachers 👨‍🏫", Arabic_title: "المدرسون 👨‍🏫",access: ["super" , "admin" , "teacher" , "student" , "parent"] },
       { path: "/admins", English_title: "Admins 🦸‍♂️", Arabic_title: "المدراء 🦸‍♂️",access: ["super" , "admin" , "teacher" , "student" , "parent"] },
       { path: "/parents", English_title: "Parents 👨‍👩‍👦‍👦", Arabic_title: "أولياء الأمور 👨‍👩‍👦‍👦",access: ["super" , "admin" , "teacher" , "parent"] },
       { path: "/plans", English_title: "Plans 📌📚", Arabic_title: " الخطط 📌📚",access: ["super" , "admin" , "teacher" , "student" , "parent"] },
-      { path: "/my/plans", English_title: "My Plans", Arabic_title: "خططي",access: ["super" , "admin" , "teacher" , "student" , "parent"] },
+      { path: "/my/plans", English_title: "My Plans ⭕📌📚", Arabic_title: "خططي ⭕📌📚",access: ["teacher" , "student"] },
       { path: "/my/children", English_title: "My Children 👶", Arabic_title: "أبنائي 👶", access: ["parent"] },
       { path: "/foods", English_title: "Food Guide 🍝", Arabic_title: "دليل الطعام 🍝", access: ["super" , "admin" , "teacher" , "parent"] },
       { path: "/about", English_title: "About us 💁‍♂️ℹ️", Arabic_title: "معلومات عنا 💁‍♂️ℹ️", access: ["super" , "admin" , "teacher" , "student" , "parent"] },
@@ -403,6 +410,7 @@ export default createStore({
         exams: "Exams 📝📑🔖 :",
         points: "Points 📍 :",
         gpa: "GPA 📌 :",
+        children : "Children 👶🧒👱‍♂️ :",
         class_level: "CLass Level 🏫🪜🎚️ :",
         joind_at: "Joind In 📆 :",
         default_message_classes: "📍⛔😕 No Any Class 📍⛔😕",
@@ -667,7 +675,7 @@ export default createStore({
         subject : "Subject 📚📖📑",
         note: "Note 📝",
         teachers_section_title : "Teacher 👨‍🏫",
-        button: "Update",
+        button: "Create",
         remove_button : "Remove 🗑️",
         teacher : "Choose The Teacher 👨‍🏫",
         title_placeholder: "Type class's title here ✍️ ...",
@@ -787,6 +795,57 @@ export default createStore({
         update : "Update",
         remove : "Remove 🗑️",
         cancel : "Cancel"
+      },
+      food_dash_compoenet: {
+        created_at: "📆 :",
+        images: "Images 🖼️ :",
+        delete : "Remove",
+        update : "Update"
+      },
+      foods_component: {
+        page_title: "Foods 😋🍴",
+        created_at: "📆 :",
+        images: "Images 🖼️ :",
+      },
+      remove_food_form_dash : {
+        title : "Remove Food 😋🍴 ...",
+        remove_btn : "Remove",
+        update : "Update",
+        remove : "Remove 🗑️",
+        cancel : "Cancel"
+      },
+      update_food : {
+        page_title : "Update Food 😋🍴",
+        title : "Title ⭕",
+        description : "Description 📑",
+        images : "Images 🖼️",
+        title_placeholder : "Type food's title here ✍️ ...",
+        description_placeholder : "Type food's description here ✍️ ...",
+        button : "Update"
+      },
+      create_food : {
+        page_title : "Create Food 😋🍴",
+        title : "Title ⭕",
+        description : "Description 📑",
+        images : "Images 🖼️",
+        title_placeholder : "Type food's title here ✍️ ...",
+        description_placeholder : "Type food's description here ✍️ ...",
+        button : "Create"
+      },
+      my_plans_page: {
+        page_title: "My Plans ⭕📌📚",
+      },
+      my_classes_page: {
+        page_title: "My Classes ⭕📌🏫",
+        default : "📍⛔😕 There is no Classes 😕⛔📍"
+      },
+      teacher_classes_plans_page: {
+        classes: "Teacher's Classes ⭕📌🏫",
+        plans: "Teacher's Plans ⭕📌📚",
+      },
+      student_classes_plans_page: {
+        classes: "Student's Classes ⭕📌🏫",
+        plans: "Student's Plans ⭕📌📚",
       },
       theme: "Theme",
       mood: "Mood",
@@ -1034,7 +1093,7 @@ export default createStore({
       },
       food_compoenet: {
         created_at: "📆 :",
-        images: "Images 🖼️ :",
+        images: "الصور 🖼️ :",
       },
       food_page: {
         page_title: "صفحة الطعام 😋🍴",
@@ -1059,6 +1118,7 @@ export default createStore({
         gpa: "المعدل 📌 :",
         class_level: "الصف 🏫🪜🎚️ :",
         joind_at: "انضم في 📆 :",
+        children : "أطفال 👶🧒👱‍♂️ :",
         default_message_classes: "📍⛔😕 لا يوجد اي صف 📍⛔😕",
         default_message_plans: "📍⛔😕 لا يوجد اي خطة 📍⛔😕",
         medals: [
@@ -1307,7 +1367,7 @@ export default createStore({
         subject : "لمادة 📚📖📑",
         note: "ملاحظات 📝",
         teachers_section_title : "المدرس 👨‍🏫",
-        button: "تعديل",
+        button: "إنشاء",
         remove_button : "حذف 🗑️",
         teacher : "اختر مدرس الصف 👨‍🏫",
         title_placeholder: "اكتب عنوان الصف هنا ✍️ ...",
@@ -1444,6 +1504,57 @@ export default createStore({
         start_placeholder : "اكتب ساعةالبداية هنا ✍️ ...",
         end_placeholder : "اكتب ساعة الانتهاء هنا ✍️ ...",
       },
+      food_dash_compoenet: {
+        created_at: "📆 :",
+        images: "الصور 🖼️ :",
+        delete : "حذف",
+        update : "تعديل"
+      },
+      foods_component: {
+        page_title: "توصيات الأطعمة 😋🍴",
+        created_at: "📆 :",
+        images: "الصور 🖼️ :",
+      },
+      remove_food_form_dash : {
+        title : "... 😋🍴 حذف الوجبة",
+        remove_btn : "حذف",
+        update : "تعديل",
+        remove : "🗑️ حذف",
+        cancel : "إلغاء"
+      },
+      update_food : {
+        page_title : "تعديل الوجبة 😋🍴",
+        title : "العنوان ⭕",
+        description : "الوصف 📑",
+        images : "الصور 🖼️",
+        title_placeholder : "اكتب عنوان الوجبة هنا ✍️ ...",
+        description_placeholder : "اكتب وصف الوجبة هنا ✍️ ...",
+        button : "تعديل"
+      },
+      create_food : {
+        page_title : "إنشاء الوجبة 😋🍴",
+        title : "العنوان ⭕",
+        description : "الوصف 📑",
+        images : "الصور 🖼️",
+        title_placeholder : "اكتب عنوان الوجبة هنا ✍️ ...",
+        description_placeholder : "اكتب وصف الوجبة هنا ✍️ ...",
+        button : "إنشاء"
+      },
+      my_plans_page: {
+        page_title: "خططي ⭕📌📚",
+      },
+      my_classes_page: {
+        page_title: "صفوفي ⭕📌🏫",
+        default : "📍⛔😕 لا يوجد أي صف 😕⛔📍"
+      },
+      teacher_classes_plans_page: {
+        classes: "صفوف المدرس ⭕📌🏫",
+        plans: "خطط المدرس ⭕📌📚",
+      },
+      student_classes_plans_page: {
+        classes: "صفوف الطالب ⭕📌🏫",
+        plans: "خطط الطالب ⭕📌📚",
+      },
       theme: "السمات",
       mood: "الوضع",
       log_out: "تسجيل الخروج",
@@ -1477,6 +1588,10 @@ export default createStore({
           create: "https://rrr-zb8x.onrender.com/api/v1/teacher/class/create",
           delete: "https://rrr-zb8x.onrender.com/api/v1/teacher/class/delete",
           update: "https://rrr-zb8x.onrender.com/api/v1/teacher/class/update",
+          get_my_classes : "https://rrr-zb8x.onrender.com/api/v1/teacher/get/classes"
+        },
+        student : {
+          get_my_classes : "https://rrr-zb8x.onrender.com/api/v1/student/get/classes"
         },
         join_leave: {
           join: "https://rrr-zb8x.onrender.com/api/v1/class/join",
@@ -1585,10 +1700,12 @@ export default createStore({
         teacher: {
           copyORremove:
             "https://rrr-zb8x.onrender.com/api/v1/teacher/plan/copy",
+            get_my_plans : "https://rrr-zb8x.onrender.com/api/v1/teacher/get/plans"
         },
         student: {
           copyORremove:
             "https://rrr-zb8x.onrender.com/api/v1/student/plan/copy",
+            get_my_plans : "https://rrr-zb8x.onrender.com/api/v1/student/get/plans"
         }
       },
       messages: {
@@ -1726,6 +1843,11 @@ export default createStore({
       state.remove_plan_form_dash_status == "close" ? "open" : "close"
     },
 
+    // open or close the delete plan form verify
+    OpenOrCloseDeleteFoodForm(state) {
+      state.remove_food_form_dash_status = 
+      state.remove_food_form_dash_status == "close" ? "open" : "close"
+    },
 
     // open or close the choosing children container
     ChooseChildren(state) {

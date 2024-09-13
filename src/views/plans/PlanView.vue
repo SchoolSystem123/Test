@@ -187,11 +187,10 @@ export default {
     CopyORremoveThePlanCompoenetVue,
   },
   mounted() {
-    // to start the loading animation on loaded the page
-    window.addEventListener("load", () => {
+    setTimeout(() => {
       // to start the loading animation
       this.$store.state.loading = "open";
-    });
+    }, 100);
 
     // call to get plan method
     this.GetPlan();
@@ -207,7 +206,6 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response);
           // to close the loading component
           this.$store.state.loading = "close";
 
@@ -299,6 +297,10 @@ export default {
       width: 100%;
       height: 40px;
       margin: 5px 0%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      direction: ltr;
     }
 
     .plan-info {
@@ -368,20 +370,20 @@ export default {
 
     .author {
       width: 90%;
-      height: auto;
+      height: 80px;
       margin: 5px 5%;
-      border-radius: 10px;
+      padding: 2px 3px;
+      border-radius: 5px;
       background-color: $card-darck;
       display: flex;
       justify-content: start;
       align-items: center;
-      padding: 1px;
       box-shadow: 0 0 5px $black;
       cursor: pointer;
 
       img {
-        width: 80px;
-        height: 80px;
+        width: 70px;
+        height: 74px;
         border-radius: 5px;
       }
 

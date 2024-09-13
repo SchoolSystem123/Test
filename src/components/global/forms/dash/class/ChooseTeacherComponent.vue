@@ -159,6 +159,7 @@ export default {
   position: fixed;
   top: 25%;
   left: 15%;
+  z-index: 150;
   border-radius: 10px;
   background-color: $body-darck;
   box-shadow: 0 0 10px $black;
@@ -335,6 +336,7 @@ export default {
   position: fixed;
   top: 25%;
   left: 15%;
+  z-index: 150;
   border-radius: 10px;
   background-color: $body-light;
   box-shadow: 0 0 10px $black;
@@ -513,6 +515,7 @@ export default {
   position: fixed;
   top: 25%;
   left: 15%;
+  z-index: 150;
   border-radius: 10px;
   background-color: $body-darck;
   box-shadow: 0 0 10px $black;
@@ -689,6 +692,7 @@ export default {
   position: fixed;
   top: 25%;
   left: 15%;
+  z-index: 150;
   border-radius: 10px;
   background-color: $body-light;
   box-shadow: 0 0 10px $black;

@@ -170,7 +170,10 @@
         <!-- class component  -->
 
         <!-- default results messgaes  -->
-        <p class="default_message">
+        <p
+          class="default_message"
+          v-if="this.$store.state.show_user.data.classes.length == 0"
+        >
           {{
             this.$store.state.language == "English"
               ? this.$store.state.English.show_user_page.default_message_classes
@@ -179,7 +182,10 @@
         </p>
         <!-- default results messgaes  -->
 
-        <router-link to="/user/classes">
+        <router-link
+          :to="`/classes/teacher/${this.$store.state.show_user.data._id}`"
+          v-if="this.$store.state.show_user.data.classes.length > 0"
+        >
           {{
             this.$store.state.language == "English"
               ? this.$store.state.English.show_user_page.classes_cont.title
@@ -210,7 +216,10 @@
         <!-- class component  -->
 
         <!-- default results messgaes  -->
-        <p class="default_message">
+        <p
+          class="default_message"
+          v-if="this.$store.state.show_user.data.my_plans.length == 0"
+        >
           {{
             this.$store.state.language == "English"
               ? this.$store.state.English.show_user_page.default_message_plans
@@ -219,7 +228,10 @@
         </p>
         <!-- default results messgaes  -->
 
-        <router-link to="/user/plans">
+        <router-link
+          :to="`/plans/teacher/${this.$store.state.show_user.data._id}`"
+          v-if="this.$store.state.show_user.data.my_plans.length > 0"
+        >
           {{
             this.$store.state.language == "English"
               ? this.$store.state.English.show_user_page.plans_cont.title
@@ -271,11 +283,10 @@ export default {
     PlanInProfilePageCompoeneVue,
   },
   mounted() {
-    //* to start the loading animation on loaded the page
-    window.addEventListener("load", () => {
+    setTimeout(() => {
       // to start the loading animation
       this.$store.state.loading = "open";
-    });
+    }, 100);
 
     // call to get teacher method
     this.GetTeacher();
@@ -296,7 +307,6 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response);
           // update the status to open the cont
           this.status = true;
 

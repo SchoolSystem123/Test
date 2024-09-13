@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`my-classes-${this.$store.state.mood}-${this.$store.state.language}`"
+    :class="`teacher-classes-${this.$store.state.mood}-${this.$store.state.language}`"
   >
     <!-- loading component  -->
     <LoadingComponent />
@@ -24,8 +24,8 @@
         <h3>
           {{
             this.$store.state.language == "English"
-              ? this.$store.state.English.my_classes_page.page_title
-              : this.$store.state.Arabic.my_classes_page.page_title
+              ? this.$store.state.English.teacher_classes_plans_page.classes
+              : this.$store.state.Arabic.teacher_classes_plans_page.classes
           }}
         </h3>
       </div>
@@ -59,7 +59,7 @@ import LoadingComponent from "@/components/global/LoadingComponent.vue";
 import SmallNavComponent from "@/components/global/nav/SmallNavComponent.vue";
 import SidBarComponent from "@/components/global/SidBarComponent.vue";
 export default {
-  name: "my-classes-page",
+  name: "teacher-classes-page",
   data() {
     return {
       // page scroll
@@ -79,22 +79,20 @@ export default {
     ScrollTopComponent,
   },
   mounted() {
-    setTimeout(() => {
-      // to start the loading animation
-      this.$store.state.loading = "open";
-    }, 100);
-
     // to open the page smoothy
     setTimeout(() => {
       this.status = "open";
     }, 500);
 
     // call to get get my classes method
-    this.GetMyClasses();
+    this.GetTeacherClasses();
   },
   methods: {
-    // get my classes
-    async GetMyClasses() {
+    // get teacher classes
+    async GetTeacherClasses() {
+      // to start the loading animation
+      this.$store.state.loading = "open";
+
       // create params
       let params = {};
 
@@ -103,14 +101,8 @@ export default {
         Authorization: `Bearer ${this.$store.state.user.token}`,
       };
 
-      // select api
-      if (this.$store.state.user.user_type == "teacher") {
-        this.api = this.$store.state.APIs.classes.teacher.get_my_classes;
-        params.teacher_id = this.$store.state.user.user._id;
-      } else if (this.$store.state.user.user_type == "student") {
-        this.api = this.$store.state.APIs.classes.student.get_my_classes;
-        params.student_id = this.$store.state.user.user._id;
-      }
+      this.api = this.$store.state.APIs.classes.teacher.get_my_classes;
+      params.teacher_id = this.$route.params.id;
 
       await axios
         .get(
@@ -161,7 +153,7 @@ export default {
 @import "../../Sass/varibels/variables";
 
 // darck and light English style
-.my-classes-darck-English {
+.teacher-classes-darck-English {
   width: 100%;
   min-height: 100vh;
   background-color: $body-darck;
@@ -230,7 +222,7 @@ export default {
   }
 }
 
-.my-classes-light-English {
+.teacher-classes-light-English {
   width: 100%;
   min-height: 100vh;
   background-color: $body-light;
@@ -308,7 +300,7 @@ export default {
 // darck and light English style
 
 // darck and light Arabic style
-.my-classes-darck-Arabic {
+.teacher-classes-darck-Arabic {
   width: 100%;
   min-height: 100vh;
   background-color: $body-darck;
@@ -384,7 +376,7 @@ export default {
   }
 }
 
-.my-classes-light-Arabic {
+.teacher-classes-light-Arabic {
   width: 100%;
   min-height: 100vh;
   background-color: $body-light;

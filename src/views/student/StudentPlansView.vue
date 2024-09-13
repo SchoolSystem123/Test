@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`my-classes-${this.$store.state.mood}-${this.$store.state.language}`"
+    :class="`student-plans-${this.$store.state.mood}-${this.$store.state.language}`"
   >
     <!-- loading component  -->
     <LoadingComponent />
@@ -24,20 +24,22 @@
         <h3>
           {{
             this.$store.state.language == "English"
-              ? this.$store.state.English.my_classes_page.page_title
-              : this.$store.state.Arabic.my_classes_page.page_title
+              ? this.$store.state.English.student_classes_plans_page.plans
+              : this.$store.state.Arabic.student_classes_plans_page.plans
           }}
         </h3>
+
+        <icon :icon="this.view_style" @click="changeIcon" />
       </div>
       <!-- page title  -->
 
       <!-- classes container -->
-      <div class="classes-cont">
+      <div class="plans-cont">
         <div class="results">
-          <ClassesPageClassComponent
-            v-for="(class_data, index) in this.$store.state.my_classes"
+          <PlanInPlansPageComponent
+            v-for="(plan_data, index) in this.$store.state.my_plans"
             :key="index"
-            :class_data="class_data"
+            :Plan_data="plan_data"
             :view_style="this.view_style"
           />
         </div>
@@ -53,13 +55,13 @@
 <script>
 import axios from "axios";
 import ScrollTopComponent from "@/components/global/ScrollTopComponent.vue";
-import ClassesPageClassComponent from "@/components/class/ClassesPageClassComponent.vue";
+import PlanInPlansPageComponent from "@/components/plan/PlanInPlansPageComponent.vue";
 import ErrorComponent from "@/components/global/ErrorComponent.vue";
 import LoadingComponent from "@/components/global/LoadingComponent.vue";
 import SmallNavComponent from "@/components/global/nav/SmallNavComponent.vue";
 import SidBarComponent from "@/components/global/SidBarComponent.vue";
 export default {
-  name: "my-classes-page",
+  name: "student-plans-page",
   data() {
     return {
       // page scroll
@@ -68,6 +70,8 @@ export default {
       status: "close",
       // api
       api: "",
+      // view_style
+      view_style: "list",
     };
   },
   components: {
@@ -75,7 +79,7 @@ export default {
     SidBarComponent,
     LoadingComponent,
     ErrorComponent,
-    ClassesPageClassComponent,
+    PlanInPlansPageComponent,
     ScrollTopComponent,
   },
   mounted() {
@@ -89,12 +93,18 @@ export default {
       this.status = "open";
     }, 500);
 
-    // call to get get my classes method
-    this.GetMyClasses();
+    // call to get student's plans method
+    this.GetStudentsPlans();
+
+    // handel scroll
+    window.addEventListener("scroll", this.handleScroll);
   },
   methods: {
-    // get my classes
-    async GetMyClasses() {
+    // get student's plans
+    async GetStudentsPlans() {
+      // to start the loading animation
+      this.$store.state.loading = "open";
+
       // create params
       let params = {};
 
@@ -104,13 +114,8 @@ export default {
       };
 
       // select api
-      if (this.$store.state.user.user_type == "teacher") {
-        this.api = this.$store.state.APIs.classes.teacher.get_my_classes;
-        params.teacher_id = this.$store.state.user.user._id;
-      } else if (this.$store.state.user.user_type == "student") {
-        this.api = this.$store.state.APIs.classes.student.get_my_classes;
-        params.student_id = this.$store.state.user.user._id;
-      }
+      this.api = this.$store.state.APIs.plans.student.get_my_plans;
+      params.student_id = this.$route.params.id;
 
       await axios
         .get(
@@ -124,8 +129,8 @@ export default {
           // to stop the loading animation
           this.$store.state.loading = "close";
 
-          // set the plans data to my_classes array in store
-          this.$store.state.my_classes = response.data.classes_data;
+          // set the plans data to my_plans array in store
+          this.$store.state.my_plans = response.data.plans_data;
         })
         .catch((error) => {
           // to stop the loading animation
@@ -153,6 +158,11 @@ export default {
       // to start scroll to top component
       this.scroll_page = window.scrollY;
     },
+
+    // change icon method
+    changeIcon() {
+      this.view_style = this.view_style == "list" ? "window-restore" : "list";
+    },
   },
 };
 </script>
@@ -161,7 +171,7 @@ export default {
 @import "../../Sass/varibels/variables";
 
 // darck and light English style
-.my-classes-darck-English {
+.student-plans-darck-English {
   width: 100%;
   min-height: 100vh;
   background-color: $body-darck;
@@ -175,7 +185,6 @@ export default {
     padding: 5% 0px 5% 0px;
     opacity: 1;
     transition-duration: 0.5s;
-
     @media (max-width: $phone) {
       width: 100%;
       padding: 20% 0px 5% 0px;
@@ -194,16 +203,24 @@ export default {
       border-color: transparent transparent $border-light transparent;
 
       h3 {
-        width: 100%;
+        width: 90%;
         color: $font-light;
+      }
+
+      svg {
+        border: 1px solid $border-light;
+        color: $font-light;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 5px;
       }
     }
 
     // plans conatiner
-    .classes-cont {
-      width: 100%;
+    .plans-cont {
+      width: 90%;
       height: auto;
-      margin: 5px 0%;
+      margin: 5px 5%;
 
       // results title
       .results {
@@ -230,7 +247,7 @@ export default {
   }
 }
 
-.my-classes-light-English {
+.student-plans-light-English {
   width: 100%;
   min-height: 100vh;
   background-color: $body-light;
@@ -276,7 +293,7 @@ export default {
     }
 
     // plans conatiner
-    .classes-cont {
+    .plans-cont {
       width: 90%;
       height: auto;
       margin: 5px 5%;
@@ -308,7 +325,7 @@ export default {
 // darck and light English style
 
 // darck and light Arabic style
-.my-classes-darck-Arabic {
+.student-plans-darck-Arabic {
   width: 100%;
   min-height: 100vh;
   background-color: $body-darck;
@@ -354,7 +371,7 @@ export default {
     }
 
     // plans conatiner
-    .classes-cont {
+    .plans-cont {
       width: 90%;
       height: auto;
       margin: 5px 5%;
@@ -384,7 +401,7 @@ export default {
   }
 }
 
-.my-classes-light-Arabic {
+.student-plans-light-Arabic {
   width: 100%;
   min-height: 100vh;
   background-color: $body-light;
@@ -430,7 +447,7 @@ export default {
     }
 
     // plans conatiner
-    .classes-cont {
+    .plans-cont {
       width: 90%;
       height: auto;
       margin: 5px 5%;

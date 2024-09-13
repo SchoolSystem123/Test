@@ -37,7 +37,15 @@
     <!-- info section  -->
 
     <!-- buttons cont  -->
-    <div class="buttons">
+    <div
+      class="buttons"
+      v-if="
+        this.$store.state.user.user_type == 'super' ||
+        this.$store.state.user.user_type == 'admin' ||
+        (this.$store.state.user.user_type == 'teacher' &&
+          this.$store.state.user.user._id == this.class_data._id)
+      "
+    >
       <button class="update" @click="GoToUpdateClass">
         {{
           this.$store.state.language == "English"
@@ -118,6 +126,7 @@ export default {
 
   @media (min-width: $phone) {
     width: 47%;
+    margin: 5px 1%;
     height: auto;
   }
 

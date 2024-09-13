@@ -1,30 +1,31 @@
 <template>
   <div
-    :class="`delete-form-${this.$store.state.mood}-${this.$store.state.language}-${this.$store.state.delete_class_form_status}`"
+    :class="`delete-form-${this.$store.state.mood}-${this.$store.state.language}-${this.$store.state.remove_food_form_dash_status}`"
   >
     <div class="header">
       {{
         this.$store.state.language == "English"
-          ? this.$store.state.English.delete_class_form.title
-          : this.$store.state.Arabic.delete_class_form.title
+          ? this.$store.state.English.remove_food_form_dash.title
+          : this.$store.state.Arabic.remove_food_form_dash.title
       }}
     </div>
 
-    <button class="delete" @click="DeleteClass">
+    <button class="delete" @click="DeleteFood">
       {{
         this.$store.state.language == "English"
-          ? this.$store.state.English.delete_class_form.delete
-          : this.$store.state.Arabic.delete_class_form.delete
+          ? this.$store.state.English.remove_food_form_dash.remove
+          : this.$store.state.Arabic.remove_food_form_dash.remove
       }}
     </button>
+
     <button
       class="cancel"
-      @click="this.$store.commit('OpenOrCloseDeleteClassForm')"
+      @click="this.$store.commit(`OpenOrCloseDeleteFoodForm`)"
     >
       {{
         this.$store.state.language == "English"
-          ? this.$store.state.English.delete_class_form.cancel
-          : this.$store.state.Arabic.delete_class_form.cancel
+          ? this.$store.state.English.remove_food_form_dash.cancel
+          : this.$store.state.Arabic.remove_food_form_dash.cancel
       }}
     </button>
   </div>
@@ -33,16 +34,13 @@
 <script>
 import axios from "axios";
 export default {
-  name: "verify-delete-class",
+  name: "verify-delete-admin",
   data() {
-    return {
-      // api
-      api: "",
-    };
+    return {};
   },
   methods: {
-    // delete class method
-    async DeleteClass() {
+    // delete plan method
+    async DeleteFood() {
       // to start the loading animation
       this.$store.state.loading = "open";
 
@@ -56,57 +54,41 @@ export default {
 
       // check if the user is super
       if (this.$store.state.user.user_type == "super") {
-        // select the api
-        this.api = this.$store.state.APIs.classes.super.delete;
-
-        // add the data to body
         data = {
           super_admin_id: this.$store.state.user.user._id,
-          class_id: this.$store.state.class_id_for_delete,
+          food_id: this.$store.state.food_id_for_delete,
         };
       } else if (this.$store.state.user.user_type == "admin") {
-        // select the api
-        this.api = this.$store.state.APIs.classes.admin.delete;
-
-        // add the data to body
         data = {
           admin_id: this.$store.state.user.user._id,
-          class_id: this.$store.state.class_id_for_delete,
-        };
-      } else if (this.$store.state.user.user_type == "teacher") {
-        // select the api
-        this.api = this.$store.state.APIs.classes.teacher.delete;
-
-        // add the data to body
-        data = {
-          teacher_id: this.$store.state.user.user._id,
-          class_id: this.$store.state.class_id_for_delete,
+          food_id: this.$store.state.food_id_for_delete,
         };
       }
 
       await axios
         .delete(
-          // this.$store.state.user.user_type == "super"
-          //   ? this.$store.state.APIs.classes.super.delete
-          //   : this.$store.state.APIs.classes.admin.delete,
-          this.api,
+          this.$store.state.user.user_type == "super"
+            ? this.$store.state.APIs.food.super.delete
+            : this.$store.state.APIs.food.admin.delete,
           { data, headers }
         )
         .then(() => {
           // to stop the loading animation
           this.$store.state.loading = "close";
 
-          // close the verify delete class form
-          this.$store.commit("OpenOrCloseDeleteClassForm");
+          // close the verify delete parent form
+          this.$store.commit("OpenOrCloseDeleteFoodForm");
 
+          // update the active component in dash
+          // this.$store.state.activeactive_component_in_dash = "foods";
           window.location.reload();
         })
         .catch((error) => {
           // to stop the loading animation
           this.$store.state.loading = "close";
 
-          // close the verify delete class form
-          this.$store.commit("OpenOrCloseDeleteClassForm");
+          // close the verify delete parent form
+          this.$store.commit("OpenOrCloseDeleteFoodForm");
 
           // to set the reqeust's error message to error message var in store
           this.$store.state.error_message = error.response.data.message;
@@ -120,7 +102,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../../../../sass/varibels/variables";
+@import "../../../../../Sass/varibels/variables";
 
 // darck and light English style
 .delete-form-darck-English-open {

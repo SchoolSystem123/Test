@@ -86,11 +86,10 @@ export default {
     };
   },
   mounted() {
-    // to start the loading animation on load the page
-    window.addEventListener("load", () => {
-      // start the loading animation
+    setTimeout(() => {
+      // to start the loading animation
       this.$store.state.loading = "open";
-    });
+    }, 100);
 
     // call the get foods method
     this.GetFoods();

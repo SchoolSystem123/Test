@@ -204,7 +204,13 @@
         />
         <!-- class component  -->
 
-        <router-link to="/my/classes">
+        <router-link
+          to="/my/classes"
+          v-if="
+            this.$store.state.profile.classes &&
+            this.$store.state.profile.classes.length > 0
+          "
+        >
           {{
             this.$store.state.language == "English"
               ? this.$store.state.English.profile.classes_cont.title
@@ -239,7 +245,13 @@
         />
         <!-- class component  -->
 
-        <router-link to="/my/plans">
+        <router-link
+          to="/my/plans"
+          v-if="
+            this.$store.state.profile.my_plans &&
+            this.$store.state.profile.my_plans.length > 0
+          "
+        >
           {{
             this.$store.state.language == "English"
               ? this.$store.state.English.profile.plans_cont.title
@@ -294,6 +306,11 @@ export default {
     ScrollTopComponentVue,
   },
   mounted() {
+    setTimeout(() => {
+      // to start the loading animation
+      this.$store.state.loading = "open";
+    }, 100);
+
     // check if the user is loged in
     if (!this.$store.state.user != "") {
       //send the user to log in page
@@ -302,12 +319,6 @@ export default {
 
     // call to get messages count method
     this.GetMessagesCount();
-
-    //* to start the loading animation on loaded the page
-    window.addEventListener("load", () => {
-      // to start the loading animation
-      this.$store.state.loading = "open";
-    });
 
     // check if the user is loged in
     if (this.$store.state.user != "") {

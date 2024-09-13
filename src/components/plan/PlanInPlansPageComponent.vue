@@ -6,7 +6,14 @@
     <!-- plans title  -->
     <h2>{{ this.Plan_data.title }}</h2>
     <!-- plans title  -->
-    <p>{{ this.Plan_data.class_level }}</p>
+    <p>
+      {{
+        this.$store.state.language == "English"
+          ? this.$store.state.English.plan_component.class
+          : this.$store.state.Arabic.plan_component.class
+      }}
+      {{ this.Plan_data.class_level }}
+    </p>
     <p v-if="this.Plan_data.students">
       {{
         this.$store.state.language == "English"

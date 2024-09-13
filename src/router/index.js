@@ -6,6 +6,8 @@ import LoginView from "../views/loginView.vue";
 import StudentsView from "../views/student/StudentsView.vue";
 import StudentView from "../views/student/StudentView.vue";
 import CreateStudentView from "../views/student/CreateStudentView.vue";
+import StudentCLassesView from "@/views/student/StudentCLassesView.vue";
+import StudentPlansView from "@/views/student/StudentPlansView.vue";
 // students pages
 
 // classes pages
@@ -31,6 +33,8 @@ import UpdateHomeWorkView from "../views/home_works/UpdateHomeWorkView.vue";
 // Teachers pages
 import TeachersView from "../views/teachers/TeachersView.vue";
 import TeacherView from "../views/teachers/TeacherView.vue";
+import TeacherPlansView from "@/views/teachers/TeacherPlansView.vue";
+import TeacherCLassesView from "@/views/teachers/TeacherCLassesView.vue";
 // Teachers pages
 
 // Admins pages
@@ -116,6 +120,16 @@ const routes = [
     name: "createstudent",
     component: CreateStudentView,
   },
+  {
+    path : "/plans/student/:id",
+    name : "studentsPlans",
+    component : StudentPlansView
+  },
+  {
+    path : "/classes/student/:id",
+    name : "studentsClasses",
+    component : StudentCLassesView
+  },
   // students pages
   // teacher pages
   {
@@ -127,6 +141,16 @@ const routes = [
     path: "/teacher/:id",
     name: "teacher",
     component: TeacherView,
+  },
+  {
+    path : "/plans/teacher/:id",
+    name : "teacherPlans",
+    component : TeacherPlansView
+  },
+  {
+    path : "/classes/teacher/:id",
+    name : "teacherClasses",
+    component : TeacherCLassesView
   },
   // teacher pages
   // teacher pages
@@ -148,7 +172,7 @@ const routes = [
     component: parentsView,
   },
   {
-    path: "/parent",
+    path: "/parent/:id",
     name: "parent",
     component: parentView,
   },

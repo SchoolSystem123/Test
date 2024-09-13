@@ -93,12 +93,10 @@ export default {
     parentInParentsPageComponentVue,
   },
   mounted() {
-    // to start the loading animation on loaded the page
-    window.addEventListener("load", () => {
+    setTimeout(() => {
       // to start the loading animation
       this.$store.state.loading = "open";
-    });
-
+    }, 100);
     // call the get parents method on load the page
     this.GetParents();
 

@@ -2,6 +2,7 @@
   <p
     v-if="this.Id_data"
     :class="`copy-id-${this.$store.state.mood}-${this.$store.state.language}`"
+    id="copyId"
     ref="ObjectId"
     @click="copyId"
   >

@@ -139,9 +139,6 @@ export default {
       // to start the loading animation
       this.$store.state.loading = "open";
 
-      console.log(this.api);
-      console.log(this.email.split(":")[1]);
-      console.log(this.password);
       axios
         .post(this.api, {
           // delete the fisrt Chars from email ( this fisrt chars is for select the whitch api use to login )

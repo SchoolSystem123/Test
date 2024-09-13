@@ -123,23 +123,6 @@
       </div>
       <!-- images container  -->
 
-      <!-- class title  -->
-      <h4 class="section-title">
-        {{
-          this.$store.state.language == "English"
-            ? this.$store.state.English.home_work_page.class
-            : this.$store.state.Arabic.home_work_page.class
-        }}
-      </h4>
-
-      <!-- class component  -->
-      <!-- <ClassComponentVue
-        @click="GoToClass(this.$store.state.home_work.class_id._id)"
-        v-if="this.$store.state.home_work"
-        :class_data="this.$store.state.home_work.class_id"
-      /> -->
-      <!-- class component  -->
-
       <!-- author -->
       <div class="author">
         <h4>
@@ -219,11 +202,10 @@ export default {
     NoteComponentVue,
   },
   mounted() {
-    // to start the loading animation on loaded the page
-    window.addEventListener("load", () => {
+    setTimeout(() => {
       // to start the loading animation
       this.$store.state.loading = "open";
-    });
+    }, 100);
 
     // call get home work method
     this.GetHomeWork();
@@ -287,8 +269,7 @@ export default {
 <style lang="scss">
 @import "../../Sass/varibels/variables";
 
-// English page
-// darck home English work page
+// darck and light English Style
 .home-work-page-darck-English {
   width: 100%;
   min-height: 100vh;
@@ -366,7 +347,6 @@ export default {
       width: 80%;
       height: auto;
       margin: 5% 10% 5% 10%;
-      // background-color: orangered;
       color: $font-light;
     }
 
@@ -581,17 +561,55 @@ export default {
   }
 }
 
-// darck home English work page
-
-// light home English work page
 .home-work-page-light-English {
-  @extend .home-work-page-darck-English;
+  width: 100%;
+  min-height: 100vh;
   background-color: $body-light;
+  direction: ltr;
 
   // open conatiner style
   .open-cont {
+    width: 50%;
+    height: auto;
+    margin: auto;
+    transition-duration: 0.5s;
+    padding: 7% 0px 5% 0px;
+    opacity: 1;
+    position: relative;
+
+    @media (max-width: $phone) {
+      padding: 15% 0px 5% 0px;
+      width: 100%;
+    }
+
+    // page title style
+    .page-title {
+      width: 80%;
+      height: auto;
+      margin: auto;
+      padding: 5px 0px;
+      color: $font-darck;
+      border: 1px solid;
+      border-color: transparent transparent $border-darck transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      p {
+        font-size: $x-small;
+      }
+    }
+
     // cover conatiner style
     .cover-cont {
+      width: 80%;
+      min-height: 30px;
+      border-radius: 5px;
+      margin: 5% 5% 5% 10%;
+      cursor: pointer;
+      padding: 5px;
+      position: relative;
+
       // cover
       .cover {
         width: 100%;
@@ -604,105 +622,220 @@ export default {
       #note-English-cont {
         position: absolute;
         top: 15px;
-        right: 15px;
-
-        #open {
-          left: 5%;
-        }
-        svg {
-          color: $font-darck;
-          background-color: $font-light;
-        }
+        left: 15px;
       }
-    }
-
-    // page title style
-    .page-title {
-      color: $font-darck;
-      border-color: transparent transparent $border-darck transparent;
     }
 
     // title
     .title {
+      width: 80%;
+      height: auto;
+      margin: 5% 5% 0% 10%;
       color: $font-darck;
     }
 
     // description
     .description {
+      width: 80%;
+      height: auto;
+      margin: 5% 10% 5% 10%;
       color: $font-darck;
     }
 
     // copy id component
     .copy-id-light-English {
-      font-size: $x-small;
       width: 80%;
       margin: -2% 10% 0% 10%;
     }
 
     // subject style
     .subject {
+      width: 80%;
+      height: auto;
+      margin: 5% 10%;
       color: $font-darck;
     }
 
     .section-title {
+      width: 80%;
+      margin: 5% 0% 5% 10%;
       color: $font-darck;
+      height: auto;
+      padding: 5px 0px;
+      border: 1px solid;
       border-color: transparent transparent $border-darck transparent;
     }
 
     // images images conatiner
     .images-cont {
+      width: 80%;
+      height: auto;
+      margin: 2% 0% 2% 10%;
+      // background-color: green;
+
       .images-heade {
+        width: 100%;
+        height: 40px;
+        margin: 15px 0px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid;
         border-color: transparent transparent $border-darck transparent;
 
         h4 {
+          width: 60%;
+          height: auto;
+          padding: 5px 0px;
           color: $font-darck;
+          margin: 20px 0px;
         }
 
         p {
+          width: auto;
+          height: auto;
           color: $font-darck;
         }
       }
 
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin: 5px 0%;
+        cursor: pointer;
+      }
+
       .result-message {
+        width: 100%;
+        height: auto;
+        text-align: center;
         color: $font-darck;
       }
     }
 
     // card
-    .class-light {
-      background-color: $card-light;
+    .class-darck {
+      width: 80%;
+      height: auto;
+      margin-left: 10%;
+      background-color: $card-darck;
+      cursor: pointer;
+      border-radius: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      transition-duration: 0.5s;
+
+      // cover
+      img {
+        width: 70px;
+        height: 70px;
+        border-radius: 5px;
+        margin: 5px;
+      }
+
+      h2 {
+        width: auto;
+        margin: -7% 0% 0% 2%;
+        font-size: $medium;
+      }
     }
 
-    .class-light:hover {
+    .class-darck:hover {
       background-color: $border-light;
     }
 
     // author container style
     .author {
+      width: 80%;
+      height: auto;
+      // background-color: green;
+      margin: 2% 0% 2% 10%;
+
       // section title
       h4 {
+        width: 100%;
+        height: auto;
         color: $font-darck;
+        padding: 5px 0px;
+        border: 1px solid;
         border-color: transparent transparent $border-darck transparent;
       }
 
       // link
       a {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        text-decoration: none;
         background-color: $card-light;
+        border-radius: 10px;
+        padding: 5px;
+        margin: 5% 0%;
+        transition-duration: 0.5s;
+
+        // author avatar
+        img {
+          width: 70px;
+          height: 70px;
+          border-radius: 5px;
+        }
 
         // author name
         h3 {
+          width: auto;
           color: $font-darck;
+          margin: -7% 0% 0% 5%;
         }
       }
 
       a:hover {
-        background-color: $border-light;
+        background-color: $border-darck;
       }
     }
 
     .footer-light-English {
       width: 80%;
-      margin-right: 10%;
+      margin-left: 10%;
+    }
+
+    // level hard nion
+    .level-hard {
+      width: 5px;
+      height: 80%;
+      background-color: $hard;
+      border-radius: 2px;
+      box-shadow: 0 0 5px $hard;
+      position: fixed;
+      left: 5%;
+      top: 10%;
+      transition-duration: 0.5s;
+      @media (max-width: $phone) {
+        height: 90%;
+        top: 8%;
+      }
+
+      @media (min-width: $tablet) {
+        position: absolute;
+        height: 90%;
+        top: 5%;
+      }
+    }
+
+    // level normal nion
+    .level-normal {
+      @extend .level-hard;
+      background-color: $normal;
+      box-shadow: 0 0 5px $normal;
+    }
+
+    // level easy nion
+    .level-easy {
+      @extend .level-hard;
+      background-color: $easy;
+      box-shadow: 0 0 5px $easy;
     }
   }
 
@@ -719,20 +852,56 @@ export default {
     }
   }
 }
-// light home English work page
-// English page
+// darck and light English Style
 
-// Arabic page
-// darck home Arabic work page
+// darck and light Arabic Style
 .home-work-page-darck-Arabic {
-  @extend .home-work-page-darck-English;
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-darck;
   direction: rtl;
 
   // open conatiner style
   .open-cont {
+    width: 50%;
+    height: auto;
+    margin: auto;
+    transition-duration: 0.5s;
+    padding: 7% 0px 5% 0px;
+    opacity: 1;
+    position: relative;
+
+    @media (max-width: $phone) {
+      padding: 15% 0px 5% 0px;
+      width: 100%;
+    }
+
+    // page title style
+    .page-title {
+      width: 80%;
+      height: auto;
+      margin: auto;
+      padding: 5px 0px;
+      color: $font-light;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      p {
+        font-size: $x-small;
+      }
+    }
+
     // cover conatiner style
     .cover-cont {
+      width: 80%;
+      min-height: 30px;
+      border-radius: 5px;
       margin: 5% 10% 5% 5%;
+      cursor: pointer;
+      padding: 5px;
+      position: relative;
 
       // cover
       .cover {
@@ -747,17 +916,6 @@ export default {
         position: absolute;
         top: 15px;
         right: 15px;
-
-        #open {
-          position: absolute;
-          top: 35px;
-          right: 20px;
-        }
-
-        svg {
-          color: $font-light;
-          background-color: $message_darck;
-        }
       }
     }
 
@@ -765,7 +923,7 @@ export default {
     .title {
       width: 80%;
       height: auto;
-      margin: -5% 10% 0% 0%;
+      margin: 5% 10% 0% 5%;
       color: $font-light;
     }
 
@@ -774,12 +932,13 @@ export default {
       width: 80%;
       height: auto;
       margin: 5% 10% 5% 10%;
+      // background-color: orangered;
       color: $font-light;
     }
 
     // copy id component
     .copy-id-darck-Arabic {
-      width: auto;
+      width: 80%;
       margin: -2% 10% 0% 10%;
     }
 
@@ -793,7 +952,7 @@ export default {
 
     .section-title {
       width: 80%;
-      margin: 5% 10% 5% 0%;
+      margin: 5% 0% 5% 10%;
       color: $font-light;
       height: auto;
       padding: 5px 0px;
@@ -805,7 +964,8 @@ export default {
     .images-cont {
       width: 80%;
       height: auto;
-      margin: 2% 10% 2% 0%;
+      margin: 2% 10% 2% 5%;
+      // background-color: green;
 
       .images-heade {
         width: 100%;
@@ -870,7 +1030,7 @@ export default {
 
       h2 {
         width: auto;
-        margin: -7% 2% 0% 0%;
+        margin: -7% 0% 0% 2%;
         font-size: $medium;
       }
     }
@@ -883,7 +1043,7 @@ export default {
     .author {
       width: 80%;
       height: auto;
-      margin: 2% 10% 2% 0%;
+      margin: 2% 10% 2% 5%;
 
       // section title
       h4 {
@@ -920,7 +1080,7 @@ export default {
         h3 {
           width: auto;
           color: $font-light;
-          margin: -7% 5% 0% 0%;
+          margin: -7% 0% 0% 5%;
         }
       }
 
@@ -929,9 +1089,9 @@ export default {
       }
     }
 
-    .footer-darck {
+    .footer-darck-Arabic {
       width: 80%;
-      margin-left: 10%;
+      margin-right: 10%;
     }
 
     // level hard nion
@@ -986,16 +1146,53 @@ export default {
   }
 }
 
-// light home English work page
 .home-work-page-light-Arabic {
-  @extend .home-work-page-darck-Arabic;
+  width: 100%;
+  min-height: 100vh;
   background-color: $body-light;
+  direction: rtl;
 
   // open conatiner style
   .open-cont {
+    width: 50%;
+    height: auto;
+    margin: auto;
+    transition-duration: 0.5s;
+    padding: 7% 0px 5% 0px;
+    opacity: 1;
+    position: relative;
+
+    @media (max-width: $phone) {
+      padding: 15% 0px 5% 0px;
+      width: 100%;
+    }
+
+    // page title style
+    .page-title {
+      width: 80%;
+      height: auto;
+      margin: auto;
+      padding: 5px 0px;
+      color: $font-darck;
+      border: 1px solid;
+      border-color: transparent transparent $border-darck transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      p {
+        font-size: $x-small;
+      }
+    }
+
     // cover conatiner style
     .cover-cont {
+      width: 80%;
+      min-height: 30px;
+      border-radius: 5px;
       margin: 5% 10% 5% 5%;
+      cursor: pointer;
+      padding: 5px;
+      position: relative;
 
       // cover
       .cover {
@@ -1010,95 +1207,140 @@ export default {
         position: absolute;
         top: 15px;
         right: 15px;
-
-        #open {
-          position: absolute;
-          top: 35px;
-          right: 20px;
-        }
-
-        svg {
-          color: $font-darck;
-          background-color: $font-light;
-        }
       }
-    }
-
-    // page title style
-    .page-title {
-      color: $font-darck;
-      border-color: transparent transparent $border-darck transparent;
     }
 
     // title
     .title {
+      width: 80%;
+      height: auto;
+      margin: 5% 10% 0% 5%;
       color: $font-darck;
     }
 
     // description
     .description {
+      width: 80%;
+      height: auto;
+      margin: 5% 10% 5% 10%;
+      // background-color: orangered;
       color: $font-darck;
     }
 
     // copy id component
     .copy-id-light-Arabic {
-      width: auto;
+      width: 80%;
       margin: -2% 10% 0% 10%;
     }
 
     // subject style
     .subject {
+      width: 80%;
+      height: auto;
+      margin: 5% 10%;
       color: $font-darck;
     }
 
     .section-title {
+      width: 80%;
+      margin: 5% 0% 5% 10%;
       color: $font-darck;
+      height: auto;
+      padding: 5px 0px;
+      border: 1px solid;
       border-color: transparent transparent $border-darck transparent;
     }
 
     // images images conatiner
     .images-cont {
+      width: 80%;
+      height: auto;
+      margin: 2% 10% 2% 5%;
+      // background-color: green;
+
       .images-heade {
+        width: 100%;
+        height: 40px;
+        margin: 15px 0px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid;
         border-color: transparent transparent $border-darck transparent;
 
         h4 {
+          width: 60%;
+          height: auto;
+          padding: 5px 0px;
           color: $font-darck;
+          margin: 20px 0px;
         }
 
         p {
+          width: auto;
+          height: auto;
           color: $font-darck;
         }
       }
 
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin: 5px 0%;
+        cursor: pointer;
+      }
+
       .result-message {
+        width: 100%;
+        height: auto;
+        text-align: center;
         color: $font-darck;
       }
-    }
-
-    // card
-    .class-light {
-      background-color: $card-light;
-    }
-
-    .class-light:hover {
-      background-color: $border-light;
     }
 
     // author container style
     .author {
+      width: 80%;
+      height: auto;
+      margin: 2% 10% 2% 5%;
+
       // section title
       h4 {
+        width: 100%;
+        height: auto;
         color: $font-darck;
+        padding: 5px 0px;
+        border: 1px solid;
         border-color: transparent transparent $border-darck transparent;
       }
 
       // link
       a {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        text-decoration: none;
         background-color: $card-light;
+        border-radius: 10px;
+        padding: 5px;
+        margin: 5% 0%;
+        transition-duration: 0.5s;
+
+        // author avatar
+        img {
+          width: 70px;
+          height: 70px;
+          border-radius: 5px;
+        }
 
         // author name
         h3 {
+          width: auto;
           color: $font-darck;
+          margin: -7% 0% 0% 5%;
         }
       }
 
@@ -1110,6 +1352,43 @@ export default {
     .footer-light-Arabic {
       width: 80%;
       margin-right: 10%;
+    }
+
+    // level hard nion
+    .level-hard {
+      width: 5px;
+      height: 80%;
+      background-color: $hard;
+      border-radius: 2px;
+      box-shadow: 0 0 5px $hard;
+      position: fixed;
+      left: 5%;
+      top: 10%;
+      transition-duration: 0.5s;
+      @media (max-width: $phone) {
+        height: 90%;
+        top: 8%;
+      }
+
+      @media (min-width: $tablet) {
+        position: absolute;
+        height: 90%;
+        top: 5%;
+      }
+    }
+
+    // level normal nion
+    .level-normal {
+      @extend .level-hard;
+      background-color: $normal;
+      box-shadow: 0 0 5px $normal;
+    }
+
+    // level easy nion
+    .level-easy {
+      @extend .level-hard;
+      background-color: $easy;
+      box-shadow: 0 0 5px $easy;
     }
   }
 
@@ -1126,6 +1405,5 @@ export default {
     }
   }
 }
-// light home English work page
-// Arabic page
+// darck and light Arabic Style
 </style>

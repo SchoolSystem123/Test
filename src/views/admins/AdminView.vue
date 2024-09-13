@@ -156,11 +156,10 @@ export default {
     CopyMessageComponentVue,
   },
   mounted() {
-    //* to start the loading animation on loaded the page
-    window.addEventListener("load", () => {
+    setTimeout(() => {
       // to start the loading animation
       this.$store.state.loading = "open";
-    });
+    }, 100);
 
     // call to get admin method
     this.GetAdmin();

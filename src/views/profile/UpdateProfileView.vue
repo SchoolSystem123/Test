@@ -85,60 +85,6 @@
         <input type="password" v-model="this.password" />
         <!-- password input  -->
 
-        <!-- gender  -->
-        <label for="gender">
-          {{
-            this.$store.state.language == "English"
-              ? this.$store.state.English.create_admin.gender
-              : this.$store.state.Arabic.create_admin.gender
-          }}</label
-        >
-
-        <select name="" id="gender" v-model="gender">
-          <option value="male">
-            {{
-              this.$store.state.language == "English"
-                ? this.$store.state.English.create_admin.male
-                : this.$store.state.Arabic.create_admin.male
-            }}
-          </option>
-          <option value="female">
-            {{
-              this.$store.state.language == "English"
-                ? this.$store.state.English.create_admin.female
-                : this.$store.state.Arabic.create_admin.female
-            }}
-          </option>
-        </select>
-        <!-- gender  -->
-
-        <!-- admin's Permissions  -->
-        <label for="Permissions">
-          {{
-            this.$store.state.language == "English"
-              ? this.$store.state.English.create_admin.admin_access
-              : this.$store.state.Arabic.create_admin.admin_access
-          }}</label
-        >
-
-        <select name="" id="Permissions" v-model="Permissions">
-          <option value="true">
-            {{
-              this.$store.state.language == "English"
-                ? this.$store.state.English.create_admin.admin
-                : this.$store.state.Arabic.create_admin.admin
-            }}
-          </option>
-          <option value="false">
-            {{
-              this.$store.state.language == "English"
-                ? this.$store.state.English.create_admin.not_admin
-                : this.$store.state.Arabic.create_admin.not_admin
-            }}
-          </option>
-        </select>
-        <!-- admin's Permissions  -->
-
         <!-- phone label  -->
         <label for="phone">
           {{
@@ -192,8 +138,6 @@ export default {
       phone: this.$store.state.user.user.phone_number,
       // password
       password: "",
-      // gender
-      gender: this.$store.state.user.user.gender,
       // api
       api: "",
       // form data
@@ -302,6 +246,8 @@ export default {
         }
       }
 
+      console.log(this.api);
+
       // send the request
       await axios
         .put(this.api, this.formData, { headers })
@@ -335,3 +281,339 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../Sass/varibels/_variables.scss";
+
+// darck and light update profile page
+.up-profil-page-darck-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-darck;
+  direction: ltr;
+
+  .open-cont {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    padding: 10% 0px 10px 0px;
+    transition-duration: 0.5s;
+    opacity: 1;
+
+    @media (max-width: $phone) {
+      width: 100%;
+      height: auto;
+      padding: 20% 0px 10px 0px;
+    }
+
+    // hideen files input
+    #avatar {
+      display: none;
+    }
+
+    // avatar section
+    .avatar-section {
+      width: 90%;
+      height: auto;
+      margin: 5px 5%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+
+      // avatar cont blue
+      .avatar-cont-blue {
+        width: 100px;
+        height: 100px;
+        border-radius: 10px;
+        background: linear-gradient(to top, $first-blue, $second-blue);
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+      }
+
+      // avatar cont orange
+      .avatar-cont-orange {
+        @extend .avatar-cont-blue;
+        background: linear-gradient(to top, $first-orange, $second-orange);
+      }
+
+      // avatar cont green
+      .avatar-cont-green {
+        @extend .avatar-cont-blue;
+        background: linear-gradient(to top, $first-green, $second-green);
+      }
+
+      // avatar cont pink
+      .avatar-cont-pink {
+        @extend .avatar-cont-blue;
+        background: linear-gradient(to top, $first-pink, $second-pink);
+      }
+    }
+
+    // form data section
+    .form {
+      width: 100%;
+      height: auto;
+      margin: 10px 0px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+
+      // label style
+      label {
+        width: 90%;
+        height: auto;
+        padding: 5px 0px;
+        margin: 5px 5%;
+        color: $font-light;
+        border: 1px solid;
+        border-color: transparent transparent $border-light transparent;
+      }
+
+      // input style
+      input,
+      select {
+        width: 90%;
+        height: 40px;
+        padding: 5px 0px;
+        margin: 5px 5%;
+        border: none;
+        outline: none;
+        padding-left: 10px;
+        border-radius: 5px;
+      }
+
+      // textarea style
+      textarea {
+        width: 90%;
+        height: 90px;
+        border-radius: 5px;
+        outline: none;
+        padding: 5px 0px 5px 5px;
+        margin: 5px 5%;
+        resize: none;
+      }
+
+      // blue button
+      .blue {
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin: 10px 0px;
+        border: none;
+        outline: none;
+        color: $font-light;
+        background: linear-gradient(to top, $first-blue, $second-blue);
+        cursor: pointer;
+      }
+
+      // orange button
+      .orange {
+        @extend .blue;
+        background: linear-gradient(to top, $first-orange, $second-orange);
+      }
+
+      // green button
+      .green {
+        @extend .blue;
+        background: linear-gradient(to top, $first-green, $second-green);
+      }
+
+      // pink button
+      .pink {
+        @extend .blue;
+        background: linear-gradient(to top, $first-pink, $second-pink);
+      }
+    }
+  }
+
+  // closed cont style
+  .close-cont {
+    @extend .open-cont;
+    padding: 20% 0px 10px 0px;
+    transition-duration: 0.5s;
+    opacity: 0;
+    @media (max-width: $phone) {
+      padding: 40% 0% 0% 0%;
+    }
+  }
+}
+
+.up-profil-page-light-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-light;
+  direction: ltr;
+
+  .open-cont {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    padding: 10% 0px 10px 0px;
+    transition-duration: 0.5s;
+    opacity: 1;
+
+    @media (max-width: $phone) {
+      width: 100%;
+      height: auto;
+      padding: 20% 0px 10px 0px;
+    }
+
+    // hideen files input
+    #avatar {
+      display: none;
+    }
+
+    // avatar section
+    .avatar-section {
+      width: 90%;
+      height: auto;
+      margin: 5px 5%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+
+      // avatar cont blue
+      .avatar-cont-blue {
+        width: 100px;
+        height: 100px;
+        border-radius: 10px;
+        background: linear-gradient(to top, $first-blue, $second-blue);
+
+        img {
+          width: 90%;
+          height: 90%;
+          margin: 5%;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+      }
+
+      // avatar cont orange
+      .avatar-cont-orange {
+        @extend .avatar-cont-blue;
+        background: linear-gradient(to top, $first-orange, $second-orange);
+      }
+
+      // avatar cont green
+      .avatar-cont-green {
+        @extend .avatar-cont-blue;
+        background: linear-gradient(to top, $first-green, $second-green);
+      }
+
+      // avatar cont pink
+      .avatar-cont-pink {
+        @extend .avatar-cont-blue;
+        background: linear-gradient(to top, $first-pink, $second-pink);
+      }
+    }
+
+    // form data section
+    .form {
+      width: 100%;
+      height: auto;
+      margin: 10px 0px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+
+      // label style
+      label {
+        width: 90%;
+        height: auto;
+        padding: 5px 0px;
+        margin: 5px 5%;
+        color: $font-darck;
+        border: 1px solid;
+        border-color: transparent transparent $border-darck transparent;
+      }
+
+      // input style
+      input,
+      select {
+        width: 90%;
+        height: 40px;
+        padding: 5px 0px;
+        margin: 5px 5%;
+        border: none;
+        outline: none;
+        padding-left: 10px;
+        border-radius: 5px;
+      }
+
+      // textarea style
+      textarea {
+        width: 90%;
+        height: 90px;
+        border-radius: 5px;
+        outline: none;
+        padding: 5px 0px 5px 5px;
+        margin: 5px 5%;
+        resize: none;
+      }
+
+      // blue button
+      .blue {
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin: 10px 0px;
+        border: none;
+        outline: none;
+        color: $font-light;
+        background: linear-gradient(to top, $first-blue, $second-blue);
+        cursor: pointer;
+      }
+
+      // orange button
+      .orange {
+        @extend .blue;
+        background: linear-gradient(to top, $first-orange, $second-orange);
+      }
+
+      // green button
+      .green {
+        @extend .blue;
+        background: linear-gradient(to top, $first-green, $second-green);
+      }
+
+      // pink button
+      .pink {
+        @extend .blue;
+        background: linear-gradient(to top, $first-pink, $second-pink);
+      }
+    }
+  }
+
+  // closed cont style
+  .close-cont {
+    @extend .open-cont;
+    padding: 20% 0px 10px 0px;
+    transition-duration: 0.5s;
+    opacity: 0;
+    @media (max-width: $phone) {
+      padding: 40% 0% 0% 0%;
+    }
+  }
+}
+// darck and light update profile page
+
+// darck and light update profile page
+.up-profil-page-darck-Arabic {
+  @extend .up-profil-page-darck-English;
+  direction: rtl;
+}
+
+.up-profil-page-light-Arabic {
+  @extend .up-profil-page-light-English;
+  direction: rtl;
+}
+// darck and light update profile page
+</style>

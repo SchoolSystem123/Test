@@ -110,7 +110,13 @@
       <!-- class level  -->
 
       <!-- teacher  -->
-      <label for="">
+      <label
+        for=""
+        v-if="
+          this.$store.state.user &&
+          this.$store.state.user.user_type != `teacher`
+        "
+      >
         {{
           this.$store.state.language == "English"
             ? this.$store.state.English.update_class.teachers_section_title
@@ -119,7 +125,13 @@
       >
 
       <!-- choosed teacher container -->
-      <div class="teacher-cont">
+      <div
+        class="teacher-cont"
+        v-if="
+          this.$store.state.user &&
+          this.$store.state.user.user_type != `teacher`
+        "
+      >
         <icon icon="plus" @click="this.$store.commit(`ChooseTeacher`)" />
         <div class="teacher" v-if="this.$store.state.choosed_teacher">
           <!-- avatar  -->
