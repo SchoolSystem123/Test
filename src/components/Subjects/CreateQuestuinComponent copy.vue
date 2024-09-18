@@ -682,7 +682,7 @@ export default {
 
     .repated-cont {
       width: 100%;
-      height: 100px;
+      height: auto;
       border-radius: 5px;
       background-color: $card-darck;
       overflow-y: scroll;
@@ -957,7 +957,7 @@ export default {
 
     .repated-cont {
       width: 100%;
-      height: 100px;
+      height: auto;
       border-radius: 5px;
       background-color: $card-light;
       overflow-y: scroll;
@@ -1234,7 +1234,7 @@ export default {
 
     .repated-cont {
       width: 100%;
-      height: 100px;
+      height: auto;
       border-radius: 5px;
       background-color: $card-darck;
       overflow-y: scroll;
@@ -1509,7 +1509,7 @@ export default {
 
     .repated-cont {
       width: 100%;
-      height: 100px;
+      height: auto;
       border-radius: 5px;
       background-color: $card-light;
       overflow-y: scroll;

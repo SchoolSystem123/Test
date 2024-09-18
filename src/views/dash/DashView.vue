@@ -128,6 +128,10 @@
         <li @click="ChangeComponent('create-question')">
           Create Question ⁉️➕
         </li>
+
+        <li @click="ChangeComponent('english-questions')">
+          English Question ⭕📌🏫
+        </li>
       </ul>
     </div>
 
@@ -383,6 +387,16 @@
         "
       />
       <!-- update question component -->
+
+      <!-- verify delete question component -->
+      <VerifyDeleteQuestionComponent />
+      <!-- verify delete question component -->
+
+      <!-- English questions component -->
+      <EnglishQuestionsComponent
+        v-if="this.$store.state.active_component_in_dash == 'english-questions'"
+      />
+      <!-- English questions component -->
     </div>
   </div>
 </template>
@@ -439,7 +453,8 @@ import MathQuestionsComponent from "@/components/dash/Subjects/Math/MathQuestion
 import CreateQuestuinComponent from "@/components/Subjects/CreateQuestuinComponent copy.vue";
 import AddOptionComponnet from "@/components/global/forms/dash/Subject/AddOptionComponnet.vue";
 import UpdateQuestuinComponent from "@/components/Subjects/UpdateQuestuinComponent.vue";
-
+import VerifyDeleteQuestionComponent from "@/components/global/forms/dash/Subject/VerifyDeleteQuestionComponent.vue";
+import EnglishQuestionsComponent from "@/components/dash/Subjects/English/EnglishQuestionsComponent.vue";
 export default {
   data() {
     return {
@@ -512,6 +527,8 @@ export default {
     CreateQuestuinComponent,
     AddOptionComponnet,
     UpdateQuestuinComponent,
+    VerifyDeleteQuestionComponent,
+    EnglishQuestionsComponent,
   },
   methods: {
     // change the component
@@ -619,13 +636,16 @@ export default {
 
   .section-open {
     width: 80%;
-    height: 98vh;
+    height: 100vh;
     transition-duration: 0.5s;
+    overflow: hidden;
   }
 
   .section-close {
     width: 100%;
-    height: 98vh;
+    height: 100vh;
+
+    overflow: hidden;
     transition-duration: 0.5s;
   }
 }
@@ -714,12 +734,14 @@ export default {
   .section-open {
     width: 80%;
     height: 98vh;
+    overflow: hidden;
     transition-duration: 0.5s;
   }
 
   .section-close {
     width: 100%;
     height: 98vh;
+    overflow: hidden;
     transition-duration: 0.5s;
   }
 }

@@ -307,8 +307,7 @@ export default {
     setTimeout(() => {
       this.status = "open";
     }, 500);
-    console.log(this.$store.state.question_data_for_update);
-    console.log(this.$store.state.question_data_for_update.class_level);
+    console.log(this.$store.state.question_subject_type_for_update);
     //  call to the handleFileChange method on select any image
     this.$refs.images.addEventListener("change", this.handleFileChange);
   },
@@ -484,58 +483,57 @@ export default {
 
       await axios
         .put(this.api, this.formData, { headers })
-        .then((response) => {
-          console.log(response);
+        .then(() => {
           // to stop the loading
           this.$store.state.loading = "close";
 
           // update the active component in store
           if (this.$store.state.question_subject_type_for_update == "Math") {
-            this.$store.state.active_component_in_dash = "math-question";
+            this.$store.state.active_component_in_dash = "math-questions";
           } else if (
             this.$store.state.question_subject_type_for_update == "English"
           ) {
-            this.$store.state.active_component_in_dash = "english-question";
+            this.$store.state.active_component_in_dash = "english-questions";
           } else if (
             this.$store.state.question_subject_type_for_update == "Arabic"
           ) {
-            this.$store.state.active_component_in_dash = "arabic-question";
+            this.$store.state.active_component_in_dash = "arabic-questions";
           } else if (
             this.$store.state.question_subject_type_for_update == "French"
           ) {
-            this.$store.state.active_component_in_dash = "french-question";
+            this.$store.state.active_component_in_dash = "french-questions";
           } else if (
             this.$store.state.question_subject_type_for_update == "Islam"
           ) {
-            this.$store.state.active_component_in_dash = "islam-question";
+            this.$store.state.active_component_in_dash = "islam-questions";
           } else if (
             this.$store.state.question_subject_type_for_update == "History"
           ) {
-            this.$store.state.active_component_in_dash = "history-question";
+            this.$store.state.active_component_in_dash = "history-questions";
           } else if (
             this.$store.state.question_subject_type_for_update == "Philosophy"
           ) {
-            this.$store.state.active_component_in_dash = "philosophy-question";
+            this.$store.state.active_component_in_dash = "philosophy-questions";
           } else if (
             this.$store.state.question_subject_type_for_update == "Physics"
           ) {
-            this.$store.state.active_component_in_dash = "physics-question";
+            this.$store.state.active_component_in_dash = "physics-questions";
           } else if (
             this.$store.state.question_subject_type_for_update == "Sciences"
           ) {
-            this.$store.state.active_component_in_dash = "sciences-question";
+            this.$store.state.active_component_in_dash = "sciences-questions";
           } else if (
             this.$store.state.question_subject_type_for_update == "Geography"
           ) {
-            this.$store.state.active_component_in_dash = "geography-question";
+            this.$store.state.active_component_in_dash = "geography-questions";
           } else if (
             this.$store.state.question_subject_type_for_update == "Chemistry"
           ) {
-            this.$store.state.active_component_in_dash = "chemistry-question";
+            this.$store.state.active_component_in_dash = "chemistry-questions";
           } else if (
             this.$store.state.question_subject_type_for_update == "Alwatania"
           ) {
-            this.$store.state.active_component_in_dash = "alwatania-question";
+            this.$store.state.active_component_in_dash = "alwatania-questions";
           }
 
           // emptying the data

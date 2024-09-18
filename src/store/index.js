@@ -23,6 +23,7 @@ export default createStore({
     delete_admin_form_status: "close",
     delete_teacher_form_status: "close",
     delete_student_form_status: "close",
+    delete_question_form_status: "close",
     delete_parent_form_status: "close",
     remove_plan_form_dash_status : "close",
     remove_food_form_dash_status : "close",
@@ -76,6 +77,8 @@ export default createStore({
     question_images_for_delete : [],
     question_data_for_update : "",
     question_subject_type_for_update : "",
+    question_subject_type_for_delete : "",
+    question_id_for_delete : "",
     question_options : [],
     class_id_for_create_home_work : "",
     sid_bar_dash : "close",
@@ -951,6 +954,11 @@ export default createStore({
         created_by: "Created By",
         result_message: "📍⛔😕 No Images 😕⛔📍",
       },
+      delete_question_form: {
+        title: "Delete Question ❓ ...",
+        delete: "Delete 🗑️",
+        cancel: "Cancel",
+      },
       theme: "Theme",
       mood: "Mood",
       log_out: "Log out",
@@ -1746,6 +1754,11 @@ export default createStore({
         created_by: "كُتب بواسطة",
         result_message: "📍⛔😕 لا يوجد صور 😕⛔📍",
       },
+      delete_question_form: {
+        title: "حذف السؤال ❓ ...",
+        delete: "حذف السؤال 🗑️",
+        cancel: "إلغاء",
+      },
       theme: "السمات",
       mood: "الوضع",
       log_out: "تسجيل الخروج",
@@ -2254,6 +2267,12 @@ export default createStore({
     OpenOrCloseDeleteStudentForm(state) {
       state.delete_student_form_status = 
       state.delete_student_form_status == "close" ? "open" : "close"
+    },
+
+    // open or close the delete student form verify
+    OpenOrCloseDeleteQuestionForm(state) {
+      state.delete_question_form_status = 
+      state.delete_question_form_status == "close" ? "open" : "close"
     },
 
     // open or close the delete parent form verify

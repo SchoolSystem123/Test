@@ -94,10 +94,7 @@ export default {
   methods: {
     // add the option method
     AddOption() {
-      if (
-        (this.option_title != "" && this.option_value) ||
-        !this.option_value
-      ) {
+      if (this.option_title != "") {
         this.$store.state.question_options.push({
           value: this.option_title,
           answer: this.option_value,
@@ -128,6 +125,12 @@ export default {
   transition-duration: 0.5s;
   z-index: 50;
   direction: ltr;
+
+  @media (max-width: $phone) {
+    width: 90%;
+    height: 38%;
+    left: 5%;
+  }
 
   .header {
     width: 100%;
@@ -214,6 +217,12 @@ export default {
   transition-duration: 0.5s;
   z-index: 50;
   direction: ltr;
+
+  @media (max-width: $phone) {
+    width: 90%;
+    height: 38%;
+    left: 5%;
+  }
 
   .header {
     width: 100%;
@@ -303,6 +312,12 @@ export default {
   z-index: 50;
   direction: rtl;
 
+  @media (max-width: $phone) {
+    width: 90%;
+    height: 38%;
+    left: 5%;
+  }
+
   .header {
     width: 100%;
     height: 50px;
@@ -388,6 +403,12 @@ export default {
   transition-duration: 0.5s;
   z-index: 50;
   direction: rtl;
+
+  @media (max-width: $phone) {
+    width: 90%;
+    height: 38%;
+    left: 5%;
+  }
 
   .header {
     width: 100%;

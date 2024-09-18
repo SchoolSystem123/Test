@@ -95,7 +95,7 @@
       <!-- update -->
 
       <!-- delete -->
-      <button class="delete">
+      <button class="delete" @click="DeleteQuestion">
         {{
           this.$store.state.language == "English"
             ? this.$store.state.English.question_component.delete
@@ -137,6 +137,18 @@ export default {
 
       // open the update question component
       this.$store.state.active_component_in_dash = "update-question-component";
+    },
+
+    // delete Question method
+    DeleteQuestion() {
+      // set the question id to question_id_for_delete instore
+      this.$store.state.question_id_for_delete = this.question_data._id;
+
+      // set the question type to question_subject_type_for_delete in store to select the api
+      this.$store.state.question_subject_type_for_delete = "Math";
+
+      // open the delete question form
+      this.$store.commit("OpenOrCloseDeleteQuestionForm");
     },
   },
 };
