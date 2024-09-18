@@ -337,7 +337,7 @@ export default {
   // form section style
   .form {
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -494,7 +494,7 @@ export default {
   // form section style
   .form {
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -653,7 +653,7 @@ export default {
   // form section style
   .form {
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -810,7 +810,7 @@ export default {
   // form section style
   .form {
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

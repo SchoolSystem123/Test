@@ -77,6 +77,10 @@ import FoodView from "../views/Foods/FoodView.vue";
 import DashView from "../views/dash/DashView.vue";
 // dash bord
 
+// question view
+import QuestionsView from "@/views/Subjects/QuestionsView.vue";
+// question view
+
 const routes = [
   {
     path: "/",
@@ -283,6 +287,12 @@ const routes = [
     name: "DashBord",
     component: DashView,
   },
+  // question page
+  {
+    path : "/qu/:type/:id",
+    name :"QuestionPage",
+    component : QuestionsView
+  }
 ];
 
 const router = createRouter({

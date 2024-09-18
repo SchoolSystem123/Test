@@ -307,7 +307,7 @@ export default {
     border-radius: 5px;
     background-color: $card-darck;
     overflow-y: scroll;
-    margin: 10px 0px;
+    margin: 5px 0px;
 
     .head {
       width: 98%;
@@ -368,7 +368,7 @@ export default {
   // form section style
   .form {
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -380,7 +380,7 @@ export default {
       border: 1px solid;
       border-color: transparent transparent $border-light transparent;
       color: $font-light;
-      margin: 10px 0px;
+      margin: 5px 0px;
     }
 
     input {
@@ -390,7 +390,7 @@ export default {
       outline: none;
       border: none;
       border-radius: 5px;
-      margin: 10px 0px;
+      margin: 5px 0px;
       background-color: $body-light;
     }
 
@@ -419,7 +419,7 @@ export default {
       border-radius: 5px;
       border: none;
       outline: none;
-      margin: 10px 0px;
+      margin: 5px 0px;
       background-color: $green;
       color: $font-light;
       cursor: pointer;
@@ -464,7 +464,7 @@ export default {
     border-radius: 5px;
     background-color: $card-light;
     overflow-y: scroll;
-    margin: 10px 0px;
+    margin: 5px 0px;
 
     .head {
       width: 98%;
@@ -525,7 +525,7 @@ export default {
   // form section style
   .form {
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -537,7 +537,7 @@ export default {
       border: 1px solid;
       border-color: transparent transparent $border-darck transparent;
       color: $font-darck;
-      margin: 10px 0px;
+      margin: 5px 0px;
     }
 
     input {
@@ -547,7 +547,7 @@ export default {
       outline: none;
       border: none;
       border-radius: 5px;
-      margin: 10px 0px;
+      margin: 5px 0px;
       background-color: $body-darck;
     }
 
@@ -576,7 +576,7 @@ export default {
       border-radius: 5px;
       border: none;
       outline: none;
-      margin: 10px 0px;
+      margin: 5px 0px;
       background-color: $green;
       color: $font-darck;
       cursor: pointer;
@@ -623,7 +623,7 @@ export default {
     border-radius: 5px;
     background-color: $card-darck;
     overflow-y: scroll;
-    margin: 10px 0px;
+    margin: 5px 0px;
 
     .head {
       width: 98%;
@@ -684,7 +684,7 @@ export default {
   // form section style
   .form {
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -696,7 +696,7 @@ export default {
       border: 1px solid;
       border-color: transparent transparent $border-light transparent;
       color: $font-light;
-      margin: 10px 0px;
+      margin: 5px 0px;
     }
 
     input {
@@ -706,7 +706,7 @@ export default {
       outline: none;
       border: none;
       border-radius: 5px;
-      margin: 10px 0px;
+      margin: 5px 0px;
       background-color: $body-light;
     }
 
@@ -735,7 +735,7 @@ export default {
       border-radius: 5px;
       border: none;
       outline: none;
-      margin: 10px 0px;
+      margin: 5px 0px;
       background-color: $green;
       color: $font-light;
       cursor: pointer;
@@ -780,7 +780,7 @@ export default {
     border-radius: 5px;
     background-color: $card-light;
     overflow-y: scroll;
-    margin: 10px 0px;
+    margin: 5px 0px;
 
     .head {
       width: 98%;
@@ -841,7 +841,7 @@ export default {
   // form section style
   .form {
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -853,7 +853,7 @@ export default {
       border: 1px solid;
       border-color: transparent transparent $border-darck transparent;
       color: $font-darck;
-      margin: 10px 0px;
+      margin: 5px 0px;
     }
 
     input {
@@ -863,7 +863,7 @@ export default {
       outline: none;
       border: none;
       border-radius: 5px;
-      margin: 10px 0px;
+      margin: 5px 0px;
       background-color: $body-darck;
     }
 
@@ -892,7 +892,7 @@ export default {
       border-radius: 5px;
       border: none;
       outline: none;
-      margin: 10px 0px;
+      margin: 5px 0px;
       background-color: $green;
       color: $font-darck;
       cursor: pointer;

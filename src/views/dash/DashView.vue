@@ -120,6 +120,14 @@
         >
           My Classes ⭕📌🏫
         </li>
+
+        <li @click="ChangeComponent('math-questions')">
+          Math Questions ⭕📌🏫
+        </li>
+
+        <li @click="ChangeComponent('create-question')">
+          Create Question ⁉️➕
+        </li>
       </ul>
     </div>
 
@@ -350,6 +358,31 @@
         v-if="this.$store.state.active_component_in_dash == 'my-classes'"
       />
       <!-- my classes component -->
+
+      <!-- Math Questiosn component -->
+      <MathQuestionsComponent
+        v-if="this.$store.state.active_component_in_dash == `math-questions`"
+      />
+      <!-- Math Questiosn component -->
+
+      <!-- Create Questiosn component -->
+      <CreateQuestuinComponent
+        v-if="this.$store.state.active_component_in_dash == 'create-question'"
+      />
+      <!-- Create Questiosn component -->
+
+      <!-- Add option component -->
+      <AddOptionComponnet />
+      <!-- Add option component -->
+
+      <!-- update question component -->
+      <UpdateQuestuinComponent
+        v-if="
+          this.$store.state.active_component_in_dash ==
+          `update-question-component`
+        "
+      />
+      <!-- update question component -->
     </div>
   </div>
 </template>
@@ -402,6 +435,10 @@ import VerifyDeleteFoodComponent from "@/components/global/forms/dash/food/Verif
 import UpdateFoodComponent from "@/components/dash/Foods/UpdateFoodComponent.vue";
 import CreateFoodComponent from "@/components/dash/Foods/CreateFoodComponent.vue";
 import TeacherCLassesView from "@/components/dash/Teachers/TeacherCLassesView.vue";
+import MathQuestionsComponent from "@/components/dash/Subjects/Math/MathQuestionsComponent.vue";
+import CreateQuestuinComponent from "@/components/Subjects/CreateQuestuinComponent copy.vue";
+import AddOptionComponnet from "@/components/global/forms/dash/Subject/AddOptionComponnet.vue";
+import UpdateQuestuinComponent from "@/components/Subjects/UpdateQuestuinComponent.vue";
 
 export default {
   data() {
@@ -471,6 +508,10 @@ export default {
     UpdateFoodComponent,
     CreateFoodComponent,
     TeacherCLassesView,
+    MathQuestionsComponent,
+    CreateQuestuinComponent,
+    AddOptionComponnet,
+    UpdateQuestuinComponent,
   },
   methods: {
     // change the component

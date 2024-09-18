@@ -41,6 +41,8 @@ export default {
       status: "close",
       // classes count
       classes_count: 0,
+      // scroll_page
+      scroll_page: 0,
     };
   },
   mounted() {
@@ -194,7 +196,7 @@ export default {
     height: auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
   }
 }
