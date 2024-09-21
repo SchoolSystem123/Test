@@ -183,9 +183,11 @@ export default {
     color: $font-light;
 
     .count {
-      width: 10%;
+      width: auto;
       height: 100%;
+      font-size: $x-small;
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       align-items: center;
     }
@@ -237,9 +239,11 @@ export default {
     color: $font-darck;
 
     .count {
-      width: 10%;
+      width: auto;
       height: 100%;
+      font-size: $x-small;
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       align-items: center;
     }

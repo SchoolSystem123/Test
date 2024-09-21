@@ -147,13 +147,14 @@ export default {
 
     // handleScroll
     handleScroll() {
+      // update the scroll page
+      this.scroll_page = window.scrollY;
+
       // check if the window height is donw
       if (
         window.scrollY + window.innerHeight >=
         document.body.scrollHeight - 600
       ) {
-        this.scroll_page = window.scrollY;
-
         // to change page
         this.page += 1;
 

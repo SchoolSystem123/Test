@@ -119,6 +119,7 @@ export default {
   align-items: center;
   transition-duration: 0.5s;
   z-index: 50;
+  box-shadow: 0 0 10px $black;
 
   @media (max-width: $phone) {
     height: 20%;
@@ -180,6 +181,7 @@ export default {
   align-items: center;
   transition-duration: 0.5s;
   z-index: 50;
+  box-shadow: 0 0 10px $black;
 
   @media (max-width: $phone) {
     height: 20%;
@@ -243,6 +245,7 @@ export default {
   align-items: center;
   transition-duration: 0.5s;
   z-index: 50;
+  box-shadow: 0 0 10px $black;
 
   @media (max-width: $phone) {
     height: 20%;
@@ -304,6 +307,7 @@ export default {
   align-items: center;
   transition-duration: 0.5s;
   z-index: 50;
+  box-shadow: 0 0 10px $black;
 
   @media (max-width: $phone) {
     height: 20%;

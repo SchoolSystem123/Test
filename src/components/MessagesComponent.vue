@@ -131,7 +131,8 @@ export default {
     top: 5px;
     z-index: 50;
 
-    #open {
+    #open,
+    #close {
       position: absolute;
       right: 100%;
     }
@@ -224,7 +225,8 @@ export default {
       background-color: $font-light;
     }
 
-    #open {
+    #open,
+    #close {
       color: $font-darck;
     }
   }
@@ -256,11 +258,11 @@ export default {
   direction: rtl;
 
   // note compoenent
-  #note-English-cont {
+  #note-Arabic-cont {
     direction: rtl;
     position: absolute;
-    right: 92%;
-    top: 5px;
+    left: 10px;
+    top: 10px;
     z-index: 50;
 
     @media (max-width: $phone) {
@@ -279,11 +281,11 @@ export default {
   direction: rtl;
 
   // note compoenent
-  #note-English-cont {
+  #note-Arabic-cont {
     direction: rtl;
     position: absolute;
-    right: 92%;
-    top: 5px;
+    left: 10px;
+    top: 10px;
     z-index: 50;
 
     @media (max-width: $phone) {
@@ -294,7 +296,9 @@ export default {
       color: $font-darck;
       background-color: $font-light;
     }
+
     #open {
+      color: $font-darck;
       position: absolute;
       right: -400%;
     }

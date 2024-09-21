@@ -141,6 +141,9 @@ export default {
 
     // scroll method
     async handleScroll() {
+      // update the scroll page
+      this.scroll_page = window.scrollY;
+
       // check if the window height is donw
       if (
         window.scrollY + window.innerHeight >=
@@ -152,8 +155,6 @@ export default {
         // call the get foods method to get more foods
         await this.GetFoods();
       }
-
-      this.scroll_page = window.scrollY;
     },
   },
 };

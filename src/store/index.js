@@ -57,7 +57,7 @@ export default createStore({
     home_work_for_update : "",
     plan_data_for_update : "",
     food_data_for_update : "",
-    active_component_in_dash: "create-question",
+    active_component_in_dash: "admins",
     choose_children_status : "close",
     choose_teacher_status : "close",
     choose_class_status : "close",
@@ -88,10 +88,22 @@ export default createStore({
     loading: "close",
     rate_status : true,
     copy_message: { english: "Id Copyed", arabic: "تم نسخ المعرف" },
-    questions : [],
+    math_questions : [],
+    english_questions : [],
+    arabic_questions : [],
+    french_questions : [],
+    islam_questions : [],
+    history_questions : [],
+    philosophy_questions : [],
+    physics_questions : [],
+    sciences_questions : [],
+    geography_questions : [],
+    chemistry_questions : [],
+    alwatania_questions : [],
     classes: [],
     class: "",
     students: [],
+    top_students: [],
     student: "",
     teachers: [],
     teacher: "",
@@ -115,6 +127,7 @@ export default createStore({
       { path: "/classes", English_title: "Classes 🏛️", Arabic_title: "الصفوف 🏛️",access: ["super" , "admin" , "teacher" , "student" , "parent"] },
       { path: "/my/classes", English_title: "My Classes 🏫⭕📌", Arabic_title: "صفوفي",access: ["teacher" , "student"] },
       { path: "/students", English_title: "Students 👨‍🎓", Arabic_title: "الطلاب 👨‍🎓",access: ["super" , "admin" , "teacher" , "student" , "parent"] },
+      { path: "/top/students", English_title: "Top Students 👨‍🎓📌", Arabic_title: "الطلاب الأوائل 👨‍🎓📌",access: ["super" , "admin" , "teacher" , "student" , "parent"] },
       { path: "/teachers", English_title: "Teachers 👨‍🏫", Arabic_title: "المدرسون 👨‍🏫",access: ["super" , "admin" , "teacher" , "student" , "parent"] },
       { path: "/admins", English_title: "Admins 🦸‍♂️", Arabic_title: "المدراء 🦸‍♂️",access: ["super" , "admin" , "teacher" , "student" , "parent"] },
       { path: "/parents", English_title: "Parents 👨‍👩‍👦‍👦", Arabic_title: "أولياء الأمور 👨‍👩‍👦‍👦",access: ["super" , "admin" , "teacher" , "parent"] },
@@ -124,6 +137,39 @@ export default createStore({
       { path: "/foods", English_title: "Food Guide 🍝", Arabic_title: "دليل الطعام 🍝", access: ["super" , "admin" , "teacher" , "parent"] },
       { path: "/about", English_title: "About us 💁‍♂️ℹ️", Arabic_title: "معلومات عنا 💁‍♂️ℹ️", access: ["super" , "admin" , "teacher" , "student" , "parent"] },
       { path: "/install", English_title: "Install app 🔻", Arabic_title: "تنزيل التطبيق 🔻", access: ["super" , "admin" , "teacher" , "student" , "parent"] }
+    ],
+    home_router_dash_sid_bar : 
+    { English : "Home 🏠" , Arabic : "🏠 الصفحة الرئيسية" , path : "/" , access : ["super" , "admin" , "teacher"]},
+    dash_sid_bar_list : [
+      { English : "Admins 🦸‍♂️" , Arabic : "المدراء 🦸‍♂️" , component : "admins" , access : ["super" , "admin"]},
+      { English : "Teacher 👨‍🏫" , Arabic : "👨‍🏫 المدرسين" , component : "teachers" , access : ["super" , "admin"]},
+      { English : "Students 👨‍🎓" , Arabic : "👨‍🎓 الطلاب" , component : "students", access : ["super" , "admin"]},
+      { English : "Parents 👨‍👩‍👦‍👦" , Arabic : "👨‍👩‍👦‍👦  أولياء الأمور", component : "parents" , access : ["super" , "admin"]},
+      { English : "Classes 🏫" , Arabic : "🏫 الصفوف" , component : "classes", access : ["super" , "admin" , "teacher"]},
+      { English : "Home Works 🏚️💯🔝" , Arabic : "🏚️💯🔝 الوظائف" , component : "home-works" , access : ["super" , "admin" , "teacher"]},
+      { English : "Messages 💬" , Arabic : "🏫 الرسائل" , component : "messages" , access : ["super" , "admin"]},
+      { English : "Plans 📌📚" , Arabic : "📌📚 الخطط" , component : "plans" , access : ["super" , "admin"]},
+      { English : "My Classes ⭕📌🏫" , Arabic : "⭕📌🏫 صفوفي " , component : "my-classes" , access : ["teacher"]},
+      { English : "Create Admin 🦸‍♂️➕" , Arabic : "🦸‍♂️➕ إنشاء مدير " , component : "create-admin" , access : ["super" , "admin"]},
+      { English : "Create Parent 👨‍👩‍👦‍👦➕" , Arabic : "👨‍👩‍👦‍👦 ➕ إنشاء ولي أمر" , component : "create-parent" , access : ["super" , "admin"]},
+      { English : "Create Class 🏫➕" , Arabic : "🏫➕ إنشاء صف" , component : "create-class" , access : ["super" , "admin"]},
+      { English : "Create Message 💬➕" , Arabic : "💬➕ إنشاء رسالة" , component : "create-message" , access : ["super" , "admin"]},
+      { English : "Create Home Work 🏚️💯🔝➕" , Arabic : "🏚️💯🔝➕ إنشاء وظيفة" , component : "create-home-work" , access : ["super" , "admin" , "teacher"]},
+      { English : "Create Plan 📌📚➕" , Arabic : "📌📚➕ إنشاء خطة" , component : "create-plan" , access : ["super" , "admin"]},
+      { English : "Create Food 😋🍴➕" , Arabic : "😋🍴➕ إنشاء توصية طعام" , component : "create-food" , access : ["super" , "admin"]},
+      { English : "Create Question 📌⭕➕" , Arabic : "📌⭕➕ إنشاء سؤال" , component : "create-question" , access : ["super" , "admin" , "teacher"]},
+      { English : "Math Bank ⭕📌🧮" , Arabic : "⭕📌🧮 بنك الرياضيات" , component : "math-questions" , access : ["super" , "admin" , "teacher"]},
+      { English : "Arabic Bank ⭕📌🇸🇾" , Arabic : "⭕📌🇸🇾 بنك العربي" , component : "arabic-questions" , access : ["super" , "admin" , "teacher"]},
+      { English : "English Bank ⭕📌🇺🇸" , Arabic : "⭕📌🇺🇸 بنك الإنكليزي" , component : "english-questions" , access : ["super" , "admin" , "teacher"]},
+      { English : "French Bank ⭕📌🇫🇷" , Arabic : "⭕📌🇫🇷 بنك الفرنسي" , component : "french-questions" , access : ["super" , "admin" , "teacher"]},
+      { English : "Physics Bank ⭕📌⚛️" , Arabic : "⭕📌⚛️ بنك الفيزياء" , component : "physics-questions" , access : ["super" , "admin" , "teacher"]},
+      { English : "Philosophy Bank ⭕📌👴🏻" , Arabic : " ⭕📌👴🏻بنك الفلسفة" , component : "philosophy-questions" , access : ["super" , "admin" , "teacher"]},
+      { English : "Sciences Bank ⭕📌🦠" , Arabic : "⭕📌🦠 بنك العلوم" , component : "sciences-questions" , access : ["super" , "admin" , "teacher"]},
+      { English : "Islam Bank ⭕📌👳🕋" , Arabic : "⭕📌👳🕋 بنك الديانة" , component : "islam-questions" , access : ["super" , "admin" , "teacher"]},
+      { English : "History Bank ⭕📌⏳" , Arabic : "⭕📌⏳ بنك التاريخ" , component : "history-questions" , access : ["super" , "admin" , "teacher"]},
+      { English : "Chemistry Bank ⭕📌🧪" , Arabic : "⭕📌🧪 بنك الكيمياء" , component : "chemistry-questions" , access : ["super" , "admin" , "teacher"]},
+      { English : "Geography Bank ⭕📌🌎" , Arabic : "⭕📌🌎 بنك الجغرافيا" , component : "geography-questions" , access : ["super" , "admin" , "teacher"]},
+      { English : "Alwatania Bank ⭕📌🪖" , Arabic : "⭕📌🪖 بنك الوطنية" , component : "alwatania-questions" , access : ["super" , "admin" , "teacher"]},
     ],
     subjects_list: [
       { English: "Math", Arabic: "رياضيات" },
@@ -294,6 +340,13 @@ export default createStore({
         page_title: "Students page 👨‍🎓",
         search_admin_name: "Search By name 💬👇",
         results_message: "Results 👨‍🎓👇",
+      },
+      top_students_page: {
+        label: "Choose Class Level here 🎯",
+        page_title: "Top Students page 👑 👨‍🎓",
+        results_message: "Results 👨‍🎓👇",
+        default : "📍⛔😕 No Any Student 😕⛔📍",
+        button : "Get Student"
       },
       plans_page: {
         placeholder: "Type the plan title here ✍️",
@@ -868,18 +921,18 @@ export default createStore({
         plans: "Student's Plans ⭕📌📚",
       },
       questions : {
-        math : "Math",
-        arabic : "Arabic",
-        english : "English",
-        french : "French",
-        islam : "Islam",
-        alwatania : "Alwatania",
-        history : "History",
-        philosophy : "Philosophy",
-        Physics : "Physics",
-        sciences : "Sciences",
-        geography : "Geography",
-        chemistry : "Chemistry",
+        math : "Math 🧮",
+        arabic : "Arabic 🇸🇾",
+        english : "English 🇺🇸",
+        french : "French 🇫🇷",
+        islam : "Islam 👳🕋",
+        alwatania : "Alwatania 🪖",
+        history : "History ⏳",
+        philosophy : "Philosophy 👴🏻",
+        Physics : "Physics ⚛️",
+        sciences : "Sciences 🦠",
+        geography : "Geography 🌎",
+        chemistry : "Chemistry 🧪",
       },
       question_component : {
         points : "Points 🔢 :",
@@ -1093,6 +1146,13 @@ export default createStore({
         page_title: "صفحة الطلاب 👨‍🎓",
         search_admin_name: "البحث عن طريق الاسم 💬👇",
         results_message: "النتائج 👨‍🎓👇",
+      },
+      top_students_page: {
+        label: "اختر مستوى الصف هنا 🎯",
+        page_title: "صفحة الطلاب الأوائل 👑 👨‍🎓",
+        results_message: "النتائج 👨‍🎓👇",
+        default : "📍⛔😕 لا يوجد أي طالب 😕⛔📍",
+        button : "جلب الطلاب"
       },
       admin_component: {
         admin: "مدير 🦸‍♂️",
@@ -1668,18 +1728,18 @@ export default createStore({
         plans: "خطط الطالب ⭕📌📚",
       },
       questions : {
-        math : "رياضيات",
-        arabic : "عربي",
-        english : "إنكليزي",
-        french : "فرنسي",
-        islam : "ديانة",
-        alwatania : "وطنية",
-        history : "تاريخ",
-        philosophy : "فلسفة",
-        Physics : "فيزياء",
-        sciences : "علوم",
-        geography : "جغرافيا",
-        chemistry : "كيمياء",
+        math : "🧮 رياضيات",
+        arabic : "🇸🇾 عربي",
+        english : "🇺🇸 إنكليزي",
+        french : "🇫🇷 فرنسي",
+        islam : "👳🕋 ديانة",
+        alwatania : "🪖 وطنية",
+        history : "⏳ تاريخ",
+        philosophy : "👴🏻 فلسفة",
+        Physics : "⚛️ فيزياء",
+        sciences : "🦠 علوم",
+        geography : "🌎 جغرافيا",
+        chemistry : "🧪 كيمياء",
       },
       question_component : {
         points : "النقاط 🔢 :",
@@ -1836,6 +1896,7 @@ export default createStore({
         },
       },
       students: {
+        get_top: "https://rrr-zb8x.onrender.com/api/v1/student/get/top",
         get_all: "https://rrr-zb8x.onrender.com/api/v1/student/get/all",
         get_one: "https://rrr-zb8x.onrender.com/api/v1/student/get/one",
         get_count: "https://rrr-zb8x.onrender.com/api/v1/student/get/count",
@@ -1946,6 +2007,7 @@ export default createStore({
         math : {
           get_all : "https://rrr-zb8x.onrender.com/api/v1/math/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/math/get/one",
+          get_count : "https://rrr-zb8x.onrender.com/api/v1/math/get/count",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/math/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/math/delete",
@@ -1965,6 +2027,7 @@ export default createStore({
         english : {
           get_all : "https://rrr-zb8x.onrender.com/api/v1/english/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/english/get/one",
+          get_count : "https://rrr-zb8x.onrender.com/api/v1/english/get/count",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/english/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/english/delete",
@@ -1984,6 +2047,7 @@ export default createStore({
         arabic : {
           get_all : "https://rrr-zb8x.onrender.com/api/v1/arabic/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/arabic/get/one",
+          get_count : "https://rrr-zb8x.onrender.com/api/v1/arabic/get/count",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/arabic/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/arabic/delete",
@@ -2003,6 +2067,7 @@ export default createStore({
         french : {
           get_all : "https://rrr-zb8x.onrender.com/api/v1/french/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/french/get/one",
+          get_count : "https://rrr-zb8x.onrender.com/api/v1/french/get/count",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/french/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/french/delete",
@@ -2022,6 +2087,7 @@ export default createStore({
         islam : {
           get_all : "https://rrr-zb8x.onrender.com/api/v1/islam/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/islam/get/one",
+          get_count : "https://rrr-zb8x.onrender.com/api/v1/islam/get/count",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/islam/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/islam/delete",
@@ -2041,6 +2107,7 @@ export default createStore({
         history : {
           get_all : "https://rrr-zb8x.onrender.com/api/v1/history/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/history/get/one",
+          get_count : "https://rrr-zb8x.onrender.com/api/v1/history/get/count",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/history/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/history/delete",
@@ -2060,6 +2127,7 @@ export default createStore({
         philosophy : {
           get_all : "https://rrr-zb8x.onrender.com/api/v1/philosophy/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/philosophy/get/one",
+          get_count : "https://rrr-zb8x.onrender.com/api/v1/philosophy/get/count",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/philosophy/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/philosophy/delete",
@@ -2079,6 +2147,7 @@ export default createStore({
         physics : {
           get_all : "https://rrr-zb8x.onrender.com/api/v1/physics/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/physics/get/one",
+          get_count : "https://rrr-zb8x.onrender.com/api/v1/physics/get/count",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/physics/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/physics/delete",
@@ -2098,6 +2167,7 @@ export default createStore({
         sciences : {
           get_all : "https://rrr-zb8x.onrender.com/api/v1/sciences/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/sciences/get/one",
+          get_count : "https://rrr-zb8x.onrender.com/api/v1/sciences/get/count",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/sciences/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/sciences/delete",
@@ -2117,6 +2187,7 @@ export default createStore({
         geography : {
           get_all : "https://rrr-zb8x.onrender.com/api/v1/geography/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/geography/get/one",
+          get_count : "https://rrr-zb8x.onrender.com/api/v1/geography/get/count",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/geography/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/geography/delete",
@@ -2136,6 +2207,7 @@ export default createStore({
         chemistry : {
           get_all : "https://rrr-zb8x.onrender.com/api/v1/chemistry/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/chemistry/get/one",
+          get_count : "https://rrr-zb8x.onrender.com/api/v1/chemistry/get/count",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/chemistry/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/chemistry/delete",
@@ -2155,6 +2227,7 @@ export default createStore({
         alwatania : {
           get_all : "https://rrr-zb8x.onrender.com/api/v1/Alwatania/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/Alwatania/get/one",
+          get_count : "https://rrr-zb8x.onrender.com/api/v1/Alwatania/get/count",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/Alwatania/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/Alwatania/delete",
@@ -2179,14 +2252,17 @@ export default createStore({
     // change mood method
     changeMood(state) {
       state.mood = state.mood == "darck" ? "light" : "darck";
-      console.log(state.mood);
       window.localStorage.setItem("mood", state.mood);
+    },
+
+    // select the active component in dash 
+    SelectActiveComponent(state) {
+      state.active_component_in_dash = state.user.user_type == "super" || state.user.user_type == "admin" ? "admins" : "my-classes"
     },
 
     // open & close the sid bar method
     changeSidBarStatus(state) {
       state.sidBar = state.sidBar == "close" ? "open" : "close";
-      console.log(state.sidBar);
     },
 
     // open & close the dash's viwe sid bar
@@ -2344,7 +2420,6 @@ export default createStore({
             this.classes = response.data.classes_data;
           })
           .catch((error) => {
-            console.log(error);
             // to stop the loading animation
             this.loading = "close";
 

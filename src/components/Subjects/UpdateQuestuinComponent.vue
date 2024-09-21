@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`create-question-${this.$store.state.mood}-${this.$store.state.language}-${this.status}`"
+    :class="`update-question-${this.$store.state.mood}-${this.$store.state.language}-${this.status}`"
   >
     <!-- header  -->
     <div class="header">
@@ -264,7 +264,7 @@
 <script>
 import axios from "axios";
 export default {
-  name: "update-food-component",
+  name: "update-question-component",
   data() {
     return {
       // page status
@@ -400,7 +400,7 @@ export default {
         this.api = this.APIS.teacher.update;
 
         // add the teacher id to form data
-        this.formData.append("teacher", this.$store.state.user.user._id);
+        this.formData.append("teacher_id", this.$store.state.user.user._id);
       }
 
       // add the question id
@@ -642,12 +642,12 @@ export default {
 @import "../../Sass/varibels/variables";
 
 // darck and light English Style
-.create-question-darck-English-open {
+.update-question-darck-English-open {
   width: 96%;
   height: 96%;
   margin: 2%;
   border-radius: 10px;
-  padding: 5% 5px 5px 5px;
+  padding: 1% 5px 5px 5px;
   overflow-y: scroll;
   transition-duration: 0.5s;
   opacity: 1;
@@ -907,22 +907,22 @@ export default {
   }
 }
 
-.create-question-darck-English-open::-webkit-scrollbar {
+.update-question-darck-English-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.create-question-darck-English-close {
-  @extend .create-question-darck-English-open;
+.update-question-darck-English-close {
+  @extend .update-question-darck-English-open;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
 
-.create-question-light-English-open {
+.update-question-light-English-open {
   width: 96%;
   height: 96%;
   margin: 2%;
   border-radius: 10px;
-  padding: 5% 5px 5px 5px;
+  padding: 1% 5px 5px 5px;
   overflow-y: scroll;
   transition-duration: 0.5s;
   opacity: 1;
@@ -1182,24 +1182,24 @@ export default {
   }
 }
 
-.create-question-light-English-open::-webkit-scrollbar {
+.update-question-light-English-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.create-question-light-English-close {
-  @extend .create-question-darck-English-open;
+.update-question-light-English-close {
+  @extend .update-question-darck-English-open;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
 // darck and light English Style
 
 // darck and light Arabic Style
-.create-question-darck-Arabic-open {
+.update-question-darck-Arabic-open {
   width: 96%;
   height: 96%;
   margin: 2%;
   border-radius: 10px;
-  padding: 5% 5px 5px 5px;
+  padding: 1% 5px 5px 5px;
   overflow-y: scroll;
   transition-duration: 0.5s;
   opacity: 1;
@@ -1459,22 +1459,22 @@ export default {
   }
 }
 
-.create-question-darck-Arabic-open::-webkit-scrollbar {
+.update-question-darck-Arabic-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.create-question-darck-Arabic-close {
-  @extend .create-question-darck-Arabic-open;
+.update-question-darck-Arabic-close {
+  @extend .update-question-darck-Arabic-open;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
 
-.create-question-light-Arabic-open {
+.update-question-light-Arabic-open {
   width: 96%;
   height: 96%;
   margin: 2%;
   border-radius: 10px;
-  padding: 5% 5px 5px 5px;
+  padding: 1% 5px 5px 5px;
   overflow-y: scroll;
   transition-duration: 0.5s;
   opacity: 1;
@@ -1734,12 +1734,12 @@ export default {
   }
 }
 
-.create-question-light-Arabic-open::-webkit-scrollbar {
+.update-question-light-Arabic-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.create-question-light-Arabic-close {
-  @extend .create-question-darck-Arabic-open;
+.update-question-light-Arabic-close {
+  @extend .update-question-darck-Arabic-open;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }

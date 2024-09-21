@@ -179,9 +179,6 @@ export default {
   methods: {
     // get teacher method
     async GetParent() {
-      // open the loading component
-      this.$store.state.loading = "open";
-
       await axios
         .get(this.$store.state.APIs.parents.get_one, {
           params: {

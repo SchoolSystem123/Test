@@ -146,6 +146,7 @@ export default {
     height: auto;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
     padding: 5px 0px;
     border: 1px solid;
@@ -158,8 +159,9 @@ export default {
     }
 
     .count {
-      width: 10%;
+      width: auto;
       height: 100%;
+      font-size: $x-small;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -225,6 +227,7 @@ export default {
     height: auto;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
     padding: 5px 0px;
     border: 1px solid;
@@ -237,8 +240,9 @@ export default {
     }
 
     .count {
-      width: 10%;
+      width: auto;
       height: 100%;
+      font-size: $x-small;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -307,6 +311,7 @@ export default {
     height: auto;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
     padding: 5px 0px;
     border: 1px solid;
@@ -319,8 +324,9 @@ export default {
     }
 
     .count {
-      width: 10%;
+      width: auto;
       height: 100%;
+      font-size: $x-small;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -386,6 +392,7 @@ export default {
     height: auto;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
     padding: 5px 0px;
     border: 1px solid;
@@ -398,8 +405,9 @@ export default {
     }
 
     .count {
-      width: 10%;
+      width: auto;
       height: 100%;
+      font-size: $x-small;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;

@@ -146,12 +146,13 @@ export default {
 
     // handelScroll
     handelScroll() {
+      // update the scroll page
+      this.scroll_page = window.scrollY;
+
       if (
         window.scrollY + window.innerHeight >=
         document.body.scrollHeight - 600
       ) {
-        this.scroll_page = window.scrollY;
-
         // to change the page
         this.page += 1;
 

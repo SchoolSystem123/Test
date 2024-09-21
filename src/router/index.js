@@ -8,6 +8,7 @@ import StudentView from "../views/student/StudentView.vue";
 import CreateStudentView from "../views/student/CreateStudentView.vue";
 import StudentCLassesView from "@/views/student/StudentCLassesView.vue";
 import StudentPlansView from "@/views/student/StudentPlansView.vue";
+import TopStudentView from "@/views/student/TopStudentsView.vue";
 // students pages
 
 // classes pages
@@ -133,6 +134,11 @@ const routes = [
     path : "/classes/student/:id",
     name : "studentsClasses",
     component : StudentCLassesView
+  },
+  {
+    path : "/top/students",
+    name : "TopStudents",
+    component : TopStudentView
   },
   // students pages
   // teacher pages

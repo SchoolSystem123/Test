@@ -1,6 +1,7 @@
 <template>
   <div
-    :class="`verify-delete-hw-${this.$store.state.delete_hw_form_status}-${this.$store.state.language}`"
+    id="testtt"
+    :class="`verify-delete-hw-${this.$store.state.mood}-${this.$store.state.delete_hw_form_status}-${this.$store.state.language}`"
   >
     <h3 class="header">
       {{
@@ -116,7 +117,7 @@ export default {
 @import "../../../Sass/varibels/variables";
 
 // darck and light English style
-.delete-form-darck-English-open {
+.verify-delete-hw-darck-open-English {
   width: 60%;
   height: 30%;
   backdrop-filter: blur(70px);
@@ -130,6 +131,7 @@ export default {
   align-items: center;
   transition-duration: 0.5s;
   z-index: 50;
+  box-shadow: 0 0 10px $black;
 
   @media (max-width: $phone) {
     height: 20%;
@@ -171,13 +173,17 @@ export default {
   }
 }
 
+#testtt {
+  background-color: red;
+}
+
 .delete-form-darck-English-close {
-  @extend .delete-form-darck-English-open;
+  @extend .verify-delete-hw-darck-open-English;
   top: -50%;
   z-index: -50;
 }
 
-.delete-form-light-English-open {
+.verify-delete-hw-light-close-English {
   width: 60%;
   height: 30%;
   backdrop-filter: blur(70px);
@@ -191,6 +197,7 @@ export default {
   align-items: center;
   transition-duration: 0.5s;
   z-index: 50;
+  box-shadow: 0 0 10px $black;
 
   @media (max-width: $phone) {
     height: 20%;
@@ -232,15 +239,15 @@ export default {
   }
 }
 
-.delete-form-light-English-close {
-  @extend .delete-form-light-English-open;
+.verify-delete-hw-light-close-English {
+  @extend .verify-delete-hw-light-close-English;
   top: -50%;
   z-index: -50;
 }
 // darck and light English style
 
 // darck and light Arabic style
-.delete-form-darck-Arabic-open {
+.verify-delete-hw-darck-open-Arabic {
   width: 60%;
   height: 30%;
   backdrop-filter: blur(70px);
@@ -254,6 +261,7 @@ export default {
   align-items: center;
   transition-duration: 0.5s;
   z-index: 50;
+  box-shadow: 0 0 10px $black;
 
   @media (max-width: $phone) {
     height: 20%;
@@ -295,13 +303,13 @@ export default {
   }
 }
 
-.delete-form-darck-Arabic-close {
-  @extend .delete-form-darck-Arabic-open;
+.verify-delete-hw-darck-close-Arabic {
+  @extend .verify-delete-hw-darck-open-Arabic;
   top: -50%;
   z-index: -50;
 }
 
-.delete-form-light-Arabic-open {
+.verify-delete-hw-light-open-Arabic {
   width: 60%;
   height: 30%;
   backdrop-filter: blur(70px);
@@ -315,6 +323,7 @@ export default {
   align-items: center;
   transition-duration: 0.5s;
   z-index: 50;
+  box-shadow: 0 0 10px $black;
 
   @media (max-width: $phone) {
     height: 20%;
@@ -356,8 +365,8 @@ export default {
   }
 }
 
-.delete-form-light-Arabic-close {
-  @extend .delete-form-light-Arabic-open;
+.verify-delete-hw-light-close-Arabic {
+  @extend .verify-delete-hw-darck-open-Arabic;
   top: -50%;
   z-index: -50;
 }

@@ -16,7 +16,9 @@
       <!-- student name  -->
 
       <!-- student classes length  -->
-      <p>🏛️ : {{ this.student_data.classes.length }}</p>
+      <p v-if="this.student_data.classes">
+        🏛️ : {{ this.student_data.classes.length }}
+      </p>
       <!-- student classes length  -->
 
       <!-- student classes length  -->

@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`math-questions-page-${this.$store.state.mood}-${this.$store.state.language}-${this.status}`"
+    :class="`sciences-questions-page-${this.$store.state.mood}-${this.$store.state.language}-${this.status}`"
     @scroll="handleScroll"
   >
     <!-- header  -->
@@ -8,8 +8,8 @@
       <h3>
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.questions.english
-            : this.$store.state.Arabic.questions.english
+            ? this.$store.state.English.questions.sciences
+            : this.$store.state.Arabic.questions.sciences
         }}
       </h3>
 
@@ -20,7 +20,7 @@
     <!-- section  -->
     <div class="section">
       <QuestionInQuestionsComponent
-        v-for="(question_data, index) in this.$store.state.english_questions"
+        v-for="(question_data, index) in this.$store.state.sciences_questions"
         :key="index"
         :question_data="question_data"
         :subject_type="this.subject_type"
@@ -34,7 +34,7 @@
 import QuestionInQuestionsComponent from "@/components/Subjects/QuestionInQuestionsComponent.vue";
 import axios from "axios";
 export default {
-  name: "english-questions-component",
+  name: "Math-questions-component",
   data() {
     return {
       // page status
@@ -48,14 +48,14 @@ export default {
       // scroll_page
       scroll_page: 0,
       // subject_type
-      subject_type: "English",
+      subject_type: "Sciences",
     };
   },
   components: {
     QuestionInQuestionsComponent,
   },
   mounted() {
-    // call to get english questiosn method
+    // call to get questions count method
     this.GetQuestionsCount();
 
     // to open the page on load like smoothey
@@ -63,14 +63,13 @@ export default {
       this.status = "open";
     }, 500);
 
-    // call to get englishquestion method
-    this.GetEnglishQuestions();
+    this.GetSciencesQuestions();
   },
   methods: {
     // get questions count method
     async GetQuestionsCount() {
       await axios
-        .get(this.$store.state.APIs.subjects_questions.english.get_count)
+        .get(this.$store.state.APIs.subjects_questions.sciences.get_count)
         .then((response) => {
           // set the questions count from response to questions_count in data section
           this.questions_count = response.data.Questions_count;
@@ -87,13 +86,13 @@ export default {
         });
     },
 
-    // get math questions
-    async GetEnglishQuestions() {
+    // get sciences questions
+    async GetSciencesQuestions() {
       // to start the loading animation
       this.$store.state.loading = "open";
 
       await axios
-        .get(this.$store.state.APIs.subjects_questions.english.get_all, {
+        .get(this.$store.state.APIs.subjects_questions.sciences.get_all, {
           params: {
             limit: this.limit,
             page: this.page,
@@ -106,8 +105,8 @@ export default {
           // to stop the loading animation
           this.$store.state.loading = "close";
 
-          // set the math questions from response to questions array in store
-          this.$store.state.english_questions = response.data.questions_data;
+          // set the sciences questions from response to questions array in store
+          this.$store.state.sciences_questions = response.data.questions_data;
         })
         .catch((error) => {
           // to stop the loading animation
@@ -121,19 +120,19 @@ export default {
         });
     },
 
-    // get math questions
-    async GetMoreEnglishQuestions() {
+    // get sciences questions
+    async GetMoreMathQuestions() {
       await axios
-        .get(this.$store.state.APIs.subjects_questions.english.get_all, {
+        .get(this.$store.state.APIs.subjects_questions.sciences.get_all, {
           params: {
             limit: this.limit,
             page: this.page,
           },
         })
         .then((response) => {
-          // set the math questions from response to questions array in store
-          this.$store.state.english_questions = [
-            ...this.$store.state.english_questions,
+          // set the sciences questions from response to questions array in store
+          this.$store.state.sciences_questions = [
+            ...this.$store.state.sciences_questions,
             ...response.data.questions_data,
           ];
         })
@@ -161,7 +160,7 @@ export default {
         this.page += 1;
 
         // call to Get More questions method
-        this.GetMoreEnglishQuestions();
+        this.GetMoreMathQuestions();
       }
     },
   },
@@ -172,7 +171,7 @@ export default {
 @import "../../../../Sass/varibels/variables";
 
 // darck and light English style
-.math-questions-page-darck-English-open {
+.sciences-questions-page-darck-English-open {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -205,17 +204,17 @@ export default {
   }
 }
 
-.math-questions-page-darck-English-open::-webkit-scrollbar {
+.sciences-questions-page-darck-English-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.math-questions-page-darck-English-close {
-  @extend .math-questions-page-darck-English-open;
+.sciences-questions-page-darck-English-close {
+  @extend .sciences-questions-page-darck-English-open;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
 
-.math-questions-page-light-English-open {
+.sciences-questions-page-light-English-open {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -248,19 +247,19 @@ export default {
   }
 }
 
-.math-questions-page-light-English-open::-webkit-scrollbar {
+.sciences-questions-page-light-English-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.math-questions-page-light-English-close {
-  @extend .math-questions-page-darck-English-open;
+.sciences-questions-page-light-English-close {
+  @extend .sciences-questions-page-darck-English-open;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
 // darck and light English style
 
 // darck and light Arabic style
-.math-questions-page-darck-Arabic-open {
+.sciences-questions-page-darck-Arabic-open {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -293,17 +292,17 @@ export default {
   }
 }
 
-.math-questions-page-darck-Arabic-open::-webkit-scrollbar {
+.sciences-questions-page-darck-Arabic-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.math-questions-page-darck-Arabic-close {
-  @extend .math-questions-page-darck-Arabic-open;
+.sciences-questions-page-darck-Arabic-close {
+  @extend .sciences-questions-page-darck-Arabic-open;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
 
-.math-questions-page-light-Arabic-open {
+.sciences-questions-page-light-Arabic-open {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -336,12 +335,12 @@ export default {
   }
 }
 
-.math-questions-page-light-Arabic-open::-webkit-scrollbar {
+.sciences-questions-page-light-Arabic-open::-webkit-scrollbar {
   width: 0px;
 }
 
-.math-questions-page-light-Arabic-close {
-  @extend .math-questions-page-darck-Arabic-open;
+.sciences-questions-page-light-Arabic-close {
+  @extend .sciences-questions-page-darck-Arabic-open;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }

@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="this.class_data"
     :class="`dash-classes-class-${this.$store.state.mood}-${this.$store.state.language}`"
   >
     <!-- cover and teacher avatar cont  -->
@@ -42,8 +43,7 @@
       v-if="
         this.$store.state.user.user_type == 'super' ||
         this.$store.state.user.user_type == 'admin' ||
-        (this.$store.state.user.user_type == 'teacher' &&
-          this.$store.state.user.user._id == this.class_data._id)
+        this.$store.state.user.user_type == 'teacher'
       "
     >
       <button class="update" @click="GoToUpdateClass">
@@ -53,7 +53,7 @@
             : this.$store.state.Arabic.dash_classes_component.update
         }}
       </button>
-      <button class="delete" @click="DeleteClass(class_data._id)">
+      <button class="delete" @click="DeleteClass(this.class_data._id)">
         {{
           this.$store.state.language == "English"
             ? this.$store.state.English.dash_classes_component.delete

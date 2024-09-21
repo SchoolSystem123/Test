@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`section-cont-${this.status}-${this.$store.state.mood}`"
+    :class="`section-cont-${this.status}-${this.$store.state.mood}-${this.$store.state.language}`"
     @scroll="handleScroll"
   >
     <!-- header  -->
@@ -163,8 +163,8 @@ export default {
 <style lang="scss">
 @import "../../../Sass/varibels/variables";
 
-// darck and light style
-.section-cont-open-darck {
+// darck and light English style
+.section-cont-open-darck-English {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -173,6 +173,7 @@ export default {
   overflow-y: scroll;
   transition-duration: 0.5s;
   opacity: 1;
+  direction: ltr;
 
   @media (min-width: $phone) {
     padding: 5px;
@@ -194,17 +195,13 @@ export default {
     }
 
     .count {
+      width: auto;
+      height: 100%;
+      font-size: $x-small;
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-    }
-
-    svg {
-      padding: 5px;
-      border: 1px solid $border-light;
-      border-radius: 5px;
-      color: $font-light;
-      cursor: pointer;
     }
   }
 
@@ -218,18 +215,18 @@ export default {
   }
 }
 
-.section-cont-open-darck::-webkit-scrollbar {
+.section-cont-open-darck-English::-webkit-scrollbar {
   width: 0px;
 }
 
 .section-cont-close-darck {
-  @extend .section-cont-open-darck;
+  @extend .section-cont-open-darck-English;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
 
-.section-cont-open-light {
-  @extend .section-cont-open-darck;
+.section-cont-open-light-English {
+  @extend .section-cont-open-darck-English;
   .header {
     // header title
     border-color: transparent transparent $border-darck transparent;
@@ -238,7 +235,11 @@ export default {
     }
 
     .count {
+      width: auto;
+      height: 100%;
+      font-size: $x-small;
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       align-items: center;
     }
@@ -246,13 +247,107 @@ export default {
 }
 
 .section-cont-close-light {
-  @extend .section-cont-open-light;
+  @extend .section-cont-open-light-English;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
 
-.section-cont-open-light::-webkit-scrollbar {
+.section-cont-open-light-English::-webkit-scrollbar {
   width: 0px;
 }
-// darck and light style
+// darck and light English style
+
+// darck and light Arabic style
+.section-cont-open-darck-Arabic {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: rtl;
+
+  @media (min-width: $phone) {
+    padding: 5px;
+  }
+
+  .header {
+    width: 100%;
+    padding: 5px 0px;
+    margin: 0px 0px 10px 0px;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid;
+    border-color: transparent transparent $border-light transparent;
+
+    h3 {
+      color: $font-light;
+    }
+
+    .count {
+      width: auto;
+      height: 100%;
+      font-size: $x-small;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .cards-section {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+  }
+}
+
+.section-cont-open-darck-Arabic::-webkit-scrollbar {
+  width: 0px;
+}
+
+.section-cont-close-darck {
+  @extend .section-cont-open-darck-Arabic;
+  padding: 30% 5px 5px 5px;
+  opacity: 0;
+}
+
+.section-cont-open-light-Arabic {
+  @extend .section-cont-open-darck-Arabic;
+  .header {
+    // header title
+    border-color: transparent transparent $border-darck transparent;
+    h3 {
+      color: $font-darck;
+    }
+
+    .count {
+      width: auto;
+      height: 100%;
+      font-size: $x-small;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+.section-cont-close-light {
+  @extend .section-cont-open-light-Arabic;
+  padding: 30% 5px 5px 5px;
+  opacity: 0;
+}
+
+.section-cont-open-light-Arabic::-webkit-scrollbar {
+  width: 0px;
+}
+// darck and light Arabic style
 </style>

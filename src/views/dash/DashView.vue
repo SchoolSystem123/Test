@@ -15,122 +15,30 @@
     <div :class="`sid-bar-${this.status}`">
       <icon :icon="this.icon_type" @click="OpenOrCloseSidBar" />
       <ul>
-        <li><router-link to="/"> home </router-link></li>
-        <li @click="ChangeComponent('admins')">Admins 🦸‍♂️</li>
-        <li @click="ChangeComponent('teachers')">Teachers 👨‍🏫</li>
-        <li @click="ChangeComponent('students')">Students 👨‍🎓</li>
-        <li @click="ChangeComponent('parents')">Parents 👨‍👩‍👦‍👦</li>
-        <li @click="ChangeComponent('classes')">Classes 🏫</li>
-        <li @click="ChangeComponent('home-works')">Home Works 🏚️💯🔝</li>
-        <li @click="ChangeComponent('messages')">Messages 💬</li>
-        <li @click="ChangeComponent('plans')">Plans 📌📚</li>
-
-        <li
-          @click="ChangeComponent('create-admin')"
-          v-if="this.$store.state.user.user_type == 'super'"
-        >
-          Create Admin 🦸‍♂️➕
+        <li>
+          <router-link
+            :to="`${this.$store.state.home_router_dash_sid_bar.path}`"
+          >
+            {{
+              this.$store.state.language == "English"
+                ? this.$store.state.home_router_dash_sid_bar.English
+                : this.$store.state.home_router_dash_sid_bar.Arabic
+            }}
+          </router-link>
         </li>
-
         <li
-          @click="ChangeComponent('create-teacher')"
-          v-if="
-            this.$store.state.user.user_type == 'super' ||
-            this.$store.state.user.user_type == 'admin'
+          v-for="(line, index) in this.$store.state.dash_sid_bar_list"
+          :key="index"
+          :class="
+            line.access.includes(this.$store.state.user.user_type)
+              ? 'show'
+              : 'hidden'
           "
+          @click="ChangeComponent(line.component)"
         >
-          Create Teacher 👨‍🏫➕
-        </li>
-
-        <li
-          @click="ChangeComponent('create-student')"
-          v-if="
-            this.$store.state.user.user_type == 'super' ||
-            this.$store.state.user.user_type == 'admin'
-          "
-        >
-          Create Student 👨‍🎓➕
-        </li>
-
-        <li
-          @click="ChangeComponent('create-parent')"
-          v-if="
-            this.$store.state.user.user_type == 'super' ||
-            this.$store.state.user.user_type == 'admin'
-          "
-        >
-          Create Parent 👨‍👩‍👦‍👦➕
-        </li>
-
-        <li
-          @click="ChangeComponent('create-class')"
-          v-if="
-            this.$store.state.user.user_type == 'super' ||
-            this.$store.state.user.user_type == 'admin' ||
-            this.$store.state.user.user_type == 'teacher'
-          "
-        >
-          Create Class 🏫➕
-        </li>
-
-        <li
-          @click="ChangeComponent('create-message')"
-          v-if="
-            this.$store.state.user.user_type == 'super' ||
-            this.$store.state.user.user_type == 'admin'
-          "
-        >
-          Create Message 💬➕
-        </li>
-
-        <li
-          @click="ChangeComponent('create-home-work')"
-          v-if="
-            this.$store.state.user.user_type == 'super' ||
-            this.$store.state.user.user_type == 'admin' ||
-            this.$store.state.user.user_type == 'teacher'
-          "
-        >
-          Create Home Work 🏚️💯🔝➕
-        </li>
-
-        <li
-          @click="ChangeComponent('create-plan')"
-          v-if="
-            this.$store.state.user.user_type == 'super' ||
-            this.$store.state.user.user_type == 'admin'
-          "
-        >
-          Create Plan 📌📚➕
-        </li>
-
-        <li
-          @click="ChangeComponent('create-food')"
-          v-if="
-            this.$store.state.user.user_type == 'super' ||
-            this.$store.state.user.user_type == 'admin'
-          "
-        >
-          Create Food 😋🍴➕
-        </li>
-
-        <li
-          @click="ChangeComponent('my-classes')"
-          v-if="this.$store.state.user.user_type == 'teacher'"
-        >
-          My Classes ⭕📌🏫
-        </li>
-
-        <li @click="ChangeComponent('math-questions')">
-          Math Questions ⭕📌🏫
-        </li>
-
-        <li @click="ChangeComponent('create-question')">
-          Create Question ⁉️➕
-        </li>
-
-        <li @click="ChangeComponent('english-questions')">
-          English Question ⭕📌🏫
+          {{
+            this.$store.state.language == "English" ? line.English : line.Arabic
+          }}
         </li>
       </ul>
     </div>
@@ -397,6 +305,76 @@
         v-if="this.$store.state.active_component_in_dash == 'english-questions'"
       />
       <!-- English questions component -->
+
+      <!-- French questions component -->
+      <FrenchQuestionsComponent
+        v-if="this.$store.state.active_component_in_dash == 'french-questions'"
+      />
+      <!-- French questions component -->
+
+      <!-- Arabic questions component -->
+      <ArabicQuestionsComponent
+        v-if="this.$store.state.active_component_in_dash == 'arabic-questions'"
+      />
+      <!-- Arabic questions component -->
+
+      <!-- Islam questions component -->
+      <IslamQuestionsComponent
+        v-if="this.$store.state.active_component_in_dash == 'islam-questions'"
+      />
+      <!-- Islam questions component -->
+
+      <!-- History questions component -->
+      <HistoryQuestionsComponent
+        v-if="this.$store.state.active_component_in_dash == 'history-questions'"
+      />
+      <!-- History questions component -->
+
+      <!-- Philosophy questions component -->
+      <PhilosophyQuestionsComponent
+        v-if="
+          this.$store.state.active_component_in_dash == 'philosophy-questions'
+        "
+      />
+      <!-- Philosophy questions component -->
+
+      <!-- Physics questions component -->
+      <PhysicsQuestionsComponent
+        v-if="this.$store.state.active_component_in_dash == 'physics-questions'"
+      />
+      <!-- Physics questions component -->
+
+      <!-- Physics questions component -->
+      <SciencesQuestionsComponent
+        v-if="
+          this.$store.state.active_component_in_dash == 'sciences-questions'
+        "
+      />
+      <!-- Physics questions component -->
+
+      <!-- Geography questions component -->
+      <GeographyQuestionsComponent
+        v-if="
+          this.$store.state.active_component_in_dash == 'geography-questions'
+        "
+      />
+      <!-- Geography questions component -->
+
+      <!-- Chemistry questions component -->
+      <ChemistryQuestionsComponent
+        v-if="
+          this.$store.state.active_component_in_dash == 'chemistry-questions'
+        "
+      />
+      <!-- Chemistry questions component -->
+
+      <!-- Alwatania questions component -->
+      <AlwataniaQuestionsComponent
+        v-if="
+          this.$store.state.active_component_in_dash == 'alwatania-questions'
+        "
+      />
+      <!-- Alwatania questions component -->
     </div>
   </div>
 </template>
@@ -455,6 +433,17 @@ import AddOptionComponnet from "@/components/global/forms/dash/Subject/AddOption
 import UpdateQuestuinComponent from "@/components/Subjects/UpdateQuestuinComponent.vue";
 import VerifyDeleteQuestionComponent from "@/components/global/forms/dash/Subject/VerifyDeleteQuestionComponent.vue";
 import EnglishQuestionsComponent from "@/components/dash/Subjects/English/EnglishQuestionsComponent.vue";
+import FrenchQuestionsComponent from "@/components/dash/Subjects/French/FrenchQuestionsComponent.vue";
+import ArabicQuestionsComponent from "@/components/dash/Subjects/Arabic/ArabicQuestionsComponent.vue";
+import IslamQuestionsComponent from "@/components/dash/Subjects/Islam/IslamQuestionsComponent.vue";
+import HistoryQuestionsComponent from "@/components/dash/Subjects/History/HistoryQuestionsComponent.vue";
+import PhilosophyQuestionsComponent from "@/components/dash/Subjects/Philosophy/PhilosophyQuestionsComponent.vue";
+import PhysicsQuestionsComponent from "@/components/dash/Subjects/Physics/PhysicsQuestionsComponent.vue";
+import SciencesQuestionsComponent from "@/components/dash/Subjects/Sciences/SciencesQuestionsComponent.vue";
+import GeographyQuestionsComponent from "@/components/dash/Subjects/Geography/GeographyQuestionsComponent.vue";
+import ChemistryQuestionsComponent from "@/components/dash/Subjects/Chemistry/ChemistryQuestionsComponent.vue";
+import AlwataniaQuestionsComponent from "@/components/dash/Subjects/Alwatania/AlwataniaQuestionsComponent.vue";
+
 export default {
   data() {
     return {
@@ -465,16 +454,16 @@ export default {
     };
   },
   mounted() {
-    window.addEventListener("load", () => {
-      if (
-        !this.$store.state.user.user ||
-        (!this.$store.state.user.user_type == "admin" &&
-          !this.$store.state.user.user_type == "super" &&
-          !this.$store.state.user.user_type == "teacher")
-      ) {
-        window.location = "/login";
-      }
-    });
+    // call to select the active component in dash
+    this.$store.commit("SelectActiveComponent");
+
+    // check if the user is super or admin or teacher
+    if (
+      this.$store.state.user.user_type == "student" ||
+      this.$store.state.user.user_type == "parent"
+    ) {
+      window.location = "/login";
+    }
   },
   components: {
     SidBarComponentVue,
@@ -529,20 +518,36 @@ export default {
     UpdateQuestuinComponent,
     VerifyDeleteQuestionComponent,
     EnglishQuestionsComponent,
+    FrenchQuestionsComponent,
+    ArabicQuestionsComponent,
+    IslamQuestionsComponent,
+    HistoryQuestionsComponent,
+    PhilosophyQuestionsComponent,
+    PhysicsQuestionsComponent,
+    SciencesQuestionsComponent,
+    GeographyQuestionsComponent,
+    ChemistryQuestionsComponent,
+    AlwataniaQuestionsComponent,
   },
   methods: {
     // change the component
     ChangeComponent(component) {
+      // call to open or close sidBar methdo to close the sidBar
+      this.OpenOrCloseSidBar();
+
+      // change the active component
       this.$store.state.active_component_in_dash = component;
     },
 
     // open or close the sidBar
     OpenOrCloseSidBar() {
-      // change the isd bar status
+      // change the sid bar status
       this.status = this.status == "close" ? "open" : "close";
+
       // to change the icon type
       this.icon_type =
         this.icon_type == "arrow-right" ? "arrow-left" : "arrow-right";
+
       // to open or close the sid bar
       this.$store.commit("ChangeDashSidBarStatus");
     },
@@ -566,9 +571,9 @@ export default {
     margin: 2vh 10px;
     background-color: $card-darck;
     border-radius: 10px;
-    position: relative;
+    position: absolute;
     transition-duration: 0.5s;
-    // overflow-y:scroll ;
+    z-index: 100;
 
     @media (max-width: $phone) {
       width: 40%;
@@ -622,6 +627,14 @@ export default {
       li:hover {
         background-color: $note-darck;
       }
+
+      .hidden {
+        display: none;
+      }
+
+      .show {
+        display: flex;
+      }
     }
 
     ul::-webkit-scrollbar {
@@ -634,19 +647,12 @@ export default {
     width: 0%;
   }
 
-  .section-open {
-    width: 80%;
-    height: 100vh;
-    transition-duration: 0.5s;
-    overflow: hidden;
-  }
-
+  .section-open,
   .section-close {
     width: 100%;
     height: 100vh;
-
-    overflow: hidden;
     transition-duration: 0.5s;
+    overflow: hidden;
   }
 }
 
@@ -663,8 +669,9 @@ export default {
     margin: 2vh 10px;
     background-color: $card-light;
     border-radius: 10px;
-    position: relative;
+    position: absolute;
     transition-duration: 0.5s;
+    z-index: 100;
 
     @media (max-width: $phone) {
       width: 40%;
@@ -719,6 +726,14 @@ export default {
       li:hover {
         background-color: $note-light;
       }
+
+      .hidden {
+        display: none;
+      }
+
+      .show {
+        display: flex;
+      }
     }
 
     ul::-webkit-scrollbar {
@@ -731,18 +746,12 @@ export default {
     width: 0%;
   }
 
-  .section-open {
-    width: 80%;
-    height: 98vh;
-    overflow: hidden;
-    transition-duration: 0.5s;
-  }
-
+  .section-open,
   .section-close {
     width: 100%;
-    height: 98vh;
-    overflow: hidden;
+    height: 100vh;
     transition-duration: 0.5s;
+    overflow: hidden;
   }
 }
 // darck adn light English style
@@ -756,38 +765,4 @@ export default {
   @extend .dash-light-English;
 }
 // darck adn light Arabic style
-
-// @import "../../component/global/forms/dash/class/coverForm";
-// @import "../../component/dash/admins/admins";
-// @import "../../component/dash/admins/adminInDash";
-// @import "../../component/dash/admins/createAdmin";
-// @import "../../component/global/forms/dash/verifyDeleteUser";
-// @import "../../component/dash/admins/updateAdmin";
-// @import "../../component/dash/classes/updateClass";
-// @import "../../component/dash/classes/createClass";
-
-// @import "../../component/dash/teachers/createTeacher";
-// @import "../../component/dash/teachers/teacherInDash";
-// @import "../../component/dash/teachers/updateTeacher";
-
-// @import "../../component/dash/students/createStudent";
-// @import "../../component/dash/students/studentInDash";
-// @import "../../component/dash/students/updateStudent";
-
-// @import "../../component/dash/parents/createParents";
-// @import "../../component/dash/parents/parentInDash";
-// @import "../../component/dash/parents/updateParent";
-
-// @import "../../component/dash/classes/classInDash";
-// @import "../../component/dash/classes/classes";
-
-// @import "../../component/dash/messages/messages" ;
-// @import "../../component/dash/messages/message" ;
-// @import "../../component/dash/messages/createMessage" ;
-// @import "../../component/dash/messages/updateMessage" ;
-// @import "../../component/dash/parents/parentInDash";
-// @import "../../component/dash/parents/updateParent";
-
-// @import "../../component/global/forms/dash/parents/chooseChildren";
-// @import "../../component/global/forms/dash/class/chooseTeacher";
 </style>

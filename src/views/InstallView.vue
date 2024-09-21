@@ -172,7 +172,7 @@ export default {
       color: $font-light;
       font-size: $xx-small;
       position: absolute;
-      bottom: 10%;
+      bottom: 3%;
       left: 5%;
     }
   }
@@ -249,7 +249,7 @@ export default {
       outline: none;
       border-radius: 5px;
       background-color: $green;
-      color: $font-darck;
+      color: $font-light;
       cursor: pointer;
       margin: 20px 35%;
     }
@@ -261,7 +261,7 @@ export default {
       color: $font-darck;
       font-size: $xx-small;
       position: absolute;
-      bottom: 10%;
+      bottom: 3%;
       left: 5%;
     }
   }
@@ -352,7 +352,7 @@ export default {
       color: $font-light;
       font-size: $xx-small;
       position: absolute;
-      bottom: 10%;
+      bottom: 3%;
       left: 5%;
     }
   }
@@ -429,7 +429,7 @@ export default {
       outline: none;
       border-radius: 5px;
       background-color: $green;
-      color: $font-darck;
+      color: $font-light;
       cursor: pointer;
       margin: 20px 35%;
     }
@@ -441,7 +441,7 @@ export default {
       color: $font-darck;
       font-size: $xx-small;
       position: absolute;
-      bottom: 10%;
+      bottom: 3%;
       left: 5%;
     }
   }

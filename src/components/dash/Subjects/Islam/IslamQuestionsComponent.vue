@@ -8,8 +8,8 @@
       <h3>
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.questions.english
-            : this.$store.state.Arabic.questions.english
+            ? this.$store.state.English.questions.islam
+            : this.$store.state.Arabic.questions.islam
         }}
       </h3>
 
@@ -20,7 +20,7 @@
     <!-- section  -->
     <div class="section">
       <QuestionInQuestionsComponent
-        v-for="(question_data, index) in this.$store.state.english_questions"
+        v-for="(question_data, index) in this.$store.state.islam_questions"
         :key="index"
         :question_data="question_data"
         :subject_type="this.subject_type"
@@ -34,7 +34,7 @@
 import QuestionInQuestionsComponent from "@/components/Subjects/QuestionInQuestionsComponent.vue";
 import axios from "axios";
 export default {
-  name: "english-questions-component",
+  name: "islam-questions-component",
   data() {
     return {
       // page status
@@ -48,14 +48,14 @@ export default {
       // scroll_page
       scroll_page: 0,
       // subject_type
-      subject_type: "English",
+      subject_type: "Islam",
     };
   },
   components: {
     QuestionInQuestionsComponent,
   },
   mounted() {
-    // call to get english questiosn method
+    // call to get islam questiosn method
     this.GetQuestionsCount();
 
     // to open the page on load like smoothey
@@ -63,14 +63,14 @@ export default {
       this.status = "open";
     }, 500);
 
-    // call to get englishquestion method
+    // call to get islamquestion method
     this.GetEnglishQuestions();
   },
   methods: {
     // get questions count method
     async GetQuestionsCount() {
       await axios
-        .get(this.$store.state.APIs.subjects_questions.english.get_count)
+        .get(this.$store.state.APIs.subjects_questions.islam.get_count)
         .then((response) => {
           // set the questions count from response to questions_count in data section
           this.questions_count = response.data.Questions_count;
@@ -93,7 +93,7 @@ export default {
       this.$store.state.loading = "open";
 
       await axios
-        .get(this.$store.state.APIs.subjects_questions.english.get_all, {
+        .get(this.$store.state.APIs.subjects_questions.islam.get_all, {
           params: {
             limit: this.limit,
             page: this.page,
@@ -107,7 +107,7 @@ export default {
           this.$store.state.loading = "close";
 
           // set the math questions from response to questions array in store
-          this.$store.state.english_questions = response.data.questions_data;
+          this.$store.state.islam_questions = response.data.questions_data;
         })
         .catch((error) => {
           // to stop the loading animation
@@ -124,7 +124,7 @@ export default {
     // get math questions
     async GetMoreEnglishQuestions() {
       await axios
-        .get(this.$store.state.APIs.subjects_questions.english.get_all, {
+        .get(this.$store.state.APIs.subjects_questions.islam.get_all, {
           params: {
             limit: this.limit,
             page: this.page,
@@ -132,8 +132,8 @@ export default {
         })
         .then((response) => {
           // set the math questions from response to questions array in store
-          this.$store.state.english_questions = [
-            ...this.$store.state.english_questions,
+          this.$store.state.islam_questions = [
+            ...this.$store.state.islam_questions,
             ...response.data.questions_data,
           ];
         })

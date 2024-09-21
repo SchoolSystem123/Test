@@ -274,7 +274,7 @@
 <script>
 import axios from "axios";
 export default {
-  name: "update-food-component",
+  name: "create-question-component",
   data() {
     return {
       // page status
@@ -338,11 +338,11 @@ export default {
           this.APIS = this.$store.state.APIs.subjects_questions.french;
           break;
 
-        case "islam":
+        case "Islam":
           this.APIS = this.$store.state.APIs.subjects_questions.islam;
           break;
 
-        case "history":
+        case "History":
           this.APIS = this.$store.state.APIs.subjects_questions.history;
           break;
 
@@ -406,7 +406,7 @@ export default {
         this.api = this.APIS.teacher.create;
 
         // add the teacher id to form data
-        this.formData.append("teacher", this.$store.state.user.user._id);
+        this.formData.append("teacher_id", this.$store.state.user.user._id);
       }
 
       // add the title
@@ -452,13 +452,9 @@ export default {
 
       await axios
         .post(this.api, this.formData, { headers })
-        .then((response) => {
-          console.log(response);
+        .then(() => {
           // to stop the loading
           this.$store.state.loading = "close";
-
-          // update the active component in store
-          this.$store.state.active_component_in_dash = "foods";
 
           // emptying the data
           this.title = "";
@@ -471,6 +467,7 @@ export default {
           this.subject_type = "math";
           this.$store.state.question_options = [];
           this.$store.state.new_question_images = [];
+          this.images = [];
         })
         .catch((error) => {
           console.log(error);
@@ -572,7 +569,7 @@ export default {
   height: 96%;
   margin: 2%;
   border-radius: 10px;
-  padding: 5% 5px 5px 5px;
+  padding: 1% 5px 5px 5px;
   overflow-y: scroll;
   transition-duration: 0.5s;
   opacity: 1;
@@ -1124,7 +1121,7 @@ export default {
   height: 96%;
   margin: 2%;
   border-radius: 10px;
-  padding: 5% 5px 5px 5px;
+  padding: 1% 5px 5px 5px;
   overflow-y: scroll;
   transition-duration: 0.5s;
   opacity: 1;

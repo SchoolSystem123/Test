@@ -302,9 +302,6 @@ export default {
   methods: {
     // get student method
     async GetStudent() {
-      // open the loading component
-      this.$store.state.loading = "open";
-
       await axios
         .get(this.$store.state.APIs.students.get_one, {
           params: {

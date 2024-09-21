@@ -20,7 +20,7 @@
     <!-- section  -->
     <div class="section">
       <QuestionInQuestionsComponent
-        v-for="(question_data, index) in this.$store.state.questions"
+        v-for="(question_data, index) in this.$store.state.math_questions"
         :key="index"
         :question_data="question_data"
         :subject_type="this.subject_type"
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import QuestionInQuestionsComponent from "@/components/Subjects/Math/QuestionInQuestionsComponent.vue";
+import QuestionInQuestionsComponent from "@/components/Subjects/QuestionInQuestionsComponent.vue";
 import axios from "axios";
 export default {
   name: "Math-questions-component",
@@ -55,6 +55,9 @@ export default {
     QuestionInQuestionsComponent,
   },
   mounted() {
+    // call to get questions count method
+    this.GetQuestionsCount();
+
     // to open the page on load like smoothey
     setTimeout(() => {
       this.status = "open";
@@ -63,6 +66,26 @@ export default {
     this.GetMathQuestions();
   },
   methods: {
+    // get questions count method
+    async GetQuestionsCount() {
+      await axios
+        .get(this.$store.state.APIs.subjects_questions.math.get_count)
+        .then((response) => {
+          // set the questions count from response to questions_count in data section
+          this.questions_count = response.data.Questions_count;
+        })
+        .catch((error) => {
+          // to stop the loading animation
+          this.$store.state.loading = "close";
+
+          // to set the reqeust's error message to error message var in store
+          this.$store.state.error_message = error.response.data.message;
+
+          // to open the error form
+          this.$store.state.error_form_status = "open";
+        });
+    },
+
     // get math questions
     async GetMathQuestions() {
       // to start the loading animation
@@ -83,7 +106,7 @@ export default {
           this.$store.state.loading = "close";
 
           // set the math questions from response to questions array in store
-          this.$store.state.questions = response.data.questions_data;
+          this.$store.state.math_questions = response.data.questions_data;
         })
         .catch((error) => {
           // to stop the loading animation
@@ -108,8 +131,8 @@ export default {
         })
         .then((response) => {
           // set the math questions from response to questions array in store
-          this.$store.state.questions = [
-            ...this.$store.state.questions,
+          this.$store.state.math_questions = [
+            ...this.$store.state.math_questions,
             ...response.data.questions_data,
           ];
         })

@@ -66,13 +66,28 @@
       <!-- note  -->
 
       <!-- subject  -->
-      <label for="subject">{{
-        this.$store.state.language == "English"
-          ? this.$store.state.English.update_class.subject
-          : this.$store.state.Arabic.update_class.subject
-      }}</label>
+      <label
+        for="subject"
+        v-if="
+          this.$store.state.user &&
+          this.$store.state.user.user_type != `teacher`
+        "
+        >{{
+          this.$store.state.language == "English"
+            ? this.$store.state.English.update_class.subject
+            : this.$store.state.Arabic.update_class.subject
+        }}</label
+      >
 
-      <select name="" id="subject" v-model="this.subject">
+      <select
+        name=""
+        id="subject"
+        v-model="this.subject"
+        v-if="
+          this.$store.state.user &&
+          this.$store.state.user.user_type != `teacher`
+        "
+      >
         <option
           v-for="(subject, index) in this.$store.state.subjects_list"
           :key="index"

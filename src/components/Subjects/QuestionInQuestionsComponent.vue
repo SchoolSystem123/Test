@@ -21,17 +21,6 @@
       </h3>
       <!-- title  -->
 
-      <!-- points -->
-      <p>
-        {{
-          this.$store.state.language == "English"
-            ? this.$store.state.English.question_component.points
-            : this.$store.state.Arabic.question_component.points
-        }}
-        {{ this.question_data.points }}
-      </p>
-      <!-- points -->
-
       <!-- class level -->
       <p>
         {{
@@ -43,25 +32,25 @@
       </p>
       <!-- class level -->
 
-      <!-- options -->
+      <!-- points -->
       <p>
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.question_component.answers
-            : this.$store.state.Arabic.question_component.answers
+            ? this.$store.state.English.question_component.points
+            : this.$store.state.Arabic.question_component.points
         }}
-        {{ this.question_data.options.length }}
+        {{ this.question_data.points }}
       </p>
-      <!-- options -->
+      <!-- points -->
 
       <!-- created_at -->
-      <p>
+      <p v-if="this.question_data.created_at">
         {{
           this.$store.state.language == "English"
             ? this.$store.state.English.question_component.created_at
             : this.$store.state.Arabic.question_component.created_at
         }}
-        {{ this.question_data.created_at }}sdf
+        {{ this.question_data.created_at.split("T")[1] }}
       </p>
       <!-- created_at -->
 
@@ -145,7 +134,7 @@ export default {
       this.$store.state.question_id_for_delete = this.question_data._id;
 
       // set the question type to question_subject_type_for_delete in store to select the api
-      this.$store.state.question_subject_type_for_delete = "Math";
+      this.$store.state.question_subject_type_for_delete = this.subject_type;
 
       // open the delete question form
       this.$store.commit("OpenOrCloseDeleteQuestionForm");
@@ -155,7 +144,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../../Sass/varibels/variables";
+@import "../../Sass/varibels/variables";
 
 // darck and light English style
 .question-cont-darck-English {
@@ -212,7 +201,7 @@ export default {
   }
 
   .info {
-    width: auto;
+    max-width: 60%;
     height: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -367,6 +356,7 @@ export default {
   }
 
   .info {
+    max-width: 60%;
     width: auto;
     height: 100%;
     display: flex;

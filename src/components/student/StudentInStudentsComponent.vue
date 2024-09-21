@@ -75,7 +75,6 @@ export default {
   margin: 5px 5%;
   border-radius: 10px;
   display: flex;
-  justify-content: space-between;
   align-content: center;
   background-color: $card-darck;
   transition-duration: 0.5s;

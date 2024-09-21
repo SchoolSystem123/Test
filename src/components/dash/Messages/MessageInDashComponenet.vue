@@ -171,7 +171,8 @@ export default {
     top: 5px;
     z-index: 50;
 
-    #open {
+    #open,
+    #close {
       position: absolute;
       right: 100%;
     }
@@ -307,7 +308,14 @@ export default {
     top: 5px;
     z-index: 50;
 
-    #open {
+    svg {
+      color: $font-darck;
+      background-color: $font-light;
+    }
+
+    #open,
+    #close {
+      color: $font-light;
       position: absolute;
       right: 100%;
     }
@@ -469,18 +477,15 @@ export default {
   direction: rtl;
 
   // note compoenent
-  #note-English-cont {
+  #note-Arabic-cont {
     direction: rtl;
     position: absolute;
-    right: 92%;
-    top: 5px;
+    left: 10px;
+    top: 10px;
     z-index: 50;
 
-    @media (max-width: $phone) {
-      right: 88%;
-    }
-
     #open {
+      direction: rtl;
       position: absolute;
       right: -400%;
     }
@@ -488,26 +493,25 @@ export default {
 }
 
 .dash-message-light-Arabic {
-  @extend .dash-message-darck-Arabic;
+  @extend .dash-message-light-English;
   direction: rtl;
 
   // note compoenent
-  #note-English-cont {
+  #note-Arabic-cont {
     direction: rtl;
     position: absolute;
-    right: 92%;
-    top: 5px;
+    left: 10px;
+    top: 10px;
     z-index: 50;
-
-    @media (max-width: $phone) {
-      right: 88%;
-    }
 
     svg {
       color: $font-darck;
       background-color: $font-light;
     }
+
     #open {
+      color: $font-darck;
+      direction: rtl;
       position: absolute;
       right: -400%;
     }

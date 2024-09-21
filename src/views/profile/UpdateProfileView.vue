@@ -16,9 +16,13 @@
         <div :class="`avatar-cont-${this.$store.state.theme}`">
           <img
             v-if="this.$store.state.user"
-            :src="this.$store.state.user.user.avatar"
+            :src="
+              this.$store.state.selectd_images.length > 0
+                ? this.readerFile()
+                : this.avatar
+            "
             alt="avatar"
-            @click="this.$store.commit('Changeavatar_form_status')"
+            @click="this.$store.commit('Change_avatar_form_status')"
           />
         </div>
       </div>
@@ -140,8 +144,10 @@ export default {
       password: "",
       // api
       api: "",
+      // default avatar
+      avatar: this.$store.state.user.user.avatar,
       // form data
-      formData: new FormData(),
+      formData: "",
     };
   },
   components: {
@@ -153,8 +159,17 @@ export default {
     AvatarFormComponentVue,
   },
   mounted() {
+    // to open the loading animation
+    setTimeout(() => {
+      // to start the loading
+      this.$store.state.loading = "open";
+    }, 100);
+
     setTimeout(() => {
       this.status = true;
+
+      // to stop the loading
+      this.$store.state.loading = "close";
     }, 500);
 
     // check if the user is loged in
@@ -190,8 +205,11 @@ export default {
     },
 
     async UpdateProfileData() {
-      // to start the loading
+      // to start the loading op click
       this.$store.state.loading = "open";
+
+      // create new form data
+      this.formData = new FormData();
 
       // call to select api method
       this.SelectApi();
@@ -246,15 +264,13 @@ export default {
         }
       }
 
-      console.log(this.api);
-
       // send the request
       await axios
         .put(this.api, this.formData, { headers })
         .then((response) => {
           // to stop the loading animation
           this.$store.state.loading = "close";
-
+          console.log(response);
           // getc to old user data from localStorage
           const oldData = JSON.parse(window.localStorage.getItem("Ss-user"));
 
@@ -277,6 +293,26 @@ export default {
           // to open the error form
           this.$store.state.error_form_status = "open";
         });
+    },
+
+    // change the input type on click the eye icon
+    ChangeInputType() {
+      this.password_type =
+        this.password_type == "password" ? "text" : "password";
+    },
+
+    // reader selecetd image
+    readerFile() {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        this.avatar = e.target.result;
+      };
+
+      reader.readAsDataURL(this.$store.state.selectd_images[0]);
+
+      // return the avatar to use the ass a path in avatar image
+      return this.avatar;
     },
   },
 };

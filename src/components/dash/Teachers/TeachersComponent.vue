@@ -1,11 +1,11 @@
 <template>
   <div
-    :class="`section-cont-${this.status}-${this.$store.state.mood}`"
+    :class="`section-cont-${this.status}-${this.$store.state.mood}-${this.$store.state.language}`"
     @scroll="handleScroll"
   >
     <!-- admins header  -->
     <div class="header">
-      <div class="title">
+      <div class="teachers-title">
         <h3>
           {{
             this.$store.state.language == "English"
@@ -169,8 +169,8 @@ export default {
 <style lang="scss">
 @import "../../../Sass/varibels/variables";
 
-// darck and light style
-.section-cont-open-darck {
+// darck and light English style
+.section-cont-open-darck-English {
   width: 96%;
   height: 96%;
   margin: 2%;
@@ -179,6 +179,7 @@ export default {
   overflow-y: scroll;
   transition-duration: 0.5s;
   opacity: 1;
+  direction: ltr;
 
   @media (min-width: $phone) {
     padding: 5px;
@@ -190,6 +191,8 @@ export default {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    border: 1px solid;
+    border-color: transparent transparent $border-light transparent;
 
     p {
       padding: 7px 20px;
@@ -198,9 +201,38 @@ export default {
       background-color: $note-darck;
       margin: 5px;
       font-size: $small;
+
       @media (max-width: $phone) {
         font-size: $x-small;
         padding: 6px 10px;
+      }
+    }
+
+    // header title
+    .teachers-title {
+      width: 100%;
+      height: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+
+      h3 {
+        width: auto;
+        height: auto;
+        color: $font-light;
+      }
+
+      .count {
+        width: auto;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $font-light;
+        font-size: $x-small;
+        background-color: none;
       }
     }
 
@@ -213,33 +245,10 @@ export default {
       border: none;
       outline: none;
       margin: 5px;
+
       @media (max-width: $phone) {
         font-size: $x-small;
         padding: 6px 10px;
-      }
-    }
-
-    // header title
-    .title {
-      width: 100%;
-      height: 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border: 1px solid;
-      border-color: transparent transparent $border-light transparent;
-      h3 {
-        width: auto;
-        height: auto;
-        color: $font-light;
-      }
-
-      svg {
-        padding: 3px;
-        border-radius: 3px;
-        color: $font-light;
-        border: 1px solid $border-light;
-        cursor: pointer;
       }
     }
   }
@@ -254,37 +263,175 @@ export default {
   }
 }
 
-.section-cont-open-darck::-webkit-scrollbar {
+.section-cont-open-darck-English::-webkit-scrollbar {
   width: 0px;
 }
 
-.section-cont-close-darck {
-  @extend .section-cont-open-darck;
+.section-cont-close-darck-English {
+  @extend .section-cont-open-darck-English;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
 
-.section-cont-open-light {
-  @extend .section-cont-open-darck;
+.section-cont-open-light-English {
+  @extend .section-cont-open-darck-English;
   .header {
+    border-color: transparent transparent $border-darck transparent;
     // header title
-    .title {
+    .teachers-title {
       border-color: transparent transparent $border-darck transparent;
       h3 {
+        color: $font-darck;
+      }
+
+      .count {
         color: $font-darck;
       }
     }
   }
 }
 
-.section-cont-close-light {
-  @extend .section-cont-open-light;
+.section-cont-close-light-English {
+  @extend .section-cont-open-light-English;
   padding: 30% 5px 5px 5px;
   opacity: 0;
 }
 
-.section-cont-open-light::-webkit-scrollbar {
+.section-cont-open-light-English::-webkit-scrollbar {
   width: 0px;
 }
-// darck and light style
+// darck and light English style
+
+// darck and light Arabic style
+.section-cont-open-darck-Arabic {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  padding: 5% 5px 5px 5px;
+  overflow-y: scroll;
+  transition-duration: 0.5s;
+  opacity: 1;
+  direction: rtl;
+
+  @media (min-width: $phone) {
+    padding: 5px;
+  }
+
+  .header {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border: 1px solid;
+    border-color: transparent transparent $border-light transparent;
+
+    p {
+      padding: 7px 20px;
+      border-radius: 5px;
+      color: $font-light;
+      background-color: $note-darck;
+      margin: 5px;
+      font-size: $small;
+
+      @media (max-width: $phone) {
+        font-size: $x-small;
+        padding: 6px 10px;
+      }
+    }
+
+    // header title
+    .teachers-title {
+      width: 100%;
+      height: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+
+      h3 {
+        width: auto;
+        height: auto;
+        color: $font-light;
+      }
+
+      .count {
+        width: auto;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $font-light;
+        font-size: $x-small;
+        background-color: none;
+      }
+    }
+
+    button {
+      padding: 7px 17px;
+      border-radius: 5px;
+      color: $font-light;
+      background-color: $blue;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      margin: 5px;
+
+      @media (max-width: $phone) {
+        font-size: $x-small;
+        padding: 6px 10px;
+      }
+    }
+  }
+
+  .cards-section {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+  }
+}
+
+.section-cont-open-darck-Arabic::-webkit-scrollbar {
+  width: 0px;
+}
+
+.section-cont-close-darck-Arabic {
+  @extend .section-cont-open-darck-Arabic;
+  padding: 30% 5px 5px 5px;
+  opacity: 0;
+}
+
+.section-cont-open-light-Arabic {
+  @extend .section-cont-open-darck-Arabic;
+  .header {
+    border-color: transparent transparent $border-darck transparent;
+    // header title
+    .teachers-title {
+      border-color: transparent transparent $border-darck transparent;
+      h3 {
+        color: $font-darck;
+      }
+
+      .count {
+        color: $font-darck;
+      }
+    }
+  }
+}
+
+.section-cont-close-light-Arabic {
+  @extend .section-cont-open-light-Arabic;
+  padding: 30% 5px 5px 5px;
+  opacity: 0;
+}
+
+.section-cont-open-light-Arabic::-webkit-scrollbar {
+  width: 0px;
+}
+// darck and light Arabic style
 </style>
