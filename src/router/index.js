@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHistory,  } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import LoginView from "../views/loginView.vue";
 
@@ -82,6 +82,11 @@ import DashView from "../views/dash/DashView.vue";
 import QuestionsView from "@/views/Subjects/QuestionsView.vue";
 // question view
 
+// exam
+import StartExam from "@/views/Exam/StartExamView.vue";
+import ExamView from "@/views/Exam/ExamView.vue";
+// exam
+
 const routes = [
   {
     path: "/",
@@ -109,6 +114,18 @@ const routes = [
     name: "login-page",
     component: LoginView,
   },
+  // exam 
+  {
+    path : "/start/exam",
+    name : "StartExam",
+    component : StartExam
+  },
+  {
+    path : "/exam/:subject/:class_level",
+    name : "ExamPage",
+    component : ExamView,
+  },
+  // exam 
   // students pages
   {
     path: "/students",
@@ -301,9 +318,12 @@ const routes = [
   }
 ];
 
+
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
+
+
 
 export default router;

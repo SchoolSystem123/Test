@@ -71,11 +71,10 @@ export default {
     ErrorComponentVue,
   },
   mounted() {
-    // to start the loading animation on load the page
-    window.addEventListener("load", () => {
-      // start the loading animation
+    // to start the loading animation
+    setTimeout(() => {
       this.$store.state.loading = "open";
-    });
+    }, 100);
 
     // check if the user loged in
     if (!this.$store.state.user) {

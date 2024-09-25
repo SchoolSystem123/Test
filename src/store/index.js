@@ -64,6 +64,10 @@ export default createStore({
     geted_student : "",
     geted_class : "",
     geted_teacher : "",
+    exam_questions : [],
+    exam_choosed_options : [],
+    exam_marks : 0,
+    exam_time : 40,
     choosed_children : [],
     choosed_teacher : "",
     choosed_class : "",
@@ -123,6 +127,7 @@ export default createStore({
     Links: [
       { path: "/dash", English_title: "Dashboard 🎛️", Arabic_title : "لوحة التحكم 🎛️", access: ["super" , "admin" , "teacher"] },
       { path: "/profile", English_title: "Profile 🧾", Arabic_title : "حسابي 🧾", access: ["super" , "admin" , "teacher" , "student" , "parent"] },
+      { path: "/start/exam", English_title: "Start Exam 📝🧠", Arabic_title: "بدء إختبار 📝🧠", access: ["super" , "admin" , "teacher" , "student" , "parent"] },
       { path: "/", English_title: "Home 🏠", Arabic_title: "الصفحة الرئيسية 🏠", access: ["super" , "admin" , "teacher" , "student" , "parent"] },
       { path: "/classes", English_title: "Classes 🏛️", Arabic_title: "الصفوف 🏛️",access: ["super" , "admin" , "teacher" , "student" , "parent"] },
       { path: "/my/classes", English_title: "My Classes 🏫⭕📌", Arabic_title: "صفوفي",access: ["teacher" , "student"] },
@@ -1012,6 +1017,20 @@ export default createStore({
         delete: "Delete 🗑️",
         cancel: "Cancel",
       },
+      start_exam_page : {
+        page_title : "Start Exam 🧠🏁",
+        choose_class_level : "Choose Class Level 🏫🪜🎚️ ",
+        choose_subject : "Choose Subject 📚⭕ ",
+        info : "Dear student, you should know that the goal of the tests is to build a strong educational level and awareness and adapt to the tests to get rid of exam fear and help the student memorize the largest possible number of questions by simplifying the process of testing your information.",
+        time :  "30m",
+        start : "Start Exam 🧠🚀"
+      },
+      exam_page : {
+        exam_header : "Exam ❓",
+        question_header : "Question ❓",
+        question_description : "Description 📝",
+        question_repated : "Repated At 🔄",
+      },
       theme: "Theme",
       mood: "Mood",
       log_out: "Log out",
@@ -1819,6 +1838,20 @@ export default createStore({
         delete: "حذف السؤال 🗑️",
         cancel: "إلغاء",
       },
+      start_exam_page : {
+        page_title : "بدء الإختبار 🧠🏁",
+        choose_class_level : "إختيار مستوى الصف 🏫🪜🎚️ ",
+        choose_subject : "إختار المادة 📚⭕ ",
+        info : "عزيزي الطالب يجب أن تعلم أن الهدف من الاختبارت هو بناء مستوى تعليمي و وعي قوي والتأقلم على الإختبارت للتخلص من رهبة الإمتحان و مساعد الطالب على حفظ أكبر عدد ممكن من الأسئلة الممكنة من خلال تبسيط عملية إختبار معلوماتك",
+        time : "30m",
+        start : "بدء الإختبار 🧠🚀"
+      },
+      exam_page : {
+        exam_header : "إختبار ❓",
+        question_header : "السؤال ❓",
+        question_description : "الوصف 📝",
+        question_repated : "كُرر في 🔄",
+      },
       theme: "السمات",
       mood: "الوضع",
       log_out: "تسجيل الخروج",
@@ -2008,6 +2041,7 @@ export default createStore({
           get_all : "https://rrr-zb8x.onrender.com/api/v1/math/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/math/get/one",
           get_count : "https://rrr-zb8x.onrender.com/api/v1/math/get/count",
+          start_exam : "https://rrr-zb8x.onrender.com/api/v1/math/exam",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/math/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/math/delete",
@@ -2028,6 +2062,7 @@ export default createStore({
           get_all : "https://rrr-zb8x.onrender.com/api/v1/english/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/english/get/one",
           get_count : "https://rrr-zb8x.onrender.com/api/v1/english/get/count",
+          start_exam : "https://rrr-zb8x.onrender.com/api/v1/english/exam",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/english/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/english/delete",
@@ -2048,6 +2083,7 @@ export default createStore({
           get_all : "https://rrr-zb8x.onrender.com/api/v1/arabic/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/arabic/get/one",
           get_count : "https://rrr-zb8x.onrender.com/api/v1/arabic/get/count",
+          start_exam : "https://rrr-zb8x.onrender.com/api/v1/arabic/exam",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/arabic/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/arabic/delete",
@@ -2068,6 +2104,7 @@ export default createStore({
           get_all : "https://rrr-zb8x.onrender.com/api/v1/french/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/french/get/one",
           get_count : "https://rrr-zb8x.onrender.com/api/v1/french/get/count",
+          start_exam : "https://rrr-zb8x.onrender.com/api/v1/french/exam",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/french/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/french/delete",
@@ -2088,6 +2125,7 @@ export default createStore({
           get_all : "https://rrr-zb8x.onrender.com/api/v1/islam/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/islam/get/one",
           get_count : "https://rrr-zb8x.onrender.com/api/v1/islam/get/count",
+          start_exam : "https://rrr-zb8x.onrender.com/api/v1/islam/exam",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/islam/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/islam/delete",
@@ -2108,6 +2146,7 @@ export default createStore({
           get_all : "https://rrr-zb8x.onrender.com/api/v1/history/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/history/get/one",
           get_count : "https://rrr-zb8x.onrender.com/api/v1/history/get/count",
+          start_exam : "https://rrr-zb8x.onrender.com/api/v1/history/exam",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/history/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/history/delete",
@@ -2128,6 +2167,7 @@ export default createStore({
           get_all : "https://rrr-zb8x.onrender.com/api/v1/philosophy/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/philosophy/get/one",
           get_count : "https://rrr-zb8x.onrender.com/api/v1/philosophy/get/count",
+          start_exam : "https://rrr-zb8x.onrender.com/api/v1/philosophy/exam",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/philosophy/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/philosophy/delete",
@@ -2148,6 +2188,7 @@ export default createStore({
           get_all : "https://rrr-zb8x.onrender.com/api/v1/physics/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/physics/get/one",
           get_count : "https://rrr-zb8x.onrender.com/api/v1/physics/get/count",
+          start_exam : "https://rrr-zb8x.onrender.com/api/v1/physics/exam",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/physics/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/physics/delete",
@@ -2168,6 +2209,7 @@ export default createStore({
           get_all : "https://rrr-zb8x.onrender.com/api/v1/sciences/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/sciences/get/one",
           get_count : "https://rrr-zb8x.onrender.com/api/v1/sciences/get/count",
+          start_exam : "https://rrr-zb8x.onrender.com/api/v1/sciences/exam",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/sciences/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/sciences/delete",
@@ -2188,6 +2230,7 @@ export default createStore({
           get_all : "https://rrr-zb8x.onrender.com/api/v1/geography/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/geography/get/one",
           get_count : "https://rrr-zb8x.onrender.com/api/v1/geography/get/count",
+          start_exam : "https://rrr-zb8x.onrender.com/api/v1/geography/exam",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/geography/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/geography/delete",
@@ -2208,6 +2251,7 @@ export default createStore({
           get_all : "https://rrr-zb8x.onrender.com/api/v1/chemistry/get/all",
           get_one : "https://rrr-zb8x.onrender.com/api/v1/chemistry/get/one",
           get_count : "https://rrr-zb8x.onrender.com/api/v1/chemistry/get/count",
+          start_exam : "https://rrr-zb8x.onrender.com/api/v1/chemistry/exam",
           super : {
             create : "https://rrr-zb8x.onrender.com/api/v1/super/chemistry/create",
             delete : "https://rrr-zb8x.onrender.com/api/v1/super/chemistry/delete",
@@ -2225,23 +2269,24 @@ export default createStore({
           },
         },
         alwatania : {
-          get_all : "https://rrr-zb8x.onrender.com/api/v1/Alwatania/get/all",
-          get_one : "https://rrr-zb8x.onrender.com/api/v1/Alwatania/get/one",
-          get_count : "https://rrr-zb8x.onrender.com/api/v1/Alwatania/get/count",
+          get_all : "https://rrr-zb8x.onrender.com/api/v1/alwatania/get/all",
+          get_one : "https://rrr-zb8x.onrender.com/api/v1/alwatania/get/one",
+          get_count : "https://rrr-zb8x.onrender.com/api/v1/alwatania/get/count",
+          start_exam : "https://rrr-zb8x.onrender.com/api/v1/alwatania/exam",
           super : {
-            create : "https://rrr-zb8x.onrender.com/api/v1/super/Alwatania/create",
-            delete : "https://rrr-zb8x.onrender.com/api/v1/super/Alwatania/delete",
-            update : "https://rrr-zb8x.onrender.com/api/v1/super/Alwatania/update",
+            create : "https://rrr-zb8x.onrender.com/api/v1/super/alwatania/create",
+            delete : "https://rrr-zb8x.onrender.com/api/v1/super/alwatania/delete",
+            update : "https://rrr-zb8x.onrender.com/api/v1/super/alwatania/update",
           },
           admin : {
-            create : "https://rrr-zb8x.onrender.com/api/v1/admin/Alwatania/create",
-            delete : "https://rrr-zb8x.onrender.com/api/v1/admin/Alwatania/delete",
-            update : "https://rrr-zb8x.onrender.com/api/v1/admin/Alwatania/update",
+            create : "https://rrr-zb8x.onrender.com/api/v1/admin/alwatania/create",
+            delete : "https://rrr-zb8x.onrender.com/api/v1/admin/alwatania/delete",
+            update : "https://rrr-zb8x.onrender.com/api/v1/admin/alwatania/update",
           },
           teacher : {
-            create : "https://rrr-zb8x.onrender.com/api/v1/teacher/Alwatania/create",
-            delete : "https://rrr-zb8x.onrender.com/api/v1/teacher/Alwatania/delete",
-            update : "https://rrr-zb8x.onrender.com/api/v1/teacher/Alwatania/update",
+            create : "https://rrr-zb8x.onrender.com/api/v1/teacher/alwatania/create",
+            delete : "https://rrr-zb8x.onrender.com/api/v1/teacher/alwatania/delete",
+            update : "https://rrr-zb8x.onrender.com/api/v1/teacher/alwatania/update",
           },
         },
       },
