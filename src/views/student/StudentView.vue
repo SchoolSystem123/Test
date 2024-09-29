@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`profile-page-${this.$store.state.mood}-${this.$store.state.language}`"
+    :class="`student-page-${this.$store.state.mood}-${this.$store.state.language}`"
   >
     <SmallNavComponentVue />
     <SidBarComponentVue />
@@ -99,9 +99,14 @@
           <!-- Phone Number  -->
           <p
             v-if="
-              this.$store.state.show_user.data.phone_number &&
-              this.$store.state.user.user_type ==
-                this.$store.state.show_user.type
+              (this.$store.state.show_user.data.phone_number &&
+                this.$store.state.user.user_type == 'super') ||
+              this.$store.state.user.user_type == 'admin' ||
+              this.$store.state.user.user_type == 'teacher' ||
+              this.$store.state.user.user_type == 'parent' ||
+              (this.$store.state.user.user_type == 'student' &&
+                this.$store.state.user.user.gender ===
+                  this.$store.state.show_user.data.gender)
             "
           >
             {{
@@ -130,54 +135,31 @@
         <!--  about me  -->
 
         <!-- medals in English language  -->
-        <div
-          class="medals"
-          v-if="
-            this.$store.state.language == 'English' &&
-            this.$store.state.user_type == 'student'
-          "
-        >
-          <span>Medals</span>
+        <div class="medals">
+          <span>
+            {{
+              this.$store.state.language == "English"
+                ? this.$store.state.English.profile.medals
+                : this.$store.state.Arabic.profile.medals
+            }}
+          </span>
 
           <!-- add the medals by gpa -->
           <p
-            v-for="(medal, index) in this.$store.state.English.show_user.data
-              .medals"
+            v-for="(medal, index) in this.$store.state.medals"
             :key="index"
+            :id="medal.id"
           >
             {{
-              this.$store.state.show_user.total_gpa >= medal.gpa
-                ? medal.message
+              this.$store.state.show_user.data.total_gpa >= medal.gpa
+                ? this.$store.state.language == "English"
+                  ? medal.English
+                  : medal.Arabic
                 : "🔒"
             }}
           </p>
         </div>
         <!-- medals in English language  -->
-
-        <!-- medals in Arabic language  -->
-        <div
-          class="medals"
-          v-if="
-            this.$store.state.language == 'Arabic' &&
-            this.$store.state.user_type == 'student'
-          "
-        >
-          <span>الميدليات</span>
-
-          <!-- add the medals by gpa -->
-          <p
-            v-for="(medal, index) in this.$store.state.Arabic.show_user.data
-              .medals"
-            :key="index"
-          >
-            {{
-              this.$store.state.show_user.total_gpa >= medal.gpa
-                ? medal.message
-                : "🔒"
-            }}
-          </p>
-          <!-- medals in Arabic language  -->
-        </div>
       </div>
       <!-- section one container  -->
 
@@ -193,6 +175,19 @@
           }}
         </div>
 
+        <!-- default message  -->
+        <p
+          class="default-message"
+          v-if="this.$store.state.show_user.data.classes.length == 0"
+        >
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.show_user_page.default_message_classes
+              : this.$store.state.Arabic.show_user_page.default_message_classes
+          }}
+        </p>
+        <!-- default message  -->
+
         <!-- class component  -->
         <ClassComponentVue
           v-for="(class_data, index) in this.$store.state.show_user.data
@@ -203,6 +198,7 @@
         <!-- class component  -->
 
         <router-link
+          v-if="this.$store.state.show_user.data.classes.length > 0"
           :to="`/classes/student/${this.$store.state.show_user.data._id}`"
         >
           {{
@@ -225,6 +221,19 @@
           }}
         </div>
 
+        <!-- default message  -->
+        <p
+          class="default-message"
+          v-if="this.$store.state.show_user.data.my_plans.length == 0"
+        >
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.show_user_page.default_message_plans
+              : this.$store.state.Arabic.show_user_page.default_message_plans
+          }}
+        </p>
+        <!-- default message  -->
+
         <!-- plan component  -->
         <PlanInProfilePageCompoeneVue
           v-for="(plan_data, index) in this.$store.state.show_user.data
@@ -233,8 +242,8 @@
           :plan_data="plan_data"
         />
         <!-- class component  -->
-
         <router-link
+          v-if="this.$store.state.show_user.data.my_plans.length > 0"
           :to="`/plans/student/${this.$store.state.show_user.data._id}`"
         >
           {{
@@ -341,3 +350,523 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../Sass/varibels/variables";
+
+// Darck and light English style
+.student-page-darck-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-darck;
+  direction: ltr;
+
+  .cont-open {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    padding: 10% 0px 10px 0px;
+    opacity: 1;
+    transition-duration: 0.5s;
+    @media (max-width: $phone) {
+      padding: 20% 0px 10px 0px;
+      width: 100%;
+    }
+
+    // section-one container
+    .section-one {
+      width: 90%;
+      height: auto;
+      margin: 10px 5%;
+      padding: 5px;
+      border-radius: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: start;
+      align-items: center;
+      background-color: $card-darck;
+      position: relative;
+
+      // update profile icon
+      .update-icon {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        text-decoration: none;
+        padding: 3px;
+        border-radius: 3px;
+        background-color: $note-darck;
+      }
+
+      // avatar container blue style
+      .avatar-blue {
+        width: 150px;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        background: linear-gradient(to top, $first-blue, $second-blue);
+
+        @media (max-width: $phone) {
+          width: 100px;
+          height: 100px;
+        }
+
+        // avatar
+        .avatar-img {
+          width: 90%;
+          height: 90%;
+          border-radius: 10px;
+        }
+      }
+
+      // avatar container orange style
+      .avatar-orange {
+        @extend .avatar-blue;
+        background: linear-gradient(to top, $first-orange, $second-orange);
+      }
+
+      // avatar container pink style
+      .avatar-pink {
+        @extend .avatar-blue;
+        background: linear-gradient(to top, $first-pink, $second-pink);
+      }
+
+      // avatar container green style
+      .avatar-green {
+        @extend .avatar-blue;
+        background: linear-gradient(to top, $first-green, $second-green);
+      }
+
+      // info container style
+      .info {
+        min-width: 60%;
+        height: 100%;
+        margin: 0px 10px;
+
+        // name
+        h2 {
+          max-width: 100%;
+          height: auto;
+          color: $font-light;
+        }
+
+        // points
+        h3 {
+          max-width: 100%;
+          height: auto;
+          color: $font-light;
+        }
+      }
+
+      // notes style
+      .notes {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: start;
+        align-items: center;
+        margin: 5px 0px;
+
+        p {
+          width: auto;
+          height: auto;
+          background-color: $note-darck;
+          border-radius: 3px;
+          padding: 3px;
+          color: $font-light;
+          font-size: $x-small;
+          margin: 3px;
+        }
+
+        .editor,
+        .admin {
+          width: auto;
+          height: auto;
+          background-color: $green;
+          border-radius: 3px;
+          padding: 3px;
+          color: $font-light;
+          font-size: $x-small;
+          margin: 3px;
+        }
+
+        .supper_admin {
+          @extend .editor;
+          background-color: $red;
+        }
+      }
+
+      // copy id component style in profile page
+      p {
+        padding: 3px;
+        max-width: 90%;
+        border-radius: 3px;
+        background-color: $note-darck;
+        margin: 3px;
+      }
+
+      // about me
+      .content {
+        width: 98%;
+        height: auto;
+        margin: 10px 1%;
+        font-size: $small;
+        background-color: $note-darck;
+        color: $font-light;
+        padding: 5px;
+        border-radius: 3px;
+      }
+
+      // mesals section
+      .medals {
+        width: 98%;
+        height: auto;
+        margin: 10px 1%;
+        color: $font-light;
+        padding: 5px;
+        border-radius: 3px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: start;
+        align-items: center;
+
+        span {
+          width: 98%;
+          height: auto;
+          margin: 5px 1%;
+          padding: 5px 0px;
+          color: $font-light;
+          border: 1px solid;
+          border-color: transparent transparent $border-light transparent;
+        }
+
+        p {
+          width: auto;
+          height: auto;
+          font-size: $x-small;
+          padding: 3px;
+          border-radius: 3px;
+          background-color: $note-darck;
+          color: $font-light;
+        }
+      }
+    }
+
+    // section-tow container style
+    .section-tow {
+      @extend .section-one;
+      margin: 10px 5%;
+
+      // section tow title
+      .title {
+        width: 98%;
+        height: auto;
+        margin: 10px 1%;
+        color: $font-light;
+        border: 1px solid;
+        border-color: transparent transparent $border-light transparent;
+      }
+
+      // link to go my classes
+      a {
+        width: 100%;
+        height: auto;
+        padding: 10px 0px;
+        color: $blue;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        font-size: $x-small;
+
+        svg {
+          margin: 0px 5px;
+        }
+      }
+
+      .default-message {
+        width: 100%;
+        margin: 5px 5%;
+        height: auto;
+        text-align: center;
+        font-size: $small;
+        background-color: none;
+        color: $font-light;
+      }
+    }
+  }
+
+  .cont-close {
+    @extend .cont-open;
+    padding: 30% 0px 0px 0px;
+    opacity: 0;
+    transition-duration: 0.5s;
+  }
+}
+
+.student-page-light-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-light;
+  direction: ltr;
+
+  .cont-open {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    padding: 10% 0px 10px 0px;
+    opacity: 1;
+    transition-duration: 0.5s;
+    @media (max-width: $phone) {
+      padding: 20% 0px 10px 0px;
+      width: 100%;
+    }
+
+    // section-one container
+    .section-one {
+      width: 90%;
+      height: auto;
+      margin: 10px 5%;
+      padding: 5px;
+      border-radius: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: start;
+      align-items: center;
+      background-color: $card-light;
+      position: relative;
+
+      // update profile icon
+      .update-icon {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        text-decoration: none;
+        padding: 3px;
+        border-radius: 3px;
+        background-color: $note-light;
+      }
+
+      // avatar container blue style
+      .avatar-blue {
+        width: 150px;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        background: linear-gradient(to top, $first-blue, $second-blue);
+
+        @media (max-width: $phone) {
+          width: 100px;
+          height: 100px;
+        }
+
+        // avatar
+        .avatar-img {
+          width: 90%;
+          height: 90%;
+          border-radius: 10px;
+        }
+      }
+
+      // avatar container orange style
+      .avatar-orange {
+        @extend .avatar-blue;
+        background: linear-gradient(to top, $first-orange, $second-orange);
+      }
+
+      // avatar container pink style
+      .avatar-pink {
+        @extend .avatar-blue;
+        background: linear-gradient(to top, $first-pink, $second-pink);
+      }
+
+      // avatar container green style
+      .avatar-green {
+        @extend .avatar-blue;
+        background: linear-gradient(to top, $first-green, $second-green);
+      }
+
+      // info container style
+      .info {
+        min-width: 60%;
+        height: 100%;
+        margin: 0px 10px;
+
+        // name
+        h2 {
+          max-width: 100%;
+          height: auto;
+          color: $font-darck;
+        }
+
+        // points
+        h3 {
+          max-width: 100%;
+          height: auto;
+          color: $font-darck;
+        }
+      }
+
+      // notes style
+      .notes {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: start;
+        align-items: center;
+        margin: 5px 0px;
+
+        p {
+          width: auto;
+          height: auto;
+          background-color: $note-light;
+          border-radius: 3px;
+          padding: 3px;
+          color: $font-darck;
+          font-size: $x-small;
+          margin: 3px;
+        }
+
+        .editor,
+        .admin {
+          width: auto;
+          height: auto;
+          background-color: $green;
+          border-radius: 3px;
+          padding: 3px;
+          color: $font-darck;
+          font-size: $x-small;
+          margin: 3px;
+        }
+
+        .supper_admin {
+          @extend .editor;
+          background-color: $red;
+        }
+      }
+
+      // copy id component style in profile page
+      p {
+        padding: 3px;
+        max-width: 90%;
+        border-radius: 3px;
+        background-color: $note-light;
+        margin: 3px;
+      }
+
+      // about me
+      .content {
+        width: 98%;
+        height: auto;
+        margin: 10px 1%;
+        font-size: $small;
+        background-color: $note-light;
+        color: $font-darck;
+        padding: 5px;
+        border-radius: 3px;
+      }
+
+      // mesals section
+      .medals {
+        width: 98%;
+        height: auto;
+        margin: 10px 1%;
+        color: $font-darck;
+        padding: 5px;
+        border-radius: 3px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: start;
+        align-items: center;
+
+        span {
+          width: 98%;
+          height: auto;
+          margin: 5px 1%;
+          padding: 5px 0px;
+          color: $font-darck;
+          border: 1px solid;
+          border-color: transparent transparent $border-darck transparent;
+        }
+
+        p {
+          width: auto;
+          height: auto;
+          font-size: $x-small;
+          padding: 3px;
+          border-radius: 3px;
+          background-color: $note-light;
+          color: $font-darck;
+        }
+      }
+    }
+
+    // section-tow container style
+    .section-tow {
+      @extend .section-one;
+      margin: 10px 5%;
+
+      // section tow title
+      .title {
+        width: 98%;
+        height: auto;
+        margin: 10px 1%;
+        color: $font-darck;
+        border: 1px solid;
+        border-color: transparent transparent $border-darck transparent;
+      }
+
+      // link to go my classes
+      a {
+        width: 100%;
+        height: auto;
+        padding: 10px 0px;
+        color: $blue;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        font-size: $x-small;
+
+        svg {
+          margin: 0px 5px;
+        }
+      }
+
+      .default-message {
+        width: 100%;
+        margin: 5px 5%;
+        height: auto;
+        text-align: center;
+        font-size: $small;
+        background-color: none;
+        color: $font-darck;
+      }
+    }
+  }
+
+  .cont-close {
+    @extend .cont-open;
+    padding: 30% 0px 0px 0px;
+    opacity: 0;
+    transition-duration: 0.5s;
+  }
+}
+// Darck and light English style
+
+// Darck and light Arabic style
+.student-page-darck-Arabic {
+  @extend .student-page-darck-English;
+  direction: rtl;
+}
+
+.student-page-light-Arabic {
+  @extend .student-page-light-English;
+  direction: rtl;
+}
+// Darck and light Arabic style
+</style>

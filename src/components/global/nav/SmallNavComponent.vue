@@ -16,8 +16,37 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "small-nav-component",
+  mounted() {
+    // call to GetMessagesCount method
+    this.GetMessagesCount();
+  },
+  methods: {
+    // get messages count
+    async GetMessagesCount() {
+      await axios
+        .get(this.$store.state.APIs.messages.get_count, {
+          params: {
+            recipient: "super",
+          },
+        })
+        .then((response) => {
+          // set the messages count to messages count in store
+          this.$store.state.messages_count = response.data.Messages_count;
+        })
+        .catch((error) => {
+          console.log(error);
+
+          // to set the reqeust's error message to error message var in store
+          this.$store.state.error_message = error.response.data.message;
+
+          // to open the error form
+          this.$store.state.error_form_status = "open";
+        });
+    },
+  },
 };
 </script>
 
@@ -36,7 +65,7 @@ export default {
   position: fixed;
   top: 10px;
   left: 5%;
-  z-index: 50;
+  z-index: 60;
   @media (min-width: $tablet) {
     width: 50%;
     left: 25%;

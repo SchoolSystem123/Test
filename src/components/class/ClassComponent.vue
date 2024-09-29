@@ -10,7 +10,14 @@
 
     <div class="info">
       <!-- class title  -->
-      <h2>{{ this.class_data.title }}</h2>
+      <h2>
+        {{
+          this.class_data.title.split("").length > 40
+            ? this.class_data.title.slice(0, 40) + "..."
+            : this.class_data.title
+        }}
+        ...
+      </h2>
 
       <!-- students length  -->
       <p v-if="this.class_data.students">
@@ -62,6 +69,10 @@ export default {
   width: 100%;
   height: 100%;
   direction: ltr;
+  margin: 5px 0px;
+  border-radius: 5px;
+  padding: 3px;
+  background-color: $body-darck;
 
   img {
     width: 100%;
@@ -95,7 +106,11 @@ export default {
 .class-home-light-English {
   width: 100%;
   height: 100%;
+  margin: 5px 0px;
   direction: ltr;
+  padding: 3px;
+  border-radius: 5px;
+  background-color: $body-light;
 
   img {
     width: 100%;

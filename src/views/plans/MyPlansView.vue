@@ -35,6 +35,16 @@
 
       <!-- classes container -->
       <div class="plans-cont">
+        <!-- default message  -->
+        <p class="default_message">
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.my_classes_page.default
+              : this.$store.state.Arabic.my_classes_page.default
+          }}
+        </p>
+        <!-- default message  -->
+
         <div class="results">
           <PlanInPlansPageComponent
             v-for="(plan_data, index) in this.$store.state.my_plans"

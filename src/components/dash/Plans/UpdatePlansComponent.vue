@@ -93,56 +93,8 @@
       </select>
       <!-- level  -->
 
-      <!-- plan data  -->
-      <label for="plan-info">
-        {{
-          this.$store.state.language == "English"
-            ? this.$store.state.English.update_plan.plan_info
-            : this.$store.state.Arabic.update_plan.plan_info
-        }}
-      </label>
-
-      <div class="plan-data">
-        <div
-          class="add"
-          @click="this.$store.commit('OpenOrCloseAddSubjectForm')"
-        >
-          {{
-            this.$store.state.language == "English"
-              ? this.$store.state.English.update_plan.add_day
-              : this.$store.state.Arabic.update_plan.add_day
-          }}
-        </div>
-
-        <div
-          class="line"
-          v-for="(line, index) in this.$store.state.plan_info"
-          :key="index"
-        >
-          <h5>🌅{{ line.day }}</h5>
-          <div class="subjects">
-            <div
-              class="subject"
-              v-for="(subject, index) in line.subjects"
-              :key="index"
-            >
-              <p>📚📖📑{{ subject.subject }}</p>
-              |
-              <p>🏁{{ subject.start }}</p>
-              |
-              <p>🚩{{ subject.end }}</p>
-              |
-              <div @click="this.$store.commit('OpenOrCloseUpdateSubjectForm')">
-                ✍️
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- plan data  -->
-
       <!-- button  -->
-      <button @click="CreatePlan">
+      <button @click="UpdatePlan">
         {{
           this.$store.state.language == "English"
             ? this.$store.state.English.update_plan.button
@@ -195,27 +147,38 @@ export default {
       // add the super or admin id
       if (this.$store.state.user.user_type == "super") {
         this.body_data.super_admin_id = this.$store.state.user.user._id;
+        this.body_data.plan_id = this.$store.state.plan_data_for_update._id;
       } else if (this.$store.state.user.user_type == "admin") {
         this.body_data.admin_id = this.$store.state.user.user._id;
+        this.body_data.plan_id = this.$store.state.plan_data_for_update._id;
       }
 
       // add the title
-      this.body_data.title = this.title;
+      if (this.$store.state.plan_data_for_update.title != this.title) {
+        this.body_data.title = this.title;
+      }
 
       // add the description
-      this.body_data.description = this.description;
+      if (
+        this.$store.state.plan_data_for_update.description != this.description
+      ) {
+        this.body_data.description = this.description;
+      }
 
       // add the note
-      this.body_data.note = this.note;
+      if (this.$store.state.plan_data_for_update.note != this.note) {
+        this.body_data.note = this.note;
+      }
 
       // add the level
-      this.body_data.class_level = this.level;
-
-      // add the plan info to body data
-      this.body_data.plan_info = this.$store.state.plan_info;
+      if (
+        this.$store.state.plan_data_for_update.class_level != this.class_level
+      ) {
+        this.body_data.class_level = this.level;
+      }
 
       await axios
-        .post(
+        .put(
           this.$store.state.user.user_type == "super"
             ? this.$store.state.APIs.plans.super.update
             : this.$store.state.APIs.plans.admin.update,
@@ -240,6 +203,9 @@ export default {
 
           // emptying the plan info in store
           this.$store.state.plan_info = [];
+
+          // move to plans component
+          this.$store.state.active_component_in_dash = "plans";
         })
         .catch((error) => {
           // to stop loading
@@ -251,6 +217,14 @@ export default {
           // set the error message to error message in store
           this.$store.state.error_message = error.response.data.message;
         });
+    },
+
+    // oprn close component
+    OpenClosecomponent() {
+      // set the day data to
+      console.log(this.$store.state.plan_data_for_update);
+      // to open the component
+      this.$store.commit("OpenOrCloseAddSubjectForm");
     },
   },
 };

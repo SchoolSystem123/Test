@@ -37,7 +37,7 @@
           <!-- name  -->
 
           <!-- points  -->
-          <h3>
+          <h3 v-if="this.$store.state.user.user_type == 'student'">
             {{
               this.$store.state.language == "English"
                 ? this.$store.state.English.profile.points
@@ -48,7 +48,7 @@
           <!-- points  -->
 
           <!-- GPA  -->
-          <h3>
+          <h3 v-if="this.$store.state.user.user_type == 'student'">
             {{
               this.$store.state.language == "English"
                 ? this.$store.state.English.profile.gpa
@@ -61,7 +61,7 @@
 
         <div class="notes">
           <!-- exams  -->
-          <p>
+          <p v-if="this.$store.state.user.user_type == 'student'">
             {{
               this.$store.state.language == "English"
                 ? this.$store.state.English.profile.exams
@@ -83,7 +83,12 @@
           <!-- gender  -->
 
           <!-- class level  -->
-          <p>
+          <p
+            v-if="
+              this.$store.state.user.user_type == 'student' ||
+              this.$store.state.user.user_type == 'teacher'
+            "
+          >
             {{
               this.$store.state.language == "English"
                 ? this.$store.state.English.profile.class_level
@@ -129,23 +134,26 @@
         <!--  about me  -->
 
         <!-- medals in English language  -->
-        <div
-          class="medals"
-          v-if="
-            this.$store.state.language == 'English' &&
-            this.$store.state.user_type == 'student'
-          "
-        >
-          <span>Medals</span>
+        <div class="medals" v-if="this.$store.state.user_type == 'student'">
+          <span>
+            {{
+              this.$store.state.language == "English"
+                ? this.$store.state.English.profile.medals
+                : this.$store.state.Arabic.profile.medals
+            }}
+          </span>
 
           <!-- add the medals by gpa -->
           <p
-            v-for="(medal, index) in this.$store.state.English.profile.medals"
+            v-for="(medal, index) in this.$store.state.medals"
             :key="index"
+            :id="medal.id"
           >
             {{
               this.$store.state.profile.total_gpa >= medal.gpa
-                ? medal.message
+                ? this.$store.state.language == "English"
+                  ? medal.English
+                  : medal.Arabic
                 : "🔒"
             }}
           </p>
@@ -153,28 +161,6 @@
         <!-- medals in English language  -->
 
         <!-- medals in Arabic language  -->
-        <div
-          class="medals"
-          v-if="
-            this.$store.state.language == 'Arabic' &&
-            this.$store.state.user_type == 'student'
-          "
-        >
-          <span>الميدليات</span>
-
-          <!-- add the medals by gpa -->
-          <p
-            v-for="(medal, index) in this.$store.state.Arabic.profile.medals"
-            :key="index"
-          >
-            {{
-              this.$store.state.profile.total_gpa >= medal.gpa
-                ? medal.message
-                : "🔒"
-            }}
-          </p>
-          <!-- medals in Arabic language  -->
-        </div>
       </div>
       <!-- section one container  -->
 
@@ -195,6 +181,22 @@
               : this.$store.state.Arabic.profile.classes_cont.title
           }}
         </div>
+
+        <!-- default message  -->
+        <p
+          class="default_message"
+          v-if="
+            this.$store.state.profile.classes &&
+            this.$store.state.profile.classes.length == 0
+          "
+        >
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.profile.default_message_classes
+              : this.$store.state.Arabic.profile.default_message_classes
+          }}
+        </p>
+        <!-- default message  -->
 
         <!-- class component  -->
         <ClassComponentVue
@@ -237,6 +239,22 @@
           }}
         </div>
 
+        <!-- default message  -->
+        <p
+          class="default_message"
+          v-if="
+            this.$store.state.profile.my_plans &&
+            this.$store.state.profile.my_plans.length == 0
+          "
+        >
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.profile.default_message_plans
+              : this.$store.state.Arabic.profile.default_message_plans
+          }}
+        </p>
+        <!-- default message  -->
+
         <!-- plan component  -->
         <PlanInProfilePageCompoeneVue
           v-for="(plan_data, index) in this.$store.state.profile.my_plans"
@@ -261,6 +279,46 @@
         </router-link>
       </div>
       <!-- section three container  -->
+
+      <!-- section for container  -->
+      <div
+        class="section-tow"
+        v-if="this.$store.state.user.user_type == 'parent'"
+      >
+        <div class="title">
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.profile.children
+              : this.$store.state.Arabic.profile.children
+          }}
+        </div>
+
+        <!-- default message  -->
+        <p
+          class="default_message"
+          v-if="
+            this.$store.state.profile.children &&
+            this.$store.state.profile.children.length == 0
+          "
+        >
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.profile.default_message_children
+              : this.$store.state.Arabic.profile.default_message_children
+          }}
+        </p>
+        <!-- default message  -->
+
+        <!-- student component  -->
+        <StudentInStudentsComponent
+          v-for="(student_data, index) in this.$store.state.profile.children"
+          :key="index"
+          :student_data="student_data"
+          :view_style="`list`"
+        />
+        <!-- student component  -->
+      </div>
+      <!-- section for container  -->
     </div>
 
     <!-- scroll to top compoenent  -->
@@ -270,6 +328,7 @@
 </template>
 
 <script>
+// ? importing components
 import SmallNavComponentVue from "@/components/global/nav/SmallNavComponent.vue";
 import SidBarComponentVue from "@/components/global/SidBarComponent.vue";
 import LoadingComponentVue from "@/components/global/LoadingComponent.vue";
@@ -277,6 +336,7 @@ import ErrorComponentVue from "@/components/global/ErrorComponent.vue";
 import CopyIdComponentVue from "@/components/global/CopyIdComponent.vue";
 import CopyMessageComponentVue from "@/components/global/CopyMessageComponent.vue";
 import ClassComponentVue from "@/components/class/ClassComponent.vue";
+import StudentInStudentsComponent from "@/components/student/StudentInStudentsComponent.vue";
 import PlanInProfilePageCompoeneVue from "@/components/plan/PlanInProfilePageCompoene.vue";
 import ScrollTopComponentVue from "@/components/global/ScrollTopComponent.vue";
 import axios from "axios";
@@ -304,6 +364,7 @@ export default {
     ClassComponentVue,
     PlanInProfilePageCompoeneVue,
     ScrollTopComponentVue,
+    StudentInStudentsComponent,
   },
   mounted() {
     setTimeout(() => {
@@ -633,6 +694,11 @@ export default {
           background-color: $note-darck;
           color: $font-light;
         }
+
+        #First-level {
+          @extend p;
+          background-color: $green;
+        }
       }
     }
 
@@ -675,6 +741,54 @@ export default {
         font-size: $small;
         background-color: none;
         color: $font-light;
+      }
+    }
+
+    // section-for container style
+    .section-tow {
+      @extend .section-one;
+      margin: 10px 5%;
+
+      // section tow title
+      .title {
+        width: 98%;
+        height: auto;
+        margin: 10px 1%;
+        color: $font-light;
+        border: 1px solid;
+        border-color: transparent transparent $border-light transparent;
+      }
+
+      // link to go my classes
+      a {
+        width: 100%;
+        height: auto;
+        padding: 10px 0px;
+        color: $blue;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        font-size: $x-small;
+
+        svg {
+          margin: 0px 5px;
+        }
+      }
+
+      .default-message {
+        width: 100%;
+        margin: 5px 5%;
+        height: auto;
+        text-align: center;
+        font-size: $small;
+        background-color: none;
+        color: $font-light;
+      }
+
+      #student {
+        width: 100%;
+        margin: 5px 0px;
+        background-color: $body-darck;
       }
     }
   }
@@ -884,6 +998,535 @@ export default {
           background-color: $note-light;
           color: $font-darck;
         }
+
+        #First-level {
+          @extend p;
+          background-color: $green;
+          color: $font-light;
+        }
+      }
+    }
+
+    // section-tow container style
+    .section-tow {
+      @extend .section-one;
+      margin: 10px 5%;
+
+      // section tow title
+      .title {
+        width: 98%;
+        height: auto;
+        margin: 10px 1%;
+        color: $font-darck;
+        border: 1px solid;
+        border-color: transparent transparent $border-darck transparent;
+      }
+
+      // link to go my classes
+      a {
+        width: 100%;
+        height: auto;
+        padding: 10px 0px;
+        color: $blue;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        font-size: $x-small;
+
+        svg {
+          margin: 0px 5px;
+        }
+      }
+
+      .default_message {
+        width: 100%;
+        margin: 5px 5%;
+        height: auto;
+        text-align: center;
+        font-size: $small;
+        background-color: none;
+        color: $font-darck;
+      }
+
+      #student {
+        width: 100%;
+        margin: 5px 0px;
+        background-color: $body-light;
+      }
+    }
+  }
+
+  .cont-close {
+    @extend .cont-open;
+    padding: 30% 0px 0px 0px;
+    opacity: 0;
+    transition-duration: 0.5s;
+  }
+}
+// Darck and light English style
+
+// Darck and light Arabic style
+.profile-page-darck-Arabic {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-darck;
+  direction: rtl;
+
+  .cont-open {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    padding: 10% 0px 10px 0px;
+    opacity: 1;
+    transition-duration: 0.5s;
+
+    @media (max-width: $phone) {
+      padding: 20% 0px 10px 0px;
+      width: 100%;
+    }
+
+    // section-one container
+    .section-one {
+      width: 90%;
+      height: auto;
+      margin: 10px 5%;
+      padding: 5px;
+      border-radius: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: start;
+      align-items: center;
+      background-color: $card-darck;
+      position: relative;
+
+      // update profile icon
+      .update-icon {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        text-decoration: none;
+        padding: 3px;
+        border-radius: 3px;
+        background-color: $note-darck;
+      }
+
+      // avatar container blue style
+      .avatar-blue {
+        width: 150px;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        background: linear-gradient(to top, $first-blue, $second-blue);
+
+        @media (max-width: $phone) {
+          width: 100px;
+          height: 100px;
+        }
+
+        // avatar
+        .avatar-img {
+          width: 90%;
+          height: 90%;
+          border-radius: 10px;
+        }
+      }
+
+      // avatar container orange style
+      .avatar-orange {
+        @extend .avatar-blue;
+        background: linear-gradient(to top, $first-orange, $second-orange);
+      }
+
+      // avatar container pink style
+      .avatar-pink {
+        @extend .avatar-blue;
+        background: linear-gradient(to top, $first-pink, $second-pink);
+      }
+
+      // avatar container green style
+      .avatar-green {
+        @extend .avatar-blue;
+        background: linear-gradient(to top, $first-green, $second-green);
+      }
+
+      // info container style
+      .info {
+        min-width: 60%;
+        height: 100%;
+        margin: 0px 10px;
+
+        // name
+        h2 {
+          max-width: 100%;
+          height: auto;
+          color: $font-light;
+        }
+
+        // points
+        h3 {
+          max-width: 100%;
+          height: auto;
+          color: $font-light;
+        }
+      }
+
+      // notes style
+      .notes {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: start;
+        align-items: center;
+        margin: 5px 0px;
+
+        p {
+          width: auto;
+          height: auto;
+          background-color: $note-darck;
+          border-radius: 3px;
+          padding: 3px;
+          color: $font-light;
+          font-size: $x-small;
+          margin: 3px;
+        }
+
+        .editor,
+        .admin {
+          width: auto;
+          height: auto;
+          background-color: $green;
+          border-radius: 3px;
+          padding: 3px;
+          color: $font-light;
+          font-size: $x-small;
+          margin: 3px;
+        }
+
+        .supper_admin {
+          @extend .editor;
+          background-color: $red;
+        }
+      }
+
+      // copy id component style in profile page
+      p {
+        padding: 3px;
+        max-width: 90%;
+        border-radius: 3px;
+        background-color: $note-darck;
+        margin: 3px;
+      }
+
+      // about me
+      .content {
+        width: 98%;
+        height: auto;
+        margin: 10px 1%;
+        font-size: $small;
+        background-color: $note-darck;
+        color: $font-light;
+        padding: 5px;
+        border-radius: 3px;
+      }
+
+      // mesals section
+      .medals {
+        width: 98%;
+        height: auto;
+        margin: 10px 1%;
+        color: $font-light;
+        padding: 5px;
+        border-radius: 3px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: start;
+        align-items: center;
+
+        span {
+          width: 98%;
+          height: auto;
+          margin: 5px 1%;
+          padding: 5px 0px;
+          color: $font-light;
+          border: 1px solid;
+          border-color: transparent transparent $border-light transparent;
+        }
+
+        p {
+          width: auto;
+          height: auto;
+          font-size: $x-small;
+          padding: 3px;
+          border-radius: 3px;
+          background-color: $note-darck;
+          color: $font-light;
+        }
+
+        #First-level {
+          @extend p;
+          background-color: $green;
+        }
+      }
+    }
+
+    // section-tow container style
+    .section-tow {
+      @extend .section-one;
+      margin: 10px 5%;
+
+      // section tow title
+      .title {
+        width: 98%;
+        height: auto;
+        margin: 10px 1%;
+        color: $font-light;
+        border: 1px solid;
+        border-color: transparent transparent $border-light transparent;
+      }
+
+      // link to go my classes
+      a {
+        width: 100%;
+        height: auto;
+        padding: 10px 0px;
+        color: $blue;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        font-size: $x-small;
+
+        svg {
+          margin: 0px 5px;
+        }
+      }
+
+      .default_message {
+        width: 100%;
+        margin: 5px 5%;
+        height: auto;
+        text-align: center;
+        font-size: $small;
+        background-color: none;
+        color: $font-light;
+      }
+    }
+  }
+
+  .cont-close {
+    @extend .cont-open;
+    padding: 30% 0px 0px 0px;
+    opacity: 0;
+    transition-duration: 0.5s;
+  }
+}
+
+.profile-page-light-Arabic {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-light;
+  direction: rtl;
+
+  .cont-open {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    padding: 10% 0px 10px 0px;
+    opacity: 1;
+    transition-duration: 0.5s;
+
+    @media (max-width: $phone) {
+      padding: 20% 0px 10px 0px;
+      width: 100%;
+    }
+
+    // section-one container
+    .section-one {
+      width: 90%;
+      height: auto;
+      margin: 10px 5%;
+      padding: 5px;
+      border-radius: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: start;
+      align-items: center;
+      background-color: $card-light;
+      position: relative;
+
+      // update profile icon
+      .update-icon {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        text-decoration: none;
+        padding: 3px;
+        border-radius: 3px;
+        background-color: $note-light;
+      }
+
+      // avatar container blue style
+      .avatar-blue {
+        width: 150px;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        background: linear-gradient(to top, $first-blue, $second-blue);
+
+        @media (max-width: $phone) {
+          width: 100px;
+          height: 100px;
+        }
+
+        // avatar
+        .avatar-img {
+          width: 90%;
+          height: 90%;
+          border-radius: 10px;
+        }
+      }
+
+      // avatar container orange style
+      .avatar-orange {
+        @extend .avatar-blue;
+        background: linear-gradient(to top, $first-orange, $second-orange);
+      }
+
+      // avatar container pink style
+      .avatar-pink {
+        @extend .avatar-blue;
+        background: linear-gradient(to top, $first-pink, $second-pink);
+      }
+
+      // avatar container green style
+      .avatar-green {
+        @extend .avatar-blue;
+        background: linear-gradient(to top, $first-green, $second-green);
+      }
+
+      // info container style
+      .info {
+        min-width: 60%;
+        height: 100%;
+        margin: 0px 10px;
+
+        // name
+        h2 {
+          max-width: 100%;
+          height: auto;
+          color: $font-darck;
+        }
+
+        // points
+        h3 {
+          max-width: 100%;
+          height: auto;
+          color: $font-darck;
+        }
+      }
+
+      // notes style
+      .notes {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: start;
+        align-items: center;
+        margin: 5px 0px;
+
+        p {
+          width: auto;
+          height: auto;
+          background-color: $note-light;
+          border-radius: 3px;
+          padding: 3px;
+          color: $font-darck;
+          font-size: $x-small;
+          margin: 3px;
+        }
+
+        .editor,
+        .admin {
+          width: auto;
+          height: auto;
+          background-color: $green;
+          border-radius: 3px;
+          padding: 3px;
+          color: $font-light;
+          font-size: $x-small;
+          margin: 3px;
+        }
+
+        .supper_admin {
+          @extend .editor;
+          background-color: $red;
+        }
+      }
+
+      // copy id component style in profile page
+      p {
+        padding: 3px;
+        max-width: 90%;
+        border-radius: 3px;
+        background-color: $note-light;
+        margin: 3px;
+      }
+
+      // about me
+      .content {
+        width: 98%;
+        height: auto;
+        margin: 10px 1%;
+        font-size: $small;
+        background-color: $note-light;
+        color: $font-darck;
+        padding: 5px;
+        border-radius: 3px;
+      }
+
+      // mesals section
+      .medals {
+        width: 98%;
+        height: auto;
+        margin: 10px 1%;
+        color: $font-darck;
+        padding: 5px;
+        border-radius: 3px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: start;
+        align-items: center;
+
+        span {
+          width: 98%;
+          height: auto;
+          margin: 5px 1%;
+          padding: 5px 0px;
+          color: $font-darck;
+          border: 1px solid;
+          border-color: transparent transparent $border-darck transparent;
+        }
+
+        p {
+          width: auto;
+          height: auto;
+          font-size: $x-small;
+          padding: 3px;
+          border-radius: 3px;
+          background-color: $note-light;
+          color: $font-darck;
+        }
+
+        #First-level {
+          @extend p;
+          background-color: $green;
+          color: $font-light;
+        }
       }
     }
 
@@ -936,18 +1579,6 @@ export default {
     opacity: 0;
     transition-duration: 0.5s;
   }
-}
-// Darck and light English style
-
-// Darck and light Arabic style
-.profile-page-darck-Arabic {
-  @extend .profile-page-darck-English;
-  direction: rtl;
-}
-
-.profile-page-light-Arabic {
-  @extend .profile-page-light-English;
-  direction: rtl;
 }
 // Darck and light Arabic style
 </style>

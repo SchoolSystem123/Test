@@ -121,24 +121,27 @@
         <!--  about me  -->
 
         <!-- medals in English language  -->
-        <div
-          class="medals"
-          v-if="
-            this.$store.state.language == 'English' &&
-            this.$store.state.user_type == 'student'
-          "
-        >
-          <span>Medals</span>
+        <div class="medals" v-if="this.$store.state.user_type == 'student'">
+          <span>
+            {{
+              this.$store.state.language == "English"
+                ? this.$store.state.English.profile.medals
+                : this.$store.state.Arabic.profile.medals
+            }}
+          </span>
 
           <!-- add the medals by gpa -->
           <p
-            v-for="(medal, index) in this.$store.state.English.student.medals"
+            v-for="(medal, index) in this.$store.state.medals"
             :key="index"
+            :id="medal.id"
           >
             {{
-              this.$store.state.student.total_gpa >= medal.gpa
-                ? medal.message
-                : "🔒" // default value
+              this.$store.state.profile.total_gpa >= medal.gpa
+                ? this.$store.state.language == "English"
+                  ? medal.English
+                  : medal.Arabic
+                : "🔒"
             }}
           </p>
         </div>

@@ -33,6 +33,16 @@
 
       <!-- classes container -->
       <div class="classes-cont">
+        <!-- default message  -->
+        <p class="default_message">
+          {{
+            this.$store.state.language == "English"
+              ? this.$store.state.English.my_classes_page.default
+              : this.$store.state.Arabic.my_classes_page.default
+          }}
+        </p>
+        <!-- default message  -->
+
         <div class="results">
           <ClassesPageClassComponent
             v-for="(class_data, index) in this.$store.state.my_classes"
@@ -205,6 +215,20 @@ export default {
       height: auto;
       margin: 5px 0%;
 
+      // default message
+      .default_message {
+        width: 90%;
+        height: auto;
+        padding: 5px;
+        margin: 5px 5%;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $font-light;
+        background-color: $note-darck;
+      }
+
       // results title
       .results {
         width: 100%;
@@ -280,6 +304,20 @@ export default {
       width: 90%;
       height: auto;
       margin: 5px 5%;
+
+      // default message
+      .default_message {
+        width: 90%;
+        height: auto;
+        padding: 5px;
+        margin: 5px 5%;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $font-darck;
+        background-color: $note-light;
+      }
 
       // results title
       .results {
@@ -359,6 +397,20 @@ export default {
       height: auto;
       margin: 5px 5%;
 
+      // default message
+      .default_message {
+        width: 90%;
+        height: auto;
+        padding: 5px;
+        margin: 5px 5%;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $font-light;
+        background-color: $note-darck;
+      }
+
       // results title
       .results {
         width: 100%;
@@ -388,7 +440,7 @@ export default {
   width: 100%;
   min-height: 100vh;
   background-color: $body-light;
-  direction: ltr;
+  direction: rtl;
 
   // open classes container style
   .open-cont {
@@ -434,6 +486,20 @@ export default {
       width: 90%;
       height: auto;
       margin: 5px 5%;
+
+      // default message
+      .default_message {
+        width: 90%;
+        height: auto;
+        padding: 5px;
+        margin: 5px 5%;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $font-darck;
+        background-color: $note-light;
+      }
 
       // results title
       .results {

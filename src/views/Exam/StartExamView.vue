@@ -18,6 +18,7 @@
         </h3>
 
         <p>
+          {{ this.$store.state.exam_time }}
           {{
             this.$store.state.language == "English"
               ? this.$store.state.English.start_exam_page.time
@@ -66,13 +67,7 @@
       <!-- classes level list  -->
 
       <!-- Subject List -->
-      <label
-        for="subject"
-        v-if="
-          this.$store.state.user &&
-          this.$store.state.user.user_type != 'student'
-        "
-      >
+      <label for="subject">
         {{
           this.$store.state.language == "English"
             ? this.$store.state.English.start_exam_page.choose_subject
@@ -80,15 +75,7 @@
         }}
       </label>
 
-      <select
-        name=""
-        id="subject"
-        v-model="this.subject_type"
-        v-if="
-          this.$store.state.user &&
-          this.$store.state.user.user_type != 'student'
-        "
-      >
+      <select name="" id="subject" v-model="this.subject_type">
         <option
           v-for="(subject, index) in this.$store.state.subjects_list"
           :key="index"

@@ -23,7 +23,13 @@
 
     <!-- info section  -->
     <div class="info">
-      <h2>{{ this.class_data.title }}</h2>
+      <h2>
+        {{
+          this.class_data.title.split("").length > 40
+            ? this.class_data.title.slice(0, 40) + "..."
+            : this.class_data.title
+        }}
+      </h2>
 
       <p>📚📖📑 : {{ this.class_data.subject }}</p>
       <p>🏫🪜🎚️ : {{ this.class_data.class_level }}</p>

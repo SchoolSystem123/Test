@@ -96,7 +96,10 @@
         <!-- repated  -->
 
         <CopyIdComponent
-          :Id_data="{ id: this.question_data._id, object_type: 'Q' }"
+          :Id_data="{
+            id: this.question_data._id,
+            object_type: `Q/${this.$route.params.type}`,
+          }"
         />
       </div>
       <!-- info  -->
@@ -331,8 +334,6 @@ export default {
 
           // to stop the loading animation
           this.$store.state.loading = "close";
-
-          console.log(Response);
         })
         .catch((error) => {
           // to close the cont

@@ -12,7 +12,7 @@
         : this.$store.state.Arabic.copy_id
     }}
     <icon icon="copy" />
-    #{{ this.Id_data.object_type }}:{{ this.Id_data.id }}
+    #{{ this.Id_data.object_type }}/{{ this.Id_data.id }}
   </p>
 </template>
 
@@ -29,7 +29,7 @@ export default {
 
       try {
         await navigator.clipboard.writeText(
-          `#${this.Id_data.object_type}:${this.Id_data.id}`
+          `#${this.Id_data.object_type}/${this.Id_data.id}`
         );
       } catch (error) {
         // to oprn the error form
@@ -75,7 +75,7 @@ export default {
   border-radius: 5px;
   background-color: $card-darck;
   @media (min-width: $tablet) {
-    max-width: 35%;
+    max-width: 70%;
   }
 }
 

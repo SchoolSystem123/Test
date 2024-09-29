@@ -170,3 +170,257 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../Sass/varibels/variables";
+
+// darck and light English style
+.food-page-darck-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-darck;
+  direction: ltr;
+
+  // open style
+  .cont-open {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    padding: 10% 0% 5% 0%;
+    transition-duration: 0.5s;
+    opacity: 1;
+
+    @media (max-width: $phone) {
+      padding: 20% 0% 5% 0%;
+      width: 100%;
+    }
+
+    // page header
+    .page-header {
+      width: 90%;
+      height: auto;
+      padding: 5px 0px;
+      margin: 5px 5%;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h3 {
+        color: $font-light;
+      }
+
+      p {
+        color: $font-light;
+        font-size: $x-small;
+      }
+    }
+
+    // cover
+    .cover {
+      width: 90%;
+      height: auto;
+      border-radius: 10px;
+      margin: 5px 5%;
+    }
+
+    // food title
+    h2 {
+      width: 90%;
+      height: auto;
+      padding: 3px;
+      color: $font-light;
+      margin: 5px 5%;
+    }
+
+    // food description
+    p {
+      width: 90%;
+      height: auto;
+      padding: 3px;
+      border-radius: 3px;
+      color: $font-light;
+      font-size: $x-small;
+      margin: 5px 5%;
+      background-color: $note-darck;
+    }
+
+    // images container
+    .images-cont {
+      width: 90%;
+      height: auto;
+      margin: 5px 5%;
+
+      .header {
+        width: 100%;
+        height: auto;
+        padding: 5px 0px;
+        margin: 10px 0px;
+        border: 1px solid;
+        border-color: transparent transparent $border-light transparent;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h3 {
+          color: $font-light;
+        }
+
+        p {
+          width: 5%;
+          color: $font-light;
+          font-size: $x-small;
+          text-align: center;
+        }
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0% 0% 0%;
+    opacity: 0;
+    @media (max-width: $phone) {
+      padding: 40% 0% 0% 0%;
+    }
+  }
+}
+
+.food-page-light-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-light;
+  direction: ltr;
+
+  // open style
+  .cont-open {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    padding: 10% 0% 5% 0%;
+    transition-duration: 0.5s;
+    opacity: 1;
+
+    @media (max-width: $phone) {
+      padding: 20% 0% 5% 0%;
+      width: 100%;
+    }
+
+    // page header
+    .page-header {
+      width: 90%;
+      height: auto;
+      padding: 5px 0px;
+      margin: 5px 5%;
+      border: 1px solid;
+      border-color: transparent transparent $border-darck transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h3 {
+        color: $font-darck;
+      }
+
+      p {
+        color: $font-darck;
+        font-size: $x-small;
+      }
+    }
+
+    // cover
+    .cover {
+      width: 90%;
+      height: auto;
+      border-radius: 10px;
+      margin: 5px 5%;
+    }
+
+    // food title
+    h2 {
+      width: 90%;
+      height: auto;
+      padding: 3px;
+      color: $font-darck;
+      margin: 5px 5%;
+    }
+
+    // food description
+    p {
+      width: 90%;
+      height: auto;
+      padding: 3px;
+      border-radius: 3px;
+      color: $font-darck;
+      font-size: $x-small;
+      margin: 5px 5%;
+      background-color: $note-light;
+    }
+
+    // images container
+    .images-cont {
+      width: 90%;
+      height: auto;
+      margin: 5px 5%;
+
+      .header {
+        width: 100%;
+        height: auto;
+        padding: 5px 0px;
+        margin: 10px 0px;
+        border: 1px solid;
+        border-color: transparent transparent $border-darck transparent;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h3 {
+          color: $font-darck;
+        }
+
+        p {
+          width: 5%;
+          color: $font-darck;
+          font-size: $x-small;
+          text-align: center;
+        }
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0% 0% 0%;
+    opacity: 0;
+    @media (max-width: $phone) {
+      padding: 40% 0% 0% 0%;
+    }
+  }
+}
+// darck and light English style
+
+// darck and light Arabic style
+.food-page-darck-Arabic {
+  @extend .food-page-darck-English;
+  direction: rtl;
+}
+
+.food-page-light-Arabic {
+  @extend .food-page-light-English;
+  direction: rtl;
+}
+// darck and light Arabic style
+</style>

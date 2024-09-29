@@ -4,7 +4,13 @@
   >
     <div class="cont" @click="GetToPlan(this.Plan_data._id)">
       <!-- plans title  -->
-      <h2>{{ this.Plan_data.title }}</h2>
+      <h2>
+        {{
+          this.Plan_data.title.split("").length > 40
+            ? this.Plan_data.title.slice(0, 40) + "..."
+            : this.Plan_data.title
+        }}
+      </h2>
       <!-- plans title  -->
       <p>{{ this.Plan_data.class_level }}</p>
       <p v-if="this.Plan_data.students">

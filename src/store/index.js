@@ -57,10 +57,11 @@ export default createStore({
     home_work_for_update : "",
     plan_data_for_update : "",
     food_data_for_update : "",
-    active_component_in_dash: "admins",
+    active_component_in_dash: "plans",
     choose_children_status : "close",
     choose_teacher_status : "close",
     choose_class_status : "close",
+    exam_points_form : "close",
     geted_student : "",
     geted_class : "",
     geted_teacher : "",
@@ -142,6 +143,20 @@ export default createStore({
       { path: "/foods", English_title: "Food Guide 🍝", Arabic_title: "دليل الطعام 🍝", access: ["super" , "admin" , "teacher" , "parent"] },
       { path: "/about", English_title: "About us 💁‍♂️ℹ️", Arabic_title: "معلومات عنا 💁‍♂️ℹ️", access: ["super" , "admin" , "teacher" , "student" , "parent"] },
       { path: "/install", English_title: "Install app 🔻", Arabic_title: "تنزيل التطبيق 🔻", access: ["super" , "admin" , "teacher" , "student" , "parent"] }
+    ],
+    medals: [
+      { gpa: 0, English: "Weak 🏴‍☠️" , Arabic : "ضعيف 🏴‍☠️" , id : 'Weak'},
+      { gpa: 5, English: "Pay more attention 👀" , Arabic : "انتبه أكثر 👀" , id : 'Pay-more-attention'},
+      { gpa: 10, English: "Okay 👍" , Arabic : "لا بأس 👍" , id : 'Okay'},
+      { gpa: 20, English: "Good ✊", Arabic : "جيد ✊", id : 'Good'},
+      { gpa: 30, English: "Very good 📈" , Arabic : "جدي جدا 📈" , id : 'Very-good'},
+      { gpa: 40, English: "Perseverant 🙇" , Arabic : "مثابر 🙇" , id : 'Perseverant'},
+      { gpa: 50, English: "Smart 🧠" , Arabic : "ذكي 🧠" , id : 'Smart'},
+      { gpa: 60, English: "Goal scorer 🎯" , Arabic : "هداف 🎯" , id : 'Goal-scorer'},
+      { gpa: 70, English: "Legendary 🔥" , Arabic : "اسطوري 🔥" , id : 'Legendary'},
+      { gpa: 80, English: "Third level 🥉" , Arabic : "المستوى الثالث 🥉" , id : 'Third-level'},
+      { gpa: 90, English: "Second level 🥈" , Arabic : "المستوى الثاني 🥈" , id : 'Second-level'},
+      { gpa: 95, English: "First level 🥇" , Arabic : "المستوى الأول 🥇" , id : 'First-level'},
     ],
     home_router_dash_sid_bar : 
     { English : "Home 🏠" , Arabic : "🏠 الصفحة الرئيسية" , path : "/" , access : ["super" , "admin" , "teacher"]},
@@ -424,15 +439,11 @@ export default createStore({
         gpa: "GPA 📌 :",
         class_level: "CLass Level 🏫🪜🎚️ :",
         joind_at: "Joind In 📆 :",
-        medals: [
-          { gpa: 0, message: "dead 🏴‍☠️" },
-          { gpa: 1, message: "good 🫡" },
-          { gpa: 2, message: "very good ✊" },
-          { gpa: 3, message: "persistent 📈" },
-          { gpa: 3, message: "smart 🧠" },
-          { gpa: 4, message: "scorer 🎯" },
-          { gpa: 5, message: "legendary 🔥" },
-        ],
+        medals : "Medals",
+        children : "Children 👶🧒👱‍♂️ :",
+        default_message_children: "📍⛔😕 No Any Child 📍⛔😕",
+        default_message_classes: "📍⛔😕 No Any Class 📍⛔😕",
+        default_message_plans: "📍⛔😕 No Any Plan 📍⛔😕",
         classes_cont: {
           title: "My Classes",
         },
@@ -491,17 +502,9 @@ export default createStore({
         children : "Children 👶🧒👱‍♂️ :",
         class_level: "CLass Level 🏫🪜🎚️ :",
         joind_at: "Joind In 📆 :",
+        default_message_children: "📍⛔😕 No Any Child 📍⛔😕",
         default_message_classes: "📍⛔😕 No Any Class 📍⛔😕",
         default_message_plans: "📍⛔😕 No Any Plan 📍⛔😕",
-        medals: [
-          { gpa: 0, message: "dead 🏴‍☠️" },
-          { gpa: 1, message: "good 🫡" },
-          { gpa: 2, message: "very good ✊" },
-          { gpa: 3, message: "persistent 📈" },
-          { gpa: 3, message: "smart 🧠" },
-          { gpa: 4, message: "scorer 🎯" },
-          { gpa: 5, message: "legendary 🔥" },
-        ],
         classes_cont: {
           title: "Classes",
         },
@@ -912,6 +915,7 @@ export default createStore({
       },
       my_plans_page: {
         page_title: "My Plans ⭕📌📚",
+        default : "📍⛔😕 There is no Plans 😕⛔📍"
       },
       my_classes_page: {
         page_title: "My Classes ⭕📌🏫",
@@ -1022,14 +1026,21 @@ export default createStore({
         choose_class_level : "Choose Class Level 🏫🪜🎚️ ",
         choose_subject : "Choose Subject 📚⭕ ",
         info : "Dear student, you should know that the goal of the tests is to build a strong educational level and awareness and adapt to the tests to get rid of exam fear and help the student memorize the largest possible number of questions by simplifying the process of testing your information.",
-        time :  "30m",
-        start : "Start Exam 🧠🚀"
+        time :  "m",
+        start : "Start Exam 🧠🚀",
       },
       exam_page : {
         exam_header : "Exam ❓",
-        question_header : "Question ❓",
+        question_header : "Question ",
         question_description : "Description 📝",
+        question_note : "Note 📝",
         question_repated : "Repated At 🔄",
+        end : "End Exam 🧠🏁",
+      },
+      exam_points_form : {
+        header : "Exam is over ⭕🎉",
+        points : "Points Is : ",
+        leave : "Leaving 🏃🏻 : "
       },
       theme: "Theme",
       mood: "Mood",
@@ -1244,15 +1255,11 @@ export default createStore({
         gpa: "المعدل 📌 :",
         class_level: "الصف 🏫🪜🎚️ :",
         joind_at: "انضم في 📆 :",
-        medals: [
-          { gpa: 0, message: "ميت 🏴‍☠️" },
-          { gpa: 1, message: "جيد 🫡" },
-          { gpa: 2, message: "جيد جدا ✊" },
-          { gpa: 3, message: "مثابر 📈" },
-          { gpa: 3, message: "ذكي 🧠" },
-          { gpa: 4, message: "هداف 🎯" },
-          { gpa: 5, message: "اسطوري 🔥" },
-        ],
+        medals : "الميدليات",
+        children : "أطفال 👶🧒👱‍♂️ :",
+        default_message_children: "📍⛔😕 لا يوجد اي طفل 📍⛔😕",
+        default_message_classes: "📍⛔😕 لا يوجد اي صف 📍⛔😕",
+        default_message_plans: "📍⛔😕 لا يوجد اي خطة 📍⛔😕",
         classes_cont: {
           title: "صفوفي",
         },
@@ -1310,17 +1317,9 @@ export default createStore({
         class_level: "الصف 🏫🪜🎚️ :",
         joind_at: "انضم في 📆 :",
         children : "أطفال 👶🧒👱‍♂️ :",
+        default_message_children: "📍⛔😕 لا يوجد اي طفل 📍⛔😕",
         default_message_classes: "📍⛔😕 لا يوجد اي صف 📍⛔😕",
         default_message_plans: "📍⛔😕 لا يوجد اي خطة 📍⛔😕",
-        medals: [
-          { gpa: 0, message: "ميت 🏴‍☠️" },
-          { gpa: 1, message: "جيد 🫡" },
-          { gpa: 2, message: "جيد جدا ✊" },
-          { gpa: 3, message: "مثابر 📈" },
-          { gpa: 3, message: "ذكي 🧠" },
-          { gpa: 4, message: "هداف 🎯" },
-          { gpa: 5, message: "اسطوري 🔥" },
-        ],
         classes_cont: {
           title: "الصفوف",
         },
@@ -1843,14 +1842,21 @@ export default createStore({
         choose_class_level : "إختيار مستوى الصف 🏫🪜🎚️ ",
         choose_subject : "إختار المادة 📚⭕ ",
         info : "عزيزي الطالب يجب أن تعلم أن الهدف من الاختبارت هو بناء مستوى تعليمي و وعي قوي والتأقلم على الإختبارت للتخلص من رهبة الإمتحان و مساعد الطالب على حفظ أكبر عدد ممكن من الأسئلة الممكنة من خلال تبسيط عملية إختبار معلوماتك",
-        time : "30m",
+        time : "د",
         start : "بدء الإختبار 🧠🚀"
       },
       exam_page : {
         exam_header : "إختبار ❓",
-        question_header : "السؤال ❓",
+        question_header : "السؤال",
         question_description : "الوصف 📝",
+        question_note : "ملاحظة 📝",
         question_repated : "كُرر في 🔄",
+        end : "إنهاء الإختبار 🧠🏁",
+      },
+      exam_points_form : {
+        header : "إنتهى الإختبار ⭕🎉",
+        points : "النقاط : ",
+        leave : "الخروج  🏃🏻 : "
       },
       theme: "السمات",
       mood: "الوضع",
@@ -1934,6 +1940,7 @@ export default createStore({
         get_one: "https://rrr-zb8x.onrender.com/api/v1/student/get/one",
         get_count: "https://rrr-zb8x.onrender.com/api/v1/student/get/count",
         update: "https://rrr-zb8x.onrender.com/api/v1/student/update",
+        update_points: "https://rrr-zb8x.onrender.com/api/v1/student/update/points",
         super: {
           create: "https://rrr-zb8x.onrender.com/api/v1/super/student/create",
           delete: "https://rrr-zb8x.onrender.com/api/v1/super/student/delete",
@@ -2408,6 +2415,11 @@ export default createStore({
       state.remove_plan_form_dash_status == "close" ? "open" : "close"
     },
 
+    // open or close the exam points form
+    OpenOrCloseTheExamPointsForm(state) {
+      state.exam_points_form = state.exam_points_form == "close" ? "open" : "close";
+    },
+
     // open or close the delete plan form verify
     OpenOrCloseDeleteFoodForm(state) {
       state.remove_food_form_dash_status = 
@@ -2481,9 +2493,6 @@ export default createStore({
         console.error(error);
       }
     },
-
-    // get to messages count method
-
   },
   modules: {},
 });

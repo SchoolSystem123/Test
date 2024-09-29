@@ -159,3 +159,177 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../Sass/varibels/variables";
+
+// darck and light English
+.foods-page-darck-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-darck;
+  direction: ltr;
+
+  .cont-open {
+    width: 50%;
+    min-height: 100v;
+    margin: auto;
+    transition-duration: 0.5s;
+    padding: 10% 0% 5% 0%;
+    opacity: 1;
+
+    @media (max-width: $phone) {
+      padding: 20% 0% 5% 0%;
+      width: 100%;
+    }
+
+    // page title
+    h3 {
+      width: 90%;
+      margin: 20px 5%;
+      padding: 5px 0px;
+      color: $font-light;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+    }
+
+    // results cont style
+    .results-cont-list {
+      width: 100%;
+      min-height: 80vh;
+      padding: 10px 0px;
+
+      // result header style
+      .results-heade {
+        width: 90%;
+        height: auto;
+        margin: 10px 5%;
+        padding: 5px 0px;
+        color: $font-light;
+        border: 1px solid;
+        border-color: transparent transparent $border-light transparent;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        // elements view style icon
+        svg {
+          padding: 5px;
+          color: $font-light;
+          border-radius: 5px;
+          border: 1px solid $border-light;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .results-cont-window-restore {
+      @extend .results-cont-list;
+      display: flex;
+      justify-content: start;
+      flex-wrap: wrap;
+    }
+  }
+
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0% 5% 0%;
+    transition-duration: 0.5s;
+    opacity: 0;
+    @media (max-width: $phone) {
+      padding: 40% 0% 5% 0%;
+    }
+  }
+}
+
+.foods-page-light-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-light;
+  direction: ltr;
+
+  .cont-open {
+    width: 50%;
+    min-height: 100v;
+    margin: auto;
+    transition-duration: 0.5s;
+    padding: 10% 0% 5% 0%;
+    opacity: 1;
+
+    @media (max-width: $phone) {
+      padding: 20% 0% 5% 0%;
+      width: 100%;
+    }
+
+    // page title
+    h3 {
+      width: 90%;
+      margin: 20px 5%;
+      padding: 5px 0px;
+      color: $font-darck;
+      border: 1px solid;
+      border-color: transparent transparent $border-darck transparent;
+    }
+
+    // results cont style
+    .results-cont-list {
+      width: 100%;
+      min-height: 80vh;
+      padding: 10px 0px;
+
+      // result header style
+      .results-heade {
+        width: 90%;
+        height: auto;
+        margin: 10px 5%;
+        padding: 5px 0px;
+        color: $font-darck;
+        border: 1px solid;
+        border-color: transparent transparent $border-darck transparent;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        // elements view style icon
+        svg {
+          padding: 5px;
+          color: $font-darck;
+          border-radius: 5px;
+          border: 1px solid $border-darck;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .results-cont-window-restore {
+      @extend .results-cont-list;
+      display: flex;
+      justify-content: start;
+      flex-wrap: wrap;
+    }
+  }
+
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0% 5% 0%;
+    transition-duration: 0.5s;
+    opacity: 0;
+    @media (max-width: $phone) {
+      padding: 40% 0% 5% 0%;
+    }
+  }
+}
+// darck and light English
+
+// darck and light Arabic
+.foods-page-darck-Arabic {
+  @extend .foods-page-darck-English;
+  direction: rtl;
+}
+
+.foods-page-light-Arabic {
+  @extend .foods-page-light-English;
+  direction: rtl;
+}
+// darck and light Arabic
+</style>

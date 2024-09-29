@@ -241,7 +241,6 @@
       <!-- Update Plan component -->
 
       <!-- Update Plan info component -->
-      <UpdateSubjectFormComponent />
       <!-- Update Plan info component -->
 
       <!-- foods component -->
@@ -421,7 +420,6 @@ import CreatePlansComponent from "@/components/dash/Plans/CreatePlansComponent.v
 import AddSubjectFormComponent from "@/components/global/forms/dash/plan/AddSubjectFormComponent.vue";
 import VerifyDeletePlanComponent from "@/components/global/forms/dash/plan/VerifyDeletePlanComponent.vue";
 import UpdatePlansComponent from "@/components/dash/Plans/UpdatePlansComponent.vue";
-import UpdateSubjectFormComponent from "@/components/global/forms/dash/plan/UpdateSubjectFormComponent.vue";
 import FoodsComponent from "@/components/dash/Foods/FoodsComponent.vue";
 import VerifyDeleteFoodComponent from "@/components/global/forms/dash/food/VerifyDeleteFoodComponent.vue";
 import UpdateFoodComponent from "@/components/dash/Foods/UpdateFoodComponent.vue";
@@ -451,6 +449,8 @@ export default {
       icon_type: "arrow-right",
       // sid bar status
       status: "close",
+      // subjet for update data
+      subject_for_update_data: "",
     };
   },
   mounted() {
@@ -506,7 +506,6 @@ export default {
     AddSubjectFormComponent,
     VerifyDeletePlanComponent,
     UpdatePlansComponent,
-    UpdateSubjectFormComponent,
     FoodsComponent,
     VerifyDeleteFoodComponent,
     UpdateFoodComponent,
@@ -530,6 +529,11 @@ export default {
     AlwataniaQuestionsComponent,
   },
   methods: {
+    UpdateSubject(data) {
+      // set the data to subject_for_update_data
+      this.subject_for_update_data = data;
+    },
+
     // change the component
     ChangeComponent(component) {
       // call to open or close sidBar methdo to close the sidBar

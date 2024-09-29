@@ -1,6 +1,7 @@
 <template>
   <div
     :class="`students-student-page-${this.$store.state.mood}-${this.$store.state.language}-${this.view_style}`"
+    id="student"
     @click="getToaStudent(this.student_data._id)"
   >
     <!-- student avatar  -->

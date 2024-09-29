@@ -51,44 +51,48 @@ export default {
   methods: {
     GetDocument() {
       // spliting the id
-      let finaly_id = this.writed_id.split(":")[1];
+      let finaly_id = this.writed_id.split("/");
 
       // select the API
-      switch (this.writed_id.split(":")[0]) {
+      switch (this.writed_id.split("/")[0]) {
         case "#SA":
-          window.location = `/admin/${finaly_id}`;
+          window.location = `/admin/${finaly_id[1]}`;
           break;
 
         case "#A":
-          window.location = `/admin/${finaly_id}`;
+          window.location = `/admin/${finaly_id[1]}`;
           break;
 
         case "#T":
-          window.location = `/teacher/${finaly_id}`;
+          window.location = `/teacher/${finaly_id[1]}`;
           break;
 
         case "#S":
-          window.location = `/student/${finaly_id}`;
+          window.location = `/student/${finaly_id[1]}`;
           break;
 
         case "#Pa":
-          window.location = `/parent/${finaly_id}`;
+          window.location = `/parent/${finaly_id[1]}`;
           break;
 
         case "#Pl":
-          window.location = `/plan/${finaly_id}`;
+          window.location = `/plan/${finaly_id[1]}`;
           break;
 
         case "#C":
-          window.location = `/class/${finaly_id}`;
+          window.location = `/class/${finaly_id[1]}`;
           break;
 
         case "#H":
-          window.location = `/homeWork/${finaly_id}`;
+          window.location = `/homeWork/${finaly_id[1]}`;
           break;
 
         case "#F":
-          window.location = `/food/${finaly_id}`;
+          window.location = `/food/${finaly_id[1]}`;
+          break;
+
+        case "#Q":
+          window.location = `/qu/${finaly_id[1]}/${finaly_id[2]}`;
           break;
       }
     },

@@ -126,3 +126,131 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../Sass/varibels/variables";
+
+// Darck and light English
+.messages-page-darck-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-darck;
+  direction: ltr;
+
+  .cont-open {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    padding: 10% 0% 5% 0%;
+    transition-duration: 0.5s;
+    opacity: 1;
+
+    @media (max-width: $phone) {
+      width: 100%;
+      min-height: 100vh;
+      padding: 20% 0% 0% 0%;
+    }
+
+    // page title
+    h2 {
+      width: 90%;
+      height: auto;
+      padding: 5px 0px;
+      margin: 5px 5% 20px 5%;
+      color: $font-light;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+    }
+
+    .none-messages {
+      width: 90%;
+      height: auto;
+      margin: 20px 5%;
+      color: $font-light;
+      padding: 3px;
+      background-color: $note-darck;
+      border-radius: 5px;
+      text-align: center;
+    }
+  }
+
+  // closed cont style
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0px 10px 0px;
+    transition-duration: 0.5s;
+    opacity: 0;
+    @media (max-width: $phone) {
+      padding: 40% 0% 0% 0%;
+    }
+  }
+}
+
+.messages-page-light-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-light;
+  direction: ltr;
+
+  .cont-open {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    padding: 10% 0% 5% 0%;
+    transition-duration: 0.5s;
+    opacity: 1;
+
+    @media (max-width: $phone) {
+      width: 100%;
+      min-height: 100vh;
+      padding: 20% 0% 0% 0%;
+    }
+
+    // page title
+    h2 {
+      width: 90%;
+      height: auto;
+      padding: 5px 0px;
+      margin: 5px 5% 20px 5%;
+      color: $font-darck;
+      border: 1px solid;
+      border-color: transparent transparent $border-darck transparent;
+    }
+
+    .none-messages {
+      width: 90%;
+      height: auto;
+      margin: 20px 5%;
+      color: $font-darck;
+      text-align: center;
+      padding: 3px;
+      background-color: $note-light;
+      border-radius: 5px;
+    }
+  }
+
+  // closed cont style
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0px 10px 0px;
+    transition-duration: 0.5s;
+    opacity: 0;
+    @media (max-width: $phone) {
+      padding: 40% 0% 0% 0%;
+    }
+  }
+}
+// Darck and light English
+
+// Darck and light Arabic
+.messages-page-darck-Arabic {
+  @extend .messages-page-darck-English;
+  direction: rtl;
+}
+
+.messages-page-light-Arabic {
+  @extend .messages-page-light-English;
+  direction: rtl;
+}
+// Darck and light Arabic
+</style>

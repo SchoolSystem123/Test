@@ -132,7 +132,7 @@ export default {
   @extend .search-darck-English;
   width: 90%;
   height: 40px;
-  margin: 5% 10% 5% 5%;
+  margin: 5% 10% 15% 5%;
 
   p {
     color: $font-darck;
@@ -176,7 +176,7 @@ export default {
   @extend .search-darck-Arabic;
   width: 90%;
   height: 40px;
-  margin: 5% 10% 5% 5%;
+  margin: 5% 10% 15% 5%;
 
   // search section title
   p {
