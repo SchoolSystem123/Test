@@ -57,7 +57,7 @@ export default createStore({
     home_work_for_update : "",
     plan_data_for_update : "",
     food_data_for_update : "",
-    active_component_in_dash: "plans",
+    active_component_in_dash: "admins",
     choose_children_status : "close",
     choose_teacher_status : "close",
     choose_class_status : "close",
