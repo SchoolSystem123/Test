@@ -578,8 +578,8 @@ export default {
         height: auto;
         text-align: center;
         font-size: $small;
-        background-color: none;
         color: $font-light;
+        background-color: $note-darck;
       }
     }
   }
@@ -829,8 +829,8 @@ export default {
         height: auto;
         text-align: center;
         font-size: $small;
-        background-color: none;
         color: $font-darck;
+        background-color: $note-light;
       }
     }
   }

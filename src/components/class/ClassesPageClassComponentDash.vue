@@ -195,6 +195,8 @@ export default {
       padding: 3px;
       border-radius: 3px;
       background-color: $note-darck;
+      display: flex;
+
       @media (max-width: $phone) {
         font-size: $xx-small;
         padding: 2px;
@@ -315,6 +317,8 @@ export default {
       padding: 3px;
       border-radius: 3px;
       background-color: $note-light;
+      display: flex;
+
       @media (max-width: $phone) {
         font-size: $xx-small;
         padding: 2px;

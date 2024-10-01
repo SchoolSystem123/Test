@@ -300,6 +300,10 @@ export default {
       border: 1px solid $border-light;
       position: relative;
       a {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: start;
         text-decoration: none;
         color: $font-light;
         width: 90%;
@@ -632,6 +636,10 @@ export default {
       border: 1px solid $border-light;
       position: relative;
       a {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: start;
         text-decoration: none;
         color: $font-light;
         width: 90%;

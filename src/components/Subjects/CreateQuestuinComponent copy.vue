@@ -227,8 +227,8 @@
       <label for="subject_type">
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.create_question.points
-            : this.$store.state.Arabic.create_question.points
+            ? this.$store.state.English.create_question.options
+            : this.$store.state.Arabic.create_question.options
         }}
       </label>
 
@@ -251,7 +251,13 @@
           |
           <p>{{ option.answer }}</p>
           |
-          <button class="delete">Delete</button>
+          <button class="delete">
+            {{
+              this.$store.state.language == "English"
+                ? this.$store.state.English.create_question.delete
+                : this.$store.state.Arabic.create_question.delete
+            }}
+          </button>
         </div>
         <!-- section heade  -->
       </div>

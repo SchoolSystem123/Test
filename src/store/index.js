@@ -253,11 +253,14 @@ export default createStore({
     ],
     English: {
       login: {
-        title: "log in to your account ...",
+        title: "Log in to your account 🔐...",
         label: { label_one: "Email", label_tow: "Pssword" },
+        info : `Hello. Please be careful when logging in. You must choose your identity on the site by adding key letters before your account, for example:
+If you are a student, add S: your email
+If you are my guardian, add P: your email`,
         placeholder: {
-          email: "Type your email here ...",
-          password: "Type your password here ...",
+          email: "Type your email here 📧...",
+          password: "Type your password here 🔑...",
         },
         button: "login",
       },
@@ -279,8 +282,8 @@ export default createStore({
         button: "Search",
       },
       language: {
-        pages: "Pages",
-        title: "Language",
+        pages: "Pages 🗂️",
+        title: "Language 🗣️🌍",
         arabic: "Arabic",
         english: "English",
       },
@@ -963,7 +966,8 @@ export default createStore({
         level : "Level 🎚️",
         class_level : "Class Level 🏚️🎚️",
         subject_type : "Subject 📚📖📑",
-        optios : "options",
+        options : "options 🗃️",
+        delete : "Delete 🗑️",
         title_placeholder : "Type question's title here ✍️ ...",
         description_placeholder : "Type question's description here ✍️ ...",
         note_placeholder : "Type question's note here ✍️ ...",
@@ -971,7 +975,7 @@ export default createStore({
         repated_placeholder : "Type question's repated here ✍️ ...",
         level_placeholder : "Type question's level here ✍️ ...",
         class_level_placeholder : "Type question's class level here ✍️ ...",
-        optios_placeholder : "Type question's optios here ✍️ ...",
+        options_placeholder : "Type question's options here ✍️ ...",
         button : "Create"
       },
       update_question : {
@@ -985,7 +989,8 @@ export default createStore({
         level : "Level 🎚️",
         class_level : "Class Level 🏚️🎚️",
         subject_type : "Subject 📚📖📑",
-        optios : "options",
+        options : "options 🗃️",
+        delete : "Delete 🗑️",
         title_placeholder : "Type question's title here ✍️ ...",
         description_placeholder : "Type question's description here ✍️ ...",
         note_placeholder : "Type question's note here ✍️ ...",
@@ -993,7 +998,7 @@ export default createStore({
         repated_placeholder : "Type question's repated here ✍️ ...",
         level_placeholder : "Type question's level here ✍️ ...",
         class_level_placeholder : "Type question's class level here ✍️ ...",
-        optios_placeholder : "Type question's optios here ✍️ ...",
+        options_placeholder : "Type question's options here ✍️ ...",
         button : "Update"
       },
       add_option_component : {
@@ -1042,8 +1047,12 @@ export default createStore({
         points : "Points Is : ",
         leave : "Leaving 🏃🏻 : "
       },
-      theme: "Theme",
-      mood: "Mood",
+      not_found : {
+        default_message: "📍⛔😕 Sorry, The Page Not Found 📍⛔😕",
+        page : "Home 🏠"
+      },
+      theme: "Theme 🎨",
+      mood: "Mood ☀️🌑",
       log_out: "Log out",
       log_in : "Log In",
       error: "Error  ...",
@@ -1054,11 +1063,14 @@ export default createStore({
     },
     Arabic: {
       login: {
-        title: "... تسجيل الدخول ",
+        title: "تسجيل الدخول الى حسابك 🔐 ...",
         label: { label_one: "الإيميل", label_tow: "كلمة المرور" },
+        info : `مرحباً ، يرجى توخي الحذر عند تسجيل الدخول. يجب عليك اختيار هويتك على الموقع بإضافة أحرف رئيسية قبل حسابك، على سبيل المثال:
+إذا كنت طالباً، أضف S: بريدك الإلكتروني
+إذا كنت ولي أمري، أضف P: بريدك الإلكتروني`,
         placeholder: {
-          email: "... اكتب الايميل هنا",
-          password: "... اكتب كلمة المرور هنا",
+          email: "اكتب الايميل هنا 📧...",
+          password: "اكتب كلمة المرور هنا 🔑...",
         },
         button: "تسجيل الدخول",
       },
@@ -1095,8 +1107,8 @@ export default createStore({
         },
       ],
       language: {
-        pages: "الصفحات",
-        title: "اللغة",
+        pages: "الصفحات 🗂️",
+        title: "اللغة 🗣️🌍",
         arabic: "عربي",
         english: "إنكليزي",
       },
@@ -1779,7 +1791,8 @@ export default createStore({
         level : "المستوى 🎚️",
         class_level : "مستور الصف 🏚️🎚️",
         subject_type : "المادة 📚📖📑",
-        optios : "الخيارات",
+        options : "الخيارات 🗃️",
+        delete : "حذف 🗑️",
         title_placeholder : "اكتب عنوان السؤال هنا ✍️ ...",
         description_placeholder : "اكتب وصف السؤال هنا ✍️ ...",
         note_placeholder : "اكتب ملاحظة السئال هنا ✍️ ...",
@@ -1787,7 +1800,7 @@ export default createStore({
         repated_placeholder : "اكتب تواريخ التكرار هنا ✍️ ...",
         level_placeholder : "اكتب مستوى السؤال هنا ✍️ ...",
         class_level_placeholder : "اكتب مستوى الصف هنا ✍️ ...",
-        optios_placeholder : "اكتب خيارات السؤال هنا ✍️ ...",
+        options_placeholder : "اكتب خيارات السؤال هنا ✍️ ...",
         button : "إنشاء"
       },
       update_question : {
@@ -1801,7 +1814,8 @@ export default createStore({
         level : "المستوى 🎚️",
         class_level : "مستور الصف 🏚️🎚️",
         subject_type : "المادة 📚📖📑",
-        optios : "الخيارات",
+        options : "الخيارات 🗃️",
+        delete : "حذف 🗑️",
         title_placeholder : "اكتب عنوان السؤال هنا ✍️ ...",
         description_placeholder : "اكتب وصف السؤال هنا ✍️ ...",
         note_placeholder : "اكتب ملاحظة السئال هنا ✍️ ...",
@@ -1809,7 +1823,7 @@ export default createStore({
         repated_placeholder : "اكتب تواريخ التكرار هنا ✍️ ...",
         level_placeholder : "اكتب مستوى السؤال هنا ✍️ ...",
         class_level_placeholder : "اكتب مستوى الصف هنا ✍️ ...",
-        optios_placeholder : "اكتب خيارات السؤال هنا ✍️ ...",
+        options_placeholder : "اكتب خيارات السؤال هنا ✍️ ...",
         button : "تعديل"
       },
       add_option_component : {
@@ -1858,8 +1872,12 @@ export default createStore({
         points : "النقاط : ",
         leave : "الخروج  🏃🏻 : "
       },
-      theme: "السمات",
-      mood: "الوضع",
+      not_found : {
+        default_message: "📍⛔😕 عذرا لم يتم العثور على الصفحة 📍⛔😕",
+        page : "الصفحة الرئيسية 🏠"
+      },
+      theme: "السمات 🎨",
+      mood: "الوضع ☀️🌑",
       log_out: "تسجيل الخروج",
       log_in : "تسجيل الدخول",
       error: "... خطأ",

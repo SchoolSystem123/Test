@@ -431,28 +431,6 @@ export default {
       }
     },
 
-    async GetMessagesCount() {
-      await axios
-        .get(this.$store.state.APIs.messages.get_count, {
-          params: {
-            recipient: "super",
-          },
-        })
-        .then((response) => {
-          // set the messages count to messages count in store
-          this.$store.state.messages_count = response.data.Messages_count;
-        })
-        .catch((error) => {
-          console.log(error);
-
-          // to set the reqeust's error message to error message var in store
-          this.$store.state.error_message = error.response.data.message;
-
-          // to open the error form
-          this.$store.state.error_form_status = "open";
-        });
-    },
-
     // get to use profile data
     async GeProfileData() {
       // call to select api method
@@ -735,16 +713,18 @@ export default {
 
       .default_message {
         width: 100%;
-        margin: 5px 5%;
+        margin: 5px 0%;
         height: auto;
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-size: $small;
-        background-color: none;
         color: $font-light;
+        background-color: $note-darck;
       }
     }
 
-    // section-for container style
+    // section for container style
     .section-tow {
       @extend .section-one;
       margin: 10px 5%;
@@ -775,7 +755,7 @@ export default {
         }
       }
 
-      .default-message {
+      .default_message {
         width: 100%;
         margin: 5px 5%;
         height: auto;
@@ -1040,12 +1020,14 @@ export default {
 
       .default_message {
         width: 100%;
-        margin: 5px 5%;
+        margin: 5px 0%;
         height: auto;
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-size: $small;
-        background-color: none;
         color: $font-darck;
+        background-color: $note-light;
       }
 
       #student {
@@ -1305,12 +1287,14 @@ export default {
 
       .default_message {
         width: 100%;
-        margin: 5px 5%;
+        margin: 5px 0%;
         height: auto;
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-size: $small;
-        background-color: none;
         color: $font-light;
+        background-color: $note-darck;
       }
     }
   }
@@ -1563,12 +1547,14 @@ export default {
 
       .default_message {
         width: 100%;
-        margin: 5px 5%;
+        margin: 5px 0%;
         height: auto;
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-size: $small;
-        background-color: none;
         color: $font-darck;
+        background-color: $note-light;
       }
     }
   }

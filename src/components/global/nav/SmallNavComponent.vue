@@ -20,8 +20,11 @@ import axios from "axios";
 export default {
   name: "small-nav-component",
   mounted() {
-    // call to GetMessagesCount method
-    this.GetMessagesCount();
+    //check if the user is loggin in
+    if (this.$store.state.user) {
+      // call to GetMessagesCount method
+      this.GetMessagesCount();
+    }
   },
   methods: {
     // get messages count
@@ -29,7 +32,7 @@ export default {
       await axios
         .get(this.$store.state.APIs.messages.get_count, {
           params: {
-            recipient: "super",
+            recipient: this.$store.state.user.user_type,
           },
         })
         .then((response) => {

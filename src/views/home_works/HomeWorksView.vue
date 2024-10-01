@@ -79,7 +79,7 @@ import LoadingComponentVue from "@/components/global/LoadingComponent.vue";
 import ScrollTopComponentVue from "@/components/global/ScrollTopComponent.vue";
 import ErrorComponentVue from "@/components/global/ErrorComponent.vue";
 import CreateHWShurtCutBtnComponentVue from "@/components/global/shurtCutsButtons/CreateHWShurtCutBtnComponent.vue";
-import HWPageHWComponentVue from '@/components/homeWorks/HWPageHWComponent.vue';
+import HWPageHWComponentVue from "@/components/homeWorks/HWPageHWComponent.vue";
 
 export default {
   name: "home_works-page",
@@ -100,7 +100,7 @@ export default {
     ScrollTopComponentVue,
     ErrorComponentVue,
     CreateHWShurtCutBtnComponentVue,
-    HWPageHWComponentVue
+    HWPageHWComponentVue,
   },
   mounted() {
     // to start the loading animation on loaded the page
@@ -118,7 +118,7 @@ export default {
   methods: {
     // get home_works method
     async GetHomeWorks() {
-          console.log("Response")
+      console.log("Response");
 
       await axios
         .get(this.$store.state.APIs.home_works.get_home_work_all, {
@@ -128,7 +128,7 @@ export default {
           },
         })
         .then((Response) => {
-          console.log(Response)
+          console.log(Response);
           // copy the home_works from response and add that to home_works array in store
           this.$store.state.home_works = [
             ...this.$store.state.home_works,
@@ -170,3 +170,251 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../Sass/varibels/variables";
+
+// darck and light English style
+.home_works-darck-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-darck;
+  direction: ltr;
+
+  // open home_works container style
+  .cont-open {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    padding: 5% 0px 5% 0px;
+    opacity: 1;
+    transition-duration: 0.5s;
+
+    @media (max-width: $phone) {
+      width: 100%;
+      padding: 10% 0px 5% 0px;
+    }
+
+    // page title style
+    .page-title {
+      width: 90%;
+      margin: 5%;
+      padding: 10px 0px;
+      color: $font-light;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+    }
+
+    // home_works conatiner
+    .home_works-cont {
+      width: 100%;
+      height: auto;
+
+      // results title
+      .results {
+        width: 90%;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 13% 5%;
+        padding: 5px 0px;
+        border: 1px solid;
+        border-color: transparent transparent $border-light transparent;
+        color: $font-light;
+      }
+    }
+  }
+
+  // close home_works container style
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0px 5% 0px;
+    transition-duration: 0.5s;
+    opacity: 0;
+  }
+}
+
+.home_works-light-English {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-light;
+  direction: ltr;
+
+  // open home_works container style
+  .cont-open {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    padding: 5% 0px 5% 0px;
+    opacity: 1;
+    transition-duration: 0.5s;
+
+    @media (max-width: $phone) {
+      width: 100%;
+      padding: 10% 0px 5% 0px;
+    }
+
+    // page title style
+    .page-title {
+      width: 90%;
+      margin: 5%;
+      padding: 10px 0px;
+      color: $font-darck;
+      border: 1px solid;
+      border-color: transparent transparent $border-darck transparent;
+    }
+
+    // home_works conatiner
+    .home_works-cont {
+      width: 100%;
+      height: auto;
+
+      // results title
+      .results {
+        width: 90%;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 13% 5%;
+        padding: 5px 0px;
+        border: 1px solid;
+        border-color: transparent transparent $border-darck transparent;
+        color: $font-darck;
+      }
+    }
+  }
+
+  // close home_works container style
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0px 5% 0px;
+    transition-duration: 0.5s;
+    opacity: 0;
+  }
+}
+// darck and light English style
+
+// darck and light Arabic style
+.home_works-darck-Arabic {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-darck;
+  direction: rtl;
+
+  // open home_works container style
+  .cont-open {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    padding: 5% 0px 5% 0px;
+    opacity: 1;
+    transition-duration: 0.5s;
+
+    @media (max-width: $phone) {
+      width: 100%;
+      padding: 10% 0px 5% 0px;
+    }
+
+    // page title style
+    .page-title {
+      width: 90%;
+      margin: 5%;
+      padding: 10px 0px;
+      color: $font-light;
+      border: 1px solid;
+      border-color: transparent transparent $border-light transparent;
+    }
+
+    // home_works conatiner
+    .home_works-cont {
+      width: 100%;
+      height: auto;
+
+      // results title
+      .results {
+        width: 90%;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 13% 5%;
+        padding: 5px 0px;
+        border: 1px solid;
+        border-color: transparent transparent $border-light transparent;
+        color: $font-light;
+      }
+    }
+  }
+
+  // close home_works container style
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0px 5% 0px;
+    transition-duration: 0.5s;
+    opacity: 0;
+  }
+}
+
+.home_works-light-Arabic {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $body-light;
+  direction: rtl;
+
+  // open home_works container style
+  .cont-open {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+    padding: 5% 0px 5% 0px;
+    opacity: 1;
+    transition-duration: 0.5s;
+
+    @media (max-width: $phone) {
+      width: 100%;
+      padding: 10% 0px 5% 0px;
+    }
+
+    // page title style
+    .page-title {
+      width: 90%;
+      margin: 5%;
+      padding: 10px 0px;
+      color: $font-darck;
+      border: 1px solid;
+      border-color: transparent transparent $border-darck transparent;
+    }
+
+    // home_works conatiner
+    .home_works-cont {
+      width: 100%;
+      height: auto;
+
+      // results title
+      .results {
+        width: 90%;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 13% 5%;
+        padding: 5px 0px;
+        border: 1px solid;
+        border-color: transparent transparent $border-darck transparent;
+        color: $font-darck;
+      }
+    }
+  }
+
+  // close home_works container style
+  .cont-close {
+    @extend .cont-open;
+    padding: 20% 0px 5% 0px;
+    transition-duration: 0.5s;
+    opacity: 0;
+  }
+}
+// darck and light Arabic style
+</style>

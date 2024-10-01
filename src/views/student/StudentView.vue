@@ -177,7 +177,7 @@
 
         <!-- default message  -->
         <p
-          class="default-message"
+          class="default_message"
           v-if="this.$store.state.show_user.data.classes.length == 0"
         >
           {{
@@ -223,7 +223,7 @@
 
         <!-- default message  -->
         <p
-          class="default-message"
+          class="default_message"
           v-if="this.$store.state.show_user.data.my_plans.length == 0"
         >
           {{
@@ -586,14 +586,14 @@ export default {
         }
       }
 
-      .default-message {
+      .default_message {
         width: 100%;
         margin: 5px 5%;
         height: auto;
         text-align: center;
         font-size: $small;
-        background-color: none;
         color: $font-light;
+        background-color: $note-darck;
       }
     }
   }
@@ -837,14 +837,14 @@ export default {
         }
       }
 
-      .default-message {
+      .default_message {
         width: 100%;
         margin: 5px 5%;
         height: auto;
         text-align: center;
         font-size: $small;
-        background-color: none;
         color: $font-darck;
+        background-color: $note-light;
       }
     }
   }

@@ -217,8 +217,8 @@
       <label for="options">
         {{
           this.$store.state.language == "English"
-            ? this.$store.state.English.update_question.points
-            : this.$store.state.Arabic.update_question.points
+            ? this.$store.state.English.update_question.options
+            : this.$store.state.Arabic.update_question.options
         }}
       </label>
 
@@ -241,7 +241,13 @@
           |
           <p>{{ option.answer }}</p>
           |
-          <button class="delete">Delete</button>
+          <button class="delete">
+            {{
+              this.$store.state.language == "English"
+                ? this.$store.state.English.update_question.delete
+                : this.$store.state.Arabic.update_question.delete
+            }}
+          </button>
         </div>
         <!-- section heade  -->
       </div>

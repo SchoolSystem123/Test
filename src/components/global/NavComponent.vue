@@ -34,8 +34,11 @@ export default {
     SuperSearchComponentVue,
   },
   mounted() {
-    // call to GetMessagesCount method
-    this.GetMessagesCount();
+    //check if the user is loggin in
+    if (this.$store.state.user) {
+      // call to GetMessagesCount method
+      this.GetMessagesCount();
+    }
   },
   methods: {
     // get messages count
@@ -43,10 +46,11 @@ export default {
       await axios
         .get(this.$store.state.APIs.messages.get_count, {
           params: {
-            recipient: "super",
+            recipient: this.$store.state.user.user_type,
           },
         })
         .then((response) => {
+          console.log(response);
           // set the messages count to messages count in store
           this.$store.state.messages_count = response.data.Messages_count;
         })

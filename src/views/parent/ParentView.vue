@@ -445,14 +445,14 @@ export default {
         }
       }
 
-      .default-message {
+      .default_message {
         width: 100%;
         margin: 5px 5%;
         height: auto;
         text-align: center;
         font-size: $small;
-        background-color: none;
         color: $font-light;
+        background-color: $note-darck;
       }
 
       #student {
@@ -691,7 +691,7 @@ export default {
         }
       }
 
-      .default-message {
+      .default_message {
         width: 100%;
         margin: 5px 5%;
         height: auto;

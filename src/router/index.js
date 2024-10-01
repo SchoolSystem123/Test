@@ -87,6 +87,10 @@ import StartExam from "@/views/Exam/StartExamView.vue";
 import ExamView from "@/views/Exam/ExamView.vue";
 // exam
 
+// 404 not found 
+import NotFoundView from "@/views/NotFoundView.vue";
+// 404 not found 
+
 const routes = [
   {
     path: "/",
@@ -315,7 +319,15 @@ const routes = [
     path : "/qu/:type/:id",
     name :"QuestionPage",
     component : QuestionsView
-  }
+  },
+  // question page
+  // not found page
+  {
+    path : "/:pathMatch(.*)*",
+    name : "NotFound",
+    component: NotFoundView,
+    }
+  // not found page
 ];
 
 
