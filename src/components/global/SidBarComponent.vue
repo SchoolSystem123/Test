@@ -26,6 +26,7 @@
       <!-- user id  -->
     </div>
     <!-- profile  -->
+    <!-- profile  -->
 
     <!-- pages title  -->
     <h3 class="title">
