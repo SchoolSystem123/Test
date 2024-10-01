@@ -131,9 +131,9 @@
 </template>
 
 <script>
-import SwiperCore, { Navigation, parallax } from "swiper";
-
-import { Swiper, SwiperSlide } from "swiper/vue";
+//? importing the components
+import { Navigation, Parallax } from "swiper/modules";
+import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 
 import NavComponentVue from "@/components/global/NavComponent.vue";
 import SidBarComponentVue from "@/components/global/SidBarComponent.vue";
@@ -146,12 +146,14 @@ import ScrollTopComponentVue from "@/components/global/ScrollTopComponent.vue";
 import FooterComponentVue from "@/components/global/FooterComponent.vue";
 import axios from "axios";
 
-SwiperCore.use([Navigation, parallax]);
+// SwiperCore.use([Navigation, Parallax]);
 
 export default {
   name: "HomeView",
   data() {
     return {
+      // to use and work the swiper libbery
+      modules: [Navigation, Parallax],
       parallaxSwiperWidth: 0,
       scroll_page: 0,
     };
